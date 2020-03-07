@@ -4,8 +4,9 @@ const IndexScreen = ({ navigation }) => {
 
     return (
         <View>
-            <Text>Index Screen</Text>
-            <Button title="Posts" onPress={() => { navigation.navigate('Posts') }} />
+            {/* <Text>Index Screen</Text>
+            <Button title="Posts" onPress={() => { navigation.navigate('Home') }} /> */}
+            {navigation.navigate('Home')}
         </View>
     )
 }
