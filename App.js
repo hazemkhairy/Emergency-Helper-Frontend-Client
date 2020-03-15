@@ -6,23 +6,24 @@ import { createAppContainer,createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import PostsScreen from './src/screens/PostsScreen';
 import IndexScreen from './src/screens/IndexScreen';
-// import Home from './src/screens/Home';
-// import Register from './src/screens/Register';
-// import Login from './src/screens/login';
-import Login from './src/screens/Client/LoginScreen'
+import Home from './src/screens/Home';
+import SignUp from './src/screens/Client/SignUp';
+import SignIn from './src/screens/Client/SignIn';
+import * as Font from "expo-font";
+
  componentDidMount=()=> {
     Font.loadAsync({
-      'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
+      Montserrat: require('./assets/fonts/Montserrat-Bold.ttf'),
     });
   }
 const navigator = createAppContainer(
-  createStackNavigator({
-  //  Index: IndexScreen,
-  //  Posts: PostsScreen,
-  //  Home:Home,
-  //  Login:Login,
-  //  Register:Register,
-   Login:Login
+  createSwitchNavigator({
+   Index: IndexScreen,
+   Posts: PostsScreen,
+   Home:Home,
+   SignIn:SignIn,
+   SignUp:SignUp,
+  
 
 
 }) )

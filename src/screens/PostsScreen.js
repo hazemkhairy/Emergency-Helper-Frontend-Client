@@ -1,15 +1,20 @@
 import React from 'react';
 import { Text, View, StyleSheet, FlatList, Button } from 'react-native';
 import { getData } from '../store/Posts/actions'
-import { connect } from 'react-redux'
+import { connect,useSelector,useDispatch } from 'react-redux'
 const PostsScreen = (props) => {
-    console.log(props.posts)
+    const posts = useSelector(state=>{
+        return state.postsReducer
+    })
+    console.log('done')
+    console.log(posts)
+    const  dispatch = useDispatch();
     return (
         <View>
             <Text>Posts Screen</Text>
-            <Button title="Get Data" onPress={() => { props.getDatax() }} />
+            <Button title="Get Data" onPress={() => { dispatch(getData()) }} />
             <FlatList
-                data={props.posts}
+                data={posts}
                 keyExtractor={(item) => { return String(item.id) }}
                 renderItem={({ item }) => { return <Text>{item.id} - {item.name}</Text> }}
             />
@@ -21,12 +26,4 @@ const styles = StyleSheet.create({
 
 })
 
-const mapStateToProps = state => ({
-    posts: state.postsReducer
-})
-
-const mapDispatchToProps = dispatch => ({
-    getDatax: () => { dispatch(getData()) }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(PostsScreen);
+export default PostsScreen;
