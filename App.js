@@ -7,8 +7,8 @@ import { createStackNavigator } from 'react-navigation-stack'
 import PostsScreen from './src/screens/PostsScreen';
 import IndexScreen from './src/screens/IndexScreen';
 import Home from './src/screens/Home';
-import SignUp from './src/screens/Client/SignUp';
-import SignIn from './src/screens/Client/SignIn';
+import SignUp from './src/screens/Client/authentications/SignUp';
+import SignIn from './src/screens/Client/authentications/SignIn';
 import * as Font from "expo-font";
 
  componentDidMount=()=> {
@@ -23,9 +23,6 @@ const navigator = createAppContainer(
    Home:Home,
    SignIn:SignIn,
    SignUp:SignUp,
-  
-
-
 }) )
 
 const App = createAppContainer(navigator);
