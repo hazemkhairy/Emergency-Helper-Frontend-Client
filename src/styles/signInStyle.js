@@ -27,15 +27,15 @@ export default StyleSheet.create({
           justifyContent:'center',
         },
         input: {
-          height: '15%',
+          height: '12%',
           backgroundColor: '#ffffff00',
-          marginLeft: '7%',
-          marginRight: '7%',
           borderBottomColor:'#DDDDDD',
           borderBottomWidth:1,
-          marginBottom:'0%',
-          marginTop:'5%',
           fontSize: 16,
+          marginLeft: '7%',
+          marginRight: '7%',
+          marginBottom:'3%',
+          marginTop:'3%',
           fontFamily:'Montserrat_Medium'
         },
         ForgetPasswordButton:{
@@ -45,7 +45,17 @@ export default StyleSheet.create({
         ForgetPasswordText:{
           color:'#132641',
           fontSize:12,
-          fontFamily:'Montserrat_SemiBold'
+          fontFamily:'Montserrat_SemiBold',
+          marginTop:'7%'
         },
-       
+        texterror:{
+          color:'#b30000',
+          fontSize:14,
+          marginLeft:'7%',
+          marginRight:'7%',
+          marginTop:'0%',
+          marginBottom:'0%',
+          fontFamily:'Montserrat_Medium',
+          height:'8%'
+        },
   });

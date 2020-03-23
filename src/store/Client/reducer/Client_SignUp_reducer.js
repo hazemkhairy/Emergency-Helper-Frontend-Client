@@ -7,10 +7,8 @@ const initialState = {
 }
 export default (state = initialState, action) => {
     switch (action.type) {
-        case Start_Sign_Up:
-            return { ...state, signupstarted : true };
         case Success_Sign_Up:
-            return { ...state, signupstarted : false };
+            return { ...state, ...action.payload };
         case Failed_Sign_Up:
             console.log('in reducer',state.signupstarted)
             return { ...state, signupstarted : false, error : true };

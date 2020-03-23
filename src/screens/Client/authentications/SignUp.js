@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Text,View,StyleSheet,TextInput,Dimensions,TouchableOpacity,Button,ActivityIndicator} from 'react-native';
+import {Text,View,StyleSheet,TextInput,Dimensions,TouchableOpacity,Button,ActivityIndicator,ScrollView,KeyboardAvoidingView} from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -30,16 +30,18 @@ const SignUp=({navigation})=>
   const [email_error,setemail_error]=useState('');
   const [password_error,setpassword_error]=useState('');
   const [confirmpassword_error,setConfirmPassword_error]=useState('');
-
+  const [error,setError]=useState('');
   const isLoading = useSelector((state) => {
     return state.SignUpReducer.loginStarted
 })
 
-const onSubmit=()=>
+const validate=()=>
 {
+  
   if(firstname=="")
   {
-    setFirstname_error("Please Enter your First Name ")
+    setFirstname_error("Please Enter Your First Name ")
+    setError("False")
     
   }
   else 
@@ -49,41 +51,53 @@ const onSubmit=()=>
     if (letters.test(firstname) === true){
       setFirstname_error("")
     }
-    else 
-    setFirstname_error("Can't enter numbers")
-    
+    else {
+    setFirstname_error("Can't Enter Numbers")
+    setError("False")
+    }
   }
 
   if(lastname=='')
   {
-    setLastname_error("Please Enter your Last Name")
+    setLastname_error("Please Enter Your Last Name")
+    setError("False")
   }
-  else setLastname_error("")
+  else 
+  {
+    var letters = /^[A-Za-z]+$/;
+    
+    if (letters.test(lastname) === true){
+      setLastname_error("")
+    }
+    else {
+    setLastname_error("Can't Enter Numbers")
+    setError("False")
+    }
+  }
+
+
   if(phonenumber=="")
   {
-    setPhonenumber_error("Please Enter your Phone number ")
+    setPhonenumber_error("Please Enter Your Phone Number ")
   }
   else
   {
     var numbers =  /^[0-9\b]+$/;
-    if(phonenumber.length!=12)
-    {
-      setPhonenumber_error("Please Enter valid mobile number")
-    }
-    else{
     if (numbers.test(phonenumber) === true){
 
       setPhonenumber_error("")
     }
     else 
-    setPhonenumber_error("Can't enter letters")
-  }
+    {
+    setPhonenumber_error("Can't Enter Letters")
+    setError("False")
+    }
   }
   
-
   if(email=='')
   {
-    setemail_error("Please enter your Email")
+    setemail_error("Please Enter Your Email")
+    setError("False")
   }
   else
   {
@@ -93,38 +107,54 @@ const onSubmit=()=>
   }
   else{
     setemail_error("Invalid Email")
+    setError("False")
   }
    
   }
   if(password=='')
   {
-    setpassword_error("Please Enter your Password")
+    setpassword_error("Please Enter Your Password")
+    setError("False")
   }
   else 
   {
     if(password.length<=8)
-
-    setpassword_error("Password must be 8 characters or more")
+{
+    setpassword_error("Password Must Be 8 Characters Or More")
+    setError("False")
+}
     else setpassword_error("")
   }
 
   if(confirmpassword=='')
   {
-    setConfirmPassword_error("Please Confirm your password")
+    setConfirmPassword_error("Please Confirm Your Password")
+    setError("False")
   }
   else {
     if(password!=confirmpassword)
     {
-      setConfirmPassword_error("Confirm Password doesn't match")
+      setConfirmPassword_error("Confirm Password Doesn't Match")
+      setError("False")
     }
     else
     setConfirmPassword_error("")
   }
+ 
 }
   
-
+const onSubmit=()=>
+{
+  validate();
+  if(error!="False")
+  {
+    disptach(signUpAction(new SignUpUser(firstname,lastname,phonenumber,email,password,confirmpassword)))
+  }
+  else console.log("Failed")
+}
 
     return(
+     
       <View style={globalStyle.white_background}>
       <View style={globalStyle.blue_background}>
         
@@ -146,9 +176,10 @@ const onSubmit=()=>
          </TouchableOpacity>   
 
        </View>
-       
+      
         <View style={styles.Form}>
-
+        {/* <ScrollView>
+        <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={100}> */}
         <TextInput
               placeholder="First Name"
               placeholderTextColor = '#B9B3BD'
@@ -159,7 +190,7 @@ const onSubmit=()=>
               onChangeText={(text) => setFirstname(text)} 
               //onBlur={()=>this.validatefirstname() }         
             />
-           <Text style={globalStyle.texterror}>{firstname_error}</Text>
+           <Text style={styles.texterror}>{firstname_error}</Text>
             <TextInput
               placeholder="Last Name"
               placeholderTextColor = '#B9B3BD'
@@ -168,9 +199,9 @@ const onSubmit=()=>
               style={[styles.input,!lastname_error==''?globalStyle.error:null]}
               value={lastname}
               onChangeText={(text) => setLastname(text)} 
-            //  onBlur={()=>this.validationlastname()} 
+            //onBlur={()=>this.validationlastname()} 
             />
-            <Text  style={globalStyle.texterror}>{lastname_error}</Text>
+            <Text  style={styles.texterror}>{lastname_error}</Text>
             <TextInput
               placeholder="Phone Number"
               placeholderTextColor = '#B9B3BD'
@@ -180,9 +211,9 @@ const onSubmit=()=>
               keyboardType={"numeric"}
               value={phonenumber}
               onChangeText={(text) => setPhonenumber(text)} 
-              //onBlur={()=>this.validationphonenumber()}
+            //onBlur={()=>this.validationphonenumber()}
             />
-            <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
+            <Text style={styles.texterror}>{phonenumber_error}</Text>
             <TextInput
               placeholder="E-mail"
               placeholderTextColor = '#B9B3BD'
@@ -194,7 +225,7 @@ const onSubmit=()=>
               onChangeText={(text) => setEmail(text)} 
               //onBlur={()=>this.validationemail()}
             />
-            <Text style={globalStyle.texterror}>{email_error}</Text>
+            <Text style={styles.texterror}>{email_error}</Text>
             <TextInput
               placeholder="Password"
               secureTextEntry={true}
@@ -206,7 +237,7 @@ const onSubmit=()=>
               onChangeText={(text) => setPassword(text)} 
               //onBlur={()=>this.validationpassword()}
             />
-            <Text style={globalStyle.texterror}>{password_error}</Text>
+            <Text style={styles.texterror}>{password_error}</Text>
             <TextInput 
               placeholder="Confirm Password"
               secureTextEntry={true}
@@ -217,19 +248,20 @@ const onSubmit=()=>
               value={confirmpassword}
               onChangeText={(text) => setConfirmPassword(text)} 
              // onBlur={()=>this.validationconfirmpassword()}
-             
             />
-           <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>
+           <Text style={styles.texterror}>{confirmpassword_error}</Text>
 
            <Text style={styles.ByClickingText}>By clicking continue you are agreeing to our </Text>
            
            <TouchableOpacity>
              <Text style={styles.terms_conditionsbutton}>terms and conditions.</Text>
              </TouchableOpacity>   
+             {/* </KeyboardAvoidingView>
+          </ScrollView> */}
           </View>
+         
           <TouchableOpacity 
            onPress={() => {
-            disptach(signUpAction(new SignUpUser(firstname,lastname,phonenumber,email,password,confirmpassword)))
             onSubmit()
         }
         } style={globalStyle.Continuebutton}>
@@ -237,6 +269,7 @@ const onSubmit=()=>
         
           </View>
           </View>
+         
     )
   
 

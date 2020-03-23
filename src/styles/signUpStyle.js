@@ -18,7 +18,7 @@ export default StyleSheet.create({
           borderWidth: 0,
           borderColor: '#d6d7da',
           backgroundColor: '#fff',
-          height:'180%',
+          height:'205%',
           width:'87%',
           marginLeft:'7%',
           marginRight:'7%', 
@@ -32,27 +32,37 @@ export default StyleSheet.create({
           borderBottomColor:'#DDDDDD',
           borderBottomWidth:1,
           fontSize: 16,
-          fontWeight:'500',
           marginLeft: '7%',
           marginRight: '7%',
-          marginBottom: '0%',
-          marginTop:'3%' ,      
+          marginBottom: '3%',
+          marginTop:'3%' ,  
           fontFamily:'Montserrat_Medium'
         },
         ByClickingText:{
           color:'#B7B7B7',
           fontSize:14,
-          marginTop: '2%',
           marginBottom:'0%',
           textAlign:'center',
-         fontFamily:'Montserrat'
+         fontFamily:'Montserrat',
+         marginTop:'1%'
         },
         terms_conditionsbutton:{
           color:'#132641',
           textDecorationLine: 'underline',
           fontSize: 14,
           textAlign: 'center',
-          fontFamily:'Montserrat'
+          fontFamily:'Montserrat',
+        },
+        texterror:{
+          color:'#b30000',
+          fontSize:14,
+          marginLeft:'7%',
+          marginRight:'7%',
+          marginTop:'0%',
+          marginBottom:'0%',
+          fontFamily:'Montserrat_Medium',
+          height:'3%'
         },
         
   });
+ 

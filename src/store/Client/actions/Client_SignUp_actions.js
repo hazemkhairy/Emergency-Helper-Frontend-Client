@@ -11,7 +11,7 @@ export const signUpAction=(user = new SignUpUser() )=>
     return (dispatch) => {
     // dispatch request start
     dispatch({ type: Start_Sign_Up })
-    axios.post('https://emergency-helper.herokuapp.com/account/login',
+    axios.post('',
     { 
     firstname: user.firstname,
     lastname: user.lastname,

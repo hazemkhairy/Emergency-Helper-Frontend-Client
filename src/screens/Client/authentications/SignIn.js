@@ -31,7 +31,7 @@ const SignIn=({navigation})=>
     
     if(email=='')
     {
-      setemail_error("Please enter your Email")
+      setemail_error("Please Enter Your Email")
     }
     else
     {
@@ -43,11 +43,17 @@ const SignIn=({navigation})=>
       setemail_error("Invalid Email")
     }
   }
-    if(password=='')
-    {
-      setpassword_error("Please Enter your Password")
-    }
+  if(password=='')
+  {
+    setpassword_error("Please Enter Your Password")
+  }
+  else 
+  {
+    if(password.length<=8)
+
+    setpassword_error("Password Must Be 8 Characters Or More")
     else setpassword_error("")
+  }
 }  
     return(
         <View style={globalStyle.white_background}>
@@ -59,7 +65,6 @@ const SignIn=({navigation})=>
           <Icon name="arrowleft" style={globalStyle.iconstyle}/>
         </Text>
         </TouchableOpacity>
-           
        <View style={globalStyle.SignIN_SignUp}>
        
        <TouchableOpacity onPress={()=>{navigation.navigate('SignIn')}}>
@@ -74,7 +79,7 @@ const SignIn=({navigation})=>
         <View style={styles.Form}>
         
           <TextInput
-            placeholder="email"
+            placeholder="Email"
             placeholderTextColor = '#B9B3BD'
             keyboardType={"email-address"}
             autoCorrect={false}
@@ -83,7 +88,7 @@ const SignIn=({navigation})=>
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
-           <Text style={globalStyle.texterror}>{email_error}</Text>
+           <Text style={styles.texterror}>{email_error}</Text>
           <TextInput
             secureTextEntry={true}
             placeholder="Password"
@@ -94,7 +99,7 @@ const SignIn=({navigation})=>
             value={password}
             onChangeText={(text) => setPassword(text)} 
             />
-           <Text style={globalStyle.texterror}>{password_error}</Text>
+           <Text style={styles.texterror}>{password_error}</Text>
           
            </View>
            
