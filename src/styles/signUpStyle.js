@@ -18,11 +18,11 @@ export default StyleSheet.create({
           borderWidth: 0,
           borderColor: '#d6d7da',
           backgroundColor: '#fff',
-          height:'205%',
+          height:'212%',
           width:'87%',
           marginLeft:'7%',
           marginRight:'7%', 
-          marginBottom:'5%',
+          marginBottom:'4%',
           borderRadius: 35,
           justifyContent:'center',
         },
@@ -44,7 +44,7 @@ export default StyleSheet.create({
           marginBottom:'0%',
           textAlign:'center',
          fontFamily:'Montserrat',
-         marginTop:'1%'
+         marginTop:'3%'
         },
         terms_conditionsbutton:{
           color:'#132641',

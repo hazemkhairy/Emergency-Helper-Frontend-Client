@@ -118,7 +118,7 @@ const validate=()=>
   }
   else 
   {
-    if(password.length<=8)
+    if(password.length<8)
 {
     setpassword_error("Password Must Be 8 Characters Or More")
     setError("False")
