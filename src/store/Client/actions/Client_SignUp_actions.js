@@ -21,15 +21,7 @@ export const signUpAction=(user = new SignUpUser() )=>
     confirmpassword:user.confirmpassword
     }
     )
-        .then(res => {
-            console.log(res.data)
-            dispatch({ type: Success_Sign_Up })
-        })
-        .catch(err => { 
-            console.log(err) 
-            dispatch({ type: Failed_Sign_Up })
-             
-        })
+       
 
 }
 

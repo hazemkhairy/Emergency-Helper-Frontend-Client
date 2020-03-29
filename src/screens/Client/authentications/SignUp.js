@@ -16,7 +16,7 @@ const {width,height}=Dimensions.get('window');
 const SignUp=({navigation})=>
 {
   const disptach = useDispatch();
-  
+  const user = useSelector((store) => { return store.SignUpReducer.user })
   const [firstname,setFirstname]=useState('');
   const [lastname,setLastname]=useState('');
   const [phonenumber,setPhonenumber]=useState('');

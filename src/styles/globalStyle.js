@@ -14,10 +14,13 @@ export default StyleSheet.create({
   },
     white_background:{
         backgroundColor:'#F1F0F2',
+        height:'100%',
+        width:'100%',
         flex:1
       },
     
       blue_background:{
+       
         backgroundColor:'#7598BA',
         height:'33%',
         borderBottomLeftRadius:70

@@ -20,7 +20,7 @@ const SignIn=({navigation})=>
   const [password_error,setpassword_error]=useState('');
 
   const isLoading = useSelector((state) => {
-        return state.SignInReducer.Sign_In
+        return state.SignInReducer.SignIn
     })
     const token = useSelector((state) => {
         return state.SignInReducer.token
@@ -100,7 +100,6 @@ const SignIn=({navigation})=>
             onChangeText={(text) => setPassword(text)} 
             />
            <Text style={styles.texterror}>{password_error}</Text>
-          
            </View>
            
           <TouchableOpacity 
@@ -117,7 +116,9 @@ const SignIn=({navigation})=>
          <Text style={globalStyle.continueText}>CONTINUE</Text>
          </TouchableOpacity>
          
-          <TouchableOpacity style={styles.ForgetPasswordButton}><Text style={styles.ForgetPasswordText}>FORGOT PASSWORD</Text></TouchableOpacity>   
+          <TouchableOpacity style={styles.ForgetPasswordButton}>
+            <Text style={styles.ForgetPasswordText}>FORGOT PASSWORD</Text>
+            </TouchableOpacity>   
           </View>
           </View>
         
