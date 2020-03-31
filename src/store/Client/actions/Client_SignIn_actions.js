@@ -1,17 +1,17 @@
-import axios from 'axios';
+import backendAxios from '../../../services/backendAxios'
 import {SignInUser} from '../../../moduels/Client/Client_Moduel'
 
-export const Sign_In = 'SIGN_IN';
+
 export const Start_Sign_In = 'Start_SIGN_IN';
 export const Success_Sign_In = 'Success_SIGN_IN';
-export const Failed_Sign_In = 'Failed_SIGN_IN';
+export const Error_Sign_In = 'Error_Sign_In';
 
 export const signInAction = (user = new SignInUser()) => {
 
     return (dispatch) => {
         // dispatch request start
         dispatch({ type: Start_Sign_In })
-        axios.post('https://emergency-helper.herokuapp.com/account/login', {
+        backendAxios.post('/api/Account/Login',{
             email: user.email,
             password: user.password
         })
@@ -21,7 +21,7 @@ export const signInAction = (user = new SignInUser()) => {
             })
             .catch(err => { 
                 console.log(err) 
-                dispatch({ type: Failed_Sign_In })
+                dispatch({ type: Error_Sign_In })
                  
             })
 

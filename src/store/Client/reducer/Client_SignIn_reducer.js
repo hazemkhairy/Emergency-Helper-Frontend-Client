@@ -1,21 +1,25 @@
-import { Start_Sign_In, Failed_Sign_In, Success_Sign_In } from '../actions/Client_SignIn_actions'
+import { Start_Sign_In,Error_Sign_In,Success_Sign_In } from '../actions/Client_SignIn_actions'
 
+import {SignInUser } from '../../../moduels/Client/Client_Moduel'
 
 const initialState = {
-    token:'',
-    signinStarted:false,
-    error : false
-}
+    user: new SignInUser(),
 
+    sendingSignInRequest: false,
+    errorSignInRequest: false,
+    successSignInRequest: false,
+}
 export default (state = initialState, action) => {
     switch (action.type) {
+        
         case Start_Sign_In:
-            return { ...state, signinStarted : true };
+            return { ...state, sendingSignInRequest: true, successSignInRequest: false, errorSignInRequest: false };
+        case Error_Sign_In:
+            return { ...state, sendingSignInRequest: false, errorSignInRequest: true };
         case Success_Sign_In:
-            return { ...state, token : action.payload.token, signinStarted : false };
-        case Failed_Sign_In:
-            console.log('in reducer',state.signinStarted)
-            return { ...state, signinStarted : false, error : true };
+            return { ...state, sendingSignInRequest: false, successSignInRequest: true };
+        case Success_Sign_In:
+            return { ...state, user: { ...action.payload } };
     }
     return state;
 }

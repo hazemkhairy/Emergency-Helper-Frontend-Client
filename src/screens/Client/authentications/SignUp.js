@@ -5,11 +5,11 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {signUpAction} from '../../../store/Client/actions/Client_SignUp_actions'
-import {SignUpUser} from '../../../moduels/Client/Client_Moduel'
+
 import styles from '../../../styles/signUpStyle'
 import globalStyle from '../../../styles/globalStyle'
 
-const {width,height}=Dimensions.get('window');
+
 
 //Design :fit on more than mobile,missing font,Validation missing design 
 
@@ -17,6 +17,14 @@ const SignUp=({navigation})=>
 {
   const disptach = useDispatch();
   const user = useSelector((store) => { return store.SignUpReducer.user })
+  const requestState = useSelector(
+      (store) => {
+          return {
+              pending: store.SignUpReducer.sendingSignUpRequest,
+              error: store.SignUpReducer.errorSignUpRequest,
+              success: store.SignUpReducer.successSignUpRequest
+          }
+      })
   const [firstname,setFirstname]=useState('');
   const [lastname,setLastname]=useState('');
   const [phonenumber,setPhonenumber]=useState('');
@@ -30,18 +38,16 @@ const SignUp=({navigation})=>
   const [email_error,setemail_error]=useState('');
   const [password_error,setpassword_error]=useState('');
   const [confirmpassword_error,setConfirmPassword_error]=useState('');
-  const [error,setError]=useState('');
-  const isLoading = useSelector((state) => {
-    return state.SignUpReducer.loginStarted
-})
+  
+  
 
 const validate=()=>
 {
-  
+  let error=true;
   if(firstname=="")
   {
     setFirstname_error("Please Enter Your First Name ")
-    setError("False")
+    error=false;
     
   }
   else 
@@ -53,14 +59,14 @@ const validate=()=>
     }
     else {
     setFirstname_error("Can't Enter Numbers")
-    setError("False")
+    error=false
     }
   }
 
   if(lastname=='')
   {
     setLastname_error("Please Enter Your Last Name")
-    setError("False")
+    error=false
   }
   else 
   {
@@ -71,7 +77,7 @@ const validate=()=>
     }
     else {
     setLastname_error("Can't Enter Numbers")
-    setError("False")
+    error=false
     }
   }
 
@@ -90,14 +96,14 @@ const validate=()=>
     else 
     {
     setPhonenumber_error("Can't Enter Letters")
-    setError("False")
+    error=false
     }
   }
   
   if(email=='')
   {
     setemail_error("Please Enter Your Email")
-    setError("False")
+    error=false
   }
   else
   {
@@ -107,21 +113,21 @@ const validate=()=>
   }
   else{
     setemail_error("Invalid Email")
-    setError("False")
+    error=false
   }
    
   }
   if(password=='')
   {
     setpassword_error("Please Enter Your Password")
-    setError("False")
+    error=false
   }
   else 
   {
     if(password.length<8)
 {
     setpassword_error("Password Must Be 8 Characters Or More")
-    setError("False")
+    error=false
 }
     else setpassword_error("")
   }
@@ -129,27 +135,28 @@ const validate=()=>
   if(confirmpassword=='')
   {
     setConfirmPassword_error("Please Confirm Your Password")
-    setError("False")
+    error=false
   }
   else {
     if(password!=confirmpassword)
     {
       setConfirmPassword_error("Confirm Password Doesn't Match")
-      setError("False")
+      error=false
     }
     else
     setConfirmPassword_error("")
   }
- 
+ return error;
 }
   
 const onSubmit=()=>
 {
-  validate();
-  if(error!="False")
+  if(validate())
   {
-    disptach(signUpAction(new SignUpUser(firstname,lastname,phonenumber,email,password,confirmpassword)))
+    console.log("Success")
+    disptach(signUpAction(user))
   }
+  
   else console.log("Failed")
 }
 
@@ -266,7 +273,18 @@ const onSubmit=()=>
         }
         } style={globalStyle.Continuebutton}>
           <Text style={globalStyle.continueText}>CONTINUE</Text></TouchableOpacity>  
-        
+          <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '10%' }}>
+                    {
+
+                        requestState.pending ?
+                            <ActivityIndicator size="small" /> :
+                            requestState.success ?
+                                <Text>sucess</Text> :
+                                requestState.error ?
+                                    <Text>Error</Text> :
+                                    null
+                    }
+                </View>
           </View>
           </View>
          
