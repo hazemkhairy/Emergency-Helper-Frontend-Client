@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         borderBottomColor:'#DDDDDD',
         borderBottomWidth:1,
         fontSize: 16,
-        fontFamily:'Montserrat_Medium'
-    
+        fontFamily:'Montserrat_Medium',
+        fontWeight:'normal'
 
     },
     error: {
