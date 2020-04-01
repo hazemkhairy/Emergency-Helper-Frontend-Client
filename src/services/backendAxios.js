@@ -4,7 +4,7 @@ import {setAuthToken} from '../Utils/LocalStorage'
 axios.interceptors.request.use(
     config => {
         //token ?
-        config.baseURL = 'https://emergency-helper.herokuapp.com';
+        config.baseURL = 'https://emergency-helper.herokuapp.com/';
         config.headers['Content-Type'] = 'application/json';
         return config
     }

@@ -9,28 +9,27 @@ const Input = (props) => {
     if (props.error)
         myStyle = { ...myStyle, ...styles.error }
 
-    return(
-         <View>
-        <TextInput
+    return (
+        <View>
+            <TextInput
 
-            value={props.value}
-            onChangeText={props.onChangeText}
-            {...props}
-            style={myStyle}
-        />
-    </View>
+                value={props.value}
+                onChangeText={props.onChangeText}
+                {...props}
+                style={myStyle}
+            />
+        </View>
     )
 }
 const styles = StyleSheet.create({
     input: {
 
-        height: 35,
+        height: 25,
         backgroundColor: '#ffffff00',
-        borderBottomColor:'#DDDDDD',
-        borderBottomWidth:1,
+        borderBottomColor: '#DDDDDD',
+        borderBottomWidth: 1,
         fontSize: 16,
-        fontFamily:'Montserrat_Medium',
-        fontWeight:'normal'
+        fontFamily: 'Montserrat_Medium',
 
     },
     error: {

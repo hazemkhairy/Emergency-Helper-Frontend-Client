@@ -1,79 +1,80 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 
 export default StyleSheet.create({
-  // SignIN_SignUp:
-  // {
-  //   display:'flex',
-  //   flexDirection:'row',
-  //   justifyContent:'center',
-  //   marginTop:'23%',
-  //   marginRight:'20%',
-  //   marginLeft:'20%',
-  //   marginBottom:'5%'
-  // },
-  //   white_background:{
-  //       backgroundColor:'#F1F0F2',
-  //       height:'100%',
-  //       width:'100%',
-  //       flex:1
-  //     },
-    
-  //     blue_background:{
-       
-  //       backgroundColor:'#7598BA',
-  //       height:'33%',
-  //       borderBottomLeftRadius:70
-  //     },
-  //     backbutton:{
-  //       position:'absolute',
-  //       marginTop:'15%',
-  //       marginLeft:'10%'
-  //     },
-  //     backIcon:{
-  //        color:'#fff',
-  //        fontSize:20
-  //     },
-  //     Continuebutton: {
-  //       backgroundColor: '#132641',
-  //       height:Dimensions.get('window').height>800?'20%':'25%',
-  //       width:'85%',
-  //       borderRadius: 35,
-  //       alignItems: 'center',
-  //       justifyContent: 'center',
-  //       marginLeft:'8%',
-  //       marginRight:'8%',
-  //     },
-  //     continueText:{
-  //       color:'#fff',
-  //       fontSize:14,
-  //       fontFamily:'Montserrat_SemiBold',
-  //     },
+    // SignIN_SignUp:
+    // {
+    //   display:'flex',
+    //   flexDirection:'row',
+    //   justifyContent:'center',
+    //   marginTop:'23%',
+    //   marginRight:'20%',
+    //   marginLeft:'20%',
+    //   marginBottom:'5%'
+    // },
+    //   white_background:{
+    //       backgroundColor:'#F1F0F2',
+    //       height:'100%',
+    //       width:'100%',
+    //       flex:1
+    //     },
 
-      //start from here
-      texterror: {
+    //     blue_background:{
+
+    //       backgroundColor:'#7598BA',
+    //       height:'33%',
+    //       borderBottomLeftRadius:70
+    //     },
+    //     backbutton:{
+    //       position:'absolute',
+    //       marginTop:'15%',
+    //       marginLeft:'10%'
+    //     },
+    //     backIcon:{
+    //        color:'#fff',
+    //        fontSize:20
+    //     },
+    //     Continuebutton: {
+    //       backgroundColor: '#132641',
+    //       height:Dimensions.get('window').height>800?'20%':'25%',
+    //       width:'85%',
+    //       borderRadius: 35,
+    //       alignItems: 'center',
+    //       justifyContent: 'center',
+    //       marginLeft:'8%',
+    //       marginRight:'8%',
+    //     },
+    //     continueText:{
+    //       color:'#fff',
+    //       fontSize:14,
+    //       fontFamily:'Montserrat_SemiBold',
+    //     },
+
+    //start from here
+    texterror: {
         color: '#b30000',
         fontSize: 14,
         position: 'relative',
         alignItems: 'center',
         marginLeft: '7%',
         fontFamily: 'Montserrat_Medium',
-        marginTop:'2%'
-      },
-      error: {
+        marginTop: '2%'
+    },
+    error: {
         borderBottomColor: '#b30000',
         borderBottomWidth: 1
-      },
-      input: {
+    },
+    input: {
         marginLeft: '7%',
         marginRight: '7%',
+        marginBottom: '0%',
         marginTop: '5%',
-      },
+    },
 
-      white_Background: {
+    white_Background: {
         backgroundColor: '#F1F0F2',
         height: '100%',
-         width: '100%'
+        width: '100%'
     },
     blue_Background: {
         backgroundColor: '#7598BA',
@@ -99,7 +100,8 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         width: '50%',
         alignSelf: 'center'
-        
+
+
     },
     activeText: {
         color: 'white',
@@ -119,12 +121,12 @@ export default StyleSheet.create({
         marginRight: '7%',
         marginBottom: '5%',
         marginTop: '5%',
-        paddingTop: '10%',
+        paddingTop: '7%',
         borderRadius: 35,
         justifyContent: 'center',
         minHeight: '25%',
         alignContent: 'center',
-        
+
     },
     continueButton: {
         backgroundColor: '#132641',
@@ -141,5 +143,5 @@ export default StyleSheet.create({
         fontSize: 14,
         fontFamily: 'Montserrat_SemiBold'
     },
-    
+
 });

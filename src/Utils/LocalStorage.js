@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native'
+
 export const getAuthToken = () => {
     return AsyncStorage.getItem('token');
 }

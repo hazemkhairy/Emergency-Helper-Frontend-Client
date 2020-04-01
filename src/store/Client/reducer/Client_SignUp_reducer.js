@@ -16,9 +16,9 @@ export default (state = initialState, action) => {
         case Error_Sign_Up:
             return { ...state, sendingSignUpRequest: false, errorSignUpRequest: true };
         case Success_Sign_Up:
-            return { ...state, sendingSignUpRequest: false, successSignUpRequest: true };
-        case Success_Sign_Up:
-            return { ...state, user: { ...action.payload } };
+            return { ...state, sendingSignUpRequest: false, successSignUpRequest: true, user :{ ...action.payload }};
+        // case Success_Sign_Up:
+        //     return { ...state, user: { ...action.payload } };
     }
     return state;
 }

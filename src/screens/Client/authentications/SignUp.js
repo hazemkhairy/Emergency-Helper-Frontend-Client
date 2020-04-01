@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import { Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { signUpAction } from '../../../store/Client/actions/Client_SignUp_actions'
-import styles from '../../../styles/signUpStyle'
+import signUpStyle from '../../../styles/signUpStyle'
 import globalStyle from '../../../styles/globalStyle'
 import Input from '../../../components/global/Input';
 import AuthHeader from '../authentications/AuthHeader';
 
-
-//Design :fit on more than mobile,missing font,Validation missing design 
 
 const SignUp = ({ navigation }) => {
   const disptach = useDispatch();
@@ -143,115 +140,115 @@ const SignUp = ({ navigation }) => {
 
   return (
 
-      <View >
+    <View >
 
-        <AuthHeader
+      <AuthHeader
 
-          continueButtonPress={() => { onSubmit() }}
-          signUpButtonPress={() => { }}
-          signInButtonPress={() => { navigation.navigate('SignIn') }}
-          backButtonPress={() => { navigation.navigate('Home') }}
-          active={2}
-        >
-          <Input
-            placeholder="First Name"
-            placeholderTextColor='#B9B3BD'
-            autoCorrect={false}
-            autoCapitalize="none"
-            style={globalStyle.input}
-            value={firstname}
-            error={firstname_error != ''}
-            onChangeText={(text) => setFirstname(text)}
-          />
-          <Text style={globalStyle.texterror}>{firstname_error}</Text>
-          <Input
-            placeholder="Last Name"
-            placeholderTextColor='#B9B3BD'
-            autoCorrect={false}
-            autoCapitalize="none"
-            style={globalStyle.input}
-            value={lastname}
-            error={lastname_error != ''}
-            onChangeText={(text) => setLastname(text)}
-          />
-          <Text style={globalStyle.texterror}>{lastname_error}</Text>
-          <Input
-            placeholder="Phone Number"
-            placeholderTextColor='#B9B3BD'
-            autoCorrect={false}
-            autoCapitalize="none"
-            style={globalStyle.input}
-            keyboardType={"numeric"}
-            value={phonenumber}
-            error={phonenumber_error != ''}
+        continueButtonPress={() => { onSubmit() }}
+        signUpButtonPress={() => { }}
+        signInButtonPress={() => { navigation.navigate('SignIn') }}
+        backButtonPress={() => { navigation.navigate('Home') }}
+        active={2}
+      >
+        <Input
+          placeholder="First Name"
+          placeholderTextColor='#B9B3BD'
+          autoCorrect={false}
+          autoCapitalize="none"
+          style={globalStyle.input}
+          value={firstname}
+          error={firstname_error != ''}
+          onChangeText={(text) => setFirstname(text)}
+        />
+        <Text style={globalStyle.texterror}>{firstname_error}</Text>
+        <Input
+          placeholder="Last Name"
+          placeholderTextColor='#B9B3BD'
+          autoCorrect={false}
+          autoCapitalize="none"
+          style={globalStyle.input}
+          value={lastname}
+          error={lastname_error != ''}
+          onChangeText={(text) => setLastname(text)}
+        />
+        <Text style={globalStyle.texterror}>{lastname_error}</Text>
+        <Input
+          placeholder="Phone Number"
+          placeholderTextColor='#B9B3BD'
+          autoCorrect={false}
+          autoCapitalize="none"
+          style={globalStyle.input}
+          keyboardType={"numeric"}
+          value={phonenumber}
+          error={phonenumber_error != ''}
 
-            onChangeText={(text) => setPhonenumber(text)}
-          />
-          <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
-          <Input
-            placeholder="E-mail"
-            placeholderTextColor='#B9B3BD'
-            autoCorrect={false}
-            autoCapitalize="none"
-            style={globalStyle.input}
-            keyboardType={"email-address"}
-            value={email}
-            error={email_error != ''}
-            onChangeText={(text) => setEmail(text)}
-          />
-          <Text style={globalStyle.texterror}>{email_error}</Text>
-          <Input
-            placeholder="Password"
-            secureTextEntry={true}
-            placeholderTextColor='#B9B3BD'
-            autoCorrect={false}
-            autoCapitalize="none"
-            style={globalStyle.input}
-            value={password}
-            onChangeText={(text) => setPassword(text)}
-            error={password_error != ''}
-          />
-          <Text style={globalStyle.texterror}>{password_error}</Text>
-          <Input
-            placeholder="Confirm Password"
-            secureTextEntry={true}
-            placeholderTextColor='#B9B3BD'
-            autoCorrect={false}
-            autoCapitalize="none"
-            style={globalStyle.input}
-            value={confirmpassword}
-            onChangeText={(text) => setConfirmPassword(text)}
-            error={confirmpassword_error != ''}
-          />
-          <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>
+          onChangeText={(text) => setPhonenumber(text)}
+        />
+        <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
+        <Input
+          placeholder="E-mail"
+          placeholderTextColor='#B9B3BD'
+          autoCorrect={false}
+          autoCapitalize="none"
+          style={globalStyle.input}
+          keyboardType={"email-address"}
+          value={email}
+          error={email_error != ''}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <Text style={globalStyle.texterror}>{email_error}</Text>
+        <Input
+          placeholder="Password"
+          secureTextEntry={true}
+          placeholderTextColor='#B9B3BD'
+          autoCorrect={false}
+          autoCapitalize="none"
+          style={globalStyle.input}
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          error={password_error != ''}
+        />
+        <Text style={globalStyle.texterror}>{password_error}</Text>
+        <Input
+          placeholder="Confirm Password"
+          secureTextEntry={true}
+          placeholderTextColor='#B9B3BD'
+          autoCorrect={false}
+          autoCapitalize="none"
+          style={globalStyle.input}
+          value={confirmpassword}
+          onChangeText={(text) => setConfirmPassword(text)}
+          error={confirmpassword_error != ''}
+        />
+        <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>
 
-          <Text style={styles.ByClickingText}>By clicking continue you are agreeing to our </Text>
-         
-          <View>
-            <TouchableOpacity>
-              <Text style={styles.terms_conditionsbutton}>terms and conditions.</Text>
-            </TouchableOpacity>
+        <Text style={signUpStyle.ByClickingText}>By clicking continue you are agreeing to our </Text>
 
-          </View>
+        <View>
+          <TouchableOpacity>
+            <Text style={signUpStyle.terms_conditionsbutton}>terms and conditions.</Text>
+          </TouchableOpacity>
 
-         
-          <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
-            {
+        </View>
 
-              requestState.pending ?
-                <ActivityIndicator size="small" /> :
-                requestState.success ?
-                  <Text>sucess</Text> :
-                  requestState.error ?
-                    <Text>Error</Text> :
-                    null
-            }
-          </View>
+
+        <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
+          {
+
+            requestState.pending ?
+              <ActivityIndicator size="small" /> :
+              requestState.success ?
+                <Text>sucess</Text> :
+                requestState.error ?
+                  <Text>Error</Text> :
+                  null
+          }
+        </View>
       </AuthHeader>
-</View>
-      )
-    
-    
-    }
-    
+    </View>
+  )
+
+
+}
+
 export default SignUp;

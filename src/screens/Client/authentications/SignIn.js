@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity,Button } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-
+import { Text, View, TouchableOpacity} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInAction } from '../../../store/Client/actions/Client_SignIn_actions'
 import { SignInUser } from '../../../moduels/Client/Client_Moduel';
-
 import globalStyle from '../../../styles/globalStyle'
 import Input from '../../../components/global/Input';
 import AuthHeader from '../authentications/AuthHeader';

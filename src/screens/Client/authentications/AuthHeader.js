@@ -48,6 +48,7 @@ const AuthHeader = (props) => {
                         <Text style={globalStyle.continueText}>CONTINUE</Text>
                     </TouchableOpacity>
                 </View>
+                
             </View>
         </View>
     )
