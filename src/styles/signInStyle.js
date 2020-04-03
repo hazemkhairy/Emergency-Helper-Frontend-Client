@@ -41,6 +41,12 @@ export default StyleSheet.create({
   ForgetPasswordButton: {
     alignItems: 'center',
     justifyContent: 'center',
+    
+    position:'absolute',
+    marginLeft:'34%',
+    marginRight:'34%',
+    top:'50%'
+    
   },
   ForgetPasswordText: {
     color: '#132641',

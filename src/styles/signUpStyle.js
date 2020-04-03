@@ -1,19 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-    // SignInText:
-    // {
-    //   color:'#C0CDDC',
-    //   fontSize:12,
-    //   marginRight:'20%',
-    //   fontFamily:'Montserrat_SemiBold'
-    // },
-    // SignUpText:{
-     
-    //   color:'white',
-    //   fontSize:12,
-    //   fontFamily:'Montserrat_SemiBold'
-    // },
     //   Form: {
     //       borderWidth: 0,
     //       borderColor: '#d6d7da',

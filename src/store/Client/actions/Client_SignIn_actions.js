@@ -17,7 +17,7 @@ export const signInAction = (user = new SignInUser()) => {
         })
             .then(res => {
                 console.log(res.data)
-                dispatch({ type: Success_Sign_In, payload:{token:res.data.token}})
+                dispatch({ type: Success_Sign_In, payload: { token: res.data.token } })
             })
             .catch(err => { 
                 console.log(err) 

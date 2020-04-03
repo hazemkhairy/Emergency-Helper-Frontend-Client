@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity} from 'react-native';
+import { Text, View, TouchableOpacity,ActivityIndicator} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInAction } from '../../../store/Client/actions/Client_SignIn_actions'
-import { SignInUser } from '../../../moduels/Client/Client_Moduel';
 import globalStyle from '../../../styles/globalStyle'
 import Input from '../../../components/global/Input';
 import AuthHeader from '../authentications/AuthHeader';
@@ -15,18 +14,26 @@ const SignIn = ({ navigation }) => {
 
   const [email_error, setemail_error] = useState('');
   const [password_error, setpassword_error] = useState('');
-
+  const user = useSelector((store) => { return store.SignInReducer.user })
+  const requestState = useSelector(
+    (store) => {
+      return {
+        pending: store.SignInReducer. sendingSignInRequest,
+        error: store.SignInReducer.errorSignInRequest,
+        success: store.SignInReducer.successSignInRequest
+      }
+    })
   const isLoading = useSelector((state) => {
     return state.SignInReducer.SignIn
   })
   const token = useSelector((state) => {
     return state.SignInReducer.token
   })
-
-  const onSubmit = () => {
-
+  const validate = () => {
+    let error = true;
     if (email == '') {
       setemail_error("Please Enter Your Email")
+      error=false;
     }
     else {
       const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -35,17 +42,29 @@ const SignIn = ({ navigation }) => {
       }
       else {
         setemail_error("Invalid Email")
+        error=false;
       }
     }
     if (password == '') {
       setpassword_error("Please Enter Your Password")
+      error=false;
     }
     else {
       if (password.length < 8)
-
+       {
         setpassword_error("Password Must Be 8 Characters Or More")
+        error=false;
+       }
       else setpassword_error("")
     }
+    return error;
+  }
+  const onSubmit = () => {
+    if (validate()) {
+      console.log("Success")
+      disptach(signInAction(user))
+    }
+    else console.log("Failed")
   }
   return (
    
@@ -85,20 +104,21 @@ const SignIn = ({ navigation }) => {
 
           />
           <Text style={globalStyle.texterror}>{password_error}</Text>
+          <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
+          {
+
+            requestState.pending ?
+              <ActivityIndicator size="small" /> :
+              requestState.success ?
+                <Text>sucess</Text> :
+                requestState.error ?
+                  <Text>Error</Text> :
+                  null
+          }
+        </View>
         </AuthHeader>
       </View>
-      <View>
-        {
-          isLoading === true ? <ActivityIndicator /> : null
-        }
-        {
-          token ? <Text >{token}</Text> : null
-        }
-        {/* <Button type='clear' title='FORGOT PASSWORD' titleStyle={signInStyle.ForgetPasswordButton}
-          onPress={() => { }}
-        /> */}
-         
-      </View>
+
       <TouchableOpacity style={signInStyle.ForgetPasswordButton}>
             <Text style={signInStyle.ForgetPasswordText}>FORGOT PASSWORD</Text>
             </TouchableOpacity>   
