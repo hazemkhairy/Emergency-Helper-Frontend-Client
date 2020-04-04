@@ -155,7 +155,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           value={firstname}
           error={firstname_error != ''}
           onChangeText={(text) => setFirstname(text)}
@@ -166,7 +166,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           value={lastname}
           error={lastname_error != ''}
           onChangeText={(text) => setLastname(text)}
@@ -177,7 +177,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           keyboardType={"numeric"}
           value={phonenumber}
           error={phonenumber_error != ''}
@@ -190,7 +190,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           keyboardType={"email-address"}
           value={email}
           error={email_error != ''}
@@ -203,7 +203,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           value={password}
           onChangeText={(text) => setPassword(text)}
           error={password_error != ''}
@@ -215,7 +215,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           value={confirmpassword}
           onChangeText={(text) => setConfirmPassword(text)}
           error={confirmpassword_error != ''}
@@ -232,7 +232,7 @@ const SignUp = ({ navigation }) => {
         </View>
 
 
-        <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
+        {/* <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
           {
 
             requestState.pending ?
@@ -243,7 +243,7 @@ const SignUp = ({ navigation }) => {
                   <Text>Error</Text> :
                   null
           }
-        </View>
+        </View> */}
       </AuthHeader>
     </View>
   )

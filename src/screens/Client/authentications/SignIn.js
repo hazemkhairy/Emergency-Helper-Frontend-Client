@@ -23,12 +23,7 @@ const SignIn = ({ navigation }) => {
         success: store.SignInReducer.successSignInRequest
       }
     })
-  const isLoading = useSelector((state) => {
-    return state.SignInReducer.SignIn
-  })
-  const token = useSelector((state) => {
-    return state.SignInReducer.token
-  })
+  
   const validate = () => {
     let error = true;
     if (email == '') {
@@ -85,7 +80,7 @@ const SignIn = ({ navigation }) => {
             keyboardType={"email-address"}
             autoCorrect={false}
             autoCapitalize="none"
-            style={globalStyle.input}
+            style={signInStyle.input}
             error = {email_error != ''}
             value={email}
             onChangeText={(text) => setEmail(text)}
@@ -97,14 +92,14 @@ const SignIn = ({ navigation }) => {
             placeholderTextColor='#B9B3BD'
             autoCorrect={false}
             autoCapitalize="none"
-            style={globalStyle.input}
+            style={signInStyle.input}
             value={password}
             onChangeText={(text) => setPassword(text)}
             error = {password_error != ''}
 
           />
           <Text style={globalStyle.texterror}>{password_error}</Text>
-          <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
+          {/* <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
           {
 
             requestState.pending ?
@@ -115,7 +110,7 @@ const SignIn = ({ navigation }) => {
                   <Text>Error</Text> :
                   null
           }
-        </View>
+        </View> */}
         </AuthHeader>
       </View>
 
