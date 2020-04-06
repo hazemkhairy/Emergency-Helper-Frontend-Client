@@ -1,11 +1,37 @@
-import { StyleSheet,Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    whiteBackground: {
+        backgroundColor: '#F1F0F2',
+        height: '100%',
+         width: '100%'
+    },
+    blueBackground: {
+        backgroundColor: '#7598BA',
+        height: '33%',
+        borderBottomLeftRadius: 70
+    },
+    container: {
+        position: 'absolute',
+        marginTop: '15%',
+        width: '100%',
+        height: '100%'
+    },
+    backButton: {
+        marginTop:'7%',
+        marginLeft: '7%',
+        width: 25
+    },
+    backIcon: {
+        color: '#fff',
+        fontSize: 20
+    },
     signInUpContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '36%',
+        width: '50%',
         alignSelf: 'center'
+        
     },
     activeText: {
         color: 'white',
@@ -25,11 +51,13 @@ export default StyleSheet.create({
         marginRight: '7%',
         marginBottom: '5%',
         marginTop: '5%',
-        //paddingTop: '7%',
+        paddingTop: '10%',
         borderRadius: 35,
-        minHeight: Dimensions.get('window').height>850?'20%':'24%',
+        justifyContent: 'center',
+        minHeight: '25%',
+        alignContent: 'center',
+        
     },
-    
     continueButton: {
         backgroundColor: '#132641',
         height: '25%',

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Picker, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import AuthHeaderStyle from '../../../styles/authHeaderSyle';
+import SignInStyle from '../../../styles/signInStyle';
 import globalStyle from '../../../styles/globalStyle';
 const AuthHeader = (props) => {
 
@@ -23,21 +24,21 @@ const AuthHeader = (props) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View style={AuthHeaderStyle.signInUpContainer}>
+                <View style={globalStyle.signInUpContainer}>
                     <TouchableOpacity
                         onPress={() => { props.signInButtonPress() }}
                     >
-                        <Text style={props.active == 1 ? AuthHeaderStyle.activeText : AuthHeaderStyle.inActiveText} >SIGN IN</Text>
+                        <Text style={props.active == 1 ? globalStyle.activeText : globalStyle.inActiveText} >SIGN IN</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         onPress={() => { props.signUpButtonPress() }}
                     >
-                        <Text style={props.active == 2 ? AuthHeaderStyle.activeText : AuthHeaderStyle.inActiveText} >SIGN UP</Text>
+                        <Text style={props.active == 2 ? globalStyle.activeText : globalStyle.inActiveText} >SIGN UP</Text>
                     </TouchableOpacity>
 
                 </View>
-                <View style={AuthHeaderStyle.form} >
+                <View style={globalStyle.form} >
                     {props.children}
                 </View>
                 <View >

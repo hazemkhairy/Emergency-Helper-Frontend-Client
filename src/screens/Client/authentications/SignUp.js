@@ -178,7 +178,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={signUpStyle.input}
+          style={globalStyle.input}
           keyboardType={"numeric"}
           value={phonenumber}
           error={phonenumber_error != ''}
@@ -191,7 +191,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={signUpStyle.input}
+          style={globalStyle.input}
           keyboardType={"email-address"}
           value={email}
           error={email_error != ''}
@@ -204,7 +204,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={signUpStyle.input}
+          style={globalStyle.input}
           value={password}
           onChangeText={(text) => setPassword(text)}
           error={password_error != ''}
@@ -216,7 +216,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={signUpStyle.input}
+          style={globalStyle.input}
           value={confirmpassword}
           onChangeText={(text) => setConfirmPassword(text)}
           error={confirmpassword_error != ''}
@@ -233,7 +233,7 @@ const SignUp = ({ navigation }) => {
         </View>
 
 
-        {/* <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
+        <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
           {
 
             requestState.pending ?
@@ -244,7 +244,7 @@ const SignUp = ({ navigation }) => {
                   <Text>Error</Text> :
                   null
           }
-        </View> */}
+        </View>
       </AuthHeader>
     </View>
   )
