@@ -1,9 +1,8 @@
 import { Provider } from 'react-redux';
 import React,{useState} from 'react'
 import store from './src/store/index';
-import { createAppContainer,createSwitchNavigator } from 'react-navigation'
-import PostsScreen from './src/screens/PostsScreen';
-import IndexScreen from './src/screens/IndexScreen';
+import { createAppContainer,createSwitchNavigator } from 'react-navigation';
+import MainNavigator from './src/navigation/MainNavigator'
 import Home from './src/screens/Home';
 import SignUp from './src/screens/Client/authentications/SignUp';
 import SignIn from './src/screens/Client/authentications/SignIn';
@@ -20,16 +19,9 @@ const fetchFonts=()=>
   });
 }
 
-const navigator = createAppContainer(
-  createSwitchNavigator({
-  //  Index: IndexScreen,
-  //  Posts: PostsScreen,
-   Home:Home,
-   SignIn:SignIn,
-   SignUp:SignUp,
-}) )
 
-const App = createAppContainer(navigator);
+
+const App = createAppContainer(MainNavigator);
 
 export default () =>{
   const [fontLoaded, setFontLoaded] = useState(false);

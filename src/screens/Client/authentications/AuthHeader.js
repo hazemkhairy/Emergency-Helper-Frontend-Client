@@ -24,21 +24,21 @@ const AuthHeader = (props) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <View style={globalStyle.signInUpContainer}>
+                <View style={AuthHeaderStyle.signInUpContainer}>
                     <TouchableOpacity
                         onPress={() => { props.signInButtonPress() }}
                     >
-                        <Text style={props.active == 1 ? globalStyle.activeText : globalStyle.inActiveText} >SIGN IN</Text>
+                        <Text style={props.active == 1 ? AuthHeaderStyle.activeText : AuthHeaderStyle.inActiveText} >SIGN IN</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
                         onPress={() => { props.signUpButtonPress() }}
                     >
-                        <Text style={props.active == 2 ? globalStyle.activeText : globalStyle.inActiveText} >SIGN UP</Text>
+                        <Text style={props.active == 2 ? AuthHeaderStyle.activeText : AuthHeaderStyle.inActiveText} >SIGN UP</Text>
                     </TouchableOpacity>
 
                 </View>
-                <View style={globalStyle.form} >
+                <View style={AuthHeaderStyle.form} >
                     {props.children}
                 </View>
                 <View >

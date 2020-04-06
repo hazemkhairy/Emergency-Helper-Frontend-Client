@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUpAction } from '../../../store/Client/actions/Client_SignUp_actions'
+import { signUpAction ,ClearSignUpStateAction} from '../../../store/Client/actions/Client_SignUp_actions'
 import signUpStyle from '../../../styles/signUpStyle'
 import globalStyle from '../../../styles/globalStyle'
 import Input from '../../../components/global/Input';
 import AuthHeader from '../authentications/AuthHeader';
 import { SignUpUser } from '../../../moduels/Client/Client_Moduel';
-
+import ErrorModal from '../../../components/global/ErrorModal';
+import LoadingModal from '../../../components/global/LoadingModal';
+import SuccessModal from '../../../components/global/SuccessModal';
 
 const SignUp = ({ navigation }) => {
   const disptach = useDispatch();
@@ -17,9 +19,11 @@ const SignUp = ({ navigation }) => {
       return {
         pending: store.SignUpReducer.sendingSignUpRequest,
         error: store.SignUpReducer.errorSignUpRequest,
-        success: store.SignUpReducer.successSignUpRequest
+        success: store.SignUpReducer.successSignUpRequest,
+        errorMessage: store.SignUpReducer.errorMessage
       }
     })
+    
   const [firstName, setFirstname] = useState('');
   const [lastName, setLastname] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
@@ -34,19 +38,14 @@ const SignUp = ({ navigation }) => {
   const [password_error, setpassword_error] = useState('');
   const [confirmpassword_error, setConfirmPassword_error] = useState('');
 
-
-
-
   const validate = () => {
     let error = true;
     if (firstName == "") {
       setFirstname_error("Please Enter Your First Name ")
       error = false;
-
     }
     else {
       var letters = /^[A-Za-z]+$/;
-
       if (letters.test(firstName) === true) {
         setFirstname_error("")
       }
@@ -62,7 +61,6 @@ const SignUp = ({ navigation }) => {
     }
     else {
       var letters = /^[A-Za-z]+$/;
-
       if (letters.test(lastName) === true) {
         setLastname_error("")
       }
@@ -71,8 +69,6 @@ const SignUp = ({ navigation }) => {
         error = false
       }
     }
-
-
     if (phonenumber == "") {
       setPhonenumber_error("Please Enter Your Phone Number ")
     }
@@ -87,7 +83,6 @@ const SignUp = ({ navigation }) => {
         error = false
       }
     }
-
     if (email == '') {
       setemail_error("Please Enter Your Email")
       error = false
@@ -101,7 +96,6 @@ const SignUp = ({ navigation }) => {
         setemail_error("Invalid Email")
         error = false
       }
-
     }
     if (password == '') {
       setpassword_error("Please Enter Your Password")
@@ -114,7 +108,6 @@ const SignUp = ({ navigation }) => {
       }
       else setpassword_error("")
     }
-
     if (confirmpassword == '') {
       setConfirmPassword_error("Please Confirm Your Password")
       error = false
@@ -135,28 +128,27 @@ const SignUp = ({ navigation }) => {
       console.log("Success")
       disptach(signUpAction(new SignUpUser(firstName, lastName, phonenumber, email, password)))
     }
-
     else console.log("Failed")
   }
 
   return (
-
     <View >
-
+       <LoadingModal modalVisible={requestState.pending}/>
+       {/* <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen')  }} message="Registration completed successfully" /> */}
+      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />   
       <AuthHeader
-
         continueButtonPress={() => { onSubmit() }}
         signUpButtonPress={() => { }}
         signInButtonPress={() => { navigation.navigate('SignIn') }}
         backButtonPress={() => { navigation.navigate('Home') }}
         active={2}
-      >
+       >
         <Input
           placeholder="First Name"
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           value={firstName}
           error={firstname_error != ''}
           onChangeText={(text) => setFirstname(text)}
@@ -167,7 +159,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           value={lastName}
           error={lastname_error != ''}
           onChangeText={(text) => setLastname(text)}
@@ -178,11 +170,10 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           keyboardType={"numeric"}
           value={phonenumber}
           error={phonenumber_error != ''}
-
           onChangeText={(text) => setPhonenumber(text)}
         />
         <Text style={globalStyle.textError}>{phonenumber_error}</Text>
@@ -191,7 +182,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           keyboardType={"email-address"}
           value={email}
           error={email_error != ''}
@@ -204,7 +195,7 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           value={password}
           onChangeText={(text) => setPassword(text)}
           error={password_error != ''}
@@ -216,34 +207,17 @@ const SignUp = ({ navigation }) => {
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={globalStyle.input}
+          style={signUpStyle.input}
           value={confirmpassword}
           onChangeText={(text) => setConfirmPassword(text)}
           error={confirmpassword_error != ''}
         />
         <Text style={globalStyle.textError}>{confirmpassword_error}</Text>
-
         <Text style={signUpStyle.ByClickingText}>By clicking continue you are agreeing to our </Text>
-
         <View>
           <TouchableOpacity>
             <Text style={signUpStyle.terms_conditionsbutton}>terms and conditions.</Text>
           </TouchableOpacity>
-
-        </View>
-
-
-        <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '2%' }}>
-          {
-
-            requestState.pending ?
-              <ActivityIndicator size="small" /> :
-              requestState.success ?
-                <Text>sucess</Text> :
-                requestState.error ?
-                  <Text>Error</Text> :
-                  null
-          }
         </View>
       </AuthHeader>
     </View>

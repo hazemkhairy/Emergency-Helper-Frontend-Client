@@ -1,21 +1,22 @@
-import { StyleSheet } from 'react-native';
-
+import { StyleSheet,Dimensions } from 'react-native';
 
 export default StyleSheet.create({
-   ForgetPasswordButton: {
+  ForgetPasswordButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    width:'66%',
     position:'absolute',
-    marginLeft:'34%',
-    marginRight:'34%',
-    top:'53%'
-    
+    width:'100%',
+    top:Dimensions.get('window').height>850?'50%':'55%',
   },
-  ForgetPasswordText: {
+   ForgetPasswordText: {
     color: '#132641',
     fontSize: 12,
-    fontFamily: 'Montserrat_SemiBold',
+    fontFamily:'Montserrat_SemiBold',
   },
-
+  input: {
+    marginLeft: '7%',
+    marginRight: '7%',
+    marginBottom: '0%',
+    marginTop: '8%',
+},
 });

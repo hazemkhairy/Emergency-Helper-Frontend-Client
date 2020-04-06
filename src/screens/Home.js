@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import image from '../images/image.png';
 import homePageStyle from '../styles/homePageStyle';
-//Missing fonts & (Login and Sign Up botons curves)
+
 const First = ({ navigation }) => {
     return (
         <ImageBackground source={image} style={homePageStyle.Backgroundstyle} >

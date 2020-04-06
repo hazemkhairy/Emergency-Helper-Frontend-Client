@@ -9,7 +9,7 @@ import signInStyle from '../../../styles/signInStyle';
 import { SignInUser } from '../../../moduels/Client/Client_Moduel';
 import ErrorModal from '../../../components/global/ErrorModal';
 import LoadingModal from '../../../components/global/LoadingModal';
-import SuccessModal from '../../../components/global/SuccessModal';
+
 
 const SignIn = ({ navigation }) => {
   const disptach = useDispatch();
@@ -73,7 +73,8 @@ const SignIn = ({ navigation }) => {
 
     <View>
       <View>
-      
+            {/* <LoadingModal modalVisible={requestState.pending} /> */}
+            <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignInStateAction()) }} message={requestState.errorMessage} />
         <AuthHeader
           continueButtonPress={() => { onSubmit() }}
           signUpButtonPress={() => { navigation.navigate('SignUp') }}
@@ -88,7 +89,7 @@ const SignIn = ({ navigation }) => {
             keyboardType={"email-address"}
             autoCorrect={false}
             autoCapitalize="none"
-            style={globalStyle.input}
+            style={signInStyle.input}
             error={email_error != ''}
             value={email}
             onChangeText={(text) => setEmail(text)}
@@ -100,7 +101,7 @@ const SignIn = ({ navigation }) => {
             placeholderTextColor='#B9B3BD'
             autoCorrect={false}
             autoCapitalize="none"
-            style={globalStyle.input}
+            style={signInStyle.input}
             value={password}
             onChangeText={(text) => setPassword(text)}
             error={password_error != ''}

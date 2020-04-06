@@ -6,6 +6,11 @@ export const Start_Sign_In = 'Start_SIGN_IN';
 export const Success_Sign_In = 'Success_SIGN_IN';
 export const Error_Sign_In = 'Error_Sign_In';
 
+export const Clear_Sign_In_State = 'Clear_Sign_In_State';
+
+export const clearSignInStateAction = () => {
+    return { type: Clear_Sign_In_State }
+} 
 export const signInAction = (user = new SignInUser()) => {
 
     return (dispatch) => {
