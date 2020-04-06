@@ -7,18 +7,18 @@ const initialState = {
     sendingSignUpRequest: false,
     errorSignUpRequest: false,
     successSignUpRequest: false,
+    errorMessage:''
 }
 export default (state = initialState, action) => {
     switch (action.type) {
         
         case Start_Sign_Up:
-            return { ...state, sendingSignUpRequest: true, successSignUpRequest: false, errorSignUpRequest: false };
+            return { ...state, sendingSignUpRequest: true, successSignUpRequest: false, errorSignUpRequest: false , errorMessage:''};
         case Error_Sign_Up:
-            return { ...state, sendingSignUpRequest: false, errorSignUpRequest: true };
+            return { ...state, sendingSignUpRequest: false, errorSignUpRequest: true ,errorMessage:action.payload};
         case Success_Sign_Up:
-            return { ...state, sendingSignUpRequest: false, successSignUpRequest: true, user :{ ...action.payload }};
-        // case Success_Sign_Up:
-        //     return { ...state, user: { ...action.payload } };
+            return { ...state, sendingSignUpRequest: false, successSignUpRequest: true, user :{ ...action.payload }, errorMessage:''};
+       
     }
     return state;
 }

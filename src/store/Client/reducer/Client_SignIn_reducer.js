@@ -1,9 +1,6 @@
-import { Start_Sign_In,Error_Sign_In,Success_Sign_In } from '../actions/Client_SignIn_actions'
-
-import {SignInUser } from '../../../moduels/Client/Client_Moduel'
+import { Clear_Sign_In_State, Start_Sign_In,Error_Sign_In,Success_Sign_In } from '../actions/Client_SignIn_actions'
 
 const initialState = {
-    user: new SignInUser(),
     token:'',
     sendingSignInRequest: false,
     errorSignInRequest: false,
@@ -14,10 +11,11 @@ export default (state = initialState, action) => {
         case Start_Sign_In:
             return { ...state, sendingSignInRequest: true, successSignInRequest: false, errorSignInRequest: false };
         case Error_Sign_In:
-            return { ...state, sendingSignInRequest: false, errorSignInRequest: true,successSignInRequest: false };
+            return { ...state, sendingSignInRequest: false, errorSignInRequest: true,successSignInRequest: false ,message: action.payload.message};
         case Success_Sign_In:
-            return { ...state, sendingSignInRequest: false, successSignInRequest: true,user: { ...action.payload }, errorSignInRequest: false };
-      
+            return { ...state, sendingSignInRequest: false, successSignInRequest: true, errorSignInRequest: false };
+            case Clear_Sign_In_State:
+                return { ...state, sendingSignInRequest: false, errorSignInRequest: false, successSignInRequest: false, message: '' }
     }
     return state;
 }

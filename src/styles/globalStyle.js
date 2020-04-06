@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 
 export default StyleSheet.create({
@@ -51,7 +51,7 @@ export default StyleSheet.create({
     //     },
 
     //start from here
-    texterror: {
+    textError: {
         color: '#b30000',
         fontSize: 14,
         position: 'relative',
@@ -71,19 +71,19 @@ export default StyleSheet.create({
         marginTop: '5%',
     },
 
-    white_Background: {
+    whiteBackground: {
         backgroundColor: '#F1F0F2',
-        height: '100%',
-        width: '100%'
+        height: Dimensions.get('window').height,
+        width: Dimensions.get('window').width
     },
-    blue_Background: {
+    blueBackground: {
         backgroundColor: '#7598BA',
-        height: '33%',
+        height:Dimensions.get('window').height*0.33,
         borderBottomLeftRadius: 70
     },
     container: {
         position: 'absolute',
-        marginTop: '10%',
+        marginTop:'10%',
         width: '100%',
         height: '100%'
     },

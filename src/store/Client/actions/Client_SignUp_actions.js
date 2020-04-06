@@ -1,6 +1,6 @@
 import {SignUpUser} from '../../../moduels/Client/Client_Moduel'
 import backendAxios from '../../../services/backendAxios'
-
+import {setAuthToken } from '../../../Utils/LocalStorage';
 export const Start_Sign_Up = 'Start_Sign_UP';
 export const Success_Sign_Up = 'Success_SIGN_UP';
 export const Error_Sign_Up = 'Error_SIGN_UP';
@@ -14,28 +14,33 @@ export const signUpAction=(user = new SignUpUser() )=>
     backendAxios.post('/api/Account/RegisterUser',
 
     { name:{
-       firstname: user.firstname,
-       lastname: user.lastname,
+        
+       firstName: user.firstName,
+       lastName: user.lastName,
     },
-       phonenumber:user.phonenumber,
+       mobile:user.phonenumber,
        email:user.email,
        password:user.password,
-       confirmpassword:user.confirmpassword
+       userRole:0
     }
     ).then(
         (res) => {
+            console.log("Done")
             console.log(res)
+            setAuthToken(res.data.token)
             dispatch({ type: Success_Sign_Up })
         }
     )
         .catch(
-            (err, x) => {
-                console.log(err)
+            (err) => {
                 setTimeout(
-                    () => {
-                        dispatch({ type: Error_Sign_Up })
-                    }, 200
+                    ()=>{
+                        console.log(err)
+                        dispatch({ type: Error_Sign_Up, payload: err.response.data.message  })
+
+                    },200
                 )
+                
             }
         )
        

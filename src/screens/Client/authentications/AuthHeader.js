@@ -8,8 +8,8 @@ const AuthHeader = (props) => {
 
     return (
         <View>
-            <View style={globalStyle.white_Background}>
-                <View style={globalStyle.blue_Background}>
+            <View style={globalStyle.whiteBackground}>
+                <View style={globalStyle.blueBackground}>
                 </View>
             </View>
 

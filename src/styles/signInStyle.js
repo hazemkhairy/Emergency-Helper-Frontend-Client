@@ -41,11 +41,11 @@ export default StyleSheet.create({
   ForgetPasswordButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    
+    width:'66%',
     position:'absolute',
     marginLeft:'34%',
     marginRight:'34%',
-    top:'50%'
+    top:'53%'
     
   },
   ForgetPasswordText: {

@@ -6,12 +6,12 @@ import signUpStyle from '../../../styles/signUpStyle'
 import globalStyle from '../../../styles/globalStyle'
 import Input from '../../../components/global/Input';
 import AuthHeader from '../authentications/AuthHeader';
+import { SignUpUser } from '../../../moduels/Client/Client_Moduel';
 
 
 const SignUp = ({ navigation }) => {
   const disptach = useDispatch();
 
-  const user = useSelector((store) => { return store.SignUpReducer.user })
   const requestState = useSelector(
     (store) => {
       return {
@@ -20,8 +20,8 @@ const SignUp = ({ navigation }) => {
         success: store.SignUpReducer.successSignUpRequest
       }
     })
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
+  const [firstName, setFirstname] = useState('');
+  const [lastName, setLastname] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,9 +36,10 @@ const SignUp = ({ navigation }) => {
 
 
 
+
   const validate = () => {
     let error = true;
-    if (firstname == "") {
+    if (firstName == "") {
       setFirstname_error("Please Enter Your First Name ")
       error = false;
 
@@ -46,7 +47,7 @@ const SignUp = ({ navigation }) => {
     else {
       var letters = /^[A-Za-z]+$/;
 
-      if (letters.test(firstname) === true) {
+      if (letters.test(firstName) === true) {
         setFirstname_error("")
       }
       else {
@@ -55,14 +56,14 @@ const SignUp = ({ navigation }) => {
       }
     }
 
-    if (lastname == '') {
+    if (lastName == '') {
       setLastname_error("Please Enter Your Last Name")
       error = false
     }
     else {
       var letters = /^[A-Za-z]+$/;
 
-      if (letters.test(lastname) === true) {
+      if (letters.test(lastName) === true) {
         setLastname_error("")
       }
       else {
@@ -132,7 +133,7 @@ const SignUp = ({ navigation }) => {
   const onSubmit = () => {
     if (validate()) {
       console.log("Success")
-      disptach(signUpAction(user))
+      disptach(signUpAction(new SignUpUser(firstName, lastName, phonenumber, email, password)))
     }
 
     else console.log("Failed")
@@ -156,22 +157,22 @@ const SignUp = ({ navigation }) => {
           autoCorrect={false}
           autoCapitalize="none"
           style={globalStyle.input}
-          value={firstname}
+          value={firstName}
           error={firstname_error != ''}
           onChangeText={(text) => setFirstname(text)}
         />
-        <Text style={globalStyle.texterror}>{firstname_error}</Text>
+        <Text style={globalStyle.textError}>{firstname_error}</Text>
         <Input
           placeholder="Last Name"
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
           style={globalStyle.input}
-          value={lastname}
+          value={lastName}
           error={lastname_error != ''}
           onChangeText={(text) => setLastname(text)}
         />
-        <Text style={globalStyle.texterror}>{lastname_error}</Text>
+        <Text style={globalStyle.textError}>{lastname_error}</Text>
         <Input
           placeholder="Phone Number"
           placeholderTextColor='#B9B3BD'
@@ -184,7 +185,7 @@ const SignUp = ({ navigation }) => {
 
           onChangeText={(text) => setPhonenumber(text)}
         />
-        <Text style={globalStyle.texterror}>{phonenumber_error}</Text>
+        <Text style={globalStyle.textError}>{phonenumber_error}</Text>
         <Input
           placeholder="E-mail"
           placeholderTextColor='#B9B3BD'
@@ -196,7 +197,7 @@ const SignUp = ({ navigation }) => {
           error={email_error != ''}
           onChangeText={(text) => setEmail(text)}
         />
-        <Text style={globalStyle.texterror}>{email_error}</Text>
+        <Text style={globalStyle.textError}>{email_error}</Text>
         <Input
           placeholder="Password"
           secureTextEntry={true}
@@ -208,7 +209,7 @@ const SignUp = ({ navigation }) => {
           onChangeText={(text) => setPassword(text)}
           error={password_error != ''}
         />
-        <Text style={globalStyle.texterror}>{password_error}</Text>
+        <Text style={globalStyle.textError}>{password_error}</Text>
         <Input
           placeholder="Confirm Password"
           secureTextEntry={true}
@@ -220,7 +221,7 @@ const SignUp = ({ navigation }) => {
           onChangeText={(text) => setConfirmPassword(text)}
           error={confirmpassword_error != ''}
         />
-        <Text style={globalStyle.texterror}>{confirmpassword_error}</Text>
+        <Text style={globalStyle.textError}>{confirmpassword_error}</Text>
 
         <Text style={signUpStyle.ByClickingText}>By clicking continue you are agreeing to our </Text>
 
