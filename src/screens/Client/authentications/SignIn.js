@@ -100,7 +100,7 @@ const SignIn = ({ navigation }) => {
             placeholderTextColor='#B9B3BD'
             autoCorrect={false}
             autoCapitalize="none"
-            style={globalStyle.input}
+            style={signInStyle.input}
             value={password}
             onChangeText={(text) => setPassword(text)}
             error={password_error != ''}

@@ -1,113 +1,41 @@
-import React, { Component } from 'react';
-import { Text, View, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Text, View, ImageBackground, TouchableOpacity } from 'react-native';
 import image from '../images/image.png';
-
+import homePageStyle from '../styles/homePageStyle';
 //Missing fonts & (Login and Sign Up botons curves)
 const First = ({ navigation }) => {
     return (
-        <ImageBackground source={image} style={styles.Backgroundstyle} >
+        <ImageBackground source={image} style={homePageStyle.Backgroundstyle} >
 
-            <View style={styles.main}>
-                <Text style={styles.text1}>
+            <View style={homePageStyle.main}>
+                <Text style={homePageStyle.welcome}>
                     Welcome
                 </Text>
-                <Text style={styles.text}>
+                <Text style={homePageStyle.toliftup}>
                     to Lift Up
                 </Text>
-                <Text style={styles.text2}>
+                <Text style={homePageStyle.text}>
                     The best way to find quick help.
                 </Text>
-                <Text style={styles.text2}>
+                <Text style={homePageStyle.text}>
                     Let’s get started!
                 </Text>
             </View>
             
-            <View style={styles.buttonbackground1}>
-                <TouchableOpacity style={styles.LoginButton} onPress={() => navigation.navigate('SignIn')}>
-                    <Text style={styles.loginTextStyle}>LOG IN</Text>
+            <View style={homePageStyle.loginbackground}>
+                <TouchableOpacity style={homePageStyle.LoginButton} onPress={() => navigation.navigate('SignIn')}>
+                    <Text style={homePageStyle.loginTextStyle}>LOG IN</Text>
                 </TouchableOpacity>
             </View>
-            <View style={styles.buttonbackground2}>
-                <TouchableOpacity style={styles.SignUpButton} onPress={() => navigation.navigate('SignUp')}>
-                    <Text style={styles.SignUpTextStyle}>SIGN UP</Text>
+            <View style={homePageStyle.signupbackground}>
+                <TouchableOpacity style={homePageStyle.SignUpButton} onPress={() => navigation.navigate('SignUp')}>
+                    <Text style={homePageStyle.SignUpTextStyle}>SIGN UP</Text>
                 </TouchableOpacity>
             </View>
         </ImageBackground >
 
     );
 }
-const styles = StyleSheet.create({
-    Backgroundstyle: {
-        flex: 1,
-        resizeMode: 'stretch',
-        height: '90%',
-        backgroundColor: '#241332'
-    },
-    main: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 80
-    },
-    text: {
-        color: '#FFFFFF',
-        fontSize: 32,
-        fontFamily:'Montserrat_bold',
-        marginBottom: '3%',
-    },
-    text1: {
-        color: '#FFFFFF',
-        fontSize: 32,
-        fontWeight: 'bold',
-        fontFamily:'Montserrat_bold',
-       
-    },
-    text2: {
-        color: '#FFFFFF',
-        fontSize: 12,
-        fontWeight: '200',
-        fontFamily: 'Montserrat_Medium'
 
-    },
-    loginTextStyle: {
-        color: 'white',
-        fontSize: 14,
-        fontFamily:'Montserrat_SemiBold',
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    LoginButton: {
-        backgroundColor: '#7598BA',
-        height: '100%',
-        borderTopLeftRadius: 120,
-        justifyContent: "center",
-        alignItems: 'center',
-        
-
-    },
-    SignUpButton: {
-        backgroundColor: '#132641',
-        height: '100%',
-        borderTopLeftRadius: 120,
-        //justifyContent: "center",
-        alignItems: 'center',
-    },
-    SignUpTextStyle: {
-        color: 'white',
-        fontSize: 14,
-        fontFamily:'Montserrat_SemiBold',
-        marginTop:30
-    },
-    buttonbackground1:{
-        borderTopLeftRadius: 100, 
-        backgroundColor: '#7598BA',
-         height: '10%' 
-
-    },
-    buttonbackground2:{
-      backgroundColor: '#7598BA',
-       height: '12%'
-    }
-});
 
 export default First;
