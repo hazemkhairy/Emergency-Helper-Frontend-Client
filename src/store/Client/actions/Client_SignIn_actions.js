@@ -8,9 +8,7 @@ export const Error_Sign_In = 'Error_Sign_In';
 
 export const Clear_Sign_In_State = 'Clear_Sign_In_State';
 
-export const clearSignInStateAction = () => {
-    return { type: Clear_Sign_In_State }
-} 
+
 export const signInAction = (user = new SignInUser()) => {
 
     return (dispatch) => {
@@ -27,10 +25,13 @@ export const signInAction = (user = new SignInUser()) => {
             })
             .catch(err => { 
                 console.log(err) 
-                dispatch({ type: Error_Sign_In })
+                dispatch({ type: Error_Sign_In, payload: { message: err.response.data.message } })
                  
-            })
+            }),200
 
     }
 
  }
+ export const clearSignInStateAction = () => {
+    return { type: Clear_Sign_In_State }
+} 

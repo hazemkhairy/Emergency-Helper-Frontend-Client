@@ -74,7 +74,7 @@ const SignIn = ({ navigation }) => {
     <View>
       <View>
             {/* <LoadingModal modalVisible={requestState.pending} /> */}
-            <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignInStateAction()) }} message={requestState.errorMessage} />
+            <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message={requestState.errorMessage ? requestState.errorMessage : 'Wrong Email or Password'}/>
         <AuthHeader
           continueButtonPress={() => { onSubmit() }}
           signUpButtonPress={() => { navigation.navigate('SignUp') }}
