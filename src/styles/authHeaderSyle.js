@@ -24,9 +24,10 @@ export default StyleSheet.create({
         width: '87%',
         marginLeft: '7%',
         marginRight: '7%',
-        marginBottom: '5%',
+        marginBottom: '7%',
         marginTop: '5%',
         borderRadius: 35,
-        minHeight: Dimensions.get('window').height>850?'20%':'24%',
+        //minHeight: Dimensions.get('window').height>850?'20%':'30%',
+        //maxHeight:'100%'
     },
 })

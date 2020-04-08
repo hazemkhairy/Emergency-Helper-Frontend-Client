@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { View, Text, Picker, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import AuthHeaderStyle from '../../../styles/authHeaderSyle';
-import SignInStyle from '../../../styles/signInStyle';
 import globalStyle from '../../../styles/globalStyle';
-const AuthHeader = (props) => {
+import signInStyle from '../../../styles/signInStyle'
+import signUpStyle from '../../../styles/signUpStyle'
+import authHeaderSyle from '../../../styles/authHeaderSyle';
 
+const AuthHeader = (props) => {
+  
     return (
         <View>
             <View style={globalStyle.whiteBackground}>
@@ -38,14 +41,17 @@ const AuthHeader = (props) => {
                     </TouchableOpacity>
 
                 </View>
-                <View style={AuthHeaderStyle.form} >
+                <View style={authHeaderSyle.form}>
+                   <View
+                   style={props.signin==1? signInStyle.form: signUpStyle.form} >
                     {props.children}
+                    </View>
                 </View>
                 <View >
                     <TouchableOpacity style={globalStyle.continueButton}
                         onPress={() => { props.continueButtonPress() }}
                     >
-                        <Text style={globalStyle.continueText}>CONTINUE</Text>
+                        <Text style={globalStyle.continueText}>{props.signin==1?'Sign In':'Sign Up'}</Text>
                     </TouchableOpacity>
                     
                 </View>

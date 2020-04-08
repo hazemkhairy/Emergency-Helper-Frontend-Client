@@ -2,15 +2,19 @@ import { StyleSheet, Dimensions } from 'react-native';
 
 
 export default StyleSheet.create({
-       //start from here
+       
     textError: {
         color: '#b30000',
         fontSize: 14,
         position: 'relative',
         alignItems: 'center',
-        marginLeft: '7%',
+        marginRight:'9%',
+        marginLeft: '9%',
+        marginTop: '0%',
+        marginBottom:'0%',
+       
         fontFamily: 'Montserrat_Medium',
-        marginTop: '2%'
+       
     },
     error: {
         borderBottomColor: '#b30000',
@@ -33,7 +37,7 @@ export default StyleSheet.create({
         height: '100%'
     },
     backButton: {
-        marginLeft: '7%',
+        marginLeft: '10%',
         width: 25,
         marginBottom:'2%'
     },
@@ -43,13 +47,13 @@ export default StyleSheet.create({
     },
     continueButton: {
         backgroundColor: '#132641',
-        height:Dimensions.get('window').height>850?'27%':'30%',
-        width: '86%',
+        height:Dimensions.get('window').height>850?'25%':'28%',
+        width: '85%',
         borderRadius: 35,
         alignItems: 'center',
         justifyContent: 'center',
-        marginLeft: '7%',
-        marginRight: '7%',
+        marginLeft: '8%',
+        marginRight: '8%',
     },
     continueText: {
         color: '#fff',

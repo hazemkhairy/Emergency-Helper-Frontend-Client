@@ -69,32 +69,34 @@ const SignIn = ({ navigation }) => {
     }
     else console.log("Failed")
   }
+  console.log(requestState)
   return (
 
     <View>
       <View>
-            {/* <LoadingModal modalVisible={requestState.pending} /> */}
-            <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message={requestState.errorMessage ? requestState.errorMessage : 'Wrong Email or Password'}/>
-        <AuthHeader
+            <LoadingModal modalVisible={requestState.pending} />
+            <ErrorModal modalVisible={requestState.error} closeModal={() => { }} message={requestState.errorMessage} />
+        <AuthHeader  
           continueButtonPress={() => { onSubmit() }}
           signUpButtonPress={() => { navigation.navigate('SignUp') }}
           signInButtonPress={() => { }}
           backButtonPress={() => { navigation.navigate('Home') }}
           active={1}
+          signin={1}
         >
 
-          <Input
+          <Input 
             placeholder="Email"
             placeholderTextColor='#B9B3BD'
             keyboardType={"email-address"}
             autoCorrect={false}
             autoCapitalize="none"
-            style={signInStyle.input}
+            style={signInStyle.emailinput}
             error={email_error != ''}
             value={email}
             onChangeText={(text) => setEmail(text)}
           />
-          <Text style={globalStyle.textError}>{email_error}</Text>
+          <Text style={signInStyle.textError}>{email_error}</Text>
           <Input
             secureTextEntry={true}
             placeholder="Password"
@@ -105,9 +107,8 @@ const SignIn = ({ navigation }) => {
             value={password}
             onChangeText={(text) => setPassword(text)}
             error={password_error != ''}
-
           />
-          <Text style={globalStyle.textError}>{password_error}</Text>
+          <Text style={signInStyle.textError}>{password_error}</Text>
           {/* <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '5%' }}>
           {
 

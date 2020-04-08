@@ -74,9 +74,13 @@ const SignUp = ({ navigation }) => {
     }
     else {
       var numbers = /^[0-9\b]+$/;
+      var validnumber= /@"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$"/;
       if (numbers.test(phonenumber) === true) {
-
-        setPhonenumber_error("")
+        if(validnumber.test(phonenumber) === true)
+        {
+          setPhonenumber_error("")
+        }
+      else setPhonenumber_error("Invaild Phone Number")
       }
       else {
         setPhonenumber_error("Can't Enter Letters")
@@ -133,8 +137,8 @@ const SignUp = ({ navigation }) => {
 
   return (
     <View >
-       <LoadingModal modalVisible={requestState.pending}/>
-       {/* <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen')  }} message="Registration completed successfully" /> */}
+      <LoadingModal modalVisible={requestState.pending}/>
+      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen')  }} message="Registration completed successfully" />
       <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />   
       <AuthHeader
         continueButtonPress={() => { onSubmit() }}
@@ -142,18 +146,19 @@ const SignUp = ({ navigation }) => {
         signInButtonPress={() => { navigation.navigate('SignIn') }}
         backButtonPress={() => { navigation.navigate('Home') }}
         active={2}
+        signin={0}
        >
         <Input
           placeholder="First Name"
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
-          style={signUpStyle.input}
+          style={signUpStyle.firstnameinput}
           value={firstName}
           error={firstname_error != ''}
           onChangeText={(text) => setFirstname(text)}
         />
-        <Text style={globalStyle.textError}>{firstname_error}</Text>
+        <Text style={signUpStyle.textError}>{firstname_error}</Text>
         <Input
           placeholder="Last Name"
           placeholderTextColor='#B9B3BD'
@@ -164,7 +169,7 @@ const SignUp = ({ navigation }) => {
           error={lastname_error != ''}
           onChangeText={(text) => setLastname(text)}
         />
-        <Text style={globalStyle.textError}>{lastname_error}</Text>
+        <Text style={signUpStyle.textError}>{lastname_error}</Text>
         <Input
           placeholder="Phone Number"
           placeholderTextColor='#B9B3BD'
@@ -176,9 +181,9 @@ const SignUp = ({ navigation }) => {
           error={phonenumber_error != ''}
           onChangeText={(text) => setPhonenumber(text)}
         />
-        <Text style={globalStyle.textError}>{phonenumber_error}</Text>
+        <Text style={signUpStyle.textError}>{phonenumber_error}</Text>
         <Input
-          placeholder="E-mail"
+          placeholder="Email"
           placeholderTextColor='#B9B3BD'
           autoCorrect={false}
           autoCapitalize="none"
@@ -188,7 +193,7 @@ const SignUp = ({ navigation }) => {
           error={email_error != ''}
           onChangeText={(text) => setEmail(text)}
         />
-        <Text style={globalStyle.textError}>{email_error}</Text>
+        <Text style={signUpStyle.textError}>{email_error}</Text>
         <Input
           placeholder="Password"
           secureTextEntry={true}
@@ -200,7 +205,7 @@ const SignUp = ({ navigation }) => {
           onChangeText={(text) => setPassword(text)}
           error={password_error != ''}
         />
-        <Text style={globalStyle.textError}>{password_error}</Text>
+        <Text style={signUpStyle.textError}>{password_error}</Text>
         <Input
           placeholder="Confirm Password"
           secureTextEntry={true}
@@ -212,7 +217,7 @@ const SignUp = ({ navigation }) => {
           onChangeText={(text) => setConfirmPassword(text)}
           error={confirmpassword_error != ''}
         />
-        <Text style={globalStyle.textError}>{confirmpassword_error}</Text>
+        <Text style={signUpStyle.textError}>{confirmpassword_error}</Text>
         <Text style={signUpStyle.ByClickingText}>By clicking continue you are agreeing to our </Text>
         <View>
           <TouchableOpacity>
