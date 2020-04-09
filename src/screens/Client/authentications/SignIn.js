@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInAction } from '../../../store/Client/actions/Client_SignIn_actions'
+import { signInAction, clearSignInStateAction } from '../../../store/Client/actions/Client_SignIn_actions'
 import globalStyle from '../../../styles/globalStyle'
 import Input from '../../../components/global/Input';
 import AuthHeader from '../authentications/AuthHeader';
@@ -9,6 +9,7 @@ import signInStyle from '../../../styles/signInStyle';
 import { SignInUser } from '../../../moduels/Client/Client_Moduel';
 import ErrorModal from '../../../components/global/ErrorModal';
 import LoadingModal from '../../../components/global/LoadingModal';
+import SuccessModal from '../../../components/global/LoadingModal';
 
 
 const SignIn = ({ navigation }) => {
@@ -69,14 +70,20 @@ const SignIn = ({ navigation }) => {
     }
     else console.log("Failed")
   }
-  console.log(requestState)
+  useEffect(
+    () => { },
+    [requestState]
+  )
+  
   return (
 
     <View>
+      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} />
+      {/* <LoadingModal modalVisible={requestState.pending} /> */}
+      {/* <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()) }} message="Registration completed successfully" /> */}
+
       <View>
-            <LoadingModal modalVisible={requestState.pending} />
-            <ErrorModal modalVisible={requestState.error} closeModal={() => { }} message={requestState.errorMessage} />
-        <AuthHeader  
+        <AuthHeader
           continueButtonPress={() => { onSubmit() }}
           signUpButtonPress={() => { navigation.navigate('SignUp') }}
           signInButtonPress={() => { }}
@@ -84,8 +91,7 @@ const SignIn = ({ navigation }) => {
           active={1}
           signin={1}
         >
-
-          <Input 
+          <Input
             placeholder="Email"
             placeholderTextColor='#B9B3BD'
             keyboardType={"email-address"}
@@ -109,18 +115,7 @@ const SignIn = ({ navigation }) => {
             error={password_error != ''}
           />
           <Text style={signInStyle.textError}>{password_error}</Text>
-          {/* <View style={{ alignItems: 'center', justifyContent: 'center', backgroundColor: 'cyan', height: '5%' }}>
-          {
-
-            requestState.pending ?
-              <ActivityIndicator size="small" /> :
-              requestState.success ?
-                <Text>sucess</Text> :
-                requestState.error ?
-                  <Text>Error</Text> :
-                  null
-          }
-        </View> */}
+          
         </AuthHeader>
       </View>
 

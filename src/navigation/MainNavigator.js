@@ -11,6 +11,6 @@ export default MainNavigator = createSwitchNavigator(
         AppNavigation
     },
     {
-        initialRouteName: 'AuthenticationNavigation'
+        initialRouteName: 'PreConfigScreen'
     }
 )

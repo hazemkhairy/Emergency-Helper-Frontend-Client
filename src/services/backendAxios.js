@@ -15,8 +15,9 @@ copy.interceptors.request.use(
 )
 copy.interceptors.response.use(
     async (response) => {
-        if (response.headers['token']) {
-            let res = await setAuthToken(response.headers['token'])
+        if (response.data&&response.data.token) {
+            let res = await setAuthToken(response.data.token)
+            let token = await getAuthToken();
         }
         return response;
     }

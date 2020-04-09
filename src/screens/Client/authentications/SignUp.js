@@ -143,8 +143,8 @@ else {
 
   return (
     <View >
-      <LoadingModal modalVisible={requestState.pending}/>
-      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen')  }} message="Registration completed successfully" />
+      {/* <LoadingModal modalVisible={requestState.pending}/> */}
+      {/* <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen')  }} message="Registration completed successfully" /> */}
       <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />   
       <AuthHeader
         continueButtonPress={() => { onSubmit() }}

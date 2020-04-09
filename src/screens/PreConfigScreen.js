@@ -3,6 +3,7 @@ import { ImageBackground, StyleSheet } from 'react-native'
 import LoadingModal from '../components/global/LoadingModal'
 import image from '../images/image.png';
 import { validateToken } from '../Utils/Client'
+import { token } from '../Utils/LocalStorage';
 
 export default ({ navigation }) => {
     const [stillLoading, setStillLoading] = useState(true)
@@ -11,11 +12,14 @@ export default ({ navigation }) => {
 
             const myFun = async () => {
                 try {
+                    
                     const validToken = await validateToken();
+                 
                     if (validToken == false)
-                        navigation.navigate('AuthNavigator');
+                        navigation.navigate('AuthenticationNavigation');
+                        
                     else {
-                        navigation.navigate('AppNavigator')
+                        navigation.navigate('AppNavigation')
                     }
                 } catch (error) {
                     return err
