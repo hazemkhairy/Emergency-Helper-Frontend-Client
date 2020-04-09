@@ -72,11 +72,11 @@ const SignUp = ({ navigation }) => {
   
   
   if (!phonenumber || phonenumber == "") {
-    thereIsError = true;
+    error = true;
     setPhonenumber_error("Please Enter your Phone Number ")
 }
 else if (phonenumber.length < 6 || phonenumber.length > 15) {
-    thereIsError = true;
+  error = true;
     setPhonenumber_error("Number of digits must be between [6-15]")
 }
 else {
@@ -86,14 +86,12 @@ else {
     }
     else {
 
-        thereIsError = true;
+      error = true;
         setPhonenumber_error("Please Enter Numbers Only ")
     }
 
 }
 
-
-    
     
     if (email == '') {
       setemail_error("Please Enter Your Email")
