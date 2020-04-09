@@ -69,24 +69,32 @@ const SignUp = ({ navigation }) => {
         error = false
       }
     }
-    if (phonenumber == "") {
-      setPhonenumber_error("Please Enter Your Phone Number ")
+  
+  
+  if (!phonenumber || phonenumber == "") {
+    thereIsError = true;
+    setPhonenumber_error("Please Enter your Phone Number ")
+}
+else if (phonenumber.length < 6 || phonenumber.length > 15) {
+    thereIsError = true;
+    setPhonenumber_error("Number of digits must be between [6-15]")
+}
+else {
+    var numbers = /^[0-9\b]+$/;
+    if (numbers.test(phonenumber) === true) {
+        setPhonenumber_error("")
     }
     else {
-      var numbers = /^[0-9\b]+$/;
-      var validnumber= /@"^((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}$"/;
-      if (numbers.test(phonenumber) === true) {
-        if(validnumber.test(phonenumber) === true)
-        {
-          setPhonenumber_error("")
-        }
-      else setPhonenumber_error("Invaild Phone Number")
-      }
-      else {
-        setPhonenumber_error("Can't Enter Letters")
-        error = false
-      }
+
+        thereIsError = true;
+        setPhonenumber_error("Please Enter Numbers Only ")
     }
+
+}
+
+
+    
+    
     if (email == '') {
       setemail_error("Please Enter Your Email")
       error = false
