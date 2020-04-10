@@ -3,7 +3,9 @@ import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-nati
 import Modal from 'react-native-modal';
 import { Ionicons } from '@expo/vector-icons'
 const ErrorModal = ({ modalVisible, closeModal, message }) => {
-    
+
+    if(!modalVisible)
+    return null;
     return (
         <Modal isVisible={modalVisible} >
             <View style={styles.container}>

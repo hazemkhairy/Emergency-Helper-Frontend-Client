@@ -27,8 +27,8 @@ export const signUpAction=(user = new SignUpUser() )=>
     }
     ).then(
         (res) => {
-            console.log("Done")
-            console.log(res)
+            // console.log("Done")
+            // console.log(res)
             setAuthToken(res.data.token)
             dispatch({ type: Success_Sign_Up })
         }

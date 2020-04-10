@@ -3,9 +3,12 @@ import { View, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import Modal from 'react-native-modal';
 
 const ErrorModal = ({ modalVisible }) => {
-    useEffect(() => { }, [modalVisible])
+   
 
+    if(!modalVisible)
+    return null;
     return (
+        
         <Modal isVisible={modalVisible} >
             <>
                 <View style={styles.modalBody}>

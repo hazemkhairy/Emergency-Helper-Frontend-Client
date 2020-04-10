@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { signUpAction ,ClearSignUpStateAction} from '../../../store/Client/actions/Client_SignUp_actions'
+import { signUpAction, ClearSignUpStateAction } from '../../../store/Client/actions/Client_SignUp_actions'
 import signUpStyle from '../../../styles/signUpStyle'
-import globalStyle from '../../../styles/globalStyle'
 import Input from '../../../components/global/Input';
 import AuthHeader from '../authentications/AuthHeader';
 import { SignUpUser } from '../../../moduels/Client/Client_Moduel';
@@ -23,7 +22,7 @@ const SignUp = ({ navigation }) => {
         errorMessage: store.SignUpReducer.errorMessage
       }
     })
-    
+
   const [firstName, setFirstname] = useState('');
   const [lastName, setLastname] = useState('');
   const [phonenumber, setPhonenumber] = useState('');
@@ -69,30 +68,30 @@ const SignUp = ({ navigation }) => {
         error = false
       }
     }
-  
-  
-  if (!phonenumber || phonenumber == "") {
-    error = true;
-    setPhonenumber_error("Please Enter your Phone Number ")
-}
-else if (phonenumber.length < 6 || phonenumber.length > 15) {
-  error = true;
-    setPhonenumber_error("Number of digits must be between [6-15]")
-}
-else {
-    var numbers = /^[0-9\b]+$/;
-    if (numbers.test(phonenumber) === true) {
-        setPhonenumber_error("")
+
+
+    if (!phonenumber || phonenumber == "") {
+      error = true;
+      setPhonenumber_error("Please Enter your Phone Number ")
+    }
+    else if (phonenumber.length < 6 || phonenumber.length > 15) {
+      error = true;
+      setPhonenumber_error("Number of digits must be between [6-15]")
     }
     else {
+      var numbers = /^[0-9\b]+$/;
+      if (numbers.test(phonenumber) === true) {
+        setPhonenumber_error("")
+      }
+      else {
 
-      error = true;
+        error = true;
         setPhonenumber_error("Please Enter Numbers Only ")
+      }
+
     }
 
-}
 
-    
     if (email == '') {
       setemail_error("Please Enter Your Email")
       error = false
@@ -143,9 +142,9 @@ else {
 
   return (
     <View >
-      {/* <LoadingModal modalVisible={requestState.pending}/> */}
-      {/* <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen')  }} message="Registration completed successfully" /> */}
-      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />   
+      <LoadingModal modalVisible={requestState.pending} />
+      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen') }} message="Registration completed successfully" />
+      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
       <AuthHeader
         continueButtonPress={() => { onSubmit() }}
         signUpButtonPress={() => { }}
@@ -153,7 +152,7 @@ else {
         backButtonPress={() => { navigation.navigate('Home') }}
         active={2}
         signin={0}
-       >
+      >
         <Input
           placeholder="First Name"
           placeholderTextColor='#B9B3BD'

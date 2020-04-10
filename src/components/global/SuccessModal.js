@@ -4,8 +4,8 @@ import Modal from 'react-native-modal';
 import { Ionicons } from '@expo/vector-icons';
 
 const SuccessModal = ({ modalVisible, closeModal, message }) => {
-    useEffect(() => { }, [modalVisible])
-
+    if(!modalVisible)
+    return null;
     return (
         <Modal isVisible={modalVisible} >
             <View style={styles.container}>

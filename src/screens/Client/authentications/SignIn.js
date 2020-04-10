@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInAction, clearSignInStateAction } from '../../../store/Client/actions/Client_SignIn_actions'
-import globalStyle from '../../../styles/globalStyle'
 import Input from '../../../components/global/Input';
 import AuthHeader from '../authentications/AuthHeader';
 import signInStyle from '../../../styles/signInStyle';
 import { SignInUser } from '../../../moduels/Client/Client_Moduel';
 import ErrorModal from '../../../components/global/ErrorModal';
 import LoadingModal from '../../../components/global/LoadingModal';
-import SuccessModal from '../../../components/global/LoadingModal';
+import SuccessModal from '../../../components/global/SuccessModal';
 
 
 const SignIn = ({ navigation }) => {
@@ -74,13 +73,12 @@ const SignIn = ({ navigation }) => {
     () => { },
     [requestState]
   )
-  
   return (
 
     <View>
-      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} />
-      {/* <LoadingModal modalVisible={requestState.pending} /> */}
-      {/* <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()) }} message="Registration completed successfully" /> */}
+      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message="Wrong Email or Password"  />
+      <LoadingModal modalVisible={requestState.pending} />
+      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()) }} message="Sign In Successfully" />
 
       <View>
         <AuthHeader
