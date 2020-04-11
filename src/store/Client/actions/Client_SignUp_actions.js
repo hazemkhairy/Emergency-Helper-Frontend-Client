@@ -13,7 +13,7 @@ export const signUpAction=(user = new SignUpUser() )=>
     return (dispatch) => {
 
     dispatch({ type: Start_Sign_Up })
-    backendAxios.post('/api/Account/RegisterUser',
+    backendAxios.post('/api/Client/Register',
 
     { name:{
         
@@ -23,7 +23,7 @@ export const signUpAction=(user = new SignUpUser() )=>
        mobile:user.phonenumber,
        email:user.email,
        password:user.password,
-       userRole:0
+      // userRole:0
     }
     ).then(
         (res) => {

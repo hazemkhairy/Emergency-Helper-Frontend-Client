@@ -3,7 +3,7 @@ import { clearToken } from './LocalStorage'
 
 export const validateToken = async () => {
     try {
-        let x = await backendAxios.get('api/Account/ValidateToken');
+        let x = await backendAxios.get('/api/Account/ValidateToken');
         if (x) {
             return true;
         }

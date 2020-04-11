@@ -14,7 +14,7 @@ export const signInAction = (user = new SignInUser()) => {
     return (dispatch) => {
         // dispatch request start
         dispatch({ type: Start_Sign_In })
-        backendAxios.post('/api/Account/Login',{
+        backendAxios.post('/api/Client/Login',{
             email: user.email,
             password: user.password
         })
