@@ -51,7 +51,7 @@ const AuthHeader = (props) => {
                     <TouchableOpacity style={globalStyle.continueButton}
                         onPress={() => { props.continueButtonPress() }}
                     >
-                        <Text style={globalStyle.continueText}>{props.signin==1?'Sign In':'Sign Up'}</Text>
+                        <Text style={globalStyle.continueText}>{props.signin==1?'SIGN IN':'SIGN UP'}</Text>
                     </TouchableOpacity>
                     
                 </View>
