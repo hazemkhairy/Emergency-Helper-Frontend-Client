@@ -19,8 +19,8 @@ export const signInAction = (user = new SignInUser()) => {
             password: user.password
         })
             .then(res => {
-                console.log('Done');
-                console.log(res.data)
+                // console.log('Done');
+             //   console.log(res.data)
                 dispatch({ type: Success_Sign_In, payload: { token: res.data.token } })
             })
             .catch(err => { 
