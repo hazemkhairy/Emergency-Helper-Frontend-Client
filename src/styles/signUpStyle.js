@@ -8,9 +8,11 @@ export default StyleSheet.create({
     color:'#767676',
     fontSize: Dimensions.get('window').height<600?12:14,
     marginBottom:'0%',
-    marginTop:Dimensions.get('window').height>800?'8%':Dimensions.get('window').height<600?'0%':'3%',
+    marginTop:Dimensions.get('window').height>800?'8%':Dimensions.get('window').height<600?'5%':'8%',
     textAlign:'center',
     fontFamily:'Montserrat',
+    
+    
   },
   terms_conditionsbutton:{
     color:'#132641',
@@ -38,12 +40,12 @@ export default StyleSheet.create({
       input: {
         height: Dimensions.get('window').height>800?30:30,
         marginBottom: '0%',
-        marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'3%':'5%',
+        marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'4%':'5%',
        
     },
     firstnameinput:{
       height: Dimensions.get('window').height>800?30:30,
-      marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'8%':'7%',
+      marginTop: Dimensions.get('window').height>850?'15%':Dimensions.get('window').height<600?'8%':'10%',
       marginBottom:'0%'
     },
     form: {
@@ -58,9 +60,8 @@ export default StyleSheet.create({
       marginLeft: '9%',
       marginTop: '0%',
       marginBottom:'0%',
-      //height:'4%',
+      height:'4%',
       fontFamily: 'Montserrat_Medium',
-     
   },
   });
  
