@@ -6,7 +6,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     position:'absolute',
     width:'100%',
-    top:Dimensions.get('window').height>850?'51%':Dimensions.get('window').height<600?'57%':'55%',
+    top:Dimensions.get('window').height>850?'51%':Dimensions.get('window').height<600?'57%':'56%',
   },
    ForgetPasswordText: {
     color: '#132641',

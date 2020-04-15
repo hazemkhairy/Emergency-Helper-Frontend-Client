@@ -76,7 +76,7 @@ const SignUp = ({ navigation }) => {
     }
      if (phonenumber.length < 6 || phonenumber.length > 15) {
       error = true;
-      setPhonenumber_error("Number of digits must be between [6-15]")
+      setPhonenumber_error("Number must be between [6-15]")
     }
     else {
       var numbers = /^[0-9\b]+$/;
@@ -112,7 +112,7 @@ const SignUp = ({ navigation }) => {
     }
     else {
       if (password.length < 8) {
-        setpassword_error("Password Must Be 8 Characters Or More")
+        setpassword_error("Must Be 8 Characters Or More")
         error = false
       }
       else setpassword_error("")

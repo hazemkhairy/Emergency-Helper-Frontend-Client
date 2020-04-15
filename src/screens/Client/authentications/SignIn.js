@@ -55,7 +55,7 @@ const SignIn = ({ navigation }) => {
     }
     else {
       if (password.length < 8) {
-        setpassword_error("Password Must Be 8 Characters Or More")
+        setpassword_error("Invalid Password")
         error = false;
       }
       else setpassword_error("")

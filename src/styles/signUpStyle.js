@@ -8,7 +8,7 @@ export default StyleSheet.create({
     color:'#767676',
     fontSize: Dimensions.get('window').height<600?12:14,
     marginBottom:'0%',
-    marginTop:Dimensions.get('window').height>800?'10%':Dimensions.get('window').height<600?'0%':'3%',
+    marginTop:Dimensions.get('window').height>800?'8%':Dimensions.get('window').height<600?'0%':'3%',
     textAlign:'center',
     fontFamily:'Montserrat',
   },
@@ -47,7 +47,7 @@ export default StyleSheet.create({
       marginBottom:'0%'
     },
     form: {
-      height: '80%',
+      height: '82%',
     },
     textError: {
       color: '#b30000',
