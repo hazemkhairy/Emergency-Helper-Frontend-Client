@@ -45,7 +45,7 @@ export default StyleSheet.create({
     },
     firstnameinput:{
       height: Dimensions.get('window').height>800?30:30,
-      marginTop: Dimensions.get('window').height>850?'15%':Dimensions.get('window').height<600?'8%':'10%',
+      marginTop: Dimensions.get('window').height>850?'15%':Dimensions.get('window').height<600?'8%':'12%',
       marginBottom:'0%'
     },
     form: {

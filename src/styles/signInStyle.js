@@ -16,11 +16,11 @@ export default StyleSheet.create({
   input: {
     height: Dimensions.get('window').height>800?30:30,
     marginBottom: '0%',
-    marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'2%':'5%',
+    marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'2%':'3%',
     
 },
   emailinput:{
-     marginTop: Dimensions.get('window').height>850?'12%':'8%',
+     marginTop: Dimensions.get('window').height>850?'12%':Dimensions.get('window').height<600?'8%':'12%',
      height: Dimensions.get('window').height>800?30:30,
      marginBottom:'0%'
 },
