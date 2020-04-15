@@ -69,12 +69,11 @@ const SignUp = ({ navigation }) => {
       }
     }
 
-
     if (!phonenumber || phonenumber == "") {
       error = true;
       setPhonenumber_error("Please Enter your Phone Number ")
     }
-    else if (phonenumber.length < 6 || phonenumber.length > 15) {
+     if (phonenumber.length < 6 || phonenumber.length > 15) {
       error = true;
       setPhonenumber_error("Number of digits must be between [6-15]")
     }
@@ -143,7 +142,7 @@ const SignUp = ({ navigation }) => {
   return (
     <View >
       <LoadingModal modalVisible={requestState.pending} />
-      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen') }} message="Registration completed successfully" />
+      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen') }} message="Registration done successfully, Please check your email to confirm your account"/>
       <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
       <AuthHeader
         continueButtonPress={() => { onSubmit() }}

@@ -23,13 +23,11 @@ export const signUpAction=(user = new SignUpUser() )=>
        mobile:user.phonenumber,
        email:user.email,
        password:user.password,
-      // userRole:0
+     
     }
     ).then(
         (res) => {
            
-             console.log(res)
-            setAuthToken(res.data.token)
             dispatch({ type: Success_Sign_Up })
         }
     )
