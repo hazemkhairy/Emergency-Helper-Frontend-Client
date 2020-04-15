@@ -9,6 +9,7 @@ import { SignUpUser } from '../../../moduels/Client/Client_Moduel';
 import ErrorModal from '../../../components/global/ErrorModal';
 import LoadingModal from '../../../components/global/LoadingModal';
 import SuccessModal from '../../../components/global/SuccessModal';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const SignUp = ({ navigation }) => {
   const disptach = useDispatch();
@@ -140,6 +141,7 @@ const SignUp = ({ navigation }) => {
   }
 
   return (
+    <KeyboardAwareScrollView>
     <View >
       <LoadingModal modalVisible={requestState.pending} />
       <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen') }} message="Registration done successfully, Please check your email to confirm your account"/>
@@ -221,6 +223,7 @@ const SignUp = ({ navigation }) => {
           onChangeText={(text) => setConfirmPassword(text)}
           error={confirmpassword_error != ''}
         />
+
         <Text style={signUpStyle.textError}>{confirmpassword_error}</Text>
         <Text style={signUpStyle.ByClickingText}>By clicking continue you are agreeing to our </Text>
         <View>
@@ -230,9 +233,8 @@ const SignUp = ({ navigation }) => {
         </View>
       </AuthHeader>
     </View>
+    </KeyboardAwareScrollView>
   )
-
-
 }
 
 export default SignUp;

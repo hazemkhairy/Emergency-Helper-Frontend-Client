@@ -6,7 +6,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     position:'absolute',
     width:'100%',
-    top:Dimensions.get('window').height>850?'51%':'55%',
+    top:Dimensions.get('window').height>850?'51%':Dimensions.get('window').height<600?'57%':'55%',
   },
    ForgetPasswordText: {
     color: '#132641',
@@ -15,29 +15,28 @@ export default StyleSheet.create({
   },
   input: {
     height: Dimensions.get('window').height>800?30:30,
-    marginBottom: '2%',
-    marginTop: Dimensions.get('window').height>850?'8%':'5%',
+    marginBottom: '0%',
+    marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'2%':'5%',
     
 },
   emailinput:{
-    marginTop: Dimensions.get('window').height>850?'12%':'8%',
-   height: Dimensions.get('window').height>800?30:30,
-  marginBottom:'2%'
+     marginTop: Dimensions.get('window').height>850?'12%':'8%',
+     height: Dimensions.get('window').height>800?30:30,
+     marginBottom:'0%'
 },
 form: {
   height: '30%',
 },
-textError: {
+ textError: {
   color: '#b30000',
-  fontSize: 14,
+  fontSize: 12,
   position: 'relative',
   alignItems: 'center',
   marginRight:'9%',
   marginLeft: '9%',
   marginTop: '0%',
   marginBottom:'0%',
-  height:'40%',
+  height:'50%',
   fontFamily: 'Montserrat_Medium',
- 
 },
 });

@@ -5,7 +5,7 @@ export default StyleSheet.create({
     signInUpContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        width: '36%',
+        width:Dimensions.get('window').height>850?'36%':Dimensions.get('window').height<600?'40%':'36%',
         alignSelf: 'center'
     },
     activeText: {

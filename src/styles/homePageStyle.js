@@ -12,23 +12,23 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 80
+        marginTop:Dimensions.get('window').height>850?80:50
     },
     toliftup: {
         color: '#FFFFFF',
-        fontSize: 32,
+        fontSize: Dimensions.get('window').height<600?30:32,
         fontFamily:'Montserrat_bold',
-        marginBottom: '3%',
+        marginBottom: Dimensions.get('window').height<600?'1%':'3%'
     },
     welcome: {
         color: '#FFFFFF',
-        fontSize: 32,
+        fontSize: Dimensions.get('window').height<600?30:32,
         fontWeight: 'bold',
         fontFamily:'Montserrat_bold',
     },
     text: {
         color: '#FFFFFF',
-        fontSize: 12,
+        fontSize: Dimensions.get('window').height<600?10:12,
         fontWeight: '200',
         fontFamily: 'Montserrat_Medium'
 
