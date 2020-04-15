@@ -4,7 +4,7 @@ const copy = axios.create({});
 
 copy.interceptors.request.use(
     async (config) => {
-        //token ?
+
         config.baseURL = 'https://emergency-helper.herokuapp.com/';
         let token = await getAuthToken();
         if (token)
@@ -15,8 +15,8 @@ copy.interceptors.request.use(
 )
 copy.interceptors.response.use(
     async (response) => {
-        if (response.data&&response.data.token&&response.data.payload) {
-            let res = await setAuthToken(response.data.token)
+        if (response.data  && response.data.payload && response.data.payload.token) {
+            let res = await setAuthToken(response.data.payload.token)
         }
         return response;
     }

@@ -19,11 +19,12 @@ export const signInAction = (user = new SignInUser()) => {
             password: user.password
         })
             .then(res => {
-                dispatch({ type: Success_Sign_In })
+              
+                dispatch({ type: Success_Sign_In})
             })
             .catch(err => { 
                 console.log(err) 
-                dispatch({ type: Error_Sign_In})
+                dispatch({ type: Error_Sign_In, payload: { message: err.response.data.message } })
                  
             }),200
 
