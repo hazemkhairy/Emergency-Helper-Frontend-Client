@@ -8,7 +8,7 @@ export default StyleSheet.create({
     color:'#767676',
     fontSize: Dimensions.get('window').height<600?12:14,
     marginBottom:'0%',
-    marginTop:Dimensions.get('window').height>800?'3%':Dimensions.get('window').height<600?'2%':'2%',
+    marginTop:Dimensions.get('window').height>800?'3%':Dimensions.get('window').height<600?'4%':'5%',
     textAlign:'center',
     fontFamily:'Montserrat',
     
@@ -40,12 +40,12 @@ export default StyleSheet.create({
       input: {
         height: Dimensions.get('window').height>800?30:30,
         marginBottom: '0%',
-        marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'2%':'5%',
+        marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'3%':'4%',
        
     },
     firstnameinput:{
       height: Dimensions.get('window').height>800?30:30,
-      marginTop: Dimensions.get('window').height>850?'15%':Dimensions.get('window').height<600?'8%':'12%',
+      marginTop: Dimensions.get('window').height>850?'15%':Dimensions.get('window').height<600?'10%':'12%',
       marginBottom:'0%'
     },
     form: {
