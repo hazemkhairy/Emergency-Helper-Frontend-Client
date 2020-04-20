@@ -12,7 +12,7 @@ const SuccessModal = ({ modalVisible, closeModal, message }) => {
 
                 <View style={styles.Header}>
                     <Ionicons
-                        size={Math.min(Dimensions.get('window').width * 0.13, Dimensions.get('window').height * 0.1)}
+                        size={Math.min(Dimensions.get('window').width * 0.11, Dimensions.get('window').height * 0.1)}
                         name="md-checkmark-circle"
                         color='white'
                     />
