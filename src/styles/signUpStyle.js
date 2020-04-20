@@ -5,14 +5,14 @@ import {StyleSheet, Dimensions} from 'react-native';
 export default StyleSheet.create({
 
   ByClickingText:{
-    color:'#767676',
-    fontSize: Dimensions.get('window').height<600?12:14,
-    marginBottom:'0%',
-    marginTop:Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'5%':'7%',
-    textAlign:'center',
-    fontFamily:'Montserrat',
-    marginLeft:'7%',
-    marginRight:'7%'
+    color: '#767676',
+    fontSize: Dimensions.get('window').height < 600 ? 12 : 14,
+    marginBottom: '0%',
+    marginTop:Dimensions.get('window').height>800?'3%':Dimensions.get('window').height<600?'2%':'5%',
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    marginLeft:'1%',
+    marginRight:'1%'
   },
   terms_conditionsbutton:{
     color:'#132641',
@@ -23,20 +23,6 @@ export default StyleSheet.create({
     textAlign:'center',
     marginBottom:'0%', 
   },
-      //   input: {
-      //     height: Dimensions.get('window').height>800?25:25,
-      //     marginBottom: '0%',
-      //     marginTop: '9%',
-      // },
-      // firstnameinput:{
-      //     height: Dimensions.get('window').height>800?25:25,
-      //     marginBottom: '0%',
-      //     marginTop: Dimensions.get('window').height>800?'10%':'9%',
-      // },
-      // form :{
-      //   height: '85%',
-      //   //minHeight:Dimensions.get('window').height>850?'0%':'83%'
-      // }
       input: {
         height: Dimensions.get('window').height>800?30:30,
         marginBottom: '0%',
