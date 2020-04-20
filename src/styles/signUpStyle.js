@@ -8,11 +8,11 @@ export default StyleSheet.create({
     color:'#767676',
     fontSize: Dimensions.get('window').height<600?12:14,
     marginBottom:'0%',
-    marginTop:Dimensions.get('window').height>800?'3%':Dimensions.get('window').height<600?'4%':'5%',
+    marginTop:Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'5%':'7%',
     textAlign:'center',
     fontFamily:'Montserrat',
-    
-    
+    marginLeft:'7%',
+    marginRight:'7%'
   },
   terms_conditionsbutton:{
     color:'#132641',
@@ -20,8 +20,8 @@ export default StyleSheet.create({
     fontSize: Dimensions.get('window').height<600?12:14,
     textAlign: 'center',
     fontFamily:'Montserrat',
+    textAlign:'center',
     marginBottom:'0%', 
-    
   },
       //   input: {
       //     height: Dimensions.get('window').height>800?25:25,
@@ -60,7 +60,7 @@ export default StyleSheet.create({
       marginLeft: '9%',
       marginTop: '0%',
       marginBottom:'0%',
-     height:'5%',
+      height:'5%',
       fontFamily: 'Montserrat_Medium',
   },
   });

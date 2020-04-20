@@ -26,12 +26,13 @@ const First = ({ navigation }) => {
                 <TouchableOpacity style={homePageStyle.LoginButton} onPress={() => navigation.navigate('SignIn')}>
                     <Text style={homePageStyle.loginTextStyle}>LOG IN</Text>
                 </TouchableOpacity>
-            </View>
-            <View style={homePageStyle.signupbackground}>
+           
+            
                 <TouchableOpacity style={homePageStyle.SignUpButton} onPress={() => navigation.navigate('SignUp')}>
                     <Text style={homePageStyle.SignUpTextStyle}>SIGN UP</Text>
                 </TouchableOpacity>
-            </View>
+                </View>
+           
         </ImageBackground >
 
     );

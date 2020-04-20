@@ -31,7 +31,6 @@ export default StyleSheet.create({
         fontSize: Dimensions.get('window').height<600?10:12,
         fontWeight: '200',
         fontFamily: 'Montserrat_Medium'
-
     },
     loginTextStyle: {
         color: 'white',
@@ -42,18 +41,19 @@ export default StyleSheet.create({
     },
     LoginButton: {
         backgroundColor: '#7598BA',
-        height: '100%',
-        borderTopLeftRadius: 120,
+        height: '50%',
+        borderTopLeftRadius: 100,
         justifyContent: "center",
         alignItems: 'center',
     },
     SignUpButton: {
         backgroundColor: '#132641',
-        height: '100%',
-        borderTopLeftRadius: 120,
+        height: '120%',
+        borderTopLeftRadius: 100,
         //justifyContent: "center",
         alignItems: 'center',
     },
+
     SignUpTextStyle: {
         color: 'white',
         fontSize: 14,
@@ -63,11 +63,11 @@ export default StyleSheet.create({
     loginbackground:{
         borderTopLeftRadius: 100, 
         backgroundColor: '#7598BA',
-         height: '10%' 
-
+         height: '22%' 
     },
-    signupbackground:{
-      backgroundColor: '#7598BA',
-       height: '12%'
-    }
+    // signupbackground:{
+    //   backgroundColor: '#7598BA',
+    //    height: '10%'
+    // }
+
 });
