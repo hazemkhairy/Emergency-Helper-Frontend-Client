@@ -5,7 +5,7 @@ export default StyleSheet.create({
     Backgroundstyle: {
         flex: 1,
         resizeMode: 'stretch',
-        height: '87%',
+        height: '93%',
         backgroundColor: '#241332'
     },
     main: {
@@ -41,33 +41,35 @@ export default StyleSheet.create({
     },
     LoginButton: {
         backgroundColor: '#7598BA',
-        height: '50%',
-        borderTopLeftRadius: 100,
+        height: '48%',
+        borderTopLeftRadius: 120,
         justifyContent: "center",
         alignItems: 'center',
     },
     SignUpButton: {
         backgroundColor: '#132641',
-        height: '120%',
-        borderTopLeftRadius: 100,
-        //justifyContent: "center",
+        height: '53%',
+        borderTopLeftRadius: 120,
+         justifyContent: "center",
         alignItems: 'center',
+        overflow: 'hidden'
+
+        
     },
 
     SignUpTextStyle: {
         color: 'white',
         fontSize: 14,
         fontFamily:'Montserrat_SemiBold',
-        marginTop:30
+        marginTop:10
     },
     loginbackground:{
-        borderTopLeftRadius: 100, 
+        borderTopLeftRadius: 90, 
         backgroundColor: '#7598BA',
-         height: '22%' 
+         height: '20%' ,
+         overflow: 'hidden'
+
     },
-    // signupbackground:{
-    //   backgroundColor: '#7598BA',
-    //    height: '10%'
-    // }
+   
 
 });
