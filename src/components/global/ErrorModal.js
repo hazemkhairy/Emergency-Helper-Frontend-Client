@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 30,
         borderColor: 'rgba(0, 0, 0, 0.1)',
-        minHeight: '25%',
-        maxHeight: '25%',
+        minHeight: '30%',
+        maxHeight: '30%',
         overflow: 'hidden'
 
     },
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     messageText: {
         marginLeft:12,
         marginRight:12,
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: "400",
 
     }

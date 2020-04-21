@@ -41,7 +41,7 @@ export default StyleSheet.create({
     },
     LoginButton: {
         backgroundColor: '#7598BA',
-        height: '48%',
+        height: '49%',
         borderTopLeftRadius: 120,
         justifyContent: "center",
         alignItems: 'center',
@@ -61,12 +61,12 @@ export default StyleSheet.create({
         color: 'white',
         fontSize: 14,
         fontFamily:'Montserrat_SemiBold',
-        marginTop:10
+        marginTop:5
     },
     loginbackground:{
         borderTopLeftRadius: 90, 
         backgroundColor: '#7598BA',
-         height: '20%' ,
+         height: '22%' ,
          overflow: 'hidden'
 
     },
