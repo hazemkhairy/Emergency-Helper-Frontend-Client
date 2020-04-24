@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 30,
         borderColor: 'rgb(42,98,24)',
-        minHeight: '25%',
-        maxHeight: '25%',
+        minHeight: '35%',
+        maxHeight: '35%',
         overflow: 'hidden'
 
     },
