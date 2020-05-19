@@ -144,7 +144,7 @@ const SignUp = ({ navigation }) => {
     <KeyboardAwareScrollView>
     <View >
       <LoadingModal modalVisible={requestState.pending} />
-      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen') }} message="Registration done successfully, Please check your email to confirm your account"/>
+      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen') }} message="Please check your email to confirm your account"/>
       <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
       <AuthHeader
         continueButtonPress={() => { onSubmit() }}
