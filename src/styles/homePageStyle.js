@@ -25,6 +25,7 @@ export default StyleSheet.create({
         fontSize: Dimensions.get('window').height<600?30:32,
         fontWeight: 'bold',
         fontFamily:'Montserrat_bold',
+        marginTop:'7%'
     },
     text: {
         color: '#FFFFFF',
@@ -53,10 +54,7 @@ export default StyleSheet.create({
          justifyContent: "center",
         alignItems: 'center',
         overflow: 'hidden'
-
-        
     },
-
     SignUpTextStyle: {
         color: 'white',
         fontSize: 14,
@@ -68,8 +66,5 @@ export default StyleSheet.create({
         backgroundColor: '#7598BA',
          height: '22%' ,
          overflow: 'hidden'
-
     },
-   
-
 });

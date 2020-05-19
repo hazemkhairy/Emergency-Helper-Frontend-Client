@@ -99,6 +99,7 @@ const SignIn = ({ navigation }) => {
             error={email_error != ''}
             value={email}
             onChangeText={(text) => setEmail(text)}
+            autoFocus={true}
           />
           <Text style={signInStyle.textError}>{email_error}</Text>
           <Input
@@ -111,6 +112,7 @@ const SignIn = ({ navigation }) => {
             value={password}
             onChangeText={(text) => setPassword(text)}
             error={password_error != ''}
+            autoFocus={true}
           />
           <Text style={signInStyle.textError}>{password_error}</Text>
           
