@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInAction, clearSignInStateAction } from '../../../store/Client/actions/Client_SignIn_actions'
 import Input from '../../../components/global/Input';
-import AuthHeader from '../authentications/AuthHeader';
+import AuthHeader from './AuthHeader';
 import signInStyle from '../../../styles/signInStyle';
 import { SignInUser } from '../../../moduels/Client/Client_Moduel';
 import ErrorModal from '../../../components/global/ErrorModal';
@@ -20,10 +20,12 @@ const SignIn = ({ navigation }) => {
   const [password_error, setpassword_error] = useState('');
 
   const requestState = useSelector((store) => {
+    
     return {
       pending: store.SignInReducer.sendingSignInRequest,
       error: store.SignInReducer.errorSignInRequest,
       success: store.SignInReducer.successSignInRequest,
+      errorMessage: store.SignInReducer.message
     }
   })
   const validate = () => {
@@ -69,10 +71,9 @@ const SignIn = ({ navigation }) => {
   return (
 
     <View>
-      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message="Wrong Email or Password"  />
+      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message={requestState.errorMessage}  />
       <LoadingModal modalVisible={requestState.pending} />
       <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()), navigation.navigate('PreConfigScreen')  }} message="Signed In Successfully" />
-
       <View>
         <AuthHeader
           continueButtonPress={() => { onSubmit() }}

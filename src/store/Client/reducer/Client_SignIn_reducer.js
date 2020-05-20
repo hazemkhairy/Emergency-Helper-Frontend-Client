@@ -5,13 +5,14 @@ const initialState = {
     sendingSignInRequest: false,
     errorSignInRequest: false,
     successSignInRequest: false,
+    message:''
 }
 export default (state = initialState, action) => {
     switch (action.type) {
         case Start_Sign_In:
             return { ...state, sendingSignInRequest: true, successSignInRequest: false, errorSignInRequest: false };
         case Error_Sign_In:
-            return { ...state, sendingSignInRequest: false, errorSignInRequest: true,successSignInRequest: false ,message: action.payload.message};
+            return { ...state, sendingSignInRequest: false, errorSignInRequest: true,successSignInRequest: false ,message: action.payload};
         case Success_Sign_In:
             return { ...state, sendingSignInRequest: false, successSignInRequest: true, errorSignInRequest: false };
         case Clear_Sign_In_State:

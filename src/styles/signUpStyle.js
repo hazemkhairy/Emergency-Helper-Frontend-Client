@@ -28,6 +28,7 @@ export default StyleSheet.create({
         marginBottom: '0%',
         marginTop: Dimensions.get('window').height>850?'8%':Dimensions.get('window').height<600?'3%':'4%',
     },
+    
     firstnameinput:{
       height: Dimensions.get('window').height>800?30:30,
       marginTop: Dimensions.get('window').height>850?'15%':Dimensions.get('window').height<600?'10%':'12%',
@@ -45,7 +46,7 @@ export default StyleSheet.create({
       marginLeft: '9%',
       marginTop: '0%',
       marginBottom:'0%',
-      height:'5%',
+      height:'4%',
       fontFamily: 'Montserrat_Medium',
   },
   });

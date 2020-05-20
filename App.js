@@ -3,9 +3,6 @@ import React,{useState} from 'react'
 import store from './src/store/index';
 import { createAppContainer,createSwitchNavigator } from 'react-navigation';
 import MainNavigator from './src/navigation/MainNavigator'
-import Home from './src/screens/Home';
-import SignUp from './src/screens/Client/authentications/SignUp';
-import SignIn from './src/screens/Client/authentications/SignIn';
 import * as Font from "expo-font";
 import {AppLoading} from 'expo';
 

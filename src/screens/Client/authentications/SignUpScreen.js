@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signUpAction, ClearSignUpStateAction } from '../../../store/Client/actions/Client_SignUp_actions'
 import signUpStyle from '../../../styles/signUpStyle'
 import Input from '../../../components/global/Input';
-import AuthHeader from '../authentications/AuthHeader';
+import AuthHeader from './AuthHeader';
 import { SignUpUser } from '../../../moduels/Client/Client_Moduel';
 import ErrorModal from '../../../components/global/ErrorModal';
 import LoadingModal from '../../../components/global/LoadingModal';
 import SuccessModal from '../../../components/global/SuccessModal';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import  PasswordStrength  from  '../../../components/global/PasswordstrengthBar'
 
 const SignUp = ({ navigation }) => {
   const disptach = useDispatch();
@@ -212,6 +213,10 @@ const SignUp = ({ navigation }) => {
             error={password_error != ''}
           />
           <Text style={signUpStyle.textError}>{password_error}</Text>
+          <PasswordStrength 
+               password={password}
+              
+        />
           <Input
             placeholder="Confirm Password"
             secureTextEntry={true}
