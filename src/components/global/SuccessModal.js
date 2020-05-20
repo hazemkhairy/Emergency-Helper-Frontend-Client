@@ -4,8 +4,8 @@ import Modal from 'react-native-modal';
 import { Ionicons } from '@expo/vector-icons';
 
 const SuccessModal = ({ modalVisible, closeModal, message }) => {
-    if(!modalVisible)
-    return null;
+    if (!modalVisible)
+        return null;
     return (
         <Modal isVisible={modalVisible} >
             <View style={styles.container}>
@@ -38,14 +38,11 @@ const SuccessModal = ({ modalVisible, closeModal, message }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        margin: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
         borderRadius: 30,
         borderColor: 'rgb(42,98,24)',
         minHeight: '35%',
         maxHeight: '35%',
-        overflow: 'hidden'
+        overflow: 'hidden',
 
     },
     Header: {
@@ -67,7 +64,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-     
+
 
     },
     button: {
@@ -77,22 +74,25 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgb(69,136,51)',
         justifyContent: 'center',
         alignItems: 'center',
-        
+
     },
     buttonText: {
         fontSize: 22,
         color: 'white',
-        fontWeight: "600"
+        fontFamily: 'Montserrat_Medium'
+
     },
     errorText: {
-        fontSize: 25,marginBottom:5,
-        color: 'black', fontWeight: "500"
+        fontSize: 25,
+        marginBottom: 5,
+        color: 'black',
+        fontFamily: 'Montserrat_SemiBold'
     },
     messageText: {
-        marginLeft:12,
-        marginRight:12,
+        marginLeft: 12,
+        marginRight: 12,
         fontSize: 18,
-        fontWeight: "400",
+        fontFamily: 'Montserrat_Medium'
     }
 })
 export default SuccessModal;

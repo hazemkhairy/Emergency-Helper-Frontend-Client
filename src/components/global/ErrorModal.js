@@ -3,8 +3,8 @@ import { Text, View, StyleSheet, TouchableOpacity, Dimensions } from 'react-nati
 import Modal from 'react-native-modal';
 import { Ionicons } from '@expo/vector-icons'
 const ErrorModal = ({ modalVisible, closeModal, message }) => {
- 
-    if(!modalVisible)
+
+    if (!modalVisible)
         return null;
     return (
         <Modal isVisible={modalVisible} >
@@ -16,7 +16,7 @@ const ErrorModal = ({ modalVisible, closeModal, message }) => {
                         name="md-close-circle"
                         color='white'
                     />
-                    
+
                 </View>
 
                 <View style={styles.modalBody}>
@@ -39,13 +39,10 @@ const ErrorModal = ({ modalVisible, closeModal, message }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: 'white',
-        margin: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
         borderRadius: 30,
         borderColor: 'rgba(0, 0, 0, 0.1)',
-        minHeight: '30%',
-        maxHeight: '30%',
+        minHeight: '35%',
+        maxHeight: '35%',
         overflow: 'hidden'
 
     },
@@ -77,22 +74,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#b30000',
         justifyContent: 'center',
         alignItems: 'center',
-    
+
     },
     buttonText: {
         fontSize: 22,
         color: 'white',
-        fontWeight: "600"
+        fontFamily:'Montserrat_Medium'
     },
     errorText: {
-        fontSize: 25,marginBottom:5,
-        color: 'black', fontWeight: "500"
+        fontSize: 25, marginBottom: 5,
+        color: 'black',
+        fontFamily: 'Montserrat_SemiBold'
     },
     messageText: {
-        marginLeft:12,
-        marginRight:12,
-        fontSize: 14,
-        fontWeight: "400",
+        marginLeft: 12,
+        marginRight: 12,
+        fontSize: 18,
+        fontFamily: 'Montserrat_Medium'
 
     }
 })

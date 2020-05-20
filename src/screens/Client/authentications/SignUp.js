@@ -74,7 +74,7 @@ const SignUp = ({ navigation }) => {
       error = true;
       setPhonenumber_error("Please Enter your Phone Number ")
     }
-     if (phonenumber.length < 6 || phonenumber.length > 15) {
+    if (phonenumber.length < 6 || phonenumber.length > 15) {
       error = true;
       setPhonenumber_error("Number must be between [6-15]")
     }
@@ -142,97 +142,97 @@ const SignUp = ({ navigation }) => {
 
   return (
     <KeyboardAwareScrollView>
-    <View >
-      <LoadingModal modalVisible={requestState.pending} />
-      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('PreConfigScreen') }} message="Please check your email to confirm your account"/>
-      <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
-      <AuthHeader
-        continueButtonPress={() => { onSubmit() }}
-        signUpButtonPress={() => { }}
-        signInButtonPress={() => { navigation.navigate('SignIn') }}
-        backButtonPress={() => { navigation.navigate('Home') }}
-        active={2}
-        signin={0}
-      >
-        <Input
-          placeholder="First Name"
-          placeholderTextColor='#B9B3BD'
-          autoCorrect={false}
-          autoCapitalize="none"
-          style={signUpStyle.firstnameinput}
-          value={firstName}
-          error={firstname_error != ''}
-          onChangeText={(text) => setFirstname(text)}
-        />
-        <Text style={signUpStyle.textError}>{firstname_error}</Text>
-        <Input
-          placeholder="Last Name"
-          placeholderTextColor='#B9B3BD'
-          autoCorrect={false}
-          autoCapitalize="none"
-          style={signUpStyle.input}
-          value={lastName}
-          error={lastname_error != ''}
-          onChangeText={(text) => setLastname(text)}
-        />
-        <Text style={signUpStyle.textError}>{lastname_error}</Text>
-        <Input
-          placeholder="Phone Number"
-          placeholderTextColor='#B9B3BD'
-          autoCorrect={false}
-          autoCapitalize="none"
-          style={signUpStyle.input}
-          keyboardType={"numeric"}
-          value={phonenumber}
-          error={phonenumber_error != ''}
-          onChangeText={(text) => setPhonenumber(text)}
-        />
-        <Text style={signUpStyle.textError}>{phonenumber_error}</Text>
-        <Input
-          placeholder="Email"
-          placeholderTextColor='#B9B3BD'
-          autoCorrect={false}
-          autoCapitalize="none"
-          style={signUpStyle.input}
-          keyboardType={"email-address"}
-          value={email}
-          error={email_error != ''}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <Text style={signUpStyle.textError}>{email_error}</Text>
-        <Input
-          placeholder="Password"
-          secureTextEntry={true}
-          placeholderTextColor='#B9B3BD'
-          autoCorrect={false}
-          autoCapitalize="none"
-          style={signUpStyle.input}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-          error={password_error != ''}
-        />
-        <Text style={signUpStyle.textError}>{password_error}</Text>
-        <Input
-          placeholder="Confirm Password"
-          secureTextEntry={true}
-          placeholderTextColor='#B9B3BD'
-          autoCorrect={false}
-          autoCapitalize="none"
-          style={signUpStyle.input}
-          value={confirmpassword}
-          onChangeText={(text) => setConfirmPassword(text)}
-          error={confirmpassword_error != ''}
-        />
+      <View >
+        <LoadingModal modalVisible={requestState.pending} />
+        <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(ClearSignUpStateAction()), navigation.navigate('SignIn') }} message="Please check your email to verify your account!" />
+        <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(ClearSignUpStateAction()) }} message={requestState.errorMessage} />
+        <AuthHeader
+          continueButtonPress={() => { onSubmit() }}
+          signUpButtonPress={() => { }}
+          signInButtonPress={() => { navigation.navigate('SignIn') }}
+          backButtonPress={() => { navigation.navigate('Home') }}
+          active={2}
+          signin={0}
+        >
+          <Input
+            placeholder="First Name"
+            placeholderTextColor='#B9B3BD'
+            autoCorrect={false}
+            autoCapitalize="words"
+            style={signUpStyle.firstnameinput}
+            value={firstName}
+            error={firstname_error != ''}
+            onChangeText={(text) => setFirstname(text)}
+          />
+          <Text style={signUpStyle.textError}>{firstname_error}</Text>
+          <Input
+            placeholder="Last Name"
+            placeholderTextColor='#B9B3BD'
+            autoCorrect={false}
+            autoCapitalize="words"
+            style={signUpStyle.input}
+            value={lastName}
+            error={lastname_error != ''}
+            onChangeText={(text) => setLastname(text)}
+          />
+          <Text style={signUpStyle.textError}>{lastname_error}</Text>
+          <Input
+            placeholder="Phone Number"
+            placeholderTextColor='#B9B3BD'
+            autoCorrect={false}
+            autoCapitalize="none"
+            style={signUpStyle.input}
+            keyboardType={"numeric"}
+            value={phonenumber}
+            error={phonenumber_error != ''}
+            onChangeText={(text) => setPhonenumber(text)}
+          />
+          <Text style={signUpStyle.textError}>{phonenumber_error}</Text>
+          <Input
+            placeholder="Email"
+            placeholderTextColor='#B9B3BD'
+            autoCorrect={false}
+            autoCapitalize="none"
+            style={signUpStyle.input}
+            keyboardType={"email-address"}
+            value={email}
+            error={email_error != ''}
+            onChangeText={(text) => setEmail(text)}
+          />
+          <Text style={signUpStyle.textError}>{email_error}</Text>
+          <Input
+            placeholder="Password"
+            secureTextEntry={true}
+            placeholderTextColor='#B9B3BD'
+            autoCorrect={false}
+            autoCapitalize="none"
+            style={signUpStyle.input}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            error={password_error != ''}
+          />
+          <Text style={signUpStyle.textError}>{password_error}</Text>
+          <Input
+            placeholder="Confirm Password"
+            secureTextEntry={true}
+            placeholderTextColor='#B9B3BD'
+            autoCorrect={false}
+            autoCapitalize="none"
+            style={signUpStyle.input}
+            value={confirmpassword}
+            onChangeText={(text) => setConfirmPassword(text)}
+            error={confirmpassword_error != ''}
+          />
 
-        <Text style={signUpStyle.textError}>{confirmpassword_error}</Text>
-        <Text style={signUpStyle.ByClickingText}>By clicking continue you are agreeing to our </Text>
-        <View>
-          <TouchableOpacity>
-            <Text style={signUpStyle.terms_conditionsbutton}>terms and conditions.</Text>
-          </TouchableOpacity>
-        </View>
-      </AuthHeader>
-    </View>
+          <Text style={signUpStyle.textError}>{confirmpassword_error}</Text>
+          <Text style={signUpStyle.ByClickingText}>By clicking continue you are agreeing to our </Text>
+          <View>
+            <TouchableOpacity>
+              <Text style={signUpStyle.terms_conditionsbutton}>terms and conditions.</Text>
+            </TouchableOpacity>
+          </View>
+        </AuthHeader>
+      </View>
     </KeyboardAwareScrollView>
   )
 }

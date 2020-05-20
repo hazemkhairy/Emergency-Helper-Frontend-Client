@@ -24,14 +24,7 @@ const SignIn = ({ navigation }) => {
       pending: store.SignInReducer.sendingSignInRequest,
       error: store.SignInReducer.errorSignInRequest,
       success: store.SignInReducer.successSignInRequest,
-      //  errorMessage: state.signInReducer.errorMessage
     }
-  })
-  const isLoading = useSelector((state) => {
-    return state.SignInReducer.SignIn
-  })
-  const token = useSelector((state) => {
-    return state.SignInReducer.token
   })
   const validate = () => {
     let error = true;
@@ -78,7 +71,7 @@ const SignIn = ({ navigation }) => {
     <View>
       <ErrorModal modalVisible={requestState.error} closeModal={() => { disptach(clearSignInStateAction()) }} message="Wrong Email or Password"  />
       <LoadingModal modalVisible={requestState.pending} />
-      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()) }} message="Sign In Successfully" />
+      <SuccessModal modalVisible={requestState.success} closeModal={() => { disptach(clearSignInStateAction()), navigation.navigate('PreConfigScreen')  }} message="Signed In Successfully" />
 
       <View>
         <AuthHeader
@@ -112,7 +105,6 @@ const SignIn = ({ navigation }) => {
             value={password}
             onChangeText={(text) => setPassword(text)}
             error={password_error != ''}
-            autoFocus={true}
           />
           <Text style={signInStyle.textError}>{password_error}</Text>
           
