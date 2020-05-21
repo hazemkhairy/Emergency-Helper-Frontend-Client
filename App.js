@@ -1,24 +1,40 @@
 import { Provider } from 'react-redux';
-import React from 'react'
+import React,{useState} from 'react'
 import store from './src/store/index';
+import { createAppContainer,createSwitchNavigator } from 'react-navigation';
+import MainNavigator from './src/navigation/MainNavigator'
+import * as Font from "expo-font";
+import {AppLoading} from 'expo';
 
-import { createAppContainer } from 'react-navigation'
-import { createStackNavigator } from 'react-navigation-stack'
-import PostsScreen from './src/screens/PostsScreen';
-import IndexScreen from './src/screens/IndexScreen';
+const fetchFonts=()=>
+{
+  return Font.loadAsync({
+    Montserrat:require('./assets/fonts/Montserrat-Regular.ttf'),
+    Montserrat_Medium:require('./assets/fonts/Montserrat-Medium.ttf'),
+    Montserrat_SemiBold:require('./assets/fonts/Montserrat-SemiBold.ttf'),
+    Montserrat_bold: require("./assets/fonts/Montserrat-Bold.ttf")
+  });
+}
 
-const navigator = createStackNavigator({
-  Index: IndexScreen,
-  Posts: PostsScreen
-}, {
-  initialRouteName: 'Index',
-  defaultNavigationOptions: {
-    title: 'EMERGENCY HELPER'
+
+
+const App = createAppContainer(MainNavigator);
+
+export default () =>{
+  const [fontLoaded, setFontLoaded] = useState(false);
+
+  if (!fontLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
+      />
+    );
   }
-});
 
-const App = createAppContainer(navigator);
-
-export default () => <Provider store={store}>
+  return(
+<Provider store={store}>
   <App />
 </Provider>
+  )
+}
