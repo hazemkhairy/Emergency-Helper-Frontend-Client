@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'Montserrat_Medium',
         fontSize: 22,
-        marginLeft: '7%',
+        marginLeft: '8%',
         color: '#132641',
         marginBottom: '1%'
     },
