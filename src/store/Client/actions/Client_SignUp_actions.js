@@ -15,11 +15,11 @@ export const signUpAction=(user = new SignUpUser() )=>
     dispatch({ type: Start_Sign_Up })
     backendAxios.post('/api/Client/Register',
 
-    { name:{
+    { 
         
        firstName: user.firstName,
        lastName: user.lastName,
-    },
+    
        mobile:user.phonenumber,
        email:user.email,
        password:user.password,
