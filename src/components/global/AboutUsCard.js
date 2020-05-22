@@ -2,11 +2,12 @@ import React from 'react';
 import { Text, View, StyleSheet, } from 'react-native';
 
 
-const AboutUsCard = ({ props }) => {
+const AboutUsCard = (props) => {
 
-   
+
     return (
-        <View>
+        
+        <View style={styles.container}>
             <Text style={styles.title} >{props.title} </Text>
             <Text style={styles.description}>{props.description}</Text>
         </View>
@@ -15,12 +16,15 @@ const AboutUsCard = ({ props }) => {
 
 
 const styles = StyleSheet.create({
+    container: {
+        marginBottom: '3%'
+    },
     title: {
         fontFamily: 'Montserrat_Medium',
         fontSize: 22,
-        marginLeft: '6%',
+        marginLeft: '7%',
         color: '#132641',
-        position: 'absolute'
+        marginBottom: '1%'
     },
     description: {
         fontFamily: 'Montserrat',
@@ -28,7 +32,6 @@ const styles = StyleSheet.create({
         marginLeft: '8%',
         marginRight: '8%',
         color: '#132641',
-        position: 'absolute'
 
     }
 

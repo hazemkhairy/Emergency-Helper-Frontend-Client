@@ -13,7 +13,7 @@ const SubHeaderText = ({ SubHeaderText }) => {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        margin: '7%'
+        margin: '5%'
     },
     text: {
         color: '#132641',
