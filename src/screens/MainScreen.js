@@ -8,6 +8,8 @@ const MainScreen = ({navigation}) => {
         <View>
             <Text>Main Screen</Text>
           <Button title="LOG OUT" onPress={()=>{logOut(),navigation.navigate('PreConfigScreen')}}></Button>
+          <Button title="History Screen" onPress={()=>{navigation.navigate('HistoryScreen')}}></Button>
+          <Button title="Support Ticket Screen" onPress={()=>{navigation.navigate('SupportTicketScreen')}}></Button>
         </View>
     )
 }
