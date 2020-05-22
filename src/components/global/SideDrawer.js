@@ -21,7 +21,7 @@ const SideDrawer = (props) => {
                     <View style={{ flexDirection: 'row' }}>
                         <Image source={{ uri: userData.profilePicture }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
-                            <Text style={styles.nameText}> {userData.firstName}</Text>
+                            <Text style={styles.nameText}> {userData.firstName} {userData.lastName}</Text>
                         </View>
                     </View>
                     <Text style={styles.emailText}>{userData.email}</Text>
