@@ -6,7 +6,7 @@ const AboutUsCard = (props) => {
 
 
     return (
-        
+
         <View style={styles.container}>
             <Text style={styles.title} >{props.title} </Text>
             <Text style={styles.description}>{props.description}</Text>
@@ -17,19 +17,19 @@ const AboutUsCard = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: '3%'
+        marginBottom: '5%'
     },
     title: {
         fontFamily: 'Montserrat_Medium',
         fontSize: 22,
-        marginLeft: '8%',
+        marginLeft: '10%',
         color: '#132641',
         marginBottom: '1%'
     },
     description: {
         fontFamily: 'Montserrat',
         fontSize: 16,
-        marginLeft: '8%',
+        marginLeft: '10%',
         marginRight: '8%',
         color: '#132641',
 

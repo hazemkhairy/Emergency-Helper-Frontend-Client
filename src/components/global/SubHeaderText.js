@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     //     margin: '5%'
     // },
     text: {
-        marginLeft:'8%',
+        marginLeft:'10%',
         marginTop:'5%',
         marginBottom:'3%',
         color: '#132641',

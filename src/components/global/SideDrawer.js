@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 import { DrawerItems } from 'react-navigation-drawer'
 import { Ionicons } from '@expo/vector-icons';
-import {logOut} from '../../Utils/Client';
-import {getProfileData} from '../../Utils/ProfileData';
+import { logOut } from '../../Utils/Client';
+import { getProfileData } from '../../Utils/ProfileData';
 
 const SideDrawer = (props) => {
 
@@ -17,18 +17,18 @@ const SideDrawer = (props) => {
     return (
         <View>
             <View style={styles.ProfileContainer}>
-                <View>
+                <View style={{ width: '80%' ,marginLeft:10}}>
                     <View style={{ flexDirection: 'row' }}>
                         <Image source={{ uri: userData.profilePicture }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
-                            <Text style={styles.nameText}> {userData.firstName} {userData.lastName}</Text>
+                            <Text style={styles.nameText}> {userData.firstName} {userData.lastName}  </Text>
                         </View>
                     </View>
                     <Text style={styles.emailText}>{userData.email}</Text>
 
                 </View>
             </View>
-            <View >
+            <View style={styles.itemsContainer} >
                 <DrawerItems {...props} fontSize={12}>
 
                 </DrawerItems>
@@ -53,48 +53,55 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: '#7598BA',
         height: Dimensions.get('window').height * 0.33,
-        borderBottomLeftRadius: 70
+        borderBottomLeftRadius: 70,
+    
+    },
+    itemsContainer: {
+        marginLeft: '7%'
     },
     img: {
-        height: '45%',
+        height: '40%',
         borderRadius: 45,
-        width: '22%',
+        width: '25%',
         marginLeft: 30,
         borderColor: 'white',
         borderWidth: 2,
-        marginTop: '30%'
+        marginTop: '40%'
     },
     TextContainer: {
         marginLeft: 10,
-        marginTop: '35%'
+        marginTop: '42%'
     },
     nameText: {
         color: '#FFFFFF',
         fontFamily: 'Montserrat_bold',
         fontSize: 24,
+
     },
 
     emailText: {
         color: '#FFFFFF',
         fontFamily: 'Montserrat',
         fontSize: 14,
-        margin: '12%',
-        opacity: 0.8
+        alignSelf: 'center',
+        opacity: 0.8,
+        marginLeft:20,
+        marginTop:22
     },
 
     logoutButton: {
-        marginLeft: '7%',
-        marginTop:Dimensions.get('window').height*0.02
+        marginLeft: '8%',
+        marginTop: Dimensions.get('window').height * 0.040
     },
     logoutIcon: {
         color: '#132641',
         marginRight: '2%',
-        opacity:0.8
+        opacity: 0.8
     },
     logoutText: {
         fontFamily: 'Montserrat',
-        fontSize:18,
-        opacity:0.8
+        fontSize: 18,
+        opacity: 0.8
 
     }
 });

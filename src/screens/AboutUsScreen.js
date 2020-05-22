@@ -36,6 +36,9 @@ const AboutUsScreen = (props) => {
                 />
 
             </View>
+            <TouchableOpacity>
+                <Text style={styles.termsConditions} >Terms and Conditions</Text>
+            </TouchableOpacity>
 
         </View>
     )
@@ -60,5 +63,15 @@ AboutUsScreen.navigationOptions = (props) => {
         headertransparent: true,
     }
 }
+const styles = StyleSheet.create({
 
+    termsConditions: {
+        marginTop: '3%',
+        textAlign: 'center',
+        textDecorationLine: 'underline',
+        color: '#132641',
+        fontSize: 13,
+        fontFamily: "Montserrat_SemiBold",
+    },
+});
 export default AboutUsScreen;

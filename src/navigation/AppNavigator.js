@@ -12,6 +12,7 @@ import SupportScreen from '../screens/SupportScreen';
 import WalletScreen from '../screens/WalletScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import AboutUsScreen from '../screens/AboutUsScreen';
+import { Dimensions, Platform } from 'react-native';
 
 const ApplicationNav = createStackNavigator(
     {
@@ -108,11 +109,13 @@ const MainNav = createDrawerNavigator(
             activeBackgroundColor: '',
             labelStyle: {
                 fontFamily: 'Montserrat',
+                fontWeight: 'normal',
                 color: '#132641',
                 marginLeft: -7,
                 fontSize: 18
             }
-        }
+        },
+        drawerWidth: '77%'
     }
 );
 export default createAppContainer(MainNav);
