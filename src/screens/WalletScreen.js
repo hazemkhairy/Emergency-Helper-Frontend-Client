@@ -8,9 +8,14 @@ import HeaderButton from '../components/global/HeaderButton'
 
 const WalletScreen = ({ navigation }) => {
 
+    const test = {
+        balance: "100"
+    }
     return (
         <View>
             <MainHeader headerText={'Wallet'} name={'money'}></MainHeader>
+            <SubHeaderText SubHeaderText={'Your available balance'}></SubHeaderText>
+            <Text style={styles.Balance} >  {test.balance} EGP</Text>
 
         </View>
     )
@@ -36,7 +41,13 @@ WalletScreen.navigationOptions = (props) => {
 }
 
 const styles = StyleSheet.create({
-  
+    Balance: {
+        fontFamily: 'Montserrat',
+        fontSize: 24,
+        marginLeft: '8%',
+        color: '#132641'
+    }
+
 })
 
 export default WalletScreen;

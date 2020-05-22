@@ -3,7 +3,6 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'rea
 import { DrawerItems } from 'react-navigation-drawer'
 import { Ionicons } from '@expo/vector-icons';
 import {logOut} from '../../Utils/Client';
-import getProfileData from '../../Utils/ProfileData'
 
 const SideDrawer = (props) => {
 
