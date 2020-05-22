@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet } from 'react-native';
 import MainHeader from '../components/global/MainHeader';
 import SubHeaderText from '../components/global/SubHeaderText';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/global/HeaderButton'
+import {getProfileData} from '../Utils/ProfileData';
 
 
 const WalletScreen = ({ navigation }) => {
+    const [userData, setUserData] = useState([]);
+    useEffect(() => {
+        getProfileData().then((result) => {
+            setUserData(result);
+        });
+    }, []);
 
-    const test = {
-        balance: "100"
-    }
     return (
         <View>
             <MainHeader headerText={'Wallet'} name={'money'}></MainHeader>
             <SubHeaderText SubHeaderText={'Your available balance'}></SubHeaderText>
-            <Text style={styles.Balance} >  {test.balance} EGP</Text>
+            <Text style={styles.Balance} >  {userData.balance} EGP</Text>
 
         </View>
     )

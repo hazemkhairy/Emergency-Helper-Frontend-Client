@@ -3,27 +3,28 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Dimensions } from 'rea
 import { DrawerItems } from 'react-navigation-drawer'
 import { Ionicons } from '@expo/vector-icons';
 import {logOut} from '../../Utils/Client';
+import {getProfileData} from '../../Utils/ProfileData';
 
 const SideDrawer = (props) => {
 
-    // const [userData, setUserData] = useState([]);
-    // useEffect(() => {
-    //     getProfileData().then((result) => {
-    //         setUserData(result);
-    //     });
-    // }, []);
+    const [userData, setUserData] = useState([]);
+    useEffect(() => {
+        getProfileData().then((result) => {
+            setUserData(result);
+        });
+    }, []);
 
     return (
         <View>
             <View style={styles.ProfileContainer}>
                 <View>
                     <View style={{ flexDirection: 'row' }}>
-                        <Image style={styles.img}></Image>
+                        <Image source={{ uri: userData.profilePicture }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
-                            <Text style={styles.nameText}> Aya Eissa</Text>
+                            <Text style={styles.nameText}> {userData.firstName}</Text>
                         </View>
                     </View>
-                    <Text style={styles.emailText}>ayaahmedeissa@gmail.com</Text>
+                    <Text style={styles.emailText}>{userData.email}</Text>
 
                 </View>
             </View>
