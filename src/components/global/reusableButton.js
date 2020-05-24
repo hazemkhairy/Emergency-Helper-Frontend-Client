@@ -17,24 +17,25 @@ const styles = StyleSheet.create({
   buttonStyle: {
     borderRadius: 30,
     width: "35%",
-    height:'5%',
     backgroundColor:'#132641',
     alignItems:'center',
-    justifyContent:'center',
-    // padding:10,
+    //paddingVertical: "2%",
+    //justifyContent:'center',
+    //  padding:5,
     marginBottom:'2%'
   },
   buttonText: {
     color: "white",
-    fontSize: 16,
-    fontFamily: "Montserrat_Medium",
-    textAlign: "center",
+    fontSize: 18,
+    fontFamily: "Montserrat",
+    
+    //textAlign: "center",
   },
   rowContainer:{
     flexDirection: 'row',
     justifyContent: 'space-between',
     //width:'50%',
-    //marginTop:'5%'
+    marginTop:'5%',
 }
 });
 

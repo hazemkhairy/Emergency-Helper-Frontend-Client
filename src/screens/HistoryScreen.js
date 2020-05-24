@@ -51,6 +51,7 @@ const History = () => {
            <FlatList
              data={historyData}
              keyExtractor={(item,index) => 'key'+index}
+             showsVerticalScrollIndicator={false}
              renderItem={({ item, index }) => {
             return (
               <View >

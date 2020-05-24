@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View,StyleSheet,Dimensions, FlatList } from 'react-native';
-import globalStyle from '../styles/globalStyle'; 
 import AddCard from '../components/cardComponents/supportTicketCard'
 import Button from '../components/global/reusableButton'
 import AddModal from '../components/global/AddTicketModal'
 import Icon from 'react-native-vector-icons/AntDesign';
-import {ticketsData} from '../data/TicketsData'
 import MainHeader from '../components/global/MainHeader'
 import SubHeaderText from '../components/global/SubHeaderText'
+import {getAllTickets} from '../Utils/SupportTickets'
+
 const SupportTicket = ({ navigation }) => {
-  
     const [modalVisible, setModalVisible] = useState(false);
-    const [subject,setSubject]=useState('')
-    const [list,setList]=useState(ticketsData)
-    FlatList.scrollToEnd;
-   const onRefresh = () => {
-      
-     setList(ticketsData)
-     
-    }
-  
-  return (
+    const [tickets, setTickets] = useState([]);
+
+    const refresh = async () => {
+    getAllTickets().then(
+      (result) => {
+        setTickets(result)
+      }
+  )
+   }
+   useEffect(
+    () => {
+      refresh();
+    }, [])
+    return (
     <View  style={styles.container}>
-         <AddModal modalVisible={modalVisible} 
+         <AddModal modalVisible={modalVisible}
          />
         <MainHeader headerText='Support' name={'users'}/>
           <View style={styles.rowContainer}>
           {/* <Text style={{fontSize:24,fontFamily:'Montserrat_SemiBold',color:'#132641'}}>Tickets</Text> */}
-          <View style={{marginBottom:'2%'}}>
+          <View style={{marginBottom:'5%'}}>
           <SubHeaderText SubHeaderText={'Tickets'}/>
           </View>
           <Button 
@@ -39,12 +42,14 @@ const SupportTicket = ({ navigation }) => {
            </Button>
           </View>
           <FlatList
-             data={list}
+             data={tickets}
              keyExtractor={(item,index) => 'key'+index}
-             ref = {(flatList) => {flatList = flatList}}
+             //ref = {(flatList) => {flatList = flatList}}
+             showsVerticalScrollIndicator={false}
              onEndReachedThreshold={1}
-             onRefresh={onRefresh}
+             onRefresh={refresh}
              refreshing={false}
+             onScroll={refresh}
              renderItem={({ item, index }) => {
             return (
               <View >
@@ -86,3 +91,4 @@ const styles = StyleSheet.create({
 })
 
 export default SupportTicket;
+

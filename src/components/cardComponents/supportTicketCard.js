@@ -16,7 +16,7 @@ const cardItem = ({ item }) => {
             <View style={styles.buttonContainer}>
                 <View>
                 <TouchableOpacity>
-                <Text  style={styles.ticketSubject}>{item.ticketSubject}</Text>
+                <Text  style={styles.ticketSubject}>{item.category}</Text>
                 <Text style={styles.date}>{item.date}</Text>
                 </TouchableOpacity>
                 </View>
@@ -32,7 +32,7 @@ const cardItem = ({ item }) => {
 
 const styles = StyleSheet.create({
     container: {
-        width: '90%',
+        width: '87%',
         height:60,
         alignSelf:'center',
         borderRadius: 40,
