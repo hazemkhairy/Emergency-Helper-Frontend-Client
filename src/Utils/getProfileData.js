@@ -30,8 +30,8 @@ export const updateProfileData = async (
   let photo = {
     uri: profilePic.uri,
     type: "image/jpeg",
-    name: profilePic.name,
-  };
+    name: profilePic.name ? profilePic.name : "Profile Picture",
+    };
   formData.append("profilePicture", photo);
   formData.append("gender", gender);
   let res = await backendAxios

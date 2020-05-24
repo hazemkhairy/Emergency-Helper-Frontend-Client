@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from "react-native";
 import MainButton from "../../components/global/MainButton";
 import NewInput from "../../components/global/NewInput";
 import RNPickerSelect from "react-native-picker-select";
 import { getProfileData, updateProfileData } from "../../Utils/getProfileData";
-import SettingsModal from "../../components/global/SettingsModal";
+import SettingsModal from "../../components/Settings/SettingsModal";
 import LoadingModal from "../../components/global/LoadingModal";
 import Icon from "react-native-vector-icons/Ionicons";
 import PhotoPicker from "../../components/global/PhotoPicker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-
 
 const AccountInfoScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
@@ -46,72 +52,63 @@ const AccountInfoScreen = ({ navigation }) => {
   const validate = () => {
     let error = true;
     if (firstName == "") {
-      setFirstName_error("Please enter your First Name ")
+      setFirstName_error("Please enter your First Name ");
       error = false;
-    }
-    else {
+    } else {
       var letters = /^[A-Za-z, ]+$/;
       if (letters.test(firstName) === true) {
-        setFirstName_error("")
-      }
-      else {
-        setFirstName_error("Please enter letters only")
-        error = false
+        setFirstName_error("");
+      } else {
+        setFirstName_error("Please enter letters only");
+        error = false;
       }
     }
 
-    if (lastName == '') {
-      setLastName_error("Please enter your Last Name")
-      error = false
-    }
-    else {
+    if (lastName == "") {
+      setLastName_error("Please enter your Last Name");
+      error = false;
+    } else {
       var letters = /^[A-Za-z, ]+$/;
       if (letters.test(lastName) === true) {
-        setLastName_error("")
-      }
-      else {
-        setLastName_error("Please enter letters only")
-        error = false
+        setLastName_error("");
+      } else {
+        setLastName_error("Please enter letters only");
+        error = false;
       }
     }
 
     if (!phoneNumber || phoneNumber == "") {
       error = false;
-      setPhonenumber_error("Please enter your Phone Number ")
-    }
-    else if ((phoneNumber.length < 6 || phoneNumber.length > 15) && numbers.test(phoneNumber) === true) {
+      setPhonenumber_error("Please enter your Phone Number ");
+    } else if (
+      (phoneNumber.length < 6 || phoneNumber.length > 15) &&
+      numbers.test(phoneNumber) === true
+    ) {
       error = false;
-      setPhonenumber_error("Number must be between [6-15] digits")
-    }
-    else {
+      setPhonenumber_error("Number must be between [6-15] digits");
+    } else {
       if (numbers.test(phoneNumber) === true) {
-        setPhonenumber_error("")
-      }
-      else {
-
+        setPhonenumber_error("");
+      } else {
         error = false;
-        setPhonenumber_error("Please enter numbers only")
+        setPhonenumber_error("Please enter numbers only");
       }
-
-  }
-
-
-    if (emailAddress == '') {
-      setEmailAddress_error("Please enter your email")
-      error = false
     }
-    else {
+
+    if (emailAddress == "") {
+      setEmailAddress_error("Please enter your email");
+      error = false;
+    } else {
       const valid = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
       if (valid.test(emailAddress) === true) {
-        setEmailAddress_error("")
-      }
-      else {
-        setEmailAddress_error("Invalid email")
-        error = false
+        setEmailAddress_error("");
+      } else {
+        setEmailAddress_error("Invalid email");
+        error = false;
       }
     }
     return error;
-  }
+  };
 
   const loadProfileData = () => {
     setLoading(true);
@@ -121,13 +118,11 @@ const AccountInfoScreen = ({ navigation }) => {
       setEmailAddress(result.email);
       setPhonenumber(result.mobile);
       setProfilePic({ uri: result.profilePicture });
-      let birthDate = result.birthDate;
-      setDateofBirth(birthDate.split('T')[0]);
+      if (result.birthDate) setDateofBirth(result.birthDate.split("T")[0]);
       setGender(result.gender);
       setLoading(false);
     });
-
-  }
+  };
   useEffect(() => {
     loadProfileData();
   }, []);
@@ -144,10 +139,9 @@ const AccountInfoScreen = ({ navigation }) => {
     if (monthFormat < 10) {
       monthFormat = "0" + monthFormat;
     }
-    let formatted_date = birthDate.getFullYear() + "-" +
-      monthFormat
-      + "-" + birthDate.getDate()
-    setDateofBirth(formatted_date)
+    let formatted_date =
+      birthDate.getFullYear() + "-" + monthFormat + "-" + birthDate.getDate();
+    setDateofBirth(formatted_date);
     hideDatePicker();
   };
   return (
@@ -157,13 +151,14 @@ const AccountInfoScreen = ({ navigation }) => {
           <Text style={styles.hText}>Account Info</Text>
         </View>
         <LoadingModal modalVisible={loading} />
-        <SettingsModal modalVisible={modalVisible} message={"Updated Successfully!"} />
+        <SettingsModal
+          modalVisible={modalVisible}
+          message={"Updated Successfully!"}
+        />
         <View style={styles.container}>
           <View style={styles.photoPicker}>
             <Image
-              source={
-                profilePic.uri ? { uri: profilePic.uri } : null
-              }
+              source={profilePic.uri ? { uri: profilePic.uri } : null}
               style={styles.profilePic}
             />
           </View>
@@ -178,7 +173,6 @@ const AccountInfoScreen = ({ navigation }) => {
               value={firstName}
               onChangeText={(text) => setFirstName(text)}
               errorText={firstName_error}
-
             />
 
             <NewInput
@@ -196,10 +190,14 @@ const AccountInfoScreen = ({ navigation }) => {
               value={emailAddress}
               onChangeText={(text) => setEmailAddress(text)}
               errorText={emailAddress_error}
-
             />
-            <TouchableOpacity style={styles.datePicker} onPress={showDatePicker}>
-              <Text style={styles.datePickerText}>{dateofBirth ? dateofBirth : "Date of birth (Optional)"}</Text>
+            <TouchableOpacity
+              style={styles.datePicker}
+              onPress={showDatePicker}
+            >
+              <Text style={styles.datePickerText}>
+                {dateofBirth ? dateofBirth : "Date of birth (Optional)"}
+              </Text>
             </TouchableOpacity>
             <DateTimePickerModal
               isVisible={isDatePickerVisible}
@@ -212,11 +210,11 @@ const AccountInfoScreen = ({ navigation }) => {
                 placeholder={
                   gender
                     ? {
-                      label: gender,
-                      value: gender,
-                      color: "red",
-                    }
-                    : { label: "Gender", value: "Gender", color: "red", }
+                        label: gender,
+                        value: gender,
+                        color: "red",
+                      }
+                    : { label: "Gender", value: "Gender", color: "red" }
                 }
                 value={gender}
                 style={{
@@ -244,7 +242,6 @@ const AccountInfoScreen = ({ navigation }) => {
                 updateProfile();
               }
               setModalVisible(false);
-
             }}
           >
             Update profile
@@ -262,7 +259,12 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 70,
   },
   hText: {
-    fontSize: 40,
+    fontSize:
+      40 *
+      Math.min(
+        Dimensions.get("window").height / 800.0,
+        Dimensions.get("window").width / 375.0
+      ),
     color: "white",
     fontFamily: "Montserrat_bold",
     marginTop: "25%",
@@ -286,7 +288,7 @@ const styles = StyleSheet.create({
     marginTop: "5%",
   },
   datePicker: {
-    alignSelf: 'center',
+    alignSelf: "center",
     borderBottomColor: "#DDDDDD",
     borderBottomWidth: 1,
     paddingVertical: 10,
@@ -309,7 +311,6 @@ const styles = StyleSheet.create({
   updateBTN: {
     marginTop: "9%",
   },
-
 });
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {

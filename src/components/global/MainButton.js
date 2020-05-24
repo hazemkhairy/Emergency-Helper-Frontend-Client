@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: "4%",
     paddingHorizontal: "20%",
-    marginLeft: "8%",
+    alignSelf:'center',
     marginBottom: "5%",
   },
   buttonText: {

@@ -4,7 +4,6 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-
 const SettingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
@@ -13,24 +12,41 @@ const SettingsScreen = ({ navigation }) => {
           <Text style={styles.hText}>Settings</Text>
         </View>
         <View>
-            <Text style={styles.subHeader}>Settings</Text>
-         <TouchableOpacity style={styles.a} onPress={() => {
-          navigation.navigate("AccountInfoScreen");
-        }} >
-             <Text style={styles.settingsTXT}>Account Info</Text>
-             <Icon name="ios-arrow-forward" size={25} style={styles.icon} marginLeft='55%'  />
-         </TouchableOpacity>
+          <Text style={styles.subHeader}>Settings</Text>
+          <TouchableOpacity
+            style={styles.optionsContainer}
+            onPress={() => {
+              navigation.navigate("AccountInfoScreen");
+            }}
+          >
+            <Text style={styles.settingsTXT}>Account Info</Text>
+            <Icon
+              name="ios-arrow-forward"
+              size={25}
+              style={styles.icon}
+              marginLeft="55%"
+            />
+          </TouchableOpacity>
+  
+          <TouchableOpacity style={styles.optionsContainer}
+           onPress={() => {
+            navigation.navigate("SavedAddressesScreen");
+          }}>
+            <Text style={styles.settingsTXT}>Saved Addresses</Text>
+            <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
+          </TouchableOpacity>
 
-         <TouchableOpacity style={styles.a}>
-             <Text style={styles.settingsTXT}>Saved Addresses</Text>
-             <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
-         </TouchableOpacity>
-
-         <TouchableOpacity style={styles.a}>
-             <Text style={styles.settingsTXT}>Change Password</Text>
-             <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
-         </TouchableOpacity>
-         </View>
+          <TouchableOpacity
+            style={styles.optionsContainer}
+            onPress={() => {
+              navigation.navigate("ChangePasswordScreen");
+            }}
+          >
+            <Text style={styles.settingsTXT}>Change Password</Text>
+            <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
+          </TouchableOpacity>
+          
+        </View>
       </KeyboardAwareScrollView>
     </View>
   );
@@ -43,48 +59,46 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 70,
   },
   hText: {
-    fontSize: 40,
-    color: "white",
+    fontSize:
+    40 *
+    Math.min(
+      Dimensions.get("window").height / 800.0,
+      Dimensions.get("window").width / 375.0
+    ),    color: "white",
     fontFamily: "Montserrat_bold",
     marginTop: "25%",
     alignSelf: "center",
   },
-  subHeader:{
+  subHeader: {
     fontSize: 24,
     color: "#132641",
-    marginBottom: '4%',
+    marginBottom: "4%",
     fontFamily: "Montserrat_SemiBold",
-    marginLeft:'12%',
-    marginTop:'10%',
-
+    marginLeft: "12%",
+    marginTop: "10%",
   },
-  
+
   container: {
     display: "flex",
     flex: 1,
     backgroundColor: "#FFFFFF",
   },
 
-  settingsTXT:{
+  settingsTXT: {
     fontSize: 18,
     color: "#132641",
     fontFamily: "Montserrat_Medium",
-    width: '75%',
-
+    width: "75%",
   },
-  a:{
+  optionsContainer: {
     flexDirection: "row",
-    marginLeft:'12%',
-    marginTop: '5%',
-
+    marginLeft: "12%",
+    marginTop: "7%",
   },
-  icon:{
-    marginLeft:'12%',
-     color:'#132641',    
-
-
+  icon: {
+    marginLeft: "12%",
+    color: "#132641",
   },
- 
 });
 
 export default SettingsScreen;

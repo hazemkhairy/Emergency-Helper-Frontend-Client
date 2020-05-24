@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Dimensions } from "react-native";
 import Modal from "react-native-modal";
-import MainButton from "./MainButton";
+import MainButton from "../global/MainButton";
 const UpdateModal = ({ modalVisible, message }) => {
   if (!modalVisible) return null;
   const [visible, setVisible] = useState(modalVisible);
@@ -20,7 +20,7 @@ const UpdateModal = ({ modalVisible, message }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    height: "40%",
+    height: 0.4 * Dimensions.get("window").height,
     backgroundColor: "white",
     borderRadius: 40,
     width: "100%",
@@ -36,12 +36,13 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat_SemiBold",
     fontSize: 26,
     color: "#132641",
+    textAlign:"center",
+
   },
   okBTN: {
     paddingHorizontal: "13%",
     paddingVertical: "4%",
-    marginTop: "18%",
-    marginRight: "3%",
+    marginTop: "14%",
   },
   okBTNtxt: {
     color: "white",
