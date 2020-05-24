@@ -36,24 +36,17 @@ const styles = StyleSheet.create({
     marginTop: Dimensions.get("window").height > 800 ? "2.5%" : "0.5%",
   },
   input: {
-
     fontSize: 16,
     fontFamily: "Montserrat_Medium",
     borderBottomColor: "#DDDDDD",
     borderBottomWidth: 1,
-    paddingVertical: 10,
+    paddingVertical: 5,
     width: "83%",
-  },
-  errorContainer: {
-
   },
   errorTXT: {
     color: "#b30000",
     fontFamily: "Montserrat_Medium",
     fontSize: 12,
-
-    // marginLeft: "13%",
-    //marginTop: Dimensions.get('window').height < 660 ? '2%' : '3%',
   },
 });
 

@@ -27,13 +27,17 @@ export const updateProfileData = async (
   formData.append("mobile", phoneNumber);
   formData.append("email", emailAddress);
   formData.append("birthDate", dateofBirth);
-  let photo = {
-    uri: profilePic.uri,
-    type: "image/jpeg",
-    name: profilePic.name ? profilePic.name : "Profile Picture",
+  if (!profilePic.uri.includes('amazonaws.com')) {
+    let photo = {
+      uri: profilePic.uri,
+      type: "image/jpeg",
+      name: profilePic.name,
     };
-  formData.append("profilePicture", photo);
+    formData.append("profilePicture", photo);
+  }
+
   formData.append("gender", gender);
+
   let res = await backendAxios
     .patch("api/Client", formData)
     .then((res) => {

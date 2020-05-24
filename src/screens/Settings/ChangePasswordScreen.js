@@ -69,7 +69,6 @@ const ChangePasswordScreen = ({ navigation }) => {
         <View style={styles.container}>
           <View marginTop="10%">
             <NewInput
-              marginBottom="3.2%"
               placeholder="Current password"
               secureTextEntry={true}
               placeholderTextColor="#B3B9C2"
@@ -80,19 +79,21 @@ const ChangePasswordScreen = ({ navigation }) => {
               onChangeText={(text) => setOldPassword(text)}
               errorText={oldPassword_error}
             />
+            <View marginTop="3.5%">
+              <NewInput
+                placeholder="New password"
+                secureTextEntry={true}
+                placeholderTextColor="#B3B9C2"
+                autoCorrect={false}
+                autoCapitalize="none"
+                value={newPassword}
+                onChangeText={(text) => setNewPassword(text)}
+                errorText={newPassword_error}
+              />
 
-            <NewInput
-              placeholder="New password"
-              secureTextEntry={true}
-              placeholderTextColor="#B3B9C2"
-              autoCorrect={false}
-              autoCapitalize="none"
-              value={newPassword}
-              onChangeText={(text) => setNewPassword(text)}
-              errorText={newPassword_error}
-            />
-            <View style={styles.passwordBar}>
-              <PasswordstrengthBar password={newPassword} />
+              <View style={styles.passwordBar}>
+                <PasswordstrengthBar password={newPassword} />
+              </View>
             </View>
 
             <NewInput
@@ -150,7 +151,6 @@ const styles = StyleSheet.create({
     marginTop: "9%",
   },
   passwordBar: {
-    // width: "210%",
     marginBottom: "2%",
   },
 });

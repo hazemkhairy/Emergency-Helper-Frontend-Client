@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Dimensions, FlatList } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import NewAddresses from "../../components/Settings/NewAddress";
-import MainButton from "../../components/global/MainButton";
 import Icon from "react-native-vector-icons/Ionicons";
 import AddAddressModal from "../../components/Settings/AddAddressModal";
 import { getSavedAddresses } from "../../Utils/Addresses";
@@ -44,10 +50,15 @@ const SavedAddresses = ({ navigation }) => {
 
       <View style={styles.btnContainer}>
         <Text style={styles.subHeader}>Addresses</Text>
-        <MainButton style={styles.addBTN} onPress={() => addNewAddress()}>
-          <Icon name="ios-add" size={25} color="#FFF" />
-          <Text style={styles.addBTNtxt}> New</Text>
-        </MainButton>
+        <View style={styles.btnCon}>
+          <TouchableOpacity
+            style={styles.addBTN}
+            onPress={() => addNewAddress()}
+          >
+            <Icon name="ios-add" size={25} color="#FFF" />
+            <Text style={styles.addBTNtxt}> New</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       {dataset.length ? (
         <FlatList
@@ -99,21 +110,33 @@ const styles = StyleSheet.create({
   },
 
   addBTN: {
-    paddingHorizontal: "10%",
-    paddingVertical: "5%",
-    marginTop: "18%",
-    marginLeft: "8%",
+    backgroundColor: "#132641",
+    borderRadius: 35,
+    alignSelf: "center",
+    paddingHorizontal: "18%",
+    paddingBottom: "3.5%",
+    paddingTop: "4.5%",
+
+    // paddingVertical: "5%",
+    marginTop: "10%",
+    flexDirection: "row",
+    marginLeft: "13%",
   },
   addBTNtxt: {
-    color: "white",
+    color: "#fff",
     fontSize: 18,
     fontFamily: "Montserrat",
+    justifyContent: "center",
   },
   btnContainer: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
-    marginLeft: "5%",
+    marginLeft: "7%",
   },
+  btnCon: {
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+
   noAddressesContainer: {
     textAlign: "center",
     fontSize: 18,

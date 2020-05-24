@@ -286,6 +286,8 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 200 / 2,
     marginTop: "5%",
+    borderColor:'#132641',
+    borderWidth: 0.2,
   },
   datePicker: {
     alignSelf: "center",
