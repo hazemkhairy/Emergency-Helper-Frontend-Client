@@ -21,15 +21,15 @@ const styles = StyleSheet.create({
     },
     title: {
         fontFamily: 'Montserrat_Medium',
-        fontSize: 22,
-        marginLeft: '10%',
+        fontSize: 18,
+        marginLeft: '13%',
         color: '#132641',
         marginBottom: '1%'
     },
     description: {
         fontFamily: 'Montserrat',
-        fontSize: 16,
-        marginLeft: '10%',
+        fontSize: 14,
+        marginLeft: '15%',
         marginRight: '8%',
         color: '#132641',
 

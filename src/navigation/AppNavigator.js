@@ -106,13 +106,14 @@ const MainNav = createDrawerNavigator(
         contentComponent: props => <SideDrawer   {...props} />
         , contentOptions: {
             activeTintColor: '',
-            activeBackgroundColor: '',
+            activeBackgroundColor: 'Transparent',
             labelStyle: {
                 fontFamily: 'Montserrat',
                 fontWeight: 'normal',
                 color: '#132641',
                 marginLeft: -7,
-                fontSize: 18
+                fontSize: 18,
+                 marginVertical:Dimensions.get('window').height>400?12:15
             }
         },
         drawerWidth: '77%'

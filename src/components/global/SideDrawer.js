@@ -21,7 +21,7 @@ const SideDrawer = (props) => {
                     <View style={{ flexDirection: 'row' }}>
                         <Image source={{ uri: userData.profilePicture }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
-                            <Text style={styles.nameText}> {userData.firstName} {userData.lastName}  </Text>
+                            <Text style={styles.nameText}> {userData.firstName} {userData.lastName}</Text>
                         </View>
                     </View>
                     <Text style={styles.emailText}>{userData.email}</Text>
@@ -75,18 +75,19 @@ const styles = StyleSheet.create({
     nameText: {
         color: '#FFFFFF',
         fontFamily: 'Montserrat_bold',
-        fontSize: 24,
+        fontSize:Dimensions.get('window').height>600? 24:20,
 
     },
 
     emailText: {
         color: '#FFFFFF',
         fontFamily: 'Montserrat',
-        fontSize: 14,
+        fontSize:Dimensions.get('window').height>600? 14:12,
         alignSelf: 'center',
         opacity: 0.8,
-        marginLeft:20,
-        marginTop:22
+        marginLeft:50,
+        marginTop:20,
+        width:'100%'
     },
 
     logoutButton: {

@@ -12,10 +12,7 @@ const SubHeaderText = ({ SubHeaderText ,props}) => {
     );
 };
 const styles = StyleSheet.create({
-    // container: {
-    //     width: '70%',
-    //     margin: '5%'
-    // },
+   
     text: {
         marginLeft:'10%',
         marginTop:'5%',
