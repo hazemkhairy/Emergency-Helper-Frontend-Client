@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View,StyleSheet,FlatList,Dimensions } from 'react-native';
+import React from 'react';
+import {  View,StyleSheet,FlatList,Dimensions } from 'react-native';
 import CardItem from '../components/cardComponents/historyCard'
 import MainHeader from '../components/global/MainHeader'
 import SubHeaderText from '../components/global/SubHeaderText'

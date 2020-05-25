@@ -1,26 +1,19 @@
 import React, { useState,useEffect } from 'react';
-import { Text,
-   View,
-    StyleSheet, 
-    TouchableOpacity, 
-    TextInput, Dimensions,AsyncStorage } from 'react-native';
+import { Text,View,StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import LoadingModal from './LoadingModal'
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import ReusableButton from './reusableButton'
-import {getAllSubjects,NewSupportCategory,InsertSupportCategory} from '../../Utils/SupportTickets'
+import {getAllSubjects,NewSupportCategory} from '../../Utils/SupportTickets'
 const AddTicketModal = ({ modalVisible }) => {
     // const [loading, setLoading] = useState(false);
     if (!modalVisible) return null;
     const [visible, setVisible] = useState(modalVisible);
     const [subjects,setSubjects]=useState('');
     const [description,setDescription]=useState('');
-    const [newSubject,setNewSubject]=useState('')
-    const [selected,setSelected]=useState(false)
-    //const [TicketsData]=ticketsData()
-    //Waiting for endpoint
+   
     const [allSubjects, setAllSubjects] = useState([]);
     useEffect(
       () => {
@@ -30,15 +23,9 @@ const AddTicketModal = ({ modalVisible }) => {
               }
           )
       }, [])
-      
-      // if(subjects=='Other')
-      // {
-      //   setSelected(true)
-      // }
-    const AddElement = () => {
+     const AddElement = () => {
       NewSupportCategory(description,subjects)
-      setVisible(false)
-      //InsertSupportCategory(subjects)
+      setVisible(!visible)
     }
     return (
         <Modal style={{ margin: 5 }} isVisible={visible} animationIn="fadeIn" animationInTiming={1000}>
@@ -58,6 +45,7 @@ const AddTicketModal = ({ modalVisible }) => {
                      { label: "Subject", value: "Subject" }
                 }
                 style={{
+                  ...pickerSelectStyles,
                   placeholder: {
                     fontSize: 14,
                     fontFamily: "Montserrat_SemiBold",
@@ -70,7 +58,7 @@ const AddTicketModal = ({ modalVisible }) => {
                 items={allSubjects}
                 Icon={() => {
                   return (
-                    <Icondown name="ios-arrow-down" size={20} color="#132641"   />
+                    <Icondown name="ios-arrow-down" style={{color:"#132641",fontSize:20}}  />
                   );
                 }}
               />
@@ -100,7 +88,7 @@ const AddTicketModal = ({ modalVisible }) => {
 const styles = StyleSheet.create({
     container: {
         width: '99%',
-        height: '45%',
+        height: Dimensions.get("window").height *0.45,
         backgroundColor: '#FFFFFF',
         borderRadius:50,
         alignSelf:'center',
@@ -122,19 +110,21 @@ const styles = StyleSheet.create({
     },
     subjectsContainer:{
         borderWidth:1,
-        width:'60%',
-        marginBottom: '5%',
-        height: '15%',
-        alignSelf: 'center',
-        padding:12,
         borderRadius: 12,
         borderColor:'#D5D6D6',
+        width:'60%',
+        height:'15%',
+        marginBottom: '5%',
+        alignSelf: 'center',
+        paddingHorizontal:'3%',
+        paddingVertical:'3.5%'
     },
     textInputContainer: {
         width: '60%',
         marginBottom: '5%',
         height: '30%',
         alignSelf: 'center',
+        fontFamily: "Montserrat_SemiBold",
     },
     textInput: {
         borderRadius: 12,
@@ -142,7 +132,7 @@ const styles = StyleSheet.create({
         height: '100%',
         borderWidth: 1,
         textAlignVertical: 'top',
-        padding: 10,
+        paddingHorizontal:'5%',
         fontFamily: "Montserrat_SemiBold",
         fontSize: 14,
         borderColor:'#D5D6D6'
@@ -153,5 +143,17 @@ const styles = StyleSheet.create({
     },
     
 })
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 14,
+    fontFamily: "Montserrat_SemiBold",
 
+  },
+  inputAndroid: {
+    fontSize: 14,
+    fontFamily: "Montserrat_SemiBold",
+   
+    
+  },
+});
 export default AddTicketModal;

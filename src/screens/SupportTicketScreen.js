@@ -8,14 +8,16 @@ import MainHeader from '../components/global/MainHeader'
 import SubHeaderText from '../components/global/SubHeaderText'
 import {getAllTickets} from '../Utils/SupportTickets'
 
-const SupportTicket = ({ navigation }) => {
+const SupportTicket = () => {
     const [modalVisible, setModalVisible] = useState(false);
     const [tickets, setTickets] = useState([]);
-
+  
     const refresh = async () => {
+     
     getAllTickets().then(
       (result) => {
         setTickets(result)
+        
       }
   )
    }
@@ -23,13 +25,13 @@ const SupportTicket = ({ navigation }) => {
     () => {
       refresh();
     }, [])
+
     return (
     <View  style={styles.container}>
          <AddModal modalVisible={modalVisible}
          />
         <MainHeader headerText='Support' name={'users'}/>
           <View style={styles.rowContainer}>
-          {/* <Text style={{fontSize:24,fontFamily:'Montserrat_SemiBold',color:'#132641'}}>Tickets</Text> */}
           <View style={{marginBottom:'5%'}}>
           <SubHeaderText SubHeaderText={'Tickets'}/>
           </View>
@@ -44,13 +46,11 @@ const SupportTicket = ({ navigation }) => {
           <FlatList
              data={tickets}
              keyExtractor={(item,index) => 'key'+index}
-             //ref = {(flatList) => {flatList = flatList}}
              showsVerticalScrollIndicator={false}
              onEndReachedThreshold={1}
              onRefresh={refresh}
              refreshing={false}
-             onScroll={refresh}
-             renderItem={({ item, index }) => {
+             renderItem={({ item }) => {
             return (
               <View >
                 <AddCard item={item} />
