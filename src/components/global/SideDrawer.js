@@ -86,13 +86,13 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         opacity: 0.8,
         marginLeft:50,
-        marginTop:20,
+        marginTop:Dimensions.get('window').height>600?20:15,
         width:'100%'
     },
 
     logoutButton: {
         marginLeft: '8%',
-        marginTop:Dimensions.get('window').height>600? Dimensions.get('window').height * 0.040:Dimensions.get('window').height * 0.030
+        marginTop:Dimensions.get('window').height>600? Dimensions.get('window').height * 0.040:Dimensions.get('window').height * 0.025
     },
     logoutIcon: {
         color: '#132641',

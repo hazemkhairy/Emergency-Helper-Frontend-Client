@@ -113,7 +113,7 @@ const MainNav = createDrawerNavigator(
                 color: '#132641',
                 marginLeft: -7,
                 fontSize: 18,
-                 marginVertical:Dimensions.get('window').height>600?16:12
+                 marginVertical:Dimensions.get('window').height>600?16:10
             }
         },
         drawerWidth: '77%'
