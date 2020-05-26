@@ -1,14 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
-import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
-const MainHeader = ({ headerText, props, name }) => {
+import { FontAwesome } from '@expo/vector-icons';
+const MainHeader = (props) => {
+    let HeaderText = props.headerText;
+    let Name = props.name
+    let containerStyle = { ...styles.container, ...props.style };
     return (
-        <View style={styles.container}>
+        <View style={containerStyle}>
             <View style={styles.Header} >
                 <Text style={styles.text}>
-                    {headerText}
+                    {HeaderText}
                 </Text>
-                <FontAwesome style={styles.Icon} name={name} size={30}></FontAwesome>
+                <FontAwesome style={styles.Icon} name={Name} size={30}></FontAwesome>
             </View>
         </View>
     );
@@ -31,8 +34,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 40,
         marginLeft: '5%',
-        fontFamily:'Montserrat_bold'
-        
+        fontFamily: 'Montserrat_bold'
+
     },
 
     Icon: {

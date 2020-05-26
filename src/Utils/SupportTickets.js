@@ -21,7 +21,7 @@ export const getAllTickets = async() =>
   return response;
 };
 
-export const NewSupportCategory = async (description,category) => {
+export const NewSupportSupportTicket = async (description,category) => {
   let res = await backendAxios.post('api/Account/CreateSupportTicket',
   {
      category,
@@ -30,10 +30,10 @@ export const NewSupportCategory = async (description,category) => {
   )
   .then(res => {
       console.log('New'+res.data.message)
-      return res.data.message;
+      return true;
   })
   .catch(err => { 
     console.log('New'+err)
-    return err })
+    return false })
 return res;
 }

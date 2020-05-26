@@ -6,14 +6,13 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import ReusableButton from './reusableButton'
-import {getAllSubjects,NewSupportCategory} from '../../Utils/SupportTickets'
-const AddTicketModal = ({ modalVisible }) => {
+import {getAllSubjects,NewSupportSupportTicket} from '../../Utils/SupportTickets'
+const AddTicketModal = ({ modalVisible,newItem }) => {
     // const [loading, setLoading] = useState(false);
     if (!modalVisible) return null;
     const [visible, setVisible] = useState(modalVisible);
     const [subjects,setSubjects]=useState('');
     const [description,setDescription]=useState('');
-   
     const [allSubjects, setAllSubjects] = useState([]);
     useEffect(
       () => {
@@ -23,9 +22,13 @@ const AddTicketModal = ({ modalVisible }) => {
               }
           )
       }, [])
-     const AddElement = () => {
-      NewSupportCategory(description,subjects)
-      setVisible(!visible)
+     const AddElement = async () => {
+      NewSupportSupportTicket(description,subjects).then((result) => {
+        console.log(subjects)
+        setVisible(false);
+        newItem()
+      });
+     
     }
     return (
         <Modal style={{ margin: 5 }} isVisible={visible} animationIn="fadeIn" animationInTiming={1000}>
@@ -78,7 +81,7 @@ const AddTicketModal = ({ modalVisible }) => {
                <ReusableButton 
                style={styles.buttonStyle}
                Title={'Create'}
-               onPress={AddElement}
+               onPress={()=>AddElement()}
                />
                </View>
             </View>
@@ -92,6 +95,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         borderRadius:50,
         alignSelf:'center',
+        
     },
     closeContainer: {
         alignSelf: 'flex-end',
@@ -113,18 +117,18 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderColor:'#D5D6D6',
         width:'60%',
-        height:'15%',
+        //height:'15%',
         marginBottom: '5%',
         alignSelf: 'center',
         paddingHorizontal:'3%',
-        paddingVertical:'3.5%'
+        //justifyContent: 'center',
+        padding:12,
     },
     textInputContainer: {
         width: '60%',
-        marginBottom: '5%',
         height: '30%',
+        marginBottom: '5%',
         alignSelf: 'center',
-        fontFamily: "Montserrat_SemiBold",
     },
     textInput: {
         borderRadius: 12,
@@ -132,13 +136,14 @@ const styles = StyleSheet.create({
         height: '100%',
         borderWidth: 1,
         textAlignVertical: 'top',
-        paddingHorizontal:'5%',
+        padding:10,
+        paddingTop:15,
         fontFamily: "Montserrat_SemiBold",
         fontSize: 14,
-        borderColor:'#D5D6D6'
+        borderColor:'#D5D6D6',
+       
     },
     buttonStyle: {
-        height:'35%',
         alignSelf: 'center',
     },
     
@@ -147,13 +152,10 @@ const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 14,
     fontFamily: "Montserrat_SemiBold",
-
   },
   inputAndroid: {
     fontSize: 14,
     fontFamily: "Montserrat_SemiBold",
-   
-    
   },
 });
 export default AddTicketModal;

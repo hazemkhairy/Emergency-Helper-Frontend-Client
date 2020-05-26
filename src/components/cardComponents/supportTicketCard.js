@@ -40,10 +40,9 @@ const cardItem = ({ item }) => {
 const styles = StyleSheet.create({
     container: {
         width: '87%',
-        height:60,
+        //height:60,
         alignSelf:'center',
         borderRadius: 40,
-        //shadowColor: "rgba(223,227,231, 1)",
         shadowOffset: {
             width: 4,
             height: 6,
@@ -54,14 +53,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         marginBottom:'3%',
         marginTop:'3%',
+        padding: '2%',
+        flex: 1,
     },
     inlarge:{
-        height:140, 
     },
     date: {
         fontSize: 12,
         fontFamily: 'Montserrat', 
-        color:'#132641'
+        color:'#132641',
+        marginBottom:'2%'
     },
     ticketSubject:
     {
@@ -82,7 +83,8 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         marginTop:'2%',
         marginLeft:'7%',
-        marginRight:'3%'
+        marginRight:'3%',
+        marginBottom:'5%'
     },
     
 })

@@ -6,37 +6,32 @@ const ReusableButton = (props) => {
   let buttonStyle = { ...styles.buttonStyle, ...props.style };
   return (
     <TouchableOpacity onPress={props.onPress} style={buttonStyle}>
-      <View style={styles.rowContainer}>
-      {props.children}
+    
+             {props.children}
         <Text style={styles.buttonText}>{props.Title}</Text>
-        </View>
+       
     </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({
   buttonStyle: {
     borderRadius: 30,
-    width: "35%",
+    width: "40%",
     backgroundColor:'#132641',
     alignItems:'center',
-    //paddingVertical: "2%",
     //justifyContent:'center',
-    //  padding:5,
-    marginBottom:'2%'
+    padding:10,
+    //paddingVertical:10,
+    marginBottom:'2%',
+    //flex:1
+   
   },
   buttonText: {
     color: "white",
     fontSize: 18,
     fontFamily: "Montserrat",
-    
-    //textAlign: "center",
+    textAlign: "center",
   },
-  rowContainer:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    //width:'50%',
-    marginTop:'5%',
-}
 });
 
 export default ReusableButton;
