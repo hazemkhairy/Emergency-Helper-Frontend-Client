@@ -17,6 +17,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import PhotoPicker from "../../components/global/PhotoPicker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import normalize from 'react-native-normalize';
 
 const AccountInfoScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
@@ -255,22 +256,22 @@ const AccountInfoScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",
-    height: Dimensions.get("window").height * 0.3,
+    height: normalize(200),
     borderBottomLeftRadius: 70,
   },
   hText: {
     fontSize:
-      40 *
+      normalize(40) *
       Math.min(
-        Dimensions.get("window").height / 800.0,
-        Dimensions.get("window").width / 375.0
+        Dimensions.get("window").height / 820.0,
+        Dimensions.get("window").width / 380.0
       ),
     color: "white",
     fontFamily: "Montserrat_bold",
-    marginTop: "25%",
+    top: normalize(90),
     alignSelf: "center",
   },
-
+  
   photoPicker: {
     alignSelf: "center",
   },
@@ -297,11 +298,11 @@ const styles = StyleSheet.create({
     width: "72%",
   },
   datePickerText: {
-    fontSize: 16,
+    fontSize: normalize(16),
     fontFamily: "Montserrat_Medium",
   },
   rnpicker: {
-    fontSize: 16,
+    fontSize: normalize(16),
     fontFamily: "Montserrat_Medium",
     borderBottomColor: "#DDDDDD",
     borderBottomWidth: 1,
@@ -316,17 +317,17 @@ const styles = StyleSheet.create({
 });
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
-    fontSize: 16,
+    fontSize: normalize(16),
     color: "black",
     fontFamily: "Montserrat_Medium",
   },
   inputAndroid: {
-    fontSize: 16,
+    fontSize: normalize(16),
     color: "black",
     fontFamily: "Montserrat_Medium",
   },
   placeholder: {
-    fontSize: 16,
+    fontSize: normalize(16),
     fontFamily: "Montserrat_Medium",
     color: "black",
   },

@@ -11,6 +11,7 @@ import NewAddresses from "../../components/Settings/NewAddress";
 import Icon from "react-native-vector-icons/Ionicons";
 import AddAddressModal from "../../components/Settings/AddAddressModal";
 import { getSavedAddresses } from "../../Utils/Addresses";
+import normalize from "react-native-normalize";
 
 const SavedAddresses = ({ navigation }) => {
   const [newAddressModal, setNewAddressModal] = useState(false);
@@ -80,23 +81,24 @@ const SavedAddresses = ({ navigation }) => {
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",
-    height: Dimensions.get("window").height * 0.3,
+    height: normalize(200),
     borderBottomLeftRadius: 70,
   },
   hText: {
     fontSize:
-      40 *
+      normalize(40) *
       Math.min(
-        Dimensions.get("window").height / 800.0,
-        Dimensions.get("window").width / 375.0
+        Dimensions.get("window").height / 820.0,
+        Dimensions.get("window").width / 380.0
       ),
     color: "white",
     fontFamily: "Montserrat_bold",
-    marginTop: "25%",
+    top: normalize(90),
     alignSelf: "center",
   },
+
   subHeader: {
-    fontSize: 24,
+    fontSize: normalize(24),
     color: "#132641",
     marginBottom: "4%",
     fontFamily: "Montserrat_SemiBold",
@@ -116,15 +118,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: "18%",
     paddingBottom: "3.5%",
     paddingTop: "4.5%",
-
-    // paddingVertical: "5%",
     marginTop: "10%",
     flexDirection: "row",
     marginLeft: "13%",
   },
   addBTNtxt: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: normalize(18),
     fontFamily: "Montserrat",
     justifyContent: "center",
   },
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 
   noAddressesContainer: {
     textAlign: "center",
-    fontSize: 18,
+    fontSize: normalize(18),
     color: "#132641",
     fontFamily: "Montserrat_SemiBold",
     marginTop: "10%",

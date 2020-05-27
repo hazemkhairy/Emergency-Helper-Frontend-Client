@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
+import normalize from 'react-native-normalize';
 
 
 const NewAddress = ({ address }) => {
@@ -15,8 +16,8 @@ const NewAddress = ({ address }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "90%",
-    height: 65,
+    width: normalize(338),
+    height: normalize(65),
     alignSelf: "center",
     borderRadius: 40,
     shadowOffset: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   },
 
   name: {
-    fontSize: 13,
+    fontSize: normalize(13),
     fontFamily: "Montserrat_bold",
     color: "#132641",
     marginLeft:'8%',
@@ -42,11 +43,12 @@ const styles = StyleSheet.create({
 
   },
   address: {
-    fontSize: 13,
+    fontSize: normalize(13),
     color: "#B1B7C0",
     fontFamily: "Montserrat",
     marginTop: "1%",
     marginLeft:'8%',
+    marginRight:'3%',
 
   },
 

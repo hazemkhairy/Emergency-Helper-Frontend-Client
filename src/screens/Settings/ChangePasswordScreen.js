@@ -7,6 +7,7 @@ import { changePassword } from "../../Utils/getPassword";
 import SettingsModal from "../../components/Settings/SettingsModal";
 import LoadingModal from "../../components/global/LoadingModal";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import normalize from 'react-native-normalize';
 
 const ChangePasswordScreen = ({ navigation }) => {
   const [oldPassword, setOldPassword] = useState("");
@@ -36,6 +37,7 @@ const ChangePasswordScreen = ({ navigation }) => {
       setOldPassword_error("Please enter your Current Password");
       error = false;
     }
+    else setOldPassword_error("");
 
     if (newPassword == "") {
       setNewPassword_error("Please enter a password");
@@ -44,7 +46,8 @@ const ChangePasswordScreen = ({ navigation }) => {
       if (newPassword.length < 8) {
         setNewPassword_error("Must Be 8 Characters Or More");
         error = false;
-      } else setNewPassword_error("");
+      } 
+      else setNewPassword_error("");
     }
     if (confirmPassword == "") {
       setConfirmPassword_error("Please confirm your Password");
@@ -79,7 +82,7 @@ const ChangePasswordScreen = ({ navigation }) => {
               onChangeText={(text) => setOldPassword(text)}
               errorText={oldPassword_error}
             />
-            <View marginTop="3.5%">
+            <View marginTop="3%">
               <NewInput
                 placeholder="New password"
                 secureTextEntry={true}
@@ -95,6 +98,7 @@ const ChangePasswordScreen = ({ navigation }) => {
                 <PasswordstrengthBar password={newPassword} />
               </View>
             </View>
+            <View marginTop="2.8%">
 
             <NewInput
               placeholder="Confirm password"
@@ -106,6 +110,7 @@ const ChangePasswordScreen = ({ navigation }) => {
               onChangeText={(text) => setConfirmPassword(text)}
               errorText={confirmPassword_error}
             />
+            </View>
           </View>
           <MainButton
             style={styles.changeBTN}
@@ -127,19 +132,19 @@ const ChangePasswordScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",
-    height: Dimensions.get("window").height * 0.3,
+    height: normalize(200),
     borderBottomLeftRadius: 70,
   },
   hText: {
     fontSize:
-      40 *
+      normalize(40) *
       Math.min(
-        Dimensions.get("window").height / 800.0,
-        Dimensions.get("window").width / 375.0
+        Dimensions.get("window").height / 820.0,
+        Dimensions.get("window").width / 380.0
       ),
     color: "white",
     fontFamily: "Montserrat_bold",
-    marginTop: "25%",
+    top: normalize(90),
     alignSelf: "center",
   },
   container: {
@@ -148,10 +153,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   changeBTN: {
-    marginTop: "9%",
+    top: normalize(32),
   },
   passwordBar: {
-    marginBottom: "2%",
+    bottom: normalize(1.5),
   },
 });
 

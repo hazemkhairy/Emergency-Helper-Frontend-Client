@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Image, Dimensions } from "react-native";
+import React from "react";
+import { Text, View, StyleSheet, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import normalize from 'react-native-normalize';
 
 const SettingsScreen = ({ navigation }) => {
   return (
@@ -55,24 +56,24 @@ const SettingsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",
-    height: Dimensions.get("window").height * 0.3,
+    height: normalize(200),
     borderBottomLeftRadius: 70,
   },
   hText: {
     fontSize:
-    40 *
+    normalize(40) *
     Math.min(
       Dimensions.get("window").height / 800.0,
-      Dimensions.get("window").width / 375.0
+      Dimensions.get("window").width / 380.0
     ),    color: "white",
     fontFamily: "Montserrat_bold",
-    marginTop: "25%",
+    top: normalize(90),
     alignSelf: "center",
   },
   subHeader: {
-    fontSize: 24,
+    fontSize: normalize(24),
     color: "#132641",
-    marginBottom: "4%",
+    bottom: normalize(5),
     fontFamily: "Montserrat_SemiBold",
     marginLeft: "12%",
     marginTop: "10%",
@@ -85,10 +86,10 @@ const styles = StyleSheet.create({
   },
 
   settingsTXT: {
-    fontSize: 18,
+    fontSize: normalize(18),
     color: "#132641",
     fontFamily: "Montserrat_Medium",
-    width: "75%",
+    width: normalize(250),
   },
   optionsContainer: {
     flexDirection: "row",

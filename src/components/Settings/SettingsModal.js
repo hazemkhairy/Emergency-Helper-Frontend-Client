@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, Dimensions } from "react-native";
 import Modal from "react-native-modal";
 import MainButton from "../global/MainButton";
+import normalize from 'react-native-normalize';
+
 const UpdateModal = ({ modalVisible, message }) => {
   if (!modalVisible) return null;
   const [visible, setVisible] = useState(modalVisible);
@@ -20,21 +22,23 @@ const UpdateModal = ({ modalVisible, message }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    height: 0.4 * Dimensions.get("window").height,
+    // height: 0.4 * Dimensions.get("window").height,
+    height: normalize(220),
     backgroundColor: "white",
     borderRadius: 40,
     width: "100%",
     alignItems: "center",
+
   },
 
   centerContainer: {
-    marginTop: "20%",
+    top: normalize(60),
     alignItems: "center",
   },
 
   successtext: {
     fontFamily: "Montserrat_SemiBold",
-    fontSize: 26,
+    fontSize: normalize(26),
     color: "#132641",
     textAlign:"center",
 
@@ -42,11 +46,11 @@ const styles = StyleSheet.create({
   okBTN: {
     paddingHorizontal: "13%",
     paddingVertical: "4%",
-    marginTop: "14%",
-  },
+    top: normalize(35),
+    },
   okBTNtxt: {
     color: "white",
-    fontSize: 18,
+    fontSize: normalize(18),
     fontFamily: "Montserrat",
   },
 });
