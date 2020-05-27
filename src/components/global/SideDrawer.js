@@ -4,6 +4,7 @@ import { DrawerItems } from 'react-navigation-drawer'
 import { Ionicons } from '@expo/vector-icons';
 import { logOut } from '../../Utils/Client';
 import { getProfileData } from '../../Utils/ProfileData';
+import normalize from "react-native-normalize";
 
 const SideDrawer = (props) => {
 
@@ -17,7 +18,7 @@ const SideDrawer = (props) => {
     return (
         <View>
             <View style={styles.ProfileContainer}>
-                <View style={{ width: '80%' ,marginLeft:10}}>
+                <View style={{ width: '80%', marginLeft: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <Image source={{ uri: userData.profilePicture }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#7598BA',
         height: Dimensions.get('window').height * 0.33,
         borderBottomLeftRadius: 70,
-    
+
     },
     itemsContainer: {
         marginLeft: '7%'
@@ -75,24 +76,24 @@ const styles = StyleSheet.create({
     nameText: {
         color: '#FFFFFF',
         fontFamily: 'Montserrat_bold',
-        fontSize:Dimensions.get('window').height>600? 24:20,
+        fontSize: normalize(24),
 
     },
 
     emailText: {
         color: '#FFFFFF',
         fontFamily: 'Montserrat',
-        fontSize:Dimensions.get('window').height>600? 14:12,
+        fontSize: normalize(14),
         alignSelf: 'center',
         opacity: 0.8,
-        marginLeft:50,
-        marginTop:Dimensions.get('window').height>600?20:15,
-        width:'100%'
+        marginLeft: 50,
+        marginTop: Dimensions.get('window').height > 600 ? 20 : 15,
+        width: '100%'
     },
 
     logoutButton: {
         marginLeft: '8%',
-        marginTop:Dimensions.get('window').height>600? Dimensions.get('window').height * 0.070:Dimensions.get('window').height * 0.035
+        marginTop: Dimensions.get('window').height > 600 ? Dimensions.get('window').height * 0.070 : Dimensions.get('window').height * 0.035
     },
     logoutIcon: {
         color: '#132641',

@@ -16,6 +16,8 @@ const MainScreen = ({navigation}) => {
 
             <Text>Main Screen</Text>
           <Button title="LOG OUT" onPress={()=>{logOut(),navigation.navigate('PreConfigScreen')}}></Button>
+          <Button title="Available Helpers" onPress={()=>navigation.navigate('AvailableHelpersScreen')}>Available Helpers</Button>
+
         </View>
     )
 }

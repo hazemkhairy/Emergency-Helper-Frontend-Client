@@ -11,6 +11,7 @@ import SupportScreen from '../screens/SupportScreen';
 import WalletScreen from '../screens/WalletScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import AboutUsScreen from '../screens/AboutUsScreen';
+import AvailableHelpersScreen from '../screens/AvailableHelpersScreen'
 import { Dimensions } from 'react-native';
 
 const ApplicationNav = createStackNavigator(
@@ -33,7 +34,9 @@ const ApplicationNav = createStackNavigator(
         },
         AboutUsScreen: {
             screen: AboutUsScreen
-        }
+        },
+        AvailableHelpersScreen
+        
 
 
     },

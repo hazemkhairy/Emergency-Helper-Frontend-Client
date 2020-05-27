@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { FontAwesome } from '@expo/vector-icons';
+import normalize from 'react-native-normalize';
+
 const MainHeader = (props) => {
     let HeaderText = props.headerText;
     let Name = props.name
@@ -32,7 +34,10 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontSize: 40,
+        fontSize: normalize(40) *
+            Math.min(
+                Dimensions.get("window").height / 820.0,
+                Dimensions.get("window").width / 390.0),
         marginLeft: '5%',
         fontFamily: 'Montserrat_bold'
 
