@@ -60,13 +60,13 @@ const AvailableHelpersScreen = () => {
 
 
         },
+        
     ]
     return (
         <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
             <MainHeader headerText={'Available Helpers'} ></MainHeader>
             <SubHeaderText SubHeaderText={'Helpers'}></SubHeaderText>
 
-            <View>
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={test}
@@ -76,7 +76,6 @@ const AvailableHelpersScreen = () => {
 
                     )}
                 />
-            </View >
         </View>
     );
 }

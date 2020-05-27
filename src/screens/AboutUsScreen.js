@@ -20,7 +20,6 @@ const AboutUsScreen = (props) => {
         <View>
             <MainHeader headerText={'About Us'} name={'info-circle'}></MainHeader>
             <SubHeaderText SubHeaderText={'About Us'}></SubHeaderText>
-            <View >
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={dataset}
@@ -35,7 +34,6 @@ const AboutUsScreen = (props) => {
                     )}
                 />
 
-            </View>
             <TouchableOpacity>
                 <Text style={styles.termsConditions} >Terms and Conditions</Text>
             </TouchableOpacity>
