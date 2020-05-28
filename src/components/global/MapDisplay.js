@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text,ActivityIndicator } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { getCurrentLocation } from '../../Utils/MapUtils';
-import { ActivityIndicator } from 'react-native-paper';
 
 
 const MapDisplay = () => {
+    let mounted = true;
     const getUserLocation = async () => {
-        const location = await getCurrentLocation();
+        const location = await getCurrentLocation()
+        if (!mounted)
+            return;
         setUserLocation(location.coords)
         setRegion({
             latitude: location.coords.latitude,
@@ -19,7 +21,10 @@ const MapDisplay = () => {
     const [userLocation, setUserLocation] = useState(null);
     const [region, setRegion] = useState(null);
     useEffect(
-        () => { getUserLocation() }, []
+        () => {
+            getUserLocation();
+            return () => mounted = false
+        }, []
     )
     if (!userLocation) {
         return (

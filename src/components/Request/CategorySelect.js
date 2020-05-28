@@ -25,11 +25,12 @@ const CategorySelect = ({ value, setValue, style }) => {
             value={value}
             onValueChange={(item) => { setValue(item) }}
             items={allCategories}
-            style={styles.input}
             useNativeAndroidPickerStyle={false}
             style={{
                 placeholder: { ...styles.multiSelectPlaceholder },
                 iconContainer: { ...styles.iconContainer },
+                inputAndroid: { ...styles.input },
+                inputIOS: { ...styles.input }
             }}
             Icon={() => { return <Ionicons name="ios-arrow-down" size={24} color="#132641" /> }}
         />
@@ -50,6 +51,10 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         alignSelf: 'center'
+    },
+    input: {
+        fontFamily: 'Montserrat_SemiBold',
+        fontSize: 16,
     }
 });
 

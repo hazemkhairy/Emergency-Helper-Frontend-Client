@@ -4,12 +4,23 @@ import { AntDesign } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import CategorySelect from './CategorySelect'
 import SelectLocationInput from './SelectLocationInput';
+import { createRequest } from '../../Utils/RequestUtils'
+
 const SendRequestModal = ({ close }) => {
     const [innerVisibility, setInnerVisibility] = useState(true);
     const [descripition, setDescripition] = useState('');
     const [category, setCategory] = useState('');
     const [location, setLocation] = useState(null);
 
+    const validateInput = () => {
+        return false
+    }
+    const sendRequest = () => {
+        if (validateInput()) {
+            //createRequest(descripition,location,category)
+        }
+        console.log(location)
+    }
 
     const animationTiming = 1000;
     const closeHandler = () => {
@@ -38,7 +49,16 @@ const SendRequestModal = ({ close }) => {
                         <CategorySelect value={category} setValue={setCategory} />
                     </View>
                     <View style={styles.inputContainer}>
-                        <SelectLocationInput toggle={setInnerVisibility} />
+                        <SelectLocationInput value={location} setValue={setLocation} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+
+                        <TouchableOpacity
+                            onPress={() => { sendRequest() }}
+                            style={styles.button}
+                        >
+                            <Text style={styles.buttonText} >Make Request</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -86,10 +106,28 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         marginTop: '5%',
-
     },
     descripitionInput: {
         height: Dimensions.get('window').height * 0.13,
+    },
+    buttonContainer: {
+        width: '100%',
+        marginTop: '10%',
+        justifyContent: 'center'
+    },
+    button: {
+        backgroundColor: '#132641',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 35,
+        height: Dimensions.get('screen').height * 0.07
+    },
+    buttonText: {
+
+        fontFamily: 'Montserrat_SemiBold',
+        fontSize: 16 * (812 / Dimensions.get('screen').height),
+        color: '#FFF',
+        textAlignVertical: 'center'
     }
 })
 
