@@ -11,7 +11,7 @@ const HelperCard = ({ item }) => {
     return (
         <View style={containerStyle}>
 
-            <View style={styles.buttonContainer}>
+            <View style={styles.expandButton}>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                     <Image source={{ uri: item.img }} style={styles.img}></Image>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         opacity: 0.5
 
     },
-    buttonContainer: {
+    expandButton: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '85%',
