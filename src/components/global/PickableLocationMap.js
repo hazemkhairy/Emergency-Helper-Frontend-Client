@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ActivityIndicator, TouchableOpacity, Dimensions } from 'react-native';
+import { View, StyleSheet, Text, ActivityIndicator, TouchableOpacity, Dimensions, Platform } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { getCurrentLocation } from '../../Utils/MapUtils';
 
@@ -18,12 +18,11 @@ const MapDisplay = ({ submitLocation }) => {
         })
     }
     const handleSelect = () => {
-        console.log(pickedLocation)
         submitLocation(pickedLocation)
     }
     const [pickedLocation, setPickedLocation] = useState(null);
     const [region, setRegion] = useState(null);
-    const [buttonV, setButtonV] = useState(false)
+    const [buttonV, setButtonV] = useState(null)
     useEffect(
         () => {
             getUserLocation();
@@ -55,14 +54,18 @@ const MapDisplay = ({ submitLocation }) => {
                 region={region}
                 style={styles.mapStyle}
                 onPress={(e) => {
+                    if(e.nativeEvent.action!='marker-press')
                     handleMapPress(e.nativeEvent)
                 }}
             >
                 {
                     <Marker
+
                         coordinate={region}
                         title={"Picked Location"}
-                        onPress={() => { setButtonV(true) }}
+                        onPress={(e) => { 
+                            setButtonV(true) }
+                        }
                     >
                     </Marker>
                 }
