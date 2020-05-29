@@ -43,7 +43,6 @@ const supportCard = ({ item }) => {
 const styles = StyleSheet.create({
     container: {
         width: '87%',
-        //height:60,
         alignSelf:'center',
         borderRadius: 40,
         shadowOffset: {

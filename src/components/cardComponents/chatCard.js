@@ -115,7 +115,6 @@ const styles = StyleSheet.create({
       rightIcon:{
         color:'#132641',
         fontSize:30,
-        //marginRight:-1,
         marginTop:'4%'
       }
 })

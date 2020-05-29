@@ -14,15 +14,8 @@ const TicketScreen = ({navigation}) => {
   const [message,setMessage]=useState('');
   const [reloading, setReloading] = useState(false);
   YellowBox.ignoreWarnings(['VirtualizedLists should never be nested inside plain ScrollViews with the same orientation - use another VirtualizedList-backed container instead.']);
-  // useEffect(() => {
-  //   getTicketsMessages(ticketID).then((result) => {
-  //     setMessages(result);
-  //   });
-  // }, []);
-
   const newMessage = async () => {
       addMessage(ticketID,message).then((result) => {
-      //console.log(message)
       setMessage('')
       getMessages()
     });
@@ -139,9 +132,7 @@ const styles = StyleSheet.create({
       width:'100%',
       position: 'absolute'
   },
-  chattingConatiner:{
-    //height:Dimensions.get("window").height *0.60
-  }
+ 
 })
 
 export default TicketScreen;

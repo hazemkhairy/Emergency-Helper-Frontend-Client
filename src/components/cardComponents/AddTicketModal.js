@@ -8,7 +8,7 @@ import RNPickerSelect from "react-native-picker-select";
 import ReusableButton from '../global/reusableButton'
 import {getAllSubjects,NewSupportSupportTicket} from '../../Utils/SupportTickets'
 const AddTicketModal = ({ modalVisible,newItem }) => {
-    // const [loading, setLoading] = useState(false);
+   
     if (!modalVisible) return null;
     const [visible, setVisible] = useState(modalVisible);
     const [subjects,setSubjects]=useState('');
@@ -32,7 +32,7 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
     }
     return (
         <Modal style={{ margin: 5 }} isVisible={visible} animationIn="fadeIn" animationInTiming={1000}>
-            {/* <LoadingModal modalVisible={loading}></LoadingModal> */}
+           
             <View style={styles.container}>
                 <View style={styles.closeContainer}>
                     <TouchableOpacity onPress={() => setVisible(false)}>

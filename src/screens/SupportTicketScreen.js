@@ -40,7 +40,6 @@ const SupportTicket = () => {
           </View>
           <Button 
           onPress={() =>setModalVisible(!modalVisible)}
-          //style={{height:'100%'}}
           >
             <View style={styles.buttonContainer}>
              <Icon name={'plus'} style={styles.iconStyle} />
