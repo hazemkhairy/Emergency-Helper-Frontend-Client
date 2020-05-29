@@ -3,13 +3,13 @@ import Home from '../screens/Home'
 import MainScreen from '../screens/MainScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SupportTicketScreen from '../screens/SupportTicketScreen';
-import Chatting from '../screens/Chatting'
+import TicketScreen from '../screens/TicketScreen'
 export default createStackNavigator(
     {
         MainScreen,
         HistoryScreen,
         SupportTicketScreen,
-        Chatting
+        TicketScreen
     },
     
 )

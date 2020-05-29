@@ -1,11 +1,11 @@
 import React, { useState,useEffect } from 'react';
 import { Text,View,StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
-import LoadingModal from './LoadingModal'
+import LoadingModal from '../global/LoadingModal'
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
-import ReusableButton from './reusableButton'
+import ReusableButton from '../global/reusableButton'
 import {getAllSubjects,NewSupportSupportTicket} from '../../Utils/SupportTickets'
 const AddTicketModal = ({ modalVisible,newItem }) => {
     // const [loading, setLoading] = useState(false);

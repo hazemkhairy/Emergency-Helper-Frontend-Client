@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View,StyleSheet,Dimensions, FlatList } from 'react-native';
 import AddCard from '../components/cardComponents/supportTicketCard'
 import Button from '../components/global/reusableButton'
-import AddModal from '../components/global/AddTicketModal'
+import AddModal from '../components/cardComponents/AddTicketModal'
 import Icon from 'react-native-vector-icons/Entypo';
 import MainHeader from '../components/global/MainHeader'
 import SubHeaderText from '../components/global/SubHeaderText'
@@ -29,10 +29,6 @@ const SupportTicket = () => {
     getTickets();
   }, []);
 
-    // if(modalVisible==false)
-    // {
-    //   getTickets()
-    // }
     return (
     <View  style={styles.container}>
          <AddModal modalVisible={modalVisible} newItem={() => reload()} 
@@ -57,7 +53,7 @@ const SupportTicket = () => {
              keyExtractor={(item,index) => 'key'+index}
              showsVerticalScrollIndicator={false}
              refreshing={reloading}
-             onRefresh={() => getTickets()}
+             onScroll={() => getTickets()}
              renderItem={({ item }) => {
             return (
               <View >

@@ -1,30 +1,34 @@
-export const messages=[
-    {
-      id: '0',
-      name:'Name',
-      Message:'Message  message message message message message message message message message message message message',
-      inMessage:false,
-      date:'25/5'
-    },
-    {
-      id: '1',
-      name:'Name',
-      Message:'Message  message message message message message message message message message message message message',
-      inMessage:false,
-      date:'25/5'
-    },
-    {
-        id: '2',
-        name:'Name',
-        Message:'Message  message message message message message message message message message message message message',
-        inMessage:true,
-        date:'25/5'
-    },
-    {
-        id: '3',
-        name:'Name',
-        Message:'Message  message message message message message message message message message message message message',
-        inMessage:false,
-        date:'25/5'
-    }, 
-  ];
+export const allmessages=[
+  {
+    _id: '0',
+    senderName:'Name',
+    senderRole: "Client",
+    message:'Message  message message message message message message message message message message message message',
+    date:'25/1',
+    
+  },
+  {
+    _id: '1',
+    senderName:'Name',
+    senderRole: "Client",
+    message:'Message  message message message message message message message message message message message message',
+    date:'25/1',
+    
+  },
+  {
+    _id: '2',
+    senderName:'Name',
+    senderRole: "Client",
+    date:'25/1',
+    message:'Message  message message message message message message message message message message message message',
+   
+  },
+  {
+    _id: '3',
+    senderName:'Name',
+    senderRole: "Client",
+    date:'25/1',
+    message:'Message  message message message message message message message message message message message message',
+   
+  }, 
+];

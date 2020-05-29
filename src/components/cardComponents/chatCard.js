@@ -1,41 +1,50 @@
-import React,{useState} from 'react'
+import React from 'react'
 
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Octicons'
-// import Left from '../../../assets/images/svg/left.svg'
+
 const ChatCard = ({ item }) => {
     let containerStyle = styles.container
-    let itemStyle = item.inMessage ? styles.itemOut : styles.itemIn;
-    let rowStyle =item.inMessage ? [styles.rowContainer,styles.rowRight]:[styles.rowContainer,styles.rowLeft]
-   
-   
-       if(item.inMessage)
+    let itemStyle = item.senderRole=='Client' ? styles.itemOut : styles.itemIn;
+    let rowStyle =item.senderRole=='Client' ? styles.rowRight:styles.rowLeft
+    var day = new Date(item.date).getDate();
+
+    var monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May','Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var month =  monthNames[new Date(item.date).getMonth()];
+    var hours = new Date(item.date).getHours(); 
+    var min = new Date(item.date).getMinutes(); 
+    var date= day +' '+ month + ' '+ hours + ':'+ min
+      if(item.senderRole=='Client'){
        return(
            <View>
                 <View style={rowStyle}>
         <View style={[containerStyle, itemStyle]}>
         <View style={[styles.balloon]}>
-        <Text style={styles.rightmessageStyle} >{item.Message}</Text>
+        <Text style={styles.rightmessageStyle} >{item.message}</Text>
       </View>
     </View>
-    {/* <Left height={30} width={30}/> */}
     <Icon name={'triangle-right'} style={styles.rightIcon} /> 
     </View>
-    <Text style={styles.dateText}>{item.date}</Text>
+    <Text style={styles.dateText}>{date}</Text>
     </View>
    )
+       }
     return(
         <View>
-             <Text style={styles.nameStyle}>{item.name}</Text>
+          <View style={{flexDirection:'row',marginTop:'1%'}}>
+             <Text style={styles.nameStyle}>{item.senderName}</Text>
+             <Text style={styles.nameStyle}>({item.senderRole})</Text>
+             </View>
      <View style={rowStyle}> 
       <Icon name={'triangle-left'} style={styles.leftIcon} /> 
      <View style={[containerStyle, itemStyle]}>
      <View style={[styles.balloon]}>
-       <Text style={styles.leftmessageStyle}>{item.Message}</Text>
+       <Text style={styles.leftmessageStyle}>{item.message}</Text>
        </View>
      </View>
      </View>
-     <Text style={styles.dateText}>{item.date}</Text>
+     <Text style={styles.dateText}>{date}</Text>
      </View>  
     )
 }
@@ -44,33 +53,33 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor:"#FFFFFF",
         borderRadius:10,
-        maxWidth:'95%'
+        minWidth:'20%',
+        maxWidth:'92%',
+        width:'auto',
+        marginTop:'2%'
     },
     itemIn: {
         borderWidth:1,
-        borderColor:'#E2E8ED',
+        borderColor:'#132641',
       },
       itemOut: {
         backgroundColor:'#132641',
-        
       },
       balloon: {
         padding: 15,
         borderRadius: 20,
-       
         height: 'auto',
-         width: 'auto', 
+        width:'auto'
       },
-      rowContainer: {
-        flexDirection: 'row',
-      },
+     
       rowLeft:{
         alignSelf: 'flex-start',
-        
+        flexDirection: 'row',
       },
       rowRight:{
         alignSelf: 'flex-end',
-        marginRight:'2%'
+        marginRight:'2%',
+        flexDirection: 'row'
       },
       nameStyle:{
           marginLeft:'4%',
@@ -93,21 +102,21 @@ const styles = StyleSheet.create({
         color: '#BCC5D3',
         fontFamily: 'Montserrat',
         marginRight:'6%',
-        marginBottom:'5%',
+        marginBottom:'3%',
         alignSelf: "flex-end",
       },
       leftIcon:
       {
-        color:'#E2E8ED',
+        color:'#132641',
         fontSize:30,
         marginRight:-1,
-        marginTop:'2%'
+        marginTop:'4%'
       },
       rightIcon:{
         color:'#132641',
         fontSize:30,
-        marginRight:-1,
-        marginTop:'2%'
+        //marginRight:-1,
+        marginTop:'4%'
       }
 })
 

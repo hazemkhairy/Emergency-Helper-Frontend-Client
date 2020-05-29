@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from 'react-navigation-hooks'
 
-const cardItem = ({ item }) => {
+const supportCard = ({ item }) => {
     let containerStyle = styles.container
     let inlarge =styles.inlarge
     const [active,setActive]=useState(false)
@@ -17,12 +18,14 @@ const cardItem = ({ item }) => {
     {
         containerStyle={...containerStyle,...inlarge}
     }
+    const { navigate } = useNavigation();
+   
     return (
         <View style={containerStyle}>
             
             <View style={styles.buttonContainer}>
                 <View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() =>navigate('TicketScreen',{props:{id:item._id,category:item.category}})} >
                 <Text  style={styles.ticketSubject}>{item.category}</Text>
                 <Text style={styles.date}>{date}</Text>
                 </TouchableOpacity>
@@ -89,4 +92,4 @@ const styles = StyleSheet.create({
     
 })
 
-export default cardItem
+export default supportCard

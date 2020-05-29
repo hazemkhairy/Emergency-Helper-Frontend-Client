@@ -1,42 +1,69 @@
-import React,{useState} from 'react';
-import {  View,StyleSheet,FlatList,Dimensions,TextInput,TouchableOpacity } from 'react-native';
+import React,{useState,useEffect} from 'react';
+import {  View,StyleSheet,FlatList,Dimensions,TextInput,TouchableOpacity, YellowBox,KeyboardAvoidingView,Platform,SafeAreaView } from 'react-native';
 import ChatCard from '../components/cardComponents/chatCard'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MainHeader from '../components/global/MainHeader'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import {messages} from '../data/MessageData'
-import { set } from 'react-native-reanimated';
-const Chatting = () => {
+import { KeyboardAwareView } from 'react-native-keyboard-aware-view'
+import {getTicketsMessages,addMessage} from '../Utils/SupportTickets'
+const TicketScreen = ({navigation}) => {
+  const category =navigation.state.params.props.category
+  const ticketID=navigation.state.params.props.id
   
+  const [messages, setMessages] = useState([]);
   const [message,setMessage]=useState('');
   const [reloading, setReloading] = useState(false);
-  const newMessage = () => {
-    if(message!='')
-    {
-    const newItem={
-      id: '5',
-      name:'Name',
-      Message:message,
-      inMessage:true,
-      date:'25/5'
-    }
-    messages.push(newItem)
-    setMessage('')
-  }
-   }
+  YellowBox.ignoreWarnings(['VirtualizedLists should never be nested inside plain ScrollViews with the same orientation - use another VirtualizedList-backed container instead.']);
+  // useEffect(() => {
+  //   getTicketsMessages(ticketID).then((result) => {
+  //     setMessages(result);
+  //   });
+  // }, []);
 
+  const newMessage = async () => {
+      addMessage(ticketID,message).then((result) => {
+      //console.log(message)
+      setMessage('')
+      getMessages()
+    });
+  }
+  
+ 
+  const getMessages = async () => {
+    setReloading(true);
+    setMessages([]);
+    await getTicketsMessages(ticketID).then((result) => {
+      setMessages(result);
+      setReloading(false);
+     
+    });
+  };
+  useEffect(() => {
+    getMessages();
+  }, []);
+
+  console.log(messages)
   return (
-    // <View style={styles.container}>
-   <KeyboardAwareScrollView
+    <View style={styles.container}>
+     
+    <KeyboardAwareScrollView
       keyboardShouldPersistTaps={"always"}
       style={ styles.container }
       showsVerticalScrollIndicator={false}
+      behavior="padding"
     >
-   
+
       <View style={{height:Dimensions.get("window").height *0.80}}>
-         <MainHeader headerText='Ticket Subject' style={{height:Dimensions.get('window').height * 0.16}} />
+         <MainHeader headerText={category} style={{height:Dimensions.get('window').height * 0.18}} />
          <FlatList
+             refreshing={reloading}
+             onRefresh={() => getMessages()}
              data={messages}
+             scrollToIndex={messages.length - 1}
+             initialScrollIndex={messages.length - 1}
+             getItemLayout = {(data, index) => (
+              { length: 170, offset: 170 * index, index }
+              )}
              keyExtractor={(item,index) => 'key'+index}
              showsVerticalScrollIndicator={true}
              renderItem={({ item, index }) => {
@@ -67,6 +94,9 @@ const Chatting = () => {
         </View>
     
         </KeyboardAwareScrollView>
+       
+      
+        </View>
       
   );
 
@@ -106,11 +136,12 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-end',
       bottom:0,
       height:70,
-      width:'100%'
+      width:'100%',
+      position: 'absolute'
   },
   chattingConatiner:{
     //height:Dimensions.get("window").height *0.60
   }
 })
 
-export default Chatting;
+export default TicketScreen;
