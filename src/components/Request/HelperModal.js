@@ -40,7 +40,7 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
   const onCancel = () => {
     close();
   };
-   header = "";
+  header = "";
   return (
     <Modal isVisible={modalVisible}>
       <LoadingModal modalVisible={loading} />
@@ -52,8 +52,9 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
               onPress={() => {
                 close();
               }}
+              style={styles.closeIcon}
             >
-              <Icon name="ios-close" size={35} style={styles.closeIcon} />
+              <Icon name="ios-close" size={35} />
             </TouchableOpacity>
           ) : null}
           <View style={styles.imageContainer}>
@@ -68,13 +69,15 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
               <Text style={styles.number}>{helperInfo.number}</Text>
             </View>
             <TouchableOpacity>
-              <Icon name="ios-call" style={styles.callIcon} size={25} />
+              <Icon name="ios-call" style={styles.callIcon} size={normalize(25)} />
             </TouchableOpacity>
           </View>
+          <View style={styles.chatBTNContainer}>
+            <MainButton style={styles.chatBTN} onPress={() => onChat()}>
+              <Text style={styles.chatBTNtxt}>Chat</Text>
+            </MainButton>
+          </View>
 
-          <MainButton style={styles.chatBTN} onPress={() => onChat()}>
-            <Text style={styles.chatBTNtxt}>Chat</Text>
-          </MainButton>
         </View>
         <View style={styles.infoContainer}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -104,11 +107,14 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
             </View>
           </ScrollView>
         </View>
-        <TouchableOpacity onPress={() => onCancel()}>
-          <Text style={styles.cancel}>Cancel Request </Text>
+        <TouchableOpacity onPress={() => onCancel()}
+          style={
+            styles.CancelBTN
+          } >
+          <Text style={styles.cancelText}>Cancel Request </Text>
         </TouchableOpacity>
-      </View> 
-    </Modal>
+      </View>
+    </Modal >
   );
 };
 const styles = StyleSheet.create({
@@ -116,7 +122,7 @@ const styles = StyleSheet.create({
     height: normalize(280),
     backgroundColor: "white",
     borderRadius: 40,
-    width: '100%',
+    width: '105%',
     alignItems: "center",
     alignSelf: "center",
     overflow: "hidden",
@@ -186,13 +192,15 @@ const styles = StyleSheet.create({
     top: normalize(14),
     right: normalize(2),
   },
-
+  chatBTNContainer: {
+    left: normalize(170),
+    bottom: normalize(66.5),
+  },
   chatBTN: {
     paddingHorizontal: normalize(10),
     paddingVertical: "5.5%",
     width: "65%",
-    left: normalize(170),
-    bottom: normalize(66.5),
+
   },
   chatBTNtxt: {
     color: "white",
@@ -221,12 +229,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: "14.4%",
   },
-  cancel: {
+  CancelBTN: {
+    bottom: normalize(72),
+    left: normalize(90),
+  },
+  cancelText: {
     color: "#B72020",
     fontSize: normalize(15),
     fontFamily: "Montserrat_SemiBold",
-    bottom: normalize(72),
-    left: normalize(90),
   },
 });
 export default HelperModal;

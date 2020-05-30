@@ -39,8 +39,9 @@ const RateHelperModal = ({ modalVisible, helperID, close}) => {
             onPressOut={() => {
                 close();
             }}
+            style={styles.closeIcon}
           >
-            <Icon name="ios-close" size={35} style={styles.closeIcon} />
+            <Icon name="ios-close" size={35}  />
           </TouchableOpacity>
 
           <View style={styles.textContainer}>
