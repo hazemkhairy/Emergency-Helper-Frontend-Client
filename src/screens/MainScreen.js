@@ -6,13 +6,13 @@ import SendRequest from '../components/Request/SendRequest';
 const MainScreen = ({ navigation }) => {
 
     return (
-        <View style={{flex:1}}>
+        <View style={{ flex: 1 }}>
             <Text>Main Screen</Text>
             <Button title="LOG OUT" onPress={() => { logOut(), navigation.navigate('PreConfigScreen') }}></Button>
-            <View style={{flex:1,justifyContent:'flex-end'}}>
-                {/* <MapDisplay /> */}
+            <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                <MapDisplay />
                 {/* <SendRequestModal modalVisiblity={true}/> */}
-                <SendRequest/>
+                <SendRequest />
             </View>
         </View>
     )

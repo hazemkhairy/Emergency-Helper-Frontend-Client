@@ -7,11 +7,15 @@ const AddressesList = ({ addresses, onSelectLocation }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.headerText}>SEARCH RESULTS</Text>
-            <PickLocationModal
-                close={() => setNextModal(false)}
-                mv={nextModal}
-                selectLocation={onSelectLocation}
-            />
+            {nextModal ?
+                <PickLocationModal
+                    close={() => {
+                        // setNextModal(false)
+                    }}
+                    mv={nextModal}
+                    selectLocation={onSelectLocation}
+                /> : null
+            }
             <FlatList
                 ListEmptyComponent={
                     () => {
@@ -25,6 +29,7 @@ const AddressesList = ({ addresses, onSelectLocation }) => {
                 keyExtractor={(item, index) => { return index.toString() }}
                 renderItem={({ item }) => {
                     return (
+
                         <TouchableOpacity style={styles.itemContainer} onPress={() => { onSelectLocation(item) }}>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                 <View style={{ maxWidth: '80%' }}>

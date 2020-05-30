@@ -10,6 +10,8 @@ const MapDisplay = ({ submitLocation }) => {
         if (!mounted)
             return;
         setPickedLocation({ location: location.coords, name: 'Picked location' })
+        if (!mounted)
+            return;
         setRegion({
             latitude: location.coords.latitude,
             longitude: location.coords.longitude,
@@ -54,8 +56,8 @@ const MapDisplay = ({ submitLocation }) => {
                 region={region}
                 style={styles.mapStyle}
                 onPress={(e) => {
-                    if(e.nativeEvent.action!='marker-press')
-                    handleMapPress(e.nativeEvent)
+                    if (e.nativeEvent.action != 'marker-press')
+                        handleMapPress(e.nativeEvent)
                 }}
             >
                 {
@@ -63,8 +65,9 @@ const MapDisplay = ({ submitLocation }) => {
 
                         coordinate={region}
                         title={"Picked Location"}
-                        onPress={(e) => { 
-                            setButtonV(true) }
+                        onPress={(e) => {
+                            setButtonV(true)
+                        }
                         }
                     >
                     </Marker>

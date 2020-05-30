@@ -11,11 +11,11 @@ const SelectLocationModal = ({ mv, close, selectLocation }) => {
     const [addresses, setAddresses] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const selectLoc = async (item) => {
-        await selectLocation(item);
+        selectLocation(item);
         close();
     }
     useEffect(
-        () => { getAddresses(); }, [searchValue]
+        () => { getAddresses(); }, []
     )
     const getAddresses = async () => {
         if (searchValue)
@@ -30,7 +30,7 @@ const SelectLocationModal = ({ mv, close, selectLocation }) => {
             </View>
             <View style={styles.componentsContainer}>
                 <View style={styles.searchInputContainer} >
-                    <SearchTextInput search={getAddresses} value={searchValue} setValue={setSearchValue} />
+                    <SearchTextInput close={close} search={getAddresses} value={searchValue} setValue={setSearchValue} />
                 </View>
                 <View style={styles.addressesListContainer}>
                     <AddressesList addresses={addresses} onSelectLocation={selectLoc} />

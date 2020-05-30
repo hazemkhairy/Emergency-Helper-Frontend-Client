@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import PickableLocationMap from '../global/PickableLocationMap'
 import Modal from 'react-native-modal';
 
-const SelectLocationModal = ({ mv, close, selectLocation }) => {
+const PickLocationModal = ({ mv, close, selectLocation }) => {
     const pickLocation = async (location) => {
         await selectLocation(location);
         close();
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
 });
-export default SelectLocationModal;
+export default PickLocationModal;
