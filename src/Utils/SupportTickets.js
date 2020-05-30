@@ -30,24 +30,22 @@ export const NewSupportSupportTicket = async (description,category) => {
   }
   )
   .then(res => {
-      console.log('New'+res.data.message)
       return true;
   })
   .catch(err => { 
-    console.log('New'+err)
     return false })
 return res;
 }
 export const getTicketsMessages = async (id) => {
   let response = await backendAxios.get(`api/Account/GetTicketMsgs/${id}`)
     .then((response) => {
+      console.log(response.data.payload)
       var data=response.data.payload
-      var ar = [];
+      var arr = [];
       for(var item in data){
-         ar.push(data[item]);
+         arr.push(data[item]);
        }
-      console.log(ar)
-      return ar;
+      return arr;
     })
     .catch((error) => {
       return error;
@@ -63,11 +61,9 @@ export const addMessage = async (ticketID,message) => {
   }
   )
   .then(res => {
-      console.log('New'+res.data.message)
       return true;
   })
   .catch(err => { 
-    console.log('New'+err)
     return false })
 return res;
 }

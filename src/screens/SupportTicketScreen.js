@@ -52,7 +52,7 @@ const SupportTicket = () => {
              keyExtractor={(item,index) => 'key'+index}
              showsVerticalScrollIndicator={false}
              refreshing={reloading}
-             onScroll={() => getTickets()}
+             onRefresh={() => getTickets()}
              renderItem={({ item }) => {
             return (
               <View >
@@ -82,12 +82,10 @@ const styles = StyleSheet.create({
         width:'85%',
         alignSelf: 'center',
         marginTop:'5%',
-        height:'10%'
     },
     iconStyle:{
         fontSize:20,
         color:'#FFFFFF',
-       
     },
     buttonContainer:{
       flexDirection: 'row',
@@ -96,7 +94,6 @@ const styles = StyleSheet.create({
       color: "white",
       fontSize: 18,
       fontFamily: "Montserrat",
-      
     }
 })
 

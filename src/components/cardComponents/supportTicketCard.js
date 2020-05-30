@@ -25,7 +25,7 @@ const supportCard = ({ item }) => {
             
             <View style={styles.buttonContainer}>
                 <View>
-                <TouchableOpacity onPress={() =>navigate('TicketScreen',{props:{id:item._id,category:item.category}})} >
+                <TouchableOpacity onPress={() =>navigate('TicketScreen',{props:{id:item._id,category:item.category,description:item.description}})} >
                 <Text  style={styles.ticketSubject}>{item.category}</Text>
                 <Text style={styles.date}>{date}</Text>
                 </TouchableOpacity>

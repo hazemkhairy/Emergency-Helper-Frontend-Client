@@ -78,11 +78,12 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
                     />
                 </View>
                 <View style={styles.buttonContainer}>
-               <ReusableButton 
-               style={styles.buttonStyle}
-               Title={'Create'}
-               onPress={()=>AddElement()}
-               />
+               <ReusableButton  style={styles.buttonStyle}
+               onPress={()=>AddElement()}>
+                 <Text style={styles.addButton}>Add</Text>
+               </ReusableButton>
+              
+              
                </View>
             </View>
         </Modal>
@@ -146,7 +147,11 @@ const styles = StyleSheet.create({
     buttonStyle: {
         alignSelf: 'center',
     },
-    
+    addButton:{
+      color: "white",
+      fontSize: 18,
+      fontFamily: "Montserrat",
+    }
 })
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {

@@ -7,14 +7,15 @@ const ChatCard = ({ item }) => {
     let containerStyle = styles.container
     let itemStyle = item.senderRole=='Client' ? styles.itemOut : styles.itemIn;
     let rowStyle =item.senderRole=='Client' ? styles.rowRight:styles.rowLeft
-    var day = new Date(item.date).getDate();
 
-    var monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May','Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var day = new Date(item.date).getDate();
+    var monthNames = [ 'Jan', 'Feb', 'March', 'Apr', 'May','June',
+    'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var month =  monthNames[new Date(item.date).getMonth()];
     var hours = new Date(item.date).getHours(); 
     var min = new Date(item.date).getMinutes(); 
     var date= day +' '+ month + ' '+ hours + ':'+ min
+    
       if(item.senderRole=='Client'){
        return(
            <View>
@@ -31,11 +32,8 @@ const ChatCard = ({ item }) => {
    )
        }
     return(
-        <View>
-          <View style={{flexDirection:'row',marginTop:'1%'}}>
-             <Text style={styles.nameStyle}>{item.senderName}</Text>
-             <Text style={styles.nameStyle}>({item.senderRole})</Text>
-             </View>
+        <View> 
+             <Text style={styles.nameStyle}>{item.senderName} ({item.senderRole})</Text>
      <View style={rowStyle}> 
       <Icon name={'triangle-left'} style={styles.leftIcon} /> 
      <View style={[containerStyle, itemStyle]}>
@@ -50,17 +48,15 @@ const ChatCard = ({ item }) => {
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor:"#FFFFFF",
         borderRadius:10,
-        minWidth:'20%',
         maxWidth:'92%',
         width:'auto',
         marginTop:'2%'
     },
     itemIn: {
         borderWidth:1,
-        borderColor:'#132641',
+        borderColor:'#4C5264',
       },
       itemOut: {
         backgroundColor:'#132641',
@@ -90,7 +86,7 @@ const styles = StyleSheet.create({
       leftmessageStyle:{
         fontFamily: "Montserrat",
         fontSize: 14,
-        color:'#132641'
+        color:'#4C5264'
       },
       rightmessageStyle:{
         fontFamily: "Montserrat",
@@ -107,7 +103,7 @@ const styles = StyleSheet.create({
       },
       leftIcon:
       {
-        color:'#132641',
+        color:'#4C5264',
         fontSize:30,
         marginRight:-1,
         marginTop:'4%'
