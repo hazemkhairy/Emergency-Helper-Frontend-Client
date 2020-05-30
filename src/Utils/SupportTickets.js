@@ -39,7 +39,6 @@ return res;
 export const getTicketsMessages = async (id) => {
   let response = await backendAxios.get(`api/Account/GetTicketMsgs/${id}`)
     .then((response) => {
-      console.log(response.data.payload)
       var data=response.data.payload
       var arr = [];
       for(var item in data){

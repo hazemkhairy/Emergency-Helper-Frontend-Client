@@ -10,7 +10,7 @@ const TicketScreen = ({navigation}) => {
   const category =navigation.state.params.props.category
   const ticketID=navigation.state.params.props.id
   const description=navigation.state.params.props.description
-  console.log(ticketID)
+  
   const [messages, setMessages] = useState([]);
   const [message,setMessage]=useState('');
   const [reloading, setReloading] = useState(false);
@@ -44,8 +44,7 @@ const TicketScreen = ({navigation}) => {
     <View style={styles.container}>
       <View>
        <MainHeader headerText={category} style={{height:Dimensions.get('window').height * 0.18}} /></View>
-     {/* <Text style={{color:'#132641',textAlign:'center',marginTop:'2%',fontFamily:'Montserrat_Medium',
-      fontSize:16}}>{description}</Text> */}
+   
       
       {/* <KeyboardAwareScrollView
       style={ styles.container }
@@ -54,6 +53,8 @@ const TicketScreen = ({navigation}) => {
       //behavior="padding"
       > */}
       <View style={{height:Dimensions.get("window").height *0.64}}>
+      <Text style={{color:'#132641',textAlign:'center',marginTop:'2%',fontFamily:'Montserrat_Medium',
+      fontSize:16}}>{description}</Text>
          <FlatList
          
              behavior={'position'}
