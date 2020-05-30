@@ -1,24 +1,15 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, Dimensions, TextInput, Button, TouchableOpacity, ShadowPropTypesIOS } from "react-native";
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import Modal from "react-native-modal";
 import normalize from 'react-native-normalize';
 import MainButton from '../global/MainButton';
 import LoadingModal from '../global/LoadingModal';
-import { Entypo } from '@expo/vector-icons';
+import Icon from '@expo/vector-icons/Ionicons';
 import { cancelRequest } from '../../Utils/CancelRequest';
 
 const CancelModal = ({ modalVisible, id }) => {
 
-  //  const [feedback, setFeedback] = useState('');
-  // const [loading, setLoading] = useState();
 
-  // const onSubmit = async () => {
-  //   setLoading(true);
-  //   const r = await cancelRequest(id, feedback);
-  //   setLoading(false)
-
-
-  // }
   if (!modalVisible) return null;
   const [visible, setVisible] = useState(modalVisible);
   const [loading, setLoading] = useState(false);
@@ -35,15 +26,13 @@ const CancelModal = ({ modalVisible, id }) => {
   };
   return (
     <Modal isVisible={visible}>
-      <LoadingModal modalVisible={loading} />
-      <View style={styles.container}>
-        <TouchableOpacity onPress={() => { setVisible(false)}} style={styles.exitButton} >
-          <Entypo name="cross" size={24} color="#454F63" />
-        </TouchableOpacity>
-        <View >
+      <KeyboardAvoidingView behavior="position" enabled>
+        <LoadingModal modalVisible={loading} />
+        <View style={styles.container}>
+          <TouchableOpacity onPress={() => { setVisible(false) }} style={styles.exitButton} >
+            <Icon name="ios-close" size={25} color="#454F63" />
+          </TouchableOpacity>
           <Text style={styles.headerQ}>Are you sure you want to cancel?</Text>
-        </View>
-        <View>
           <TextInput
             style={styles.textInput}
             placeholder="Tell us the problem if it is related to us"
@@ -54,19 +43,18 @@ const CancelModal = ({ modalVisible, id }) => {
             onChangeText={(text) => { setFeedback(text) }}
           >
           </TextInput>
-
+          <Text style={styles.Note}>You might be charged the visit payment if you exceeded the minimum time for cancelling. </Text>
+          <MainButton style={styles.confirmButton} onPress={() => onSubmit()}>
+            <Text style={styles.confirmText}>Confirm</Text>
+          </MainButton>
         </View>
-        <Text style={styles.Note}>You might be charged the visit payment if you exceeded the minimum time for cancelling. </Text>
-        <MainButton style={styles.confirmButton} onPress={() => onSubmit()}>
-          <Text style={styles.confirmText}>Confirm</Text>
-        </MainButton>
-      </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    height: normalize(310),
+    height: normalize(290),
     backgroundColor: "#FFFFFF",
     borderRadius: 40,
     width: normalize(355),
@@ -75,8 +63,8 @@ const styles = StyleSheet.create({
   },
   exitButton: {
     alignSelf: 'flex-end',
-    marginRight: '7%',
-    marginTop: '3%'
+    marginRight: '10%',
+    marginTop: normalize(10)
   },
   headerQ: {
     width: normalize(200),
@@ -97,19 +85,21 @@ const styles = StyleSheet.create({
     marginTop: normalize(10),
     borderRadius: normalize(15),
     width: normalize(220),
-    height: normalize(100),
+    height: normalize(90),
     borderWidth: 1,
     borderColor: 'lightgrey',
     textAlignVertical: 'top',
     padding: 10,
+    paddingTop: 7,
     fontFamily: "Montserrat_SemiBold",
     fontSize: 12,
+    alignSelf: 'center'
 
   },
   confirmButton: {
     paddingHorizontal: normalize(30),
     paddingVertical: normalize(8),
-    top: normalize(25),
+    top: normalize(23),
   },
   confirmText: {
     color: "white",
