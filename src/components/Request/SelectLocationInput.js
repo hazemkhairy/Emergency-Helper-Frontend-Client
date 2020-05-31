@@ -2,11 +2,17 @@ import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import SelectLocationModal from './SelectLocationModal';
-const SelectLocationInput = ({ value, setValue }) => {
+const SelectLocationInput = ({ value, setValue, style }) => {
     const [nextModal, setNextModal] = useState(false);
+
+    let containerStyle = { ...styles.container };
+    if (style) {
+        containerStyle = { ...containerStyle, ...style }
+    }
+
     return <TouchableOpacity
         onPress={() => { setNextModal(true); }}
-        style={styles.container}
+        style={containerStyle}
     >
         <TextInput
             style={styles.input}
@@ -15,7 +21,7 @@ const SelectLocationInput = ({ value, setValue }) => {
             editable={false}
         />
         <TouchableOpacity
-            onPress={() => { setValue('') }}
+            onPress={() => { setValue(null) }}
             style={styles.iconsContainer}>
             <AntDesign name="close" size={16} color="black" />
         </TouchableOpacity>

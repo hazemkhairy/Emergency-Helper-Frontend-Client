@@ -7,7 +7,10 @@ import { Ionicons } from '@expo/vector-icons'
 const CategorySelect = ({ value, setValue, style }) => {
 
     const [allCategories, setAllCategories] = useState([]);
-
+    let containerStyle = { ...styles.container };
+    if (style) {
+        containerStyle = { ...containerStyle, ...style }
+    }
     useEffect(
         () => {
             const pre = async () => {
@@ -19,7 +22,7 @@ const CategorySelect = ({ value, setValue, style }) => {
         , []
     )
 
-    return <View style={styles.container}>
+    return <View style={containerStyle}>
         <RNPickerSelect
             placeholder={{ label: 'Problem Category', value: null }}
             value={value}

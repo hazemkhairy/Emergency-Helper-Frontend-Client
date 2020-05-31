@@ -11,15 +11,40 @@ const SendRequestModal = ({ close }) => {
     const [descripition, setDescripition] = useState('');
     const [category, setCategory] = useState('');
     const [location, setLocation] = useState(null);
+    const [descripitionError, setDescripitionError] = useState('');
+    const [categoryError, setCategoryError] = useState('');
+    const [locationError, setLocationError] = useState(null);
 
     const validateInput = () => {
-        return false
+        let valid = true;
+        if (descripition.trim().length == 0) {
+            setDescripitionError(true);
+            valid = false
+        }
+        else
+            setDescripitionError(false);
+        if (category == null || category.trim().length == 0) {
+            setCategoryError(true);
+            valid = false
+        }
+        else
+            setCategoryError(false);
+        if (location == null) {
+            setLocationError(true);
+            valid = false
+        }
+        else
+            setLocationError(false);
+        return valid
     }
     const sendRequest = () => {
+
+        console.log('descripition = ', descripition)
+        console.log('category = ', category)
+        console.log('location = ', location)
         if (validateInput()) {
             //createRequest(descripition,location,category)
         }
-        console.log(location)
     }
 
     const animationTiming = 1000;
@@ -29,6 +54,10 @@ const SendRequestModal = ({ close }) => {
             close();
         }, animationTiming + 100);
     }
+    let descripitionStyle = { ...styles.commonInput, ...styles.descripitionInput };
+    if (descripitionError) {
+        descripitionStyle = { ...descripitionStyle, ...styles.error }
+    }
     return (
         <Modal isVisible={innerVisibility} style={styles.modal} animationInTiming={animationTiming} animationOutTiming={animationTiming}>
             <View style={styles.container}>
@@ -36,20 +65,25 @@ const SendRequestModal = ({ close }) => {
                     <AntDesign name="down" size={24} color="black" />
                     <Text style={styles.headerText}>Enter Your Problem</Text>
                 </TouchableOpacity>
+
                 <View style={styles.inputsContainer} >
                     <TextInput
                         value={descripition}
                         onChangeText={(t) => setDescripition(t)}
                         placeholder="Enter Descripition"
                         multiline
-                        style={{ ...styles.commonInput, ...styles.descripitionInput }}
+                        style={descripitionStyle}
                     />
                     <View style={styles.inputContainer}>
+                        <CategorySelect
+                            value={category}
+                            setValue={setCategory}
+                            style={categoryError ? styles.error : null}
 
-                        <CategorySelect value={category} setValue={setCategory} />
+                        />
                     </View>
                     <View style={styles.inputContainer}>
-                        <SelectLocationInput value={location} setValue={setLocation} />
+                        <SelectLocationInput style={locationError ? styles.error : null} value={location} setValue={setLocation} />
                     </View>
                     <View style={styles.buttonContainer}>
 
@@ -128,6 +162,10 @@ const styles = StyleSheet.create({
         fontSize: 16 * (812 / Dimensions.get('screen').height),
         color: '#FFF',
         textAlignVertical: 'center'
+    },
+    error: {
+        borderColor: 'red',
+        borderWidth: 2
     }
 })
 
