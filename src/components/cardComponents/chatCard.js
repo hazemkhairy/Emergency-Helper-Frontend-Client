@@ -7,7 +7,7 @@ const ChatCard = ({ item }) => {
     let containerStyle = styles.container
     let itemStyle = item.senderRole=='Client' ? styles.itemOut : styles.itemIn;
     let rowStyle =item.senderRole=='Client' ? styles.rowRight:styles.rowLeft
-
+   
     var day = new Date(item.date).getDate();
     var monthNames = [ 'Jan', 'Feb', 'March', 'Apr', 'May','June',
     'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -27,13 +27,13 @@ const ChatCard = ({ item }) => {
     </View>
     <Icon name={'triangle-right'} style={styles.rightIcon} /> 
     </View>
-    <Text style={styles.dateText}>{date}</Text>
+    <Text style={styles.rightdateText}>{date}</Text>
     </View>
    )
        }
     return(
         <View> 
-             <Text style={styles.nameStyle}>{item.senderName} ({item.senderRole})</Text>
+             <Text style={styles.nameStyle}> {item.senderName} ({item.senderRole})</Text>
      <View style={rowStyle}> 
       <Icon name={'triangle-left'} style={styles.leftIcon} /> 
      <View style={[containerStyle, itemStyle]}>
@@ -42,7 +42,7 @@ const ChatCard = ({ item }) => {
        </View>
      </View>
      </View>
-     <Text style={styles.dateText}>{date}</Text>
+     <Text style={styles.leftdateText}>{date}</Text>
      </View>  
     )
 }
@@ -52,11 +52,10 @@ const styles = StyleSheet.create({
         borderRadius:10,
         maxWidth:'92%',
         width:'auto',
-        marginTop:'2%'
     },
     itemIn: {
         borderWidth:1,
-        borderColor:'#4C5264',
+        borderColor:'#E2E8ED',
       },
       itemOut: {
         backgroundColor:'#132641',
@@ -81,7 +80,8 @@ const styles = StyleSheet.create({
           marginLeft:'4%',
           fontFamily: "Montserrat_SemiBold",
           fontSize: 14,
-          color:'#132641'
+          color:'#132641',
+          opacity:0.6
       },
       leftmessageStyle:{
         fontFamily: "Montserrat",
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color:'#FFFFFF',
       },
-      dateText:{
+      rightdateText:{
         fontSize: 12,
         color: '#BCC5D3',
         fontFamily: 'Montserrat',
@@ -101,17 +101,26 @@ const styles = StyleSheet.create({
         marginBottom:'3%',
         alignSelf: "flex-end",
       },
+      leftdateText:{
+        fontSize: 12,
+        color: '#BCC5D3',
+        fontFamily: 'Montserrat',
+        marginLeft:'5%',
+        marginBottom:'3%',
+        alignSelf: "flex-start",
+      },
       leftIcon:
       {
-        color:'#4C5264',
+        color:'#E2E8ED',
         fontSize:30,
         marginRight:-1,
-        marginTop:'4%'
+        marginTop:'1%'
       },
       rightIcon:{
         color:'#132641',
         fontSize:30,
-        marginTop:'4%'
+        marginLeft:-1,
+        marginTop:'1%'
       }
 })
 

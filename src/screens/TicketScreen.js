@@ -1,23 +1,33 @@
 import React,{useState,useEffect} from 'react';
-import { Text, View,StyleSheet,FlatList,Dimensions,TextInput,TouchableOpacity, YellowBox,ScrollView,KeyboardAvoidingView } from 'react-native';
+import {  View,StyleSheet,FlatList,Dimensions,TextInput,TouchableOpacity,KeyboardAvoidingView } from 'react-native';
 import ChatCard from '../components/cardComponents/chatCard'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MainHeader from '../components/global/MainHeader'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 import {getTicketsMessages,addMessage} from '../Utils/SupportTickets'
 
 const TicketScreen = ({navigation}) => {
+
   const category =navigation.state.params.props.category
   const ticketID=navigation.state.params.props.id
   const description=navigation.state.params.props.description
+  const date=navigation.state.params.props.date
+ 
+  const obj=
+    {
+      _id:"1",
+      date:date,
+      message:description,
+      senderRole:"Client"
+    }
+  const pages=1
   
   const [messages, setMessages] = useState([]);
   const [message,setMessage]=useState('');
   const [reloading, setReloading] = useState(false);
   const [active, setActive] = useState(false);
-
-  YellowBox.ignoreWarnings(['VirtualizedLists should never be nested inside plain ScrollViews with the same orientation - use another VirtualizedList-backed container instead.']);
-
+  messages[0]=(obj)
+ 
   const newMessage = async () => {
    if(active==true){
       addMessage(ticketID,message).then((result) => {
@@ -27,6 +37,7 @@ const TicketScreen = ({navigation}) => {
   }
   }
   
+
   const getMessages = async () => {
     setReloading(true);
     setMessages([]);
@@ -38,30 +49,31 @@ const TicketScreen = ({navigation}) => {
   };
   useEffect(() => {
     getMessages();
+    
   }, []);
 
+ 
   return (
     <View style={styles.container}>
-      <View>
-       <MainHeader headerText={category} style={{height:Dimensions.get('window').height * 0.18}} /></View>
+      <View style={{height:Dimensions.get("window").height *0.81}}>
+       <MainHeader headerText={category} style={{height:Dimensions.get('window').height * 0.18, marginBottom:'4%'}} />
    
       
-      {/* <KeyboardAwareScrollView
-      style={ styles.container }
-      showsVerticalScrollIndicator={false}
-      //keyboardVerticalOffset={60}
-      //behavior="padding"
-      > */}
-      <View style={{height:Dimensions.get("window").height *0.64}}>
-      <Text style={{color:'#132641',textAlign:'center',marginTop:'2%',fontFamily:'Montserrat_Medium',
-      fontSize:16}}>{description}</Text>
+      
+      
          <FlatList
-         
-             behavior={'position'}
+        contentContainerStyle={{
+          flex: 1,
+          flexDirection: 'column',
+          height: '100%',
+          width: '100%'
+        }}
              refreshing={reloading}
              onRefresh={() => getMessages()}
              data={messages}
              extraScrollHeight={100}
+             onEndReached={()=>pages+1}
+             onEndReachedThreshold={0.5}
              scrollToIndex={messages.length - 1}
              initialScrollIndex={messages.length - 1}
              getItemLayout = {(data, index) => (
@@ -72,17 +84,17 @@ const TicketScreen = ({navigation}) => {
              renderItem={({ item, index }) => {
             return (
               <View >
-               <ChatCard item={item}/>
+               <ChatCard item={item} />
               </View>
             )
           }}
          />
         </View>
-        
+       
         <KeyboardAvoidingView
         behavior={'position'}
         style={styles.container}
-        keyboardVerticalOffset={65}
+        keyboardVerticalOffset={60}
         >
         <View style={styles.line}></View>
         <View style={styles.footer}>
@@ -116,7 +128,7 @@ const TicketScreen = ({navigation}) => {
     
        
         </KeyboardAvoidingView>
-       {/* </KeyboardAwareScrollView> */}
+     
         </View>
       
   );
@@ -129,6 +141,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
     flex:1,
+   
   },
   line:{
       borderWidth:1,
