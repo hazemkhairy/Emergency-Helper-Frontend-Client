@@ -32,6 +32,7 @@ const TicketScreen = ({navigation}) => {
    if(active==true){
       addMessage(ticketID,message).then((result) => {
       setMessage('')
+      setActive(false)
       getMessages()
     });
   }
