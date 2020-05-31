@@ -65,9 +65,10 @@ const SendRequestModal = ({ close, mV }) => {
                 }
             ).catch(
                 (err) => {
-                    console.log(err.response.data);
-
-                    setErrorModalMessage(err.response.data.message ? err.response.data.message : '');
+                    if (err.response.data && err.response.data.message) {
+                        console.log(err.response.data);
+                        setErrorModalMessage(err.response.data.message);
+                    }
                     setLoadingModal(false);
                     setErrorModal(true);
                 }
