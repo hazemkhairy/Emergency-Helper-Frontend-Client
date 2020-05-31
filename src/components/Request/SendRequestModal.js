@@ -9,6 +9,7 @@ import { createRequest } from '../../Utils/RequestUtils'
 import LoadingModal from '../global/LoadingModal';
 import SuccessModal from '../global/SuccessModal';
 import ErrorModal from '../global/ErrorModal';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const SendRequestModal = ({ close, mV }) => {
     const [innerVisibility, setInnerVisibility] = useState(true);
@@ -65,7 +66,8 @@ const SendRequestModal = ({ close, mV }) => {
             ).catch(
                 (err) => {
                     console.log(err.response.data);
-                    setErrorModalMessage(err.response.data.message);
+
+                    setErrorModalMessage(err.response.data.message ? err.response.data.message : '');
                     setLoadingModal(false);
                     setErrorModal(true);
                 }
@@ -97,7 +99,11 @@ const SendRequestModal = ({ close, mV }) => {
                     <Text style={styles.headerText}>Enter Your Problem</Text>
                 </TouchableOpacity>
 
-                <View style={styles.inputsContainer} >
+                <ScrollView
+                    style={styles.inputsContainer}
+                >
+
+
                     <TextInput
                         value={descripition}
                         onChangeText={(t) => setDescripition(t)}
@@ -125,7 +131,7 @@ const SendRequestModal = ({ close, mV }) => {
                             <Text style={styles.buttonText} >Make Request</Text>
                         </TouchableOpacity>
                     </View>
-                </View>
+                </ScrollView>
             </View>
         </Modal>
     )
