@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from 'react';
-import { Text,View,StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { Text,View,StyleSheet, TouchableOpacity, TextInput, Dimensions,KeyboardAvoidingView } from 'react-native';
 import Modal from 'react-native-modal';
-import LoadingModal from '../global/LoadingModal'
 import Icon from 'react-native-vector-icons/AntDesign';
 import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
@@ -9,30 +8,33 @@ import ReusableButton from '../global/reusableButton'
 import {getAllSubjects,NewSupportSupportTicket} from '../../Utils/SupportTickets'
 const AddTicketModal = ({ modalVisible,newItem }) => {
    
-    if (!modalVisible) return null;
-    const [visible, setVisible] = useState(modalVisible);
-    const [subjects,setSubjects]=useState('');
-    const [description,setDescription]=useState('');
-    const [allSubjects, setAllSubjects] = useState([]);
-    useEffect(
-      () => {
-        getAllSubjects().then(
-              (result) => {
-                setAllSubjects(result.map(o => { return { label: o.name, value: o.name } }))
-              }
-          )
-      }, [])
-     const AddElement = async () => {
-      NewSupportSupportTicket(description,subjects).then((result) => {
-        console.log(subjects)
-        setVisible(false);
-        newItem()
-      });
+  if (!modalVisible) return null;
+  const [visible, setVisible] = useState(modalVisible);
+  const [subjects,setSubjects]=useState('');
+  const [description,setDescription]=useState('');
+  const [allSubjects, setAllSubjects] = useState([]);
+  
+  useEffect(
+    () => {
+      getAllSubjects().then(
+            (result) => {
+              setAllSubjects(result.map(o => { return { label: o.name, value: o.name } }))
+            }
+        )
+    }, [])
+   const AddElement = async () => {
+    NewSupportSupportTicket(description,subjects).then((result) => {
+      newItem()
+      setVisible(false);
      
-    }
+    });
+  }
+   
     return (
         <Modal style={{ margin: 5 }} isVisible={visible} animationIn="fadeIn" animationInTiming={1000}>
-           
+            <KeyboardAvoidingView
+                  behavior={'position'}
+            >
             <View style={styles.container}>
                 <View style={styles.closeContainer}>
                     <TouchableOpacity onPress={() => setVisible(false)}>
@@ -40,8 +42,6 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
                     </TouchableOpacity>
                 </View>
                     <Text style={styles.creatText}>Create new ticket</Text>
-                    
-                    
                 <View style={styles.subjectsContainer}>
               <RNPickerSelect
                 placeholder={
@@ -79,13 +79,14 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
                 </View>
                 <View style={styles.buttonContainer}>
                <ReusableButton  style={styles.buttonStyle}
-               onPress={()=>AddElement()}>
+                  onPress={()=>AddElement()}>
                  <Text style={styles.addButton}>Add</Text>
                </ReusableButton>
               
               
                </View>
             </View>
+            </KeyboardAvoidingView>
         </Modal>
     );
 };
@@ -95,8 +96,7 @@ const styles = StyleSheet.create({
         height: Dimensions.get("window").height *0.45,
         backgroundColor: '#FFFFFF',
         borderRadius:50,
-        alignSelf:'center',
-        
+        alignSelf:'center', 
     },
     closeContainer: {
         alignSelf: 'flex-end',

@@ -2,6 +2,7 @@ import React from 'react'
 
 import { View, StyleSheet, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Octicons'
+import { TextInput } from 'react-native-gesture-handler'
 
 const ChatCard = ({ item }) => {
     let containerStyle = styles.container
@@ -15,7 +16,6 @@ const ChatCard = ({ item }) => {
     var hours = new Date(item.date).getHours(); 
     var min = new Date(item.date).getMinutes(); 
     var date= day +' '+ month + ' '+ hours + ':'+ min
-    
       if(item.senderRole=='Client'){
        return(
            <View>

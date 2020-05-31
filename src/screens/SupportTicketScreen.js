@@ -9,6 +9,7 @@ import SubHeaderText from '../components/global/SubHeaderText'
 import {getAllTickets} from '../Utils/SupportTickets'
 
 const SupportTicket = () => {
+  
   const [modalVisible, setModalVisible] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [reloading, setReloading] = useState(false);

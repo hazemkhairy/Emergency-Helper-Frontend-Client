@@ -9,8 +9,8 @@ const supportCard = ({ item }) => {
     const [active,setActive]=useState(false)
     var day = new Date(item.date).getDate();
 
-    var monthNames = [ 'Jan', 'Feb', 'Mar', 'Apr', 'May','Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var monthNames = [ 'Jan', 'Feb', 'March', 'Aprial', 'May','June',
+    'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var month =  monthNames[new Date(item.date).getMonth()];
     var date= day +' '+ month
     

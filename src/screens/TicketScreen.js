@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {  View,StyleSheet,FlatList,Dimensions,TextInput,TouchableOpacity,KeyboardAvoidingView } from 'react-native';
+import {  View,StyleSheet,FlatList,Dimensions,TextInput,TouchableOpacity,KeyboardAvoidingView,TouchableWithoutFeedback,Keyboard } from 'react-native';
 import ChatCard from '../components/cardComponents/chatCard'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MainHeader from '../components/global/MainHeader'
@@ -12,40 +12,44 @@ const TicketScreen = ({navigation}) => {
   const ticketID=navigation.state.params.props.id
   const description=navigation.state.params.props.description
   const date=navigation.state.params.props.date
- 
+  
+  console.log(ticketID)
+  
   const obj=
-    {
+  {
       _id:"1",
       date:date,
       message:description,
       senderRole:"Client"
-    }
-  const pages=1
+  }
   
   const [messages, setMessages] = useState([]);
   const [message,setMessage]=useState('');
   const [reloading, setReloading] = useState(false);
   const [active, setActive] = useState(false);
   messages[0]=(obj)
- 
+
   const newMessage = async () => {
    if(active==true){
       addMessage(ticketID,message).then((result) => {
       setMessage('')
       setActive(false)
       getMessages()
+    
     });
   }
   }
   
-
   const getMessages = async () => {
     setReloading(true);
     setMessages([]);
+    messages.length=1
     await getTicketsMessages(ticketID).then((result) => {
-      setMessages(result);
+      for(var item in result){
+         messages.push(result[item]);
+       }
+      setMessages(messages);
       setReloading(false);
-     
     });
   };
   useEffect(() => {
@@ -57,17 +61,15 @@ const TicketScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={{height:Dimensions.get("window").height *0.81}}>
+
        <MainHeader headerText={category} style={{height:Dimensions.get('window').height * 0.18, marginBottom:'4%'}} />
-   
-      
-      
       
          <FlatList
+         style={{ flexGrow: 0}}
              refreshing={reloading}
              onRefresh={() => getMessages()}
              data={messages}
              extraScrollHeight={100}
-             onEndReached={()=>pages+1}
              onEndReachedThreshold={0.5}
              scrollToIndex={messages.length - 1}
              initialScrollIndex={messages.length - 1}
@@ -93,11 +95,12 @@ const TicketScreen = ({navigation}) => {
         >
         <View style={styles.line}></View>
         <View style={styles.footer}>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
           <View style={styles.inputContainer}>
             <TextInput 
                 placeholder="Write your reply…"
                 autoCorrect={false}
-                blurOnSubmit={true}
+               
                 placeholderTextColor='#BCC5D3'
                 underlineColorAndroid='transparent'
                 onChangeText={(text) => {setMessage(text)
@@ -107,14 +110,16 @@ const TicketScreen = ({navigation}) => {
                     setActive(true)
                    
                   } else setActive(false)
-                 }
+                  }
                   }}
                 style={styles.input}
                 //returnKeyType="send"
                 value={message}
                
                 />
+               
           </View> 
+          </TouchableWithoutFeedback>
           {!active?<Icon name={'arrow-right-circle'}  color={'#BCC5D3'} size={30}/>:  
             <TouchableOpacity onPress={()=>newMessage()}>
             <Icon name={'arrow-right-circle'}  color={'#132641'} size={30}/> 
