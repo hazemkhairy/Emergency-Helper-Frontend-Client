@@ -5,7 +5,7 @@ import SendRequestModal from './SendRequestModal';
 const SendRequest = () => {
     const [modalVisiblity, setModalVisibility] = useState(false);
     if (modalVisiblity) {
-        return <SendRequestModal close={() => { setModalVisibility(false); }} />
+        return <SendRequestModal mV={modalVisiblity} close={() => { setModalVisibility(false); }} />
     } 
     return (
         <View style={styles.container}>

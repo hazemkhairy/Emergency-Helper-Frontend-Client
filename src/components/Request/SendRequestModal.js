@@ -10,7 +10,7 @@ import LoadingModal from '../global/LoadingModal';
 import SuccessModal from '../global/SuccessModal';
 import ErrorModal from '../global/ErrorModal';
 
-const SendRequestModal = ({ close }) => {
+const SendRequestModal = ({ close, mV }) => {
     const [innerVisibility, setInnerVisibility] = useState(true);
 
     const [loadingModal, setLoadingModal] = useState(false);
@@ -84,6 +84,8 @@ const SendRequestModal = ({ close }) => {
     if (descripitionError) {
         descripitionStyle = { ...descripitionStyle, ...styles.error }
     }
+    if (!mV)
+        return null;
     return (
         <Modal isVisible={innerVisibility} style={styles.modal} animationInTiming={animationTiming} animationOutTiming={animationTiming}>
             {loadingModal ? <LoadingModal modalVisible={loadingModal} /> : null}
