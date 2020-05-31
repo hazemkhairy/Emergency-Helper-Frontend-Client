@@ -6,14 +6,26 @@ import CategorySelect from './CategorySelect'
 import SelectLocationInput from './SelectLocationInput';
 import { createRequest } from '../../Utils/RequestUtils'
 
+import LoadingModal from '../global/LoadingModal';
+import SuccessModal from '../global/SuccessModal';
+import ErrorModal from '../global/ErrorModal';
+
 const SendRequestModal = ({ close }) => {
     const [innerVisibility, setInnerVisibility] = useState(true);
+
+    const [loadingModal, setLoadingModal] = useState(false);
+    const [successModal, setSuccessModal] = useState(false);
+    const [errorModal, setErrorModal] = useState(false);
+    const [errorModalMessage, setErrorModalMessage] = useState('');
+
     const [descripition, setDescripition] = useState('');
     const [category, setCategory] = useState('');
     const [location, setLocation] = useState(null);
     const [descripitionError, setDescripitionError] = useState('');
     const [categoryError, setCategoryError] = useState('');
     const [locationError, setLocationError] = useState(null);
+
+
 
     const validateInput = () => {
         let valid = true;
@@ -39,11 +51,25 @@ const SendRequestModal = ({ close }) => {
     }
     const sendRequest = () => {
 
-        console.log('descripition = ', descripition)
-        console.log('category = ', category)
-        console.log('location = ', location)
         if (validateInput()) {
-            //createRequest(descripition,location,category)
+            setLoadingModal(true);
+
+            createRequest(descripition, location.location, category).then(
+                (res) => {
+                    console.log('done');
+                    console.log(res)
+                    setLoadingModal(false);
+                    setSuccessModal(true);
+
+                }
+            ).catch(
+                (err) => {
+                    console.log(err.response.data);
+                    setErrorModalMessage(err.response.data.message);
+                    setLoadingModal(false);
+                    setErrorModal(true);
+                }
+            )
         }
     }
 
@@ -60,6 +86,9 @@ const SendRequestModal = ({ close }) => {
     }
     return (
         <Modal isVisible={innerVisibility} style={styles.modal} animationInTiming={animationTiming} animationOutTiming={animationTiming}>
+            {loadingModal ? <LoadingModal modalVisible={loadingModal} /> : null}
+            {errorModal ? <ErrorModal modalVisible={errorModal} message={errorModalMessage} closeModal={() => { setErrorModal(false) }} /> : null}
+            {successModal ? <SuccessModal modalVisible={successModal} message={'Request created'} closeModal={() => { setSuccessModal(false) }} /> : null}
             <View style={styles.container}>
                 <TouchableOpacity onPress={closeHandler} style={styles.innerContainer}>
                     <AntDesign name="down" size={24} color="black" />
