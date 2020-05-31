@@ -62,12 +62,6 @@ const TicketScreen = ({navigation}) => {
       
       
          <FlatList
-        contentContainerStyle={{
-          flex: 1,
-          flexDirection: 'column',
-          height: '100%',
-          width: '100%'
-        }}
              refreshing={reloading}
              onRefresh={() => getMessages()}
              data={messages}
