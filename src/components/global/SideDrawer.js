@@ -20,9 +20,10 @@ const SideDrawer = (props) => {
             <View style={styles.ProfileContainer}>
                 <View style={{ width: '80%', marginLeft: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
+
                         <Image source={{ uri: userData.profilePicture }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
-                            <Text style={styles.nameText}> {userData.firstName} {userData.lastName}</Text>
+                            <Text style={styles.nameText}>{userData.firstName} {userData.lastName}</Text>
                         </View>
                     </View>
                     <Text style={styles.emailText}>{userData.email}</Text>
@@ -61,13 +62,13 @@ const styles = StyleSheet.create({
         marginLeft: '7%'
     },
     img: {
-        height: '40%',
+        height: normalize(60),
         borderRadius: 45,
         width: '25%',
         marginLeft: 30,
         borderColor: 'white',
         borderWidth: 2,
-        marginTop: '40%'
+        marginTop: normalize(95)
     },
     TextContainer: {
         marginLeft: 10,
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
         fontFamily: 'Montserrat_bold',
         fontSize: normalize(24),
+        width: normalize(200)
 
     },
 
@@ -87,7 +89,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         opacity: 0.8,
         marginLeft: 50,
-        marginTop: Dimensions.get('window').height > 600 ? 20 : 15,
+        marginTop: 15,
         width: '100%'
     },
 
