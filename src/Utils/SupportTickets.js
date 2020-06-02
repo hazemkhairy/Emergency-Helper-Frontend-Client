@@ -46,7 +46,7 @@ export const getTicketsMessages = async (id) => {
       for(var item in data){
          arr.push(data[item]);
        }
-      return arr;
+      return arr.reverse();
     })
     .catch((error) => {
       return error;
