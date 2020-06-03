@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import ReusableButton from '../global/reusableButton'
-import {getAllSubjects,NewSupportSupportTicket} from '../../Utils/SupportTickets'
+import {getAllSubjects,NewSupportSupportTicket,getAllTickets} from '../../Utils/SupportTickets'
 const AddTicketModal = ({ modalVisible,newItem }) => {
    
   if (!modalVisible) return null;
@@ -13,7 +13,20 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
   const [subjects,setSubjects]=useState('');
   const [description,setDescription]=useState('');
   const [allSubjects, setAllSubjects] = useState([]);
-  
+  const [validSubjects, setvalidSubjects] = useState(false);
+  const [validDescription,setvalidDescription]=useState(false);
+  const [data,setData]=useState([])
+
+  const getTickets = async () => {
+    
+    setData([]);
+
+    await getAllTickets().then((result) => {
+      setData(result);
+     
+    });
+  };
+ 
   useEffect(
     () => {
       getAllSubjects().then(
@@ -21,13 +34,17 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
               setAllSubjects(result.map(o => { return { label: o.name, value: o.name } }))
             }
         )
+        getTickets();
     }, [])
-   const AddElement = async () => {
+   
+    
+    const AddElement = async () => {
     NewSupportSupportTicket(description,subjects).then((result) => {
       newItem()
-      setVisible(false);
-     
+      setVisible(!modalVisible);
+      getTickets()
     });
+    
   }
    
     return (
@@ -37,12 +54,12 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
             >
             <View style={styles.container}>
                 <View style={styles.closeContainer}>
-                    <TouchableOpacity onPress={() => setVisible(false)}>
+                    <TouchableOpacity onPress={() => setVisible(!modalVisible)}>
                        <Icon name={'close'} size={25} color={'#454F63'}/>
                     </TouchableOpacity>
                 </View>
                     <Text style={styles.creatText}>Create new ticket</Text>
-                <View style={styles.subjectsContainer}>
+                <View  style={validSubjects?styles.subjectsContainer:[styles.subjectsContainer,styles.errorStyle]}>
               <RNPickerSelect
                 placeholder={
                      { label: "Subject", value: "Subject" }
@@ -56,7 +73,15 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
                   },
                 }}
                 value={subjects}
-                onValueChange={(value) => setSubjects(value)}
+                onValueChange={(value) => {
+                  setSubjects(value)
+                  {
+                    if (value!='Subject') {
+                      setvalidSubjects(true)
+
+                    } else setvalidSubjects(false)
+                  }
+                }}
                 useNativeAndroidPickerStyle={false}
                 items={allSubjects}
                 Icon={() => {
@@ -72,19 +97,27 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
                         placeholderTextColor='#78849E'
                         multiline
                         value={description}
-                        style={styles.textInput}
-                        onChangeText={(text) => setDescription(text)}
-                        blurOnSubmit={true}
+                        style={validDescription?styles.textInput:[styles.textInput,styles.errorStyle]}
+                        onChangeText={(text) => {
+                          setDescription(text)
+                          {
+                            if (/\S/.test(text)) {
+                              setvalidDescription(true)
+        
+                            } else setvalidDescription(false)
+                          }
+                        }}
                     />
                 </View>
-                <View style={styles.buttonContainer}>
-               <ReusableButton  style={styles.buttonStyle}
-                  onPress={()=>AddElement()}>
-                 <Text style={styles.addButton}>Add</Text>
-               </ReusableButton>
-              
-              
+                {validDescription & validSubjects ?  
+                <ReusableButton  style={styles.buttonStyle}
+                onPress={()=>AddElement()}>
+               <Text style={styles.addButton}>Add</Text>
+               </ReusableButton>:<View style={styles.inactivebuttonStyle}> 
+               <Text style={styles.addButton}>Add</Text>
                </View>
+               }
+      
             </View>
             </KeyboardAvoidingView>
         </Modal>
@@ -118,11 +151,9 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         borderColor:'#D5D6D6',
         width:'60%',
-        //height:'15%',
         marginBottom: '5%',
         alignSelf: 'center',
         paddingHorizontal:'3%',
-        //justifyContent: 'center',
         padding:12,
     },
     textInputContainer: {
@@ -133,6 +164,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         borderRadius: 12,
+        borderColor:'#D5D6D6',
         width: '100%',
         height: '100%',
         borderWidth: 1,
@@ -141,8 +173,9 @@ const styles = StyleSheet.create({
         paddingTop:15,
         fontFamily: "Montserrat_SemiBold",
         fontSize: 14,
-        borderColor:'#D5D6D6',
-       
+    },
+    errorStyle:{
+      borderColor:'#b30000'
     },
     buttonStyle: {
         alignSelf: 'center',
@@ -151,6 +184,14 @@ const styles = StyleSheet.create({
       color: "white",
       fontSize: 18,
       fontFamily: "Montserrat",
+    },
+    inactivebuttonStyle: {
+      borderRadius: 30,
+      width: "40%",
+      backgroundColor:'#132641',
+      alignItems:'center', 
+      paddingVertical:10,
+      alignSelf: 'center',
     }
 })
 const pickerSelectStyles = StyleSheet.create({

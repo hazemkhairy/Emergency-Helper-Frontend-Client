@@ -6,6 +6,7 @@ import MainHeader from '../components/global/MainHeader'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 
 import { getTicketsMessages, addMessage } from '../Utils/SupportTickets'
+import { add } from 'react-native-reanimated';
 
 const TicketScreen = ({ navigation }) => {
 
@@ -14,8 +15,6 @@ const TicketScreen = ({ navigation }) => {
   const description = navigation.state.params.props.description
   const date = navigation.state.params.props.date
 
-
-
   const obj =
   {
     _id: "1",
@@ -23,20 +22,23 @@ const TicketScreen = ({ navigation }) => {
     message: description,
     senderRole: "Client"
   }
-
+ 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [reloading, setReloading] = useState(false);
   const [active, setActive] = useState(false);
-  messages[0] = (obj)
-
+  // messages[messages.length] = (obj)
+  
+  // if(messages.length == 0)
+  // {
+  //   addMessage(ticketID,description)
+  // }
   const newMessage = async () => {
     if (active == true) {
       addMessage(ticketID, message).then((result) => {
         setMessage('')
         setActive(false)
         getMessages()
-
       });
     }
   }
@@ -44,12 +46,12 @@ const TicketScreen = ({ navigation }) => {
   const getMessages = async () => {
     setReloading(true);
     setMessages([]);
-    messages.length = 1
+    // messages.length = 1
     await getTicketsMessages(ticketID).then((result) => {
-      for (var item in result) {
-        messages.push(result[item]);
-      }
-      setMessages(messages);
+      // for (var item in result) {
+      //   messages.push(result[item]);
+      // }
+      setMessages(result);
       setReloading(false);
     });
   };
@@ -57,17 +59,13 @@ const TicketScreen = ({ navigation }) => {
     getMessages();
 
   }, []);
-
+ 
 
   return (
     <View style={styles.container}>
       <View style={{ height: Dimensions.get("window").height * 0.81 }}>
-
         <MainHeader headerText={category} style={{ height: Dimensions.get('window').height * 0.18, marginBottom: '4%' }} />
-
-
         <View style={{ flex: 1 }}>
-
           <FlatList
             inverted
             keyboardShouldPersistTaps="handled"
@@ -75,10 +73,6 @@ const TicketScreen = ({ navigation }) => {
             refreshing={reloading}
             onRefresh={() => getMessages()}
             data={messages}
-            // extraScrollHeight={100}
-            // onEndReachedThreshold={0.5}
-            // scrollToIndex={messages.length - 1}
-            // initialScrollIndex={messages.length - 1}
             getItemLayout={(data, index) => ({
               length: 170,
               offset: 170 * index,
@@ -98,7 +92,6 @@ const TicketScreen = ({ navigation }) => {
           />
         </View>
       </View>
-
       <KeyboardAvoidingView
         behavior={'position'}
         style={styles.container}
@@ -111,7 +104,6 @@ const TicketScreen = ({ navigation }) => {
               <TextInput
                 placeholder="Write your reply…"
                 autoCorrect={false}
-
                 placeholderTextColor='#BCC5D3'
                 underlineColorAndroid='transparent'
                 onChangeText={(text) => {
@@ -124,11 +116,8 @@ const TicketScreen = ({ navigation }) => {
                   }
                 }}
                 style={styles.input}
-                //returnKeyType="send"
                 value={message}
-
               />
-
             </View>
           </TouchableWithoutFeedback>
           {!active ? <Icon name={'arrow-right-circle'} color={'#BCC5D3'} size={30} /> :
@@ -136,10 +125,7 @@ const TicketScreen = ({ navigation }) => {
               <Icon name={'arrow-right-circle'} color={'#132641'} size={30} />
             </TouchableOpacity>}
         </View>
-
-
       </KeyboardAvoidingView>
-
     </View>
 
   );
@@ -152,7 +138,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
     flex: 1,
-
   },
   line: {
     borderWidth: 1,

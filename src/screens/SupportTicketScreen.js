@@ -22,17 +22,17 @@ const SupportTicket = () => {
       setReloading(false);
     });
   };
-  const reload = () => {
-    getTickets();
-  };
-
+  const open=()=>
+  { 
+    setModalVisible(!modalVisible)
+  }
   useEffect(() => {
     getTickets();
   }, []);
 
     return (
     <View  style={styles.container}>
-         <AddModal modalVisible={modalVisible} newItem={() => reload()} 
+         <AddModal modalVisible={modalVisible} newItem={() => getTickets()} 
          />
         <MainHeader headerText='Support' name={'users'}/>
           <View style={styles.rowContainer}>
@@ -40,7 +40,7 @@ const SupportTicket = () => {
           <SubHeaderText SubHeaderText={'Tickets'}/>
           </View>
           <Button 
-          onPress={() =>setModalVisible(!modalVisible)}
+          onPress={() =>open()}
           >
             <View style={styles.buttonContainer}>
              <Icon name={'plus'} style={styles.iconStyle} />
@@ -50,6 +50,7 @@ const SupportTicket = () => {
           </View>
           <FlatList
              data={tickets}
+             extraData={tickets}
              keyExtractor={(item,index) => 'key'+index}
              showsVerticalScrollIndicator={false}
              refreshing={reloading}

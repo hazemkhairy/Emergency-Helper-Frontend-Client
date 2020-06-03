@@ -30,11 +30,10 @@ export const NewSupportSupportTicket = async (description,category) => {
   }
   )
   .then(res => {
-     
+     console.log(res.data.payload)
       return true;
   })
   .catch(err => { 
-   
     return false })
 return res;
 }

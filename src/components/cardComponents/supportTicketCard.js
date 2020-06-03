@@ -2,13 +2,15 @@ import React,{useState,useEffect} from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from 'react-navigation-hooks'
-
+import {getTicketsMessages,addMessage} from '../../Utils/SupportTickets'
 const supportCard = ({ item }) => {
     let containerStyle = styles.container
     let inlarge =styles.inlarge
     const [active,setActive]=useState(false)
     var day = new Date(item.date).getDate();
+   
 
+    
     var monthNames = [ 'Jan', 'Feb', 'March', 'Aprial', 'May','June',
     'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var month =  monthNames[new Date(item.date).getMonth()];
@@ -19,13 +21,16 @@ const supportCard = ({ item }) => {
         containerStyle={...containerStyle,...inlarge}
     }
     const { navigate } = useNavigation();
-   
+    const CreateTicket=()=>
+    {
+        navigate('TicketScreen',{props:{id:item._id,category:item.category,description:item.description,date:item.date}})
+    }
     return (
         <View style={containerStyle}>
             
             <View style={styles.buttonContainer}>
                 <View>
-                <TouchableOpacity onPress={() =>navigate('TicketScreen',{props:{id:item._id,category:item.category,description:item.description,date:item.date}})} >
+                <TouchableOpacity onPress={() =>CreateTicket()} >
                 <Text  style={styles.ticketSubject}>{item.category}</Text>
                 <Text style={styles.date}>{date}</Text>
                 </TouchableOpacity>
