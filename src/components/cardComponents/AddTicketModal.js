@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import ReusableButton from '../global/reusableButton'
-import {getAllSubjects,NewSupportSupportTicket,getAllTickets} from '../../Utils/SupportTickets'
+import {getAllSubjects,NewSupportSupportTicket,getAllTickets,addMessage} from '../../Utils/SupportTickets'
 const AddTicketModal = ({ modalVisible,newItem }) => {
    
   if (!modalVisible) return null;
@@ -20,13 +20,17 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
   const getTickets = async () => {
     
     setData([]);
-
+ 
     await getAllTickets().then((result) => {
       setData(result);
-     
+      console.log(data[data.length-1])
+      const id= data[data.length-1]._id
+      const description = data[data.length-1].description
+      addMessage(id,description)
     });
   };
- 
+  
+  
   useEffect(
     () => {
       getAllSubjects().then(
@@ -39,12 +43,11 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
    
     
     const AddElement = async () => {
-    NewSupportSupportTicket(description,subjects).then((result) => {
+     NewSupportSupportTicket(description,subjects).then((result) => {
       newItem()
       setVisible(!modalVisible);
-      getTickets()
     });
-    
+    getTickets()
   }
    
     return (
