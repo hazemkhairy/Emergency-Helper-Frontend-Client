@@ -4,20 +4,35 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const cardItem = ({ item }) => {
-    let containerStyle = styles.container
-    let inlarge =styles.inlarge
+   
     const [active,setActive]=useState(false)
-    if(active)
+  
+    var day = new Date().getDate(); 
+    var month = new Date().getMonth() + 1; 
+    var year = new Date().getFullYear(); 
+    var hours = new Date().getHours(); 
+    var min = new Date().getMinutes(); 
+    let a='PM'
+    if(hours<11)
     {
-        containerStyle={...containerStyle,...inlarge}
+        a='AM'
     }
+    if( hours > 12 )
+    {
+      hours = hours - 12;
+    }
+    if( hours == 0 )
+    {
+        hours = 12;
+    } 
+    let date= day+  '/' + month + '/' + year + ' ' + hours + ':' + min +' '+  a
     return (
-        <View  style={containerStyle}>
+        <View  style={styles.container}>
             <View style={styles.buttonContainer}>
                 <View>
-                <Text style={styles.date}>{item.date}</Text>
-                <Text style={styles.helperName}>{item.helperName}</Text>
-                <Text style={styles.categoryName}>{item.categoryName}</Text>
+                <Text style={styles.date}>{date}</Text>
+                <Text style={styles.helperName}>{item.name}</Text>
+                <Text style={styles.categoryName}>{item.category}</Text>
                 </View>
                 <TouchableOpacity onPress={()=>setActive(!active)}>
                     <Icon name={'angle-down'} color={'#78849E'} size={20}/>
@@ -34,22 +49,20 @@ const cardItem = ({ item }) => {
 const styles = StyleSheet.create({
     container: {
         width: '87%',
-        height:100,
         alignSelf:'center',
         borderRadius: 40,
         shadowOffset: {
-      width: 4,
-      height: 6,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-    elevation: 10,
-    backgroundColor: '#FFFFFF',
-        marginBottom:'2%',
-        marginTop:'2%'
-    },
-    inlarge:{
-        height:180, 
+            width: 4,
+            height: 6,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 10,
+        backgroundColor: '#FFFFFF',
+        marginBottom:'3%',
+        marginTop:'3%',
+        padding: '2%',
+        flex: 1,
     },
     date: {
         fontSize: 13,
@@ -60,6 +73,7 @@ const styles = StyleSheet.create({
     {
         fontSize: 12,
         color: '#132641',
+        opacity:0.5,
         fontFamily: 'Montserrat',
         marginTop:'2%',
     },
@@ -69,6 +83,7 @@ const styles = StyleSheet.create({
         color: '#B1B7C0',
         fontFamily: 'Montserrat',
         marginTop:'2%',
+        marginBottom:'10%'
     },
     buttonContainer:{
         flexDirection: 'row',
@@ -80,8 +95,9 @@ const styles = StyleSheet.create({
     price:{
         fontSize: 12,
         color: '#132641',
+        opacity:0.5,
         fontFamily: 'Montserrat',
-        marginRight:'8%',
+        marginRight:'10%',
         position: "absolute", 
         bottom: '10%', 
         alignSelf: "flex-end",
@@ -92,7 +108,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         marginTop:'2%',
         marginLeft:'7%',
-        marginRight:'3%'
+        marginBottom:'7%'
     }
 })
 

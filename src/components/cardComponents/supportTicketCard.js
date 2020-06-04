@@ -4,30 +4,22 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from 'react-navigation-hooks'
 import {getTicketsMessages,addMessage} from '../../Utils/SupportTickets'
 const supportCard = ({ item }) => {
-    let containerStyle = styles.container
-    let inlarge =styles.inlarge
-    const [active,setActive]=useState(false)
-    var day = new Date(item.date).getDate();
    
+    const [active,setActive]=useState(false)
 
-    
+    var day = new Date(item.date).getDate();
     var monthNames = [ 'Jan', 'Feb', 'March', 'Aprial', 'May','June',
     'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     var month =  monthNames[new Date(item.date).getMonth()];
     var date= day +' '+ month
     
-    if(active)
-    {
-        containerStyle={...containerStyle,...inlarge}
-    }
     const { navigate } = useNavigation();
     const CreateTicket=()=>
     {
         navigate('TicketScreen',{props:{id:item._id,category:item.category,description:item.description,date:item.date}})
     }
     return (
-        <View style={containerStyle}>
-            
+        <View style={styles.container}>
             <View style={styles.buttonContainer}>
                 <View>
                 <TouchableOpacity onPress={() =>CreateTicket()} >
@@ -63,8 +55,6 @@ const styles = StyleSheet.create({
         padding: '2%',
         flex: 1,
     },
-    inlarge:{
-    },
     date: {
         fontSize: 12,
         fontFamily: 'Montserrat', 
@@ -90,7 +80,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         marginTop:'2%',
         marginLeft:'7%',
-        marginRight:'3%',
         marginBottom:'5%'
     },
     

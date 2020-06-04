@@ -22,6 +22,10 @@ const SupportTicket = () => {
       setReloading(false);
     });
   };
+  const reload = () => {
+    getTickets();
+  };
+
   const open=()=>
   { 
     setModalVisible(!modalVisible)

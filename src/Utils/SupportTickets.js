@@ -13,6 +13,7 @@ export const getAllTickets = async() =>
 {
     let response = await backendAxios.get("api/Account/GetTickets")
     .then(response => {
+     
       return response.data.payload.formatedSupportTickets
     })
     .catch(error => {

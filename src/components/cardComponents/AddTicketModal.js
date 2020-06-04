@@ -16,15 +16,14 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
   const [validSubjects, setvalidSubjects] = useState(true);
   const [validDescription,setvalidDescription]=useState(true);
   const [tickets, setTickets] = useState([]);
-  const [reloading, setReloading] = useState(false);
-
+  
   const getTickets = async () => {
-    setReloading(true);
+  
     setTickets([]);
     await getAllTickets().then((result) => {
 
       setTickets(result);
-      setReloading(false);
+     
     });
   };
   useEffect(
@@ -63,11 +62,10 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
      if(validData())
      {
      NewSupportSupportTicket(description,subjects).then((result) => {
-       getTickets()
       newItem()
       setVisible(!modalVisible);
     });
-  
+     getTickets()
   }
   }
    
