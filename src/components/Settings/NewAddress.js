@@ -17,7 +17,7 @@ const NewAddress = ({ address }) => {
 const styles = StyleSheet.create({
   container: {
     width: normalize(338),
-    height: normalize(65),
+    minHeight: normalize(60),
     alignSelf: "center",
     borderRadius: 40,
     shadowOffset: {
