@@ -22,6 +22,7 @@ const SupportTicket = () => {
       setReloading(false);
     });
   };
+ 
   const open=()=>
   { 
     setModalVisible(!modalVisible)
@@ -32,7 +33,7 @@ const SupportTicket = () => {
 
     return (
     <View  style={styles.container}>
-         <AddModal modalVisible={modalVisible} newItem={() => getTickets()} 
+         <AddModal modalVisible={modalVisible}  newItem={() => getTickets()} 
          />
         <MainHeader headerText='Support' name={'users'}/>
           <View style={styles.rowContainer}>

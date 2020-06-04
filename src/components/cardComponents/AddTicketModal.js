@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import ReusableButton from '../global/reusableButton'
-import {getAllSubjects,NewSupportSupportTicket} from '../../Utils/SupportTickets'
+import {getAllSubjects,NewSupportSupportTicket,getAllTickets} from '../../Utils/SupportTickets'
 const AddTicketModal = ({ modalVisible,newItem }) => {
    
   if (!modalVisible) return null;
@@ -15,7 +15,18 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
   const [allSubjects, setAllSubjects] = useState([]);
   const [validSubjects, setvalidSubjects] = useState(true);
   const [validDescription,setvalidDescription]=useState(true);
- 
+  const [tickets, setTickets] = useState([]);
+  const [reloading, setReloading] = useState(false);
+
+  const getTickets = async () => {
+    setReloading(true);
+    setTickets([]);
+    await getAllTickets().then((result) => {
+
+      setTickets(result);
+      setReloading(false);
+    });
+  };
   useEffect(
     () => {
       getAllSubjects().then(
@@ -23,6 +34,7 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
               setAllSubjects(result.map(o => { return { label: o.name, value: o.name } }))
             }
         )
+        getTickets()
     }, []) 
     const validData=()=>
     {
@@ -51,6 +63,7 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
      if(validData())
      {
      NewSupportSupportTicket(description,subjects).then((result) => {
+       getTickets()
       newItem()
       setVisible(!modalVisible);
     });
@@ -147,6 +160,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         paddingHorizontal:'3%',
         padding:12,
+       
     },
     textInputContainer: {
         width: '60%',
@@ -184,10 +198,12 @@ const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 14,
     fontFamily: "Montserrat_SemiBold",
+    color:'#78849E'
   },
   inputAndroid: {
     fontSize: 14,
     fontFamily: "Montserrat_SemiBold",
+    color:'#78849E'
   },
 });
 export default AddTicketModal;
