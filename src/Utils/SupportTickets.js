@@ -30,7 +30,7 @@ export const NewSupportSupportTicket = async (description,category) => {
   }
   )
   .then(res => {
-    console.log('New'+res.data.message)
+   
       return true;
 
   })
