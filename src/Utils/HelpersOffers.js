@@ -4,7 +4,6 @@ export const getOffers = async () => {
     let res = await backendAxios
         .get("api/Request/ViewOffers")
         .then((res) => {
-            console.log(res)
             return (res.data.payload.offers)
         })
         .catch((error) => {

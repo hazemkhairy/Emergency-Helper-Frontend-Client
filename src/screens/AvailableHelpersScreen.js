@@ -17,60 +17,7 @@ const AvailableHelpersScreen = () => {
             setHelpersData(res);
         });
     }, []);
-    console.log('screen',helpersData)
 
-    const test = [
-        {
-            img: 'https://emergencyhelper.s3.eu-west-3.amazonaws.com/profilePictureTemplate.png',
-            name: 'Aya Eissa',
-            price: '50~100 EGP',
-            category: 'Medical',
-            skills: ' skill 1, skill 2, skill 3, skill 4  ',
-            offer: 'I will try helping you in the current problem.'
-
-
-        },
-        {
-            img: 'https://emergencyhelper.s3.eu-west-3.amazonaws.com/profilePictureTemplate.png',
-            name: 'Alaa Sadek',
-            price: '50~100 EGP',
-            category: 'Medical',
-            skills: ' skill 1, skill 2, skill 3, skill 4 ',
-            offer: 'I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you'
-
-
-        }, {
-            img: 'https://emergencyhelper.s3.eu-west-3.amazonaws.com/profilePictureTemplate.png',
-            name: 'Mai Sherif',
-            price: '50~100 EGP',
-            category: 'Medical',
-            skills: ' skill 1, skill 2, skill 3, skill 4 skill 1, skill 2, skill 3, skill 4 skill 1, skill 2, skill 3, skill 4',
-            offer: 'I will try helping you in the current problem.'
-
-
-        },
-        {
-            img: 'https://emergencyhelper.s3.eu-west-3.amazonaws.com/profilePictureTemplate.png',
-            name: 'Omar Khaled',
-            price: '50~100 EGP',
-            category: 'Medical',
-            skills: ' skill 1, skill 2, skill 3, skill 4 ',
-            offer: 'I will try helping you in the current problem.'
-
-
-        },
-        {
-            img: 'https://emergencyhelper.s3.eu-west-3.amazonaws.com/profilePictureTemplate.png',
-            name: 'Aly Mahmoud',
-            price: '50~100 EGP',
-            category: 'Medical',
-            skills: ' skill 1, skill 2, skill 3, skill 4 ',
-            offer: 'I will try helping you in the current problem.'
-
-
-        },
-
-    ]
     return (
         <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
             <MainHeader headerText={'Available Helpers'} ></MainHeader>
@@ -80,9 +27,9 @@ const AvailableHelpersScreen = () => {
                 showsVerticalScrollIndicator={false}
                 data={helpersData}
                 keyExtractor={(item, index) => index.toString()}
-                renderItem={({ item }) => ( 
-                    <HelperCard item={item}> </HelperCard>  
-                   
+                renderItem={({ item }) => (
+                    <HelperCard item={item}> </HelperCard>
+
                 )}
             />
         </View>
