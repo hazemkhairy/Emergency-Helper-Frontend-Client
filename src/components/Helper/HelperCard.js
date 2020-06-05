@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import normalize from 'react-native-normalize';
 
 const HelperCard = ({ item }) => {
+  
 
     let containerStyle = styles.container
     const [active, setActive] = useState(false)
@@ -14,12 +15,12 @@ const HelperCard = ({ item }) => {
             <View style={styles.expandButton}>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <Image source={{ uri: item.img }} style={styles.img}></Image>
+                    <Image source={{ uri: item.helperInfo.profilePicture }} style={styles.img}></Image>
                     <View style={{ marginTop: '4%' }}>
                         <View style={{ marginLeft: normalize(10) }}>
-                            <Text style={styles.name}>{item.name}</Text>
+                            <Text style={styles.name}>{item.helperInfo.name}</Text>
                             <View style={{ flexDirection: 'row' }}>
-                                <Text style={styles.price}>Price visit: {item.price}</Text>
+                                <Text style={styles.price}>Price visit: {item.offer.price.from}~{item.offer.price.to}</Text>
                                 <TouchableOpacity style={styles.buttonStyle} onPress={() => { }}>
                                     <Text style={styles.buttonText}>Select</Text>
                                 </TouchableOpacity>
@@ -37,20 +38,20 @@ const HelperCard = ({ item }) => {
                     <View style={{ flexDirection: 'row' }}>
                         <Text style={styles.category}>Category:</Text>
                         <View>
-                            <Text style={styles.categoryItem}> {item.category}</Text>
+                            <Text style={styles.categoryItem}> {item.helperInfo.category}</Text>
                         </View>
                     </View>
 
                     <View style={{ flexDirection: 'row', marginTop: '3%' }}>
-                        <Text style={styles.Skills}>Skills:</Text>
+                        <Text style={styles.Skills}>Skills: </Text>
                         <View>
-                            <Text style={styles.SkillsItem}>{item.skills}</Text>
+                            <Text style={styles.SkillsItem}>{item.helperInfo.skills}</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: '3%' }}>
                         <Text style={styles.Offer}>Offer: </Text>
                         <View>
-                            <Text style={styles.offerItem}>{item.offer}</Text>
+                            <Text style={styles.offerItem}>{item.offer.description}</Text>
                         </View>
                     </View>
                 </View>
@@ -81,7 +82,8 @@ const styles = StyleSheet.create({
         height: normalize(60),
         width: normalize(65),
         borderRadius: normalize(45),
-        marginLeft: normalize(-15)
+        marginLeft: normalize(-15),
+        // borderWidth:1
     },
     name: {
         fontSize: 16,

@@ -7,7 +7,7 @@ import LoadingModal from '../global/LoadingModal';
 import Icon from '@expo/vector-icons/Ionicons';
 import { cancelRequest } from '../../Utils/CancelRequest';
 
-const CancelModal = ({ modalVisible, id }) => {
+const CancelModal = ({ modalVisible }) => {
 
 
   if (!modalVisible) return null;
@@ -17,13 +17,17 @@ const CancelModal = ({ modalVisible, id }) => {
 
   const onSubmit = async () => {
     setLoading(true);
-    const res = await cancelRequest(id, feedback)
-    setLoading(false);
-    setVisible(false);
+    cancelRequest(feedback).then(
+      () => {
+        setLoading(false);
+        setVisible(false);
+      }
+    )
+  }
 
 
 
-  };
+
   return (
     <Modal isVisible={visible}>
       <KeyboardAvoidingView behavior="position" enabled>
