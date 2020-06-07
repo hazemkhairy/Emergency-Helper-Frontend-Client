@@ -1,11 +1,13 @@
 import { createStackNavigator } from 'react-navigation-stack'
-import Home from '../screens/Home'
 import MainScreen from '../screens/MainScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
 import AccountInfoScreen from '../screens/Settings/AccountInfoScreen';
 import ChangePasswordScreen from '../screens/Settings/ChangePasswordScreen';
 import SavedAddressesScreen from '../screens/Settings/SavedAddressesScreen';
 
+import HistoryScreen from '../screens/HistoryScreen';
+import SupportTicketScreen from '../screens/SupportTicketScreen';
+import TicketScreen from '../screens/TicketScreen'
 export default createStackNavigator(
     {
         MainScreen,
@@ -14,5 +16,8 @@ export default createStackNavigator(
         ChangePasswordScreen,
         SavedAddressesScreen,
         
+        HistoryScreen,
+        SupportTicketScreen,
+        TicketScreen
     }
 )
