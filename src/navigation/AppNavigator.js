@@ -1,23 +1,113 @@
 import { createStackNavigator } from 'react-navigation-stack'
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import Home from '../screens/Home'
 import MainScreen from '../screens/MainScreen';
-import SettingsScreen from '../screens/Settings/SettingsScreen';
-import AccountInfoScreen from '../screens/Settings/AccountInfoScreen';
-import ChangePasswordScreen from '../screens/Settings/ChangePasswordScreen';
-import SavedAddressesScreen from '../screens/Settings/SavedAddressesScreen';
-
+import SideDrawer from '../components/global/SideDrawer';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import React from 'react';
+import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import HistoryScreen from '../screens/HistoryScreen';
-import SupportTicketScreen from '../screens/SupportTicketScreen';
-import TicketScreen from '../screens/TicketScreen'
-export default createStackNavigator(
+import SupportScreen from '../screens/SupportScreen';
+import WalletScreen from '../screens/WalletScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import AboutUsScreen from '../screens/AboutUsScreen';
+import AvailableHelpersScreen from '../screens/AvailableHelpersScreen'
+import { Dimensions } from 'react-native';
+
+const ApplicationNav = createStackNavigator(
     {
-        MainScreen,
-        SettingsScreen,
-        AccountInfoScreen,
-        ChangePasswordScreen,
-        SavedAddressesScreen,
+        MainScreen: {
+            screen: MainScreen,
+
+        },
+        HistoryScreen: {
+            screen: HistoryScreen
+        },
+        SupportScreen: {
+            screen: SupportScreen
+        },
+        WalletScreen: {
+            screen: WalletScreen
+        },
+        SettingsScreen: {
+            screen: SettingsScreen
+        },
+        AboutUsScreen: {
+            screen: AboutUsScreen
+        },
+        AvailableHelpersScreen
         
-        HistoryScreen,
-        SupportTicketScreen,
-        TicketScreen
+
+
+    },
+
+);
+
+
+const MainNav = createDrawerNavigator(
+    {
+        MainScreen: {
+            screen: ApplicationNav,
+            navigationOptions: {
+                drawerLabel: 'Home',
+                drawerIcon: <Feather name="home" size={20} style={{ color: '#132641', opacity: 0.6 }}></Feather>,
+            }
+        },
+        HistoryScreen: {
+            screen: ApplicationNav,
+            navigationOptions: {
+                drawerLabel: 'History',
+                drawerIcon: <Feather name="calendar" size={20} style={{ color: '#132641', opacity: 0.8 }}></Feather>
+            }
+
+        },
+        SupportScreen: {
+            screen: ApplicationNav,
+            navigationOptions: {
+                drawerLabel: 'Support',
+                drawerIcon: <MaterialIcons name="people" size={20} style={{ color: '#132641', opacity: 0.8 }}></MaterialIcons>
+            }
+
+        },
+        WalletScreen: {
+            screen: ApplicationNav,
+            navigationOptions: {
+                drawerLabel: 'Wallet',
+                drawerIcon: <FontAwesome name="money" size={20} style={{ color: '#132641', opacity: 0.8 }}></FontAwesome>
+            }
+        },
+        SettingsScreen: {
+            screen: ApplicationNav,
+            navigationOptions: {
+                drawerLabel: 'Settings',
+                drawerIcon: <Feather name="settings" size={20} style={{ color: '#132641', opacity: 0.8 }}></Feather>
+            }
+
+        },
+        AboutUsScreen: {
+            screen: ApplicationNav,
+            navigationOptions: {
+                drawerLabel: 'About Us',
+                drawerIcon: <Feather name="info" size={20} style={{ color: '#132641', opacity: 0.8 }}></Feather>
+            }
+        }
+
+    },
+    {
+        contentComponent: props => <SideDrawer   {...props} />
+        , contentOptions: {
+            activeTintColor: '',
+            activeBackgroundColor: 'Transparent',
+            labelStyle: {
+                fontFamily: 'Montserrat',
+                fontWeight: 'normal',
+                color: '#132641',
+                marginLeft: -7,
+                fontSize: 18,
+                 marginVertical:Dimensions.get('window').height>600?18:13
+            }
+        },
+        drawerWidth: '77%'
     }
-)
+);
+export default createAppContainer(MainNav);
