@@ -12,30 +12,23 @@ const SupportTicket = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [loading, setLoading] = useState(true);
-
+ 
   const getTickets = async () => {
     setIsFetching(true);
     setTickets([]);
-    setLoading(true);
+  
     await getAllTickets().then((result) => {
       setTickets(result);
-      setLoading(false);
       setIsFetching(false);
     });
   };
-  // const reload = () => {
-  //   getTickets();
-  // };
+ 
 
   const addNewTicket = () => {
     setModalVisible(!modalVisible)
 
   };
-  const reload = () => {
-    getTickets();
-  };
-
+  
   useEffect(() => {
     getTickets();
   }, []);

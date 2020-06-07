@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import ReusableButton from '../global/reusableButton'
-import {getAllSubjects,NewSupportSupportTicket,getAllTickets} from '../../Utils/SupportTickets'
+import {getAllSubjects,NewSupportSupportTicket} from '../../Utils/SupportTickets'
 const AddTicketModal = ({ modalVisible,newItem }) => {
    
   if (!modalVisible) return null;
@@ -15,17 +15,7 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
   const [allSubjects, setAllSubjects] = useState([]);
   const [validSubjects, setvalidSubjects] = useState(true);
   const [validDescription,setvalidDescription]=useState(true);
-  const [tickets, setTickets] = useState([]);
-  
-  const getTickets = async () => {
-  
-    setTickets([]);
-    await getAllTickets().then((result) => {
-
-      setTickets(result);
-     
-    });
-  };
+ 
   useEffect(
     () => {
       getAllSubjects().then(
@@ -33,7 +23,7 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
               setAllSubjects(result.map(o => { return { label: o.name, value: o.name } }))
             }
         )
-        getTickets()
+      
     }, []) 
     const validData=()=>
     {
@@ -65,15 +55,12 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
       newItem()
       setVisible(!modalVisible);
     });
-     getTickets()
-  }
+    }
   }
    
     return (
         <Modal style={{ margin: 5 }} isVisible={visible} animationIn="fadeIn" animationInTiming={1000}>
-            <KeyboardAvoidingView
-                  behavior={'position'}
-            >
+            <KeyboardAvoidingView behavior={'position'}>
             <View style={styles.container}>
                 <View style={styles.closeContainer}>
                     <TouchableOpacity onPress={() => setVisible(!modalVisible)}>

@@ -1,22 +1,22 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from 'react-navigation-hooks'
-import {getTicketsMessages,addMessage} from '../../Utils/SupportTickets'
+
 const supportCard = ({ item }) => {
    
     const [active,setActive]=useState(false)
 
     var day = new Date(item.date).getDate();
-    var monthNames = [ 'Jan', 'Feb', 'March', 'Aprial', 'May','June',
-    'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var monthNames = [ 'January', 'February', 'March', 'April', 'May','June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
     var month =  monthNames[new Date(item.date).getMonth()];
     var date= day +' '+ month
     
     const { navigate } = useNavigation();
     const CreateTicket=()=>
     {
-        navigate('TicketScreen',{props:{id:item._id,category:item.category,description:item.description,date:item.date}})
+        navigate('TicketScreen',{props:{id:item._id,category:item.category}})
     }
     return (
         <View style={styles.container}>

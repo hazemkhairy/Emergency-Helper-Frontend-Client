@@ -10,8 +10,8 @@ const ChatCard = ({ item }) => {
     let rowStyle =item.senderRole=='Client' ? styles.rowRight:styles.rowLeft
    
     var day = new Date(item.date).getDate();
-    var monthNames = [ 'Jan', 'Feb', 'March', 'Apr', 'May','June',
-    'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var monthNames = [ 'January', 'February', 'March', 'April', 'May','June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
     var month =  monthNames[new Date(item.date).getMonth()];
     var hours = new Date(item.date).getHours(); 
     var min = new Date(item.date).getMinutes(); 
