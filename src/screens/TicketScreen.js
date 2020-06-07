@@ -12,7 +12,7 @@ const TicketScreen = ({ navigation }) => {
   const category = navigation.state.params.props.category
   const ticketID = navigation.state.params.props.id
  
-  console.log(ticketID)
+  
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [reloading, setReloading] = useState(false);
@@ -78,9 +78,8 @@ const TicketScreen = ({ navigation }) => {
       </View>
       <KeyboardAvoidingView
         behavior={'position'}
-        keyboardVerticalOffset={60}
+        keyboardVerticalOffset={Platform.OS == "ios" ?60:80}
       >
-       
         <View style={styles.footer}>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
             <View style={styles.inputContainer}>
@@ -131,14 +130,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 10,
     alignItems: 'center',
-    
+    height:60,
     bottom: 0,
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
-    height: 60
+    height: '100%'
   },
   input: {
     fontFamily: 'Montserrat',
@@ -147,7 +146,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: '10%',
     justifyContent: 'flex-end',
     bottom: 0,
-    height: 60,
+    height: '100%',
     width: '100%',
   },
 
