@@ -41,6 +41,7 @@ const PasswordstrengthBar = (props) => {
            levels={levels}
            minLength= {1}
            width={Dimensions.get("window").width * 0.72}
+           barColor={"white"}
           />
         </View>
       );
@@ -48,10 +49,12 @@ const PasswordstrengthBar = (props) => {
 const styles = StyleSheet.create({
     passwordLength: {
         width: "72%",
-        marginLeft: "5%",
+        // marginLeft: "5%",
         marginTop:'0%',
         marginBottom:'0%',
-        height:'2%'
+        height:'2%',
+        alignSelf: "center",
+        alignItems:"center",
       },
 });
 
