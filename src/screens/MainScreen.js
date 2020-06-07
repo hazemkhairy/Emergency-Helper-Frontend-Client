@@ -8,7 +8,9 @@ const MainScreen = ({ navigation }) => {
     return (
         <View style={{ flex: 1 }}>
             <Text>Main Screen</Text>
-            <Button title="LOG OUT" onPress={() => { logOut(), navigation.navigate('PreConfigScreen') }}></Button>
+          <Button title="LOG OUT" onPress={()=>{logOut(),navigation.navigate('PreConfigScreen')}}></Button>
+          <Button title="History Screen" onPress={()=>{navigation.navigate('HistoryScreen')}}></Button>
+          <Button title="Support Ticket Screen" onPress={()=>{navigation.navigate('SupportTicketScreen')}}></Button>
             <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                 <MapDisplay />
                 {/* <SendRequestModal modalVisiblity={true}/> */}
