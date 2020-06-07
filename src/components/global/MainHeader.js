@@ -37,7 +37,8 @@ const styles = StyleSheet.create({
         fontSize: normalize(40) *
             Math.min(
                 Dimensions.get("window").height / 820.0,
-                Dimensions.get("window").width / 390.0),
+                Dimensions.get("window").width / 390.0),)
+
         marginLeft: '5%',
         fontFamily: 'Montserrat_bold'
 
