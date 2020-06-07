@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   Dimensions,
+  KeyboardAvoidingView
 } from "react-native";
 import Modal from "react-native-modal";
 import LoadingModal from "../global/LoadingModal";
@@ -33,6 +34,7 @@ const AddAddressModal = ({ modalVisible, test }) => {
   return (
     <Modal isVisible={visible}>
       <LoadingModal modalVisible={loading}></LoadingModal>
+      <KeyboardAvoidingView behavior="position" enabled>
       <View style={styles.container}>
         <View style={styles.closeContainer}>
           <TouchableOpacity
@@ -74,6 +76,7 @@ const AddAddressModal = ({ modalVisible, test }) => {
           <Text style={styles.buttonText}>Add</Text>
         </TouchableOpacity>
       </View>
+      </KeyboardAvoidingView>
     </Modal>
   );
 };

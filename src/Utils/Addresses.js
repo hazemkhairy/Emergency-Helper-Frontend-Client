@@ -13,7 +13,7 @@ export const AddAddress = async (
       addressName: addressName,
       location: {
         longitude: longitude,
-        altitude: altitude
+        latitude: altitude
       }
     })
     .then((res) => {
