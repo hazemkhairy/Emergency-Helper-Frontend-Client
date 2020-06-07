@@ -10,6 +10,7 @@ const SelectLocationModal = ({ mv, close, selectLocation }) => {
 
     const [addresses, setAddresses] = useState([]);
     const [searchValue, setSearchValue] = useState('');
+    const [emptyMessage, setEmptyMessage] = useState('');
     const selectLoc = async (item) => {
         selectLocation(item);
         close();
@@ -18,10 +19,15 @@ const SelectLocationModal = ({ mv, close, selectLocation }) => {
         () => { getAddresses(); }, []
     )
     const getAddresses = async () => {
-        if (searchValue)
+        if (searchValue) {
             getAddressesByName(searchValue).then(res => setAddresses(res));
-        else
+            setEmptyMessage('Found No Search Result')
+        }
+        else {
+
+            setEmptyMessage(`You Don't have any saved places`)
             getAllSavedAddresses().then(res => setAddresses(res))
+        }
     }
     return (
         <Modal isVisible={mv} style={styles.container}>
@@ -33,7 +39,11 @@ const SelectLocationModal = ({ mv, close, selectLocation }) => {
                     <SearchTextInput close={close} search={getAddresses} value={searchValue} setValue={setSearchValue} />
                 </View>
                 <View style={styles.addressesListContainer}>
-                    <AddressesList addresses={addresses} onSelectLocation={selectLoc} />
+                    <AddressesList
+                        addresses={addresses}
+                        onSelectLocation={selectLoc}
+                        emptyMessage={emptyMessage}
+                    />
                 </View>
             </View>
         </Modal>

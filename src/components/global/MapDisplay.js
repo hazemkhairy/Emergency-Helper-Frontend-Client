@@ -8,7 +8,7 @@ const MapDisplay = () => {
     let mounted = true;
     const getUserLocation = async () => {
         const location = await getCurrentLocation()
-        if (!mounted)
+        if (!mounted || !location)
             return;
         setUserLocation(location.coords)
         setRegion({

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import PickLocationModal from './PickLocationModal'
-const AddressesList = ({ addresses, onSelectLocation }) => {
+const AddressesList = ({ addresses, onSelectLocation, emptyMessage }) => {
     const [nextModal, setNextModal] = useState(false);
     return (
         <View style={styles.container}>
@@ -20,7 +20,7 @@ const AddressesList = ({ addresses, onSelectLocation }) => {
                 ListEmptyComponent={
                     () => {
                         return <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <Text>Found no search result</Text>
+                            <Text>{emptyMessage}</Text>
                         </View>
                     }
                 }
