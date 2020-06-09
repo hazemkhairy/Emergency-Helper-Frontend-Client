@@ -33,7 +33,7 @@ const AddAddressModal = ({ modalVisible, test }) => {
     });
 
   };
- 
+
 
   return (
     <Modal isVisible={visible}>
@@ -64,10 +64,7 @@ const AddAddressModal = ({ modalVisible, test }) => {
             />
           </View>
           <View style={styles.textInputContainer}>
-            <View style={styles.inputContainer}>
-              <SelectLocationInput style={locationError ? styles.error : null} value={location} setValue={setLocation} />
-            </View>
-            <TouchableOpacity onPress={() => { setNextModal(true) }}>
+            <TouchableOpacity onPress={() => { }}>
               <Text style={styles.textInput}>Pick your location</Text>
               <Icon
                 name="right"

@@ -8,7 +8,8 @@ const CustomHeaderButton = (props) => {
       {...props}
       IconComponent={MaterialIcons}
       iconSize={23}
-     color='white'
+      
+     
     />
   );
 };

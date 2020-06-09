@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Button } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import HeaderButton from '../components/global/HeaderButton';
+import MenuHeaderButton from '../components/global/MenuHeaderButton';
 import MapDisplay from '../components/global/MapDisplay'
 import SendRequest from '../components/Request/SendRequest';
 
@@ -21,7 +21,7 @@ Main.navigationOptions = (props) => {
         headerTransparent: true,
         headerLeft: () => {
             return (
-                <HeaderButtons HeaderButtonComponent={HeaderButton}   >
+                <HeaderButtons HeaderButtonComponent={MenuHeaderButton}   >
                     <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
                 </HeaderButtons>
             )
