@@ -9,7 +9,7 @@ const HelperCard = ({ item }) => {
     let containerStyle = styles.container
     const [active, setActive] = useState(false)
     const [modalVisible, setModalVisible] = useState(false);
-    const [HelperModal, setHelperModal] = useState(false);
+     const [HelperModal, setHelperModal] = useState(false);
 
     const helper = () => {
         setHelperModal(true);
@@ -34,7 +34,7 @@ const HelperCard = ({ item }) => {
                             <Text style={styles.name}>{item.helperInfo.name}</Text>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.price}>Price visit: {item.offer.price.from}~{item.offer.price.to}</Text>
-                                <TouchableOpacity style={styles.buttonStyle} onPress={() => setModalVisible(true)}>
+                                <TouchableOpacity style={styles.buttonStyle} onPress={() => helper()}>
                                     <Text style={styles.buttonText}>Select</Text>
                                 </TouchableOpacity>
                             </View>
