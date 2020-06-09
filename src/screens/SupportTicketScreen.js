@@ -6,6 +6,8 @@ import AddModal from '../components/cardComponents/AddTicketModal'
 import Icon from 'react-native-vector-icons/Entypo';
 import MainHeader from '../components/global/MainHeader'
 import SubHeaderText from '../components/global/SubHeaderText'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../components/global/HeaderButton'
 import { getAllTickets } from '../Utils/SupportTickets'
 
 const SupportTicket = () => {
@@ -74,6 +76,26 @@ const SupportTicket = () => {
 
 
 }
+SupportTicket.navigationOptions = (props) => {
+  return {
+      title: '',
+      headerLeft: () => {
+          return (
+              <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+                  <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
+              </HeaderButtons>
+          )
+      },
+      headerStyle: {
+          shadowColor: 'transparent',
+          elevation: 0,
+          backgroundColor: '#7598BA'
+
+      },
+      headertransparent: true,
+  }
+}
+
 
 const styles = StyleSheet.create({
   container: {

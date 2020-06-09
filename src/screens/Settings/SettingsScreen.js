@@ -4,55 +4,75 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import normalize from 'react-native-normalize';
+import MainHeader from '../../components/global/MainHeader';
+import SubHeaderText from '../../components/global/SubHeaderText';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 
 const SettingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView>
-        <View style={styles.blueBackground}>
-          <Text style={styles.hText}>Settings</Text>
-        </View>
-        <View>
-          <Text style={styles.subHeader}>Settings</Text>
-          <TouchableOpacity
-            style={styles.optionsContainer}
-            onPress={() => {
-              navigation.navigate("AccountInfoScreen");
-            }}
-          >
-            <Text style={styles.settingsTXT}>Account Info</Text>
-            <Icon
-              name="ios-arrow-forward"
-              size={25}
-              style={styles.icon}
-              marginLeft="55%"
-            />
-          </TouchableOpacity>
-  
-          <TouchableOpacity style={styles.optionsContainer}
-           onPress={() => {
+
+      <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>
+        <MainHeader headerText={'Settings'} name={'cog'}></MainHeader>
+        <SubHeaderText SubHeaderText={'Settings'}></SubHeaderText>
+        <TouchableOpacity
+          style={styles.optionsContainer}
+          onPress={() => {
+            navigation.navigate("AccountInfoScreen");
+          }}
+        >
+          <Text style={styles.settingsTXT}>Account Info</Text>
+          <Icon
+            name="ios-arrow-forward"
+            size={25}
+            style={styles.icon}
+            marginLeft="55%"
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.optionsContainer}
+          onPress={() => {
             navigation.navigate("SavedAddressesScreen");
           }}>
-            <Text style={styles.settingsTXT}>Saved Addresses</Text>
-            <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
-          </TouchableOpacity>
+          <Text style={styles.settingsTXT}>Saved Addresses</Text>
+          <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
+        </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.optionsContainer}
-            onPress={() => {
-              navigation.navigate("ChangePasswordScreen");
-            }}
-          >
-            <Text style={styles.settingsTXT}>Change Password</Text>
-            <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
-          </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.optionsContainer}
+          onPress={() => {
+            navigation.navigate("ChangePasswordScreen");
+          }}
+        >
+          <Text style={styles.settingsTXT}>Change Password</Text>
+          <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
+        </TouchableOpacity>
           
-        </View>
+     
       </KeyboardAwareScrollView>
-    </View>
+    </View >
   );
 };
+SettingsScreen.navigationOptions = (props) => {
+  return {
+    title: '',
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
+        </HeaderButtons>
+      )
+    },
+    headerStyle: {
+      shadowColor: 'transparent',
+      elevation: 0,
+      backgroundColor: '#7598BA'
 
+    },
+    headertransparent: true,
+  }
+}
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",
@@ -61,11 +81,11 @@ const styles = StyleSheet.create({
   },
   hText: {
     fontSize:
-    normalize(40) *
-    Math.min(
-      Dimensions.get("window").height / 800.0,
-      Dimensions.get("window").width / 380.0
-    ),    color: "white",
+      normalize(40) *
+      Math.min(
+        Dimensions.get("window").height / 800.0,
+        Dimensions.get("window").width / 380.0
+      ), color: "white",
     fontFamily: "Montserrat_bold",
     top: normalize(90),
     alignSelf: "center",

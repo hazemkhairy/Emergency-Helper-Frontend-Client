@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
     Icon: {
         color: '#FFFFFF',
-        marginTop: '3%'
+        marginTop: '2%'
     }
 });
 

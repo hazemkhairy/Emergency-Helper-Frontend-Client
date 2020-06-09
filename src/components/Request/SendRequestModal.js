@@ -5,10 +5,10 @@ import Modal from 'react-native-modal';
 import CategorySelect from './CategorySelect'
 import SelectLocationInput from './SelectLocationInput';
 import { createRequest } from '../../Utils/RequestUtils'
-
 import LoadingModal from '../global/LoadingModal';
 import SuccessModal from '../global/SuccessModal';
 import ErrorModal from '../global/ErrorModal';
+import { useNavigation } from 'react-navigation-hooks'
 import { ScrollView } from 'react-native-gesture-handler';
 
 const SendRequestModal = ({ close, mV }) => {
@@ -50,6 +50,11 @@ const SendRequestModal = ({ close, mV }) => {
             setLocationError(false);
         return valid
     }
+
+    const { navigate } = useNavigation();
+    const nav = () => {
+        navigate('AvailableHelpersScreen');
+    }
     const sendRequest = () => {
 
         if (validateInput()) {
@@ -61,6 +66,8 @@ const SendRequestModal = ({ close, mV }) => {
                     console.log(res)
                     setLoadingModal(false);
                     setSuccessModal(true);
+                    closeHandler();
+                    nav();
 
                 }
             ).catch(

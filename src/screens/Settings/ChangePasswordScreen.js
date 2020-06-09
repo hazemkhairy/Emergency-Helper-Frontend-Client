@@ -8,6 +8,10 @@ import SettingsModal from "../../components/Settings/SettingsModal";
 import LoadingModal from "../../components/global/LoadingModal";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import normalize from 'react-native-normalize';
+import MainHeader from '../../components/global/MainHeader';
+import SubHeaderText from '../../components/global/SubHeaderText';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 
 const ChangePasswordScreen = ({ navigation }) => {
   const [oldPassword, setOldPassword] = useState("");
@@ -60,13 +64,30 @@ const ChangePasswordScreen = ({ navigation }) => {
     }
     return error;
   };
-
+  ChangePasswordScreen.navigationOptions = (props) => {
+    return {
+      title: '',
+      headerLeft: () => {
+        return (
+          <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+            <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
+          </HeaderButtons>
+        )
+      },
+      headerStyle: {
+        shadowColor: 'transparent',
+        elevation: 0,
+        backgroundColor: '#7598BA'
+  
+      },
+      headertransparent: true,
+    }
+  }
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView>
-        <View style={styles.blueBackground}>
-          <Text style={styles.hText}>Change Password</Text>
-        </View>
+      <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>
+      <MainHeader headerText={'Change Password'}></MainHeader>
+
         <LoadingModal modalVisible={loading} />
         <SettingsModal modalVisible={modalVisible} message={modalMessage} />
         <View style={styles.container}>

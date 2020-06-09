@@ -11,6 +11,8 @@ import {
 import Modal from "react-native-modal";
 import LoadingModal from "../global/LoadingModal";
 import Icon from "react-native-vector-icons/AntDesign";
+import SelectLocationInput from '../Request/SelectLocationInput';
+
 import { AddAddress } from "../../Utils/Addresses";
 
 const AddAddressModal = ({ modalVisible, test }) => {
@@ -21,6 +23,7 @@ const AddAddressModal = ({ modalVisible, test }) => {
   const [addressName, setaddressName] = useState("New Cairo");
   const [longitude, setlongitude] = useState(2.1);
   const [altitude, setaltitude] = useState(7.1);
+
   const onSubmit = async () => {
     setLoading(true);
     await AddAddress(name, addressName, longitude, altitude).then((result) => {
@@ -30,52 +33,56 @@ const AddAddressModal = ({ modalVisible, test }) => {
     });
 
   };
+ 
 
   return (
     <Modal isVisible={visible}>
       <LoadingModal modalVisible={loading}></LoadingModal>
       <KeyboardAvoidingView behavior="position" enabled>
-      <View style={styles.container}>
-        <View style={styles.closeContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              setVisible(false);
-            }}
-          >
-            <Icon name="close" size={25} style={styles.icon} marginLeft="55%" />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.headerText}>Add New Addresses</Text>
-        </View>
-        <View style={styles.textInputContainer}>
-          <TextInput
-            value={name}
-            onChangeText={(value) => {
-              setName(value);
-            }}
-            placeholder="Name"
-            placeholderTextColor="#78849E"
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.textInputContainer}>
-          <TouchableOpacity onPress={() => { }}>
-            <Text style={styles.textInput}>Pick your location</Text>
-            <Icon
-              name="right"
-              size={20}
-              color="#78849E"
-              style={styles.rightIcon}
-              marginLeft="99%"
+        <View style={styles.container}>
+          <View style={styles.closeContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                setVisible(false);
+              }}
+            >
+              <Icon name="close" size={25} style={styles.icon} marginLeft="55%" />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={styles.headerText}>Add New Addresses</Text>
+          </View>
+          <View style={styles.textInputContainer}>
+            <TextInput
+              value={name}
+              onChangeText={(value) => {
+                setName(value);
+              }}
+              placeholder="Name"
+              placeholderTextColor="#78849E"
+              style={styles.textInput}
             />
+          </View>
+          <View style={styles.textInputContainer}>
+            <View style={styles.inputContainer}>
+              <SelectLocationInput style={locationError ? styles.error : null} value={location} setValue={setLocation} />
+            </View>
+            <TouchableOpacity onPress={() => { setNextModal(true) }}>
+              <Text style={styles.textInput}>Pick your location</Text>
+              <Icon
+                name="right"
+                size={20}
+                color="#78849E"
+                style={styles.rightIcon}
+                marginLeft="99%"
+              />
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity onPress={() => onSubmit()} style={styles.addBTN}>
+            <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>
         </View>
-
-        <TouchableOpacity onPress={() => onSubmit()} style={styles.addBTN}>
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableOpacity>
-      </View>
       </KeyboardAvoidingView>
     </Modal>
   );

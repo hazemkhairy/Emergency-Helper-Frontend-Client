@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack'
-import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createAppContainer } from "react-navigation";
 import Home from '../screens/Home'
 import MainScreen from '../screens/MainScreen';
 import SideDrawer from '../components/global/SideDrawer';
@@ -7,24 +7,28 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import React from 'react';
 import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import HistoryScreen from '../screens/HistoryScreen';
-import SupportScreen from '../screens/SupportScreen';
 import WalletScreen from '../screens/WalletScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import SettingsScreen from '../screens/Settings/SettingsScreen';
 import AboutUsScreen from '../screens/AboutUsScreen';
 import AvailableHelpersScreen from '../screens/AvailableHelpersScreen'
+import SupportTicketScreen from '../screens/SupportTicketScreen'
+import SavedAddressesScreen from '../screens/Settings/SavedAddressesScreen'
+import AccountInfoScreen from '../screens/Settings/AccountInfoScreen'
+import ChangePasswordScreen from '../screens/Settings/ChangePasswordScreen'
+import TicketScreen from '../screens/TicketScreen'
+import Main from '../screens/Main';
 import { Dimensions } from 'react-native';
 
 const ApplicationNav = createStackNavigator(
     {
-        MainScreen: {
-            screen: MainScreen,
-
+        Main: {
+            screen: Main
         },
         HistoryScreen: {
             screen: HistoryScreen
         },
-        SupportScreen: {
-            screen: SupportScreen
+        SupportTicketScreen: {
+            screen: SupportTicketScreen
         },
         WalletScreen: {
             screen: WalletScreen
@@ -35,23 +39,29 @@ const ApplicationNav = createStackNavigator(
         AboutUsScreen: {
             screen: AboutUsScreen
         },
-        AvailableHelpersScreen
-        
+        AvailableHelpersScreen,
+        SavedAddressesScreen,
+        AccountInfoScreen,
+        ChangePasswordScreen,
+        TicketScreen
 
 
     },
+
 
 );
 
 
 const MainNav = createDrawerNavigator(
     {
-        MainScreen: {
+        Main: {
             screen: ApplicationNav,
             navigationOptions: {
                 drawerLabel: 'Home',
-                drawerIcon: <Feather name="home" size={20} style={{ color: '#132641', opacity: 0.6 }}></Feather>,
-            }
+                drawerIcon: <Feather name="home" size={20} style={{ color: '#132641', opacity: 0.8 }}></Feather>,
+
+            },
+
         },
         HistoryScreen: {
             screen: ApplicationNav,
@@ -61,7 +71,7 @@ const MainNav = createDrawerNavigator(
             }
 
         },
-        SupportScreen: {
+        SupportTicketScreen: {
             screen: ApplicationNav,
             navigationOptions: {
                 drawerLabel: 'Support',
@@ -93,6 +103,7 @@ const MainNav = createDrawerNavigator(
         }
 
     },
+
     {
         contentComponent: props => <SideDrawer   {...props} />
         , contentOptions: {
@@ -104,7 +115,7 @@ const MainNav = createDrawerNavigator(
                 color: '#132641',
                 marginLeft: -7,
                 fontSize: 18,
-                 marginVertical:Dimensions.get('window').height>600?18:13
+                marginVertical: Dimensions.get('window').height > 600 ? 18 : 13
             }
         },
         drawerWidth: '77%'

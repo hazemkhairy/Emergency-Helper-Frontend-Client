@@ -2,16 +2,29 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import normalize from 'react-native-normalize';
-
+import HelperModal from '../Request/HelperModal'
 const HelperCard = ({ item }) => {
-  
+
 
     let containerStyle = styles.container
     const [active, setActive] = useState(false)
+    const [modalVisible, setModalVisible] = useState(false);
+    const [HelperModal, setHelperModal] = useState(false);
+
+    const helper = () => {
+        setHelperModal(true);
+    };
+    const closeHelperModal = () => {
+        setHelperModal(false);
+    };
 
     return (
         <View style={containerStyle}>
-
+            <HelperModal
+                modalVisible={HelperModal}
+                close={() => closeHelperModal()}
+            />
+          
             <View style={styles.expandButton}>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -21,7 +34,7 @@ const HelperCard = ({ item }) => {
                             <Text style={styles.name}>{item.helperInfo.name}</Text>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.price}>Price visit: {item.offer.price.from}~{item.offer.price.to}</Text>
-                                <TouchableOpacity style={styles.buttonStyle} onPress={() => { }}>
+                                <TouchableOpacity style={styles.buttonStyle} onPress={() => setModalVisible(true)}>
                                     <Text style={styles.buttonText}>Select</Text>
                                 </TouchableOpacity>
                             </View>

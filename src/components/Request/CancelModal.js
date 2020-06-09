@@ -7,11 +7,11 @@ import LoadingModal from '../global/LoadingModal';
 import Icon from '@expo/vector-icons/Ionicons';
 import { cancelRequest } from '../../Utils/CancelRequest';
 
-const CancelModal = ({ modalVisible }) => {
+const CancelModal = ({ CancelModalVisble }) => {
 
 
-  if (!modalVisible) return null;
-  const [visible, setVisible] = useState(modalVisible);
+  if (!CancelModalVisble) return null;
+  const [visible, setVisible] = useState(CancelModalVisble);
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
 

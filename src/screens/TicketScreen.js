@@ -3,6 +3,8 @@ import { View, StyleSheet, FlatList, Dimensions, TextInput, TouchableOpacity, Ke
 import ChatCard from '../components/cardComponents/chatCard'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import MainHeader from '../components/global/MainHeader'
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../components/global/HeaderButton'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import { getTicketsMessages, addMessage } from '../Utils/SupportTickets'
 
@@ -48,7 +50,7 @@ const TicketScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={{ height: Dimensions.get('window').height<600?Dimensions.get("window").height * 0.75:Dimensions.get("window").height * 0.81 }}>
-        <MainHeader headerText={category} style={{ height: Dimensions.get('window').height * 0.18, marginBottom: '4%' }} />
+        <MainHeader headerText={category} style={{ height: Dimensions.get('window').height * 0.18, marginBottom: '2%' }} />
         <View style={{ flex: 1 }}>
           <FlatList
             inverted
@@ -113,6 +115,25 @@ const TicketScreen = ({ navigation }) => {
   );
 
 
+}
+TicketScreen.navigationOptions = (props) => {
+  return {
+    title: '',
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
+        </HeaderButtons>
+      )
+    },
+    headerStyle: {
+      shadowColor: 'transparent',
+      elevation: 0,
+      backgroundColor: '#7598BA'
+
+    },
+    headertransparent: true,
+  }
 }
 const styles = StyleSheet.create({
   container: {

@@ -12,6 +12,10 @@ import Icon from "react-native-vector-icons/Ionicons";
 import AddAddressModal from "../../components/Settings/AddAddressModal";
 import { getSavedAddresses } from "../../Utils/Addresses";
 import normalize from "react-native-normalize";
+import MainHeader from '../../components/global/MainHeader';
+import SubHeaderText from '../../components/global/SubHeaderText';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 
 const SavedAddresses = ({ navigation }) => {
   const [newAddressModal, setNewAddressModal] = useState(false);
@@ -43,11 +47,9 @@ const SavedAddresses = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <AddAddressModal modalVisible={newAddressModal} test={() => reload()} />
 
-      <View style={styles.blueBackground}>
-        <Text style={styles.hText}>Saved Addresses</Text>
-      </View>
+      <AddAddressModal modalVisible={newAddressModal} test={() => reload()} />
+      <MainHeader headerText={'Saved Addresses'}></MainHeader>
 
       <View style={styles.btnContainer}>
         <Text style={styles.subHeader}>Addresses</Text>
@@ -73,11 +75,30 @@ const SavedAddresses = ({ navigation }) => {
           )}
         />
       ) : (
-        <Text style={styles.noAddressesContainer}> No saved addresses</Text>
-      )}
+          <Text style={styles.noAddressesContainer}> No saved addresses</Text>
+        )}
     </View>
   );
 };
+SavedAddresses.navigationOptions = (props) => {
+  return {
+    title: '',
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
+        </HeaderButtons>
+      )
+    },
+    headerStyle: {
+      shadowColor: 'transparent',
+      elevation: 0,
+      backgroundColor: '#7598BA'
+
+    },
+    headertransparent: true,
+  }
+}
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",
@@ -130,7 +151,7 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     flexDirection: "row",
-    marginLeft: "7%",
+    marginLeft: "11%",
   },
   btnCon: {
     justifyContent: "center",

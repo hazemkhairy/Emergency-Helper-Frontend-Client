@@ -18,6 +18,10 @@ import PhotoPicker from "../../components/global/PhotoPicker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import normalize from 'react-native-normalize';
+import MainHeader from '../../components/global/MainHeader';
+import SubHeaderText from '../../components/global/SubHeaderText';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../../components/global/HeaderButton'
 
 const AccountInfoScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
@@ -147,10 +151,8 @@ const AccountInfoScreen = ({ navigation }) => {
   };
   return (
     <View style={styles.container}>
-      <KeyboardAwareScrollView>
-        <View style={styles.blueBackground}>
-          <Text style={styles.hText}>Account Info</Text>
-        </View>
+      <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>
+      <MainHeader headerText={'Account Info'}></MainHeader>
         <LoadingModal modalVisible={loading} />
         <SettingsModal
           modalVisible={modalVisible}
@@ -252,7 +254,25 @@ const AccountInfoScreen = ({ navigation }) => {
     </View>
   );
 };
+AccountInfoScreen.navigationOptions = (props) => {
+  return {
+    title: '',
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
+        </HeaderButtons>
+      )
+    },
+    headerStyle: {
+      shadowColor: 'transparent',
+      elevation: 0,
+      backgroundColor: '#7598BA'
 
+    },
+    headertransparent: true,
+  }
+}
 const styles = StyleSheet.create({
   blueBackground: {
     backgroundColor: "#7598BA",

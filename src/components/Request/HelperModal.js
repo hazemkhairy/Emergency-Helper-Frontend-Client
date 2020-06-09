@@ -14,11 +14,13 @@ import normalize from "react-native-normalize";
 import Icon from "react-native-vector-icons/Ionicons";
 import LoadingModal from "../global/LoadingModal";
 
+
 const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
   if (!modalVisible) return null;
 
   const [helperInfo, setHelperInfo] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [cancelModal, setCancelModal] = useState(false)
 
   useEffect(() => {
     setHelperInfo({
@@ -38,12 +40,14 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
     close();
   };
   const onCancel = () => {
-    close();
+    // close();
+    setCancelModal(true)
   };
   header = "";
   return (
     <Modal isVisible={modalVisible}>
       <LoadingModal modalVisible={loading} />
+
       <View style={styles.container}>
         {header != "" ? <Text style={styles.header}>{header}</Text> : null}
         <View style={styles.centerContainer}>
