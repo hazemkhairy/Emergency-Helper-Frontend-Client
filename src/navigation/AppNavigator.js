@@ -105,7 +105,7 @@ const MainNav = createDrawerNavigator(
     },
 
     {
-        contentComponent: props => <SideDrawer   {...props} />
+        contentComponent: props => <SideDrawer   {...props} onItemPress={({ route, focused }) => { props.navigation.navigate(route) }} />
         , contentOptions: {
             activeTintColor: '',
             activeBackgroundColor: 'Transparent',
