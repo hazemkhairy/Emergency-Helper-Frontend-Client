@@ -66,8 +66,8 @@ const SendRequestModal = ({ close, mV }) => {
                     console.log(res)
                     setLoadingModal(false);
                     setSuccessModal(true);
-                    closeHandler();
-                    nav();
+                   
+                   
 
                 }
             ).catch(
@@ -100,7 +100,7 @@ const SendRequestModal = ({ close, mV }) => {
         <Modal isVisible={innerVisibility} style={styles.modal} animationInTiming={animationTiming} animationOutTiming={animationTiming}>
             {loadingModal ? <LoadingModal modalVisible={loadingModal} /> : null}
             {errorModal ? <ErrorModal modalVisible={errorModal} message={errorModalMessage} closeModal={() => { setErrorModal(false) }} /> : null}
-            {successModal ? <SuccessModal modalVisible={successModal} message={'Request created'} closeModal={() => { setSuccessModal(false) }} /> : null}
+            {successModal ? <SuccessModal modalVisible={successModal} message={'Request created'} closeModal={() => { setSuccessModal(false),closeHandler(),nav() }} /> : null}
             <View style={styles.container}>
                 <TouchableOpacity onPress={closeHandler} style={styles.innerContainer}>
                     <AntDesign name="down" size={24} color="black" />
