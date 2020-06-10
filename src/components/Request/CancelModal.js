@@ -7,11 +7,10 @@ import LoadingModal from '../global/LoadingModal';
 import Icon from '@expo/vector-icons/Ionicons';
 import { cancelRequest } from '../../Utils/CancelRequest';
 
-const CancelModal = ({ CancelModalVisble }) => {
+const CancelModal = ({ CancelModalVisble, close }) => {
 
 
   if (!CancelModalVisble) return null;
-  const [visible, setVisible] = useState(CancelModalVisble);
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
 
@@ -20,7 +19,7 @@ const CancelModal = ({ CancelModalVisble }) => {
     cancelRequest(feedback).then(
       () => {
         setLoading(false);
-        setVisible(false);
+        close();
       }
     )
   }
@@ -29,11 +28,11 @@ const CancelModal = ({ CancelModalVisble }) => {
 
 
   return (
-    <Modal isVisible={visible}>
+    <Modal isVisible={CancelModalVisble}>
       <KeyboardAvoidingView behavior="position" enabled>
         <LoadingModal modalVisible={loading} />
         <View style={styles.container}>
-          <TouchableOpacity onPress={() => { setVisible(false) }} style={styles.exitButton} >
+          <TouchableOpacity onPress={() => { close() }} style={styles.exitButton} >
             <Icon name="ios-close" size={25} color="#454F63" />
           </TouchableOpacity>
           <Text style={styles.headerQ}>Are you sure you want to cancel?</Text>

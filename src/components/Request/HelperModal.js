@@ -13,14 +13,14 @@ import MainButton from "../global/MainButton";
 import normalize from "react-native-normalize";
 import Icon from "react-native-vector-icons/Ionicons";
 import LoadingModal from "../global/LoadingModal";
-
+import CancelModal from "../Request/CancelModal";
 
 const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
   if (!modalVisible) return null;
 
   const [helperInfo, setHelperInfo] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [cancelModal, setCancelModal] = useState(false)
+  const [cancelModal, setCancelModal] = useState(false);
 
   useEffect(() => {
     setHelperInfo({
@@ -41,13 +41,16 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
   };
   const onCancel = () => {
     close();
-    setCancelModal(true)
+    setCancelModal(true);
   };
   header = "";
   return (
     <Modal isVisible={modalVisible}>
       <LoadingModal modalVisible={loading} />
-
+      <CancelModal
+        CancelModalVisble={cancelModal}
+        close={() => setCancelModal(false)}
+      />
       <View style={styles.container}>
         {header != "" ? <Text style={styles.header}>{header}</Text> : null}
         <View style={styles.centerContainer}>
@@ -73,7 +76,11 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
               <Text style={styles.number}>{helperInfo.number}</Text>
             </View>
             <TouchableOpacity>
-              <Icon name="ios-call" style={styles.callIcon} size={normalize(25)} />
+              <Icon
+                name="ios-call"
+                style={styles.callIcon}
+                size={normalize(25)}
+              />
             </TouchableOpacity>
           </View>
           <View style={styles.chatBTNContainer}>
@@ -81,7 +88,6 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
               <Text style={styles.chatBTNtxt}>Chat</Text>
             </MainButton>
           </View>
-
         </View>
         <View style={styles.infoContainer}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -111,14 +117,11 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
             </View>
           </ScrollView>
         </View>
-        <TouchableOpacity onPress={() => onCancel()}
-          style={
-            styles.CancelBTN
-          } >
+        <TouchableOpacity onPress={() => onCancel()} style={styles.CancelBTN}>
           <Text style={styles.cancelText}>Cancel Request </Text>
         </TouchableOpacity>
       </View>
-    </Modal >
+    </Modal>
   );
 };
 const styles = StyleSheet.create({
@@ -126,7 +129,7 @@ const styles = StyleSheet.create({
     height: normalize(280),
     backgroundColor: "white",
     borderRadius: 40,
-    width: '105%',
+    width: "105%",
     alignItems: "center",
     alignSelf: "center",
     overflow: "hidden",
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
     color: "#132641",
     fontFamily: "Montserrat_bold",
     top: normalize(15),
-    marginBottom: '10%',
+    marginBottom: "10%",
   },
   closeIcon: {
     color: "#454F63",
@@ -204,7 +207,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: normalize(10),
     paddingVertical: "5.5%",
     width: "65%",
-
   },
   chatBTNtxt: {
     color: "white",
