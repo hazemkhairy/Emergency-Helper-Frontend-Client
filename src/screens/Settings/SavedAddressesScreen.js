@@ -35,20 +35,21 @@ const SavedAddresses = ({ navigation }) => {
   };
 
   const addNewAddress = () => {
-    setNewAddressModal(!newAddressModal);
+    setNewAddressModal(true);
+  };
+  const closeAddNewAddress = () => {
+    setNewAddressModal(false);
   };
   const reload = () => {
     loadSavedAddresses();
   };
-
   useEffect(() => {
     loadSavedAddresses();
   }, []);
-
   return (
     <View style={styles.container}>
 
-      <AddAddressModal modalVisible={newAddressModal} test={() => reload()} />
+      <AddAddressModal modalVisible={newAddressModal} reload={() => reload()} close={() => closeAddNewAddress()} />
       <MainHeader headerText={'Saved Addresses'}></MainHeader>
 
       <View style={styles.btnContainer}>
@@ -86,7 +87,7 @@ SavedAddresses.navigationOptions = (props) => {
     headerLeft: () => {
       return (
         <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
         </HeaderButtons>
       )
     },

@@ -11,39 +11,35 @@ import {
 import Modal from "react-native-modal";
 import LoadingModal from "../global/LoadingModal";
 import Icon from "react-native-vector-icons/AntDesign";
-import SelectLocationInput from '../Request/SelectLocationInput';
+import SelectLocationModal from '../Request/SelectLocationModal';
 
 import { AddAddress } from "../../Utils/Addresses";
 
-const AddAddressModal = ({ modalVisible, test }) => {
+const AddAddressModal = ({ modalVisible, close, reload }) => {
   if (!modalVisible) return null;
-  const [visible, setVisible] = useState(modalVisible);
   const [loading, setLoading] = useState(false);
+  const [nextModal, setNextModal] = useState(false);
+  const [pickedLocation, setPickedLocation] = useState("");
   const [name, setName] = useState("");
-  const [addressName, setaddressName] = useState("New Cairo");
-  const [longitude, setlongitude] = useState(2.1);
-  const [altitude, setaltitude] = useState(7.1);
-
   const onSubmit = async () => {
     setLoading(true);
-    await AddAddress(name, addressName, longitude, altitude).then((result) => {
+    await AddAddress(name, pickedLocation.name, pickedLocation.location.longitude, pickedLocation.location.latitude).then((result) => {
       setLoading(false);
-      setVisible(false);
-      test();
+      reload();
+      close();
     });
 
   };
 
-
   return (
-    <Modal isVisible={visible}>
+    <Modal isVisible={modalVisible}>
       <LoadingModal modalVisible={loading}></LoadingModal>
       <KeyboardAvoidingView behavior="position" enabled>
         <View style={styles.container}>
           <View style={styles.closeContainer}>
             <TouchableOpacity
               onPress={() => {
-                setVisible(false);
+                close();
               }}
             >
               <Icon name="close" size={25} style={styles.icon} marginLeft="55%" />
@@ -64,8 +60,9 @@ const AddAddressModal = ({ modalVisible, test }) => {
             />
           </View>
           <View style={styles.textInputContainer}>
-            <TouchableOpacity onPress={() => { }}>
-              <Text style={styles.textInput}>Pick your location</Text>
+            <TouchableOpacity onPress={() => { setNextModal(true) }}>
+            <Text style={styles.textInput}>{pickedLocation.name?pickedLocation.name:'Pick your location'}</Text>
+
               <Icon
                 name="right"
                 size={20}
@@ -73,6 +70,8 @@ const AddAddressModal = ({ modalVisible, test }) => {
                 style={styles.rightIcon}
                 marginLeft="99%"
               />
+              {nextModal ?
+                <SelectLocationModal selectLocation={setPickedLocation} mv={nextModal} close={() => { setNextModal(false) }} /> : null}
             </TouchableOpacity>
           </View>
 

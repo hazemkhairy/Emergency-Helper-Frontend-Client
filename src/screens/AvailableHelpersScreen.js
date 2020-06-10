@@ -15,7 +15,7 @@ const AvailableHelpersScreen = () => {
     const [helpersData, setHelpersData] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
     const [loading, setLoading] = useState(true);
-    // const [helperModal, setHelperModal] = useState(false);
+    const [helperModal, setHelperModal] = useState(false);
 
 
     const loadHelpers = async () => {
@@ -33,20 +33,20 @@ const AvailableHelpersScreen = () => {
         loadHelpers();
     }, []);
 
-    // const helper = () => {
-    //     setHelperModal(true);
-    // };
-    // const closeHelperModal = () => {
-    //     setHelperModal(false);
-    // };
+    const helper = () => {
+        setHelperModal(true);
+    };
+    const closeHelperModal = () => {
+        setHelperModal(false);
+    };
    
 
     return (
         <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-             {/* <HelperModal
+             <HelperModal
                 modalVisible={helperModal}
                 close={() => closeHelperModal()}
-            /> */}
+            />
             <MainHeader headerText={'Available Helpers'} ></MainHeader>
             <SubHeaderText SubHeaderText={'Helpers'}></SubHeaderText>
             <FlatList

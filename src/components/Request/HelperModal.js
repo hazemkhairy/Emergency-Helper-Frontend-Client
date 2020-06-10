@@ -40,7 +40,7 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
     close();
   };
   const onCancel = () => {
-    // close();
+    close();
     setCancelModal(true)
   };
   header = "";
