@@ -29,15 +29,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row-reverse',
         justifyContent: 'center',
         alignSelf: 'center',
-        marginTop: '20%',
+        marginTop: '25%',
 
     },
     text: {
         color: 'white',
         fontSize: normalize(40) *
             Math.min(
-                Dimensions.get("window").height / 820.0,
-                Dimensions.get("window").width / 390.0
+                Dimensions.get("window").height / 900.0,
+                Dimensions.get("window").width / 500.0
             ),
         marginLeft: '5%',
         fontFamily: 'Montserrat_bold'
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 
     Icon: {
         color: '#FFFFFF',
-        marginTop: '2%'
+        marginTop: '3%'
     }
 });
 
