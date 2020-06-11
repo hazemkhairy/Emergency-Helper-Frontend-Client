@@ -79,20 +79,15 @@ const SupportTicket = () => {
 SupportTicket.navigationOptions = (props) => {
   return {
       title: '',
+      headerTransparent: true,
       headerLeft: () => {
           return (
-              <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+              <HeaderButtons HeaderButtonComponent={HeaderButton}   >
                   <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
               </HeaderButtons>
           )
       },
-      headerStyle: {
-          shadowColor: 'transparent',
-          elevation: 0,
-          backgroundColor: '#7598BA'
 
-      },
-      headertransparent: true,
   }
 }
 

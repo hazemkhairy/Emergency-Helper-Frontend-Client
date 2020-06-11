@@ -22,14 +22,14 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         backgroundColor: '#7598BA',
-        height: Dimensions.get('window').height * 0.23,
+        height: Dimensions.get('window').height * 0.28,
         borderBottomLeftRadius: 70
     },
     Header: {
         flexDirection: 'row-reverse',
         justifyContent: 'center',
         alignSelf: 'center',
-        marginTop: '7%',
+        marginTop: '20%',
 
     },
     text: {

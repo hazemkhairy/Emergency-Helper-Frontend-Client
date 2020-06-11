@@ -254,23 +254,19 @@ const AccountInfoScreen = ({ navigation }) => {
     </View>
   );
 };
+
 AccountInfoScreen.navigationOptions = (props) => {
   return {
-    title: '',
-    headerLeft: () => {
-      return (
-        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
-        </HeaderButtons>
-      )
-    },
-    headerStyle: {
-      shadowColor: 'transparent',
-      elevation: 0,
-      backgroundColor: '#7598BA'
+      title: '',
+      headerTransparent: true,
+      headerLeft: () => {
+          return (
+            <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+                      <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
+                    </HeaderButtons>
+          )
+      },
 
-    },
-    headertransparent: true,
   }
 }
 const styles = StyleSheet.create({

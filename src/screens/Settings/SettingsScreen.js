@@ -56,21 +56,16 @@ const SettingsScreen = ({ navigation }) => {
 };
 SettingsScreen.navigationOptions = (props) => {
   return {
-    title: '',
-    headerLeft: () => {
-      return (
-        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-          <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
-        </HeaderButtons>
-      )
-    },
-    headerStyle: {
-      shadowColor: 'transparent',
-      elevation: 0,
-      backgroundColor: '#7598BA'
+      title: '',
+      headerTransparent: true,
+      headerLeft: () => {
+          return (
+              <HeaderButtons HeaderButtonComponent={HeaderButton}   >
+                  <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
+              </HeaderButtons>
+          )
+      },
 
-    },
-    headertransparent: true,
   }
 }
 const styles = StyleSheet.create({

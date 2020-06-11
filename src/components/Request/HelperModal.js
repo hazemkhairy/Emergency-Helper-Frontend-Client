@@ -15,18 +15,18 @@ import Icon from "react-native-vector-icons/Ionicons";
 import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
 
-const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
+const HelperModal = ({ modalVisible, helprInformation, close, header, navigation }) => {
   if (!modalVisible) return null;
 
   const [helperInfo, setHelperInfo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [cancelModal, setCancelModal] = useState(false);
 
+
   useEffect(() => {
     setHelperInfo({
-      image:
-        "https://raw.githubusercontent.com/AboutReact/sampleresource/master/old_logo.png",
-      name: "Alaa Sadek",
+      image: profilepicture,
+      name: name,
       number: "01116489276",
       price: "50~100 EGP",
       category: "Medical",
@@ -40,9 +40,9 @@ const HelperModal = ({ modalVisible, helprInformation, close, header }) => {
     close();
   };
   const onCancel = () => {
-    close();
     setCancelModal(true);
   };
+
   header = "";
   return (
     <Modal isVisible={modalVisible}>

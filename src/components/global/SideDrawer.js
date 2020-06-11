@@ -15,12 +15,12 @@ const SideDrawer = (props) => {
         });
     }, []);
 
+
     return (
         <View>
             <View style={styles.ProfileContainer}>
                 <View style={{ width: '80%', marginLeft: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
-
                         <Image source={{ uri: userData.profilePicture }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
                             <Text style={styles.nameText}>{userData.firstName} {userData.lastName}</Text>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     ProfileContainer: {
         width: '100%',
         backgroundColor: '#7598BA',
-        height: Dimensions.get('window').height * 0.33,
+        height: Dimensions.get('window').height * 0.28,
         borderBottomLeftRadius: 70,
 
     },
@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         borderColor: 'white',
         borderWidth: 2,
-        marginTop: normalize(95)
+        marginTop: normalize(75)
     },
     TextContainer: {
         marginLeft: 10,
-        marginTop: '42%'
+        marginTop: normalize(77)
     },
     nameText: {
         color: '#FFFFFF',
@@ -88,14 +88,14 @@ const styles = StyleSheet.create({
         fontSize: normalize(14),
         alignSelf: 'center',
         opacity: 0.8,
-        marginLeft: 50,
+        marginLeft: 60,
         marginTop: 15,
         width: '100%'
     },
 
     logoutButton: {
         marginLeft: '8%',
-        marginTop: Dimensions.get('window').height > 600 ? Dimensions.get('window').height * 0.070 : Dimensions.get('window').height * 0.035
+        marginTop: Dimensions.get('window').height > 600 ? Dimensions.get('window').height * 0.1 : Dimensions.get('window').height * 0.075
     },
     logoutIcon: {
         color: '#132641',

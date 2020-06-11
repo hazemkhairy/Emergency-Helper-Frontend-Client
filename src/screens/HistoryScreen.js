@@ -25,42 +25,6 @@ const History = () => {
     getHistory();
   }, []);
   
-  const historyData=[
-    {
-      id: '0',
-      date:'19/6/2020 5:00PM',
-      name:'Helper’s name',
-      category:'Electonics',
-      price:'500 EGP',
-      description:'Description Description Description Description Description Description Description'
-    },
-    {
-        id: '1',
-        date:'19/6/2020 5:00PM',
-        name:'Helper’s name',
-        category:'Electonics',
-        price:'500 EGP',
-        description:'Description Description Description Description Description Description Description'
-    },
-    {
-        id: '2',
-        date:'19/7/2020 5:00PM',
-        name:'Helper’s name',
-        category:'Electonics',
-        price:'500 EGP',
-        description:'Visit details visit details visit details visit details visit details visit details visit details visit details visit details visit details visit details visit details visit details visit details visit details.'
-    },
-    {
-        id: '2',
-        date:'19/7/2020 5:00PM',
-        name:'Helper’s name',
-        category:'Electonics',
-        price:'500 EGP',
-        description:'Description Description Description Description Description Description Description'
-    }, 
-  ];
-
-
   return (
     
     <View style={styles.container}>
@@ -91,20 +55,15 @@ const History = () => {
 History.navigationOptions = (props) => {
   return {
       title: '',
+      headerTransparent: true,
       headerLeft: () => {
           return (
-              <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+              <HeaderButtons HeaderButtonComponent={HeaderButton}   >
                   <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
               </HeaderButtons>
           )
       },
-      headerStyle: {
-          shadowColor: 'transparent',
-          elevation: 0,
-          backgroundColor: '#7598BA'
 
-      },
-      headertransparent: true,
   }
 }
 const styles = StyleSheet.create({

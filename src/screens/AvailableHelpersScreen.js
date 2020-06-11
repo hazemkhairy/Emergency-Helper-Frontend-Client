@@ -33,20 +33,12 @@ const AvailableHelpersScreen = () => {
         loadHelpers();
     }, []);
 
-    const helper = () => {
-        setHelperModal(true);
-    };
-    const closeHelperModal = () => {
-        setHelperModal(false);
-    };
+   
    
 
     return (
         <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-             <HelperModal
-                modalVisible={helperModal}
-                close={() => closeHelperModal()}
-            />
+            
             <MainHeader headerText={'Available Helpers'} ></MainHeader>
             <SubHeaderText SubHeaderText={'Helpers'}></SubHeaderText>
             <FlatList
@@ -63,26 +55,20 @@ const AvailableHelpersScreen = () => {
         </View>
     );
 }
-
 AvailableHelpersScreen.navigationOptions = (props) => {
     return {
         title: '',
+        headerTransparent: true,
         headerLeft: () => {
             return (
-                <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-                    <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
-                </HeaderButtons>
+              <HeaderButtons HeaderButtonComponent={HeaderButton} >
+                        <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
+                      </HeaderButtons>
             )
         },
-        headerStyle: {
-            shadowColor: 'transparent',
-            elevation: 0,
-            backgroundColor: '#7598BA'
-
-        },
-        headertransparent: true,
+  
     }
-}
+  }
 
 
 

@@ -7,6 +7,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/global/HeaderButton'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
 import { getTicketsMessages, addMessage } from '../Utils/SupportTickets'
+import { Header } from 'react-native/Libraries/NewAppScreen';
 
 
 const TicketScreen = ({ navigation }) => {
@@ -49,8 +50,8 @@ const TicketScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={{ height: Dimensions.get('window').height<600?Dimensions.get("window").height * 0.75:Dimensions.get("window").height * 0.81 }}>
-        <MainHeader headerText={category} style={{ height: Dimensions.get('window').height * 0.18, marginBottom: '2%' }} />
+      <View style={{ height: Dimensions.get('window').height<600?Dimensions.get("window").height * 0.75:Dimensions.get("window").height * 0.90 }}>
+        <MainHeader headerText={category} style={{ height: Dimensions.get('window').height * 0.22 }} />
         <View style={{ flex: 1 }}>
           <FlatList
             inverted
@@ -118,21 +119,16 @@ const TicketScreen = ({ navigation }) => {
 }
 TicketScreen.navigationOptions = (props) => {
   return {
-    title: '',
-    headerLeft: () => {
-      return (
-        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
-        </HeaderButtons>
-      )
-    },
-    headerStyle: {
-      shadowColor: 'transparent',
-      elevation: 0,
-      backgroundColor: '#7598BA'
+      title: '',
+      headerTransparent: true,
+      headerLeft: () => {
+          return (
+              <HeaderButtons HeaderButtonComponent={HeaderButton}   >
+                  <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
+              </HeaderButtons>
+          )
+      },
 
-    },
-    headertransparent: true,
   }
 }
 const styles = StyleSheet.create({

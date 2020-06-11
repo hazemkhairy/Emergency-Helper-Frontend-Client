@@ -2,29 +2,30 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import normalize from 'react-native-normalize';
-import HelperModal from '../Request/HelperModal'
+import HelperModal from '../Request/HelperModal';
 const HelperCard = ({ item }) => {
 
 
     let containerStyle = styles.container
     const [active, setActive] = useState(false)
-    const [modalVisible, setModalVisible] = useState(false);
-     const [HelperModal, setHelperModal] = useState(false);
+    const [HelperModall, setHelperModall] = useState(false);
 
     const helper = () => {
-        setHelperModal(true);
+        setHelperModall(true);
+        
+
     };
     const closeHelperModal = () => {
-        setHelperModal(false);
+        setHelperModall(false);
     };
 
     return (
         <View style={containerStyle}>
+
             <HelperModal
-                modalVisible={HelperModal}
+                modalVisible={HelperModall}
                 close={() => closeHelperModal()}
             />
-          
             <View style={styles.expandButton}>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -34,7 +35,7 @@ const HelperCard = ({ item }) => {
                             <Text style={styles.name}>{item.helperInfo.name}</Text>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.price}>Price visit: {item.offer.price.from}~{item.offer.price.to}</Text>
-                                <TouchableOpacity style={styles.buttonStyle} onPress={() => helper()}>
+                                <TouchableOpacity style={styles.buttonStyle} onPress={() => { helper() }}>
                                     <Text style={styles.buttonText}>Select</Text>
                                 </TouchableOpacity>
                             </View>
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
         width: normalize(65),
         borderRadius: normalize(45),
         marginLeft: normalize(-15),
-        // borderWidth:1
+
     },
     name: {
         fontSize: 16,

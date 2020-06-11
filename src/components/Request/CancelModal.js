@@ -6,6 +6,7 @@ import MainButton from '../global/MainButton';
 import LoadingModal from '../global/LoadingModal';
 import Icon from '@expo/vector-icons/Ionicons';
 import { cancelRequest } from '../../Utils/CancelRequest';
+import { useNavigation } from 'react-navigation-hooks'
 
 const CancelModal = ({ CancelModalVisble, close }) => {
 
@@ -13,7 +14,7 @@ const CancelModal = ({ CancelModalVisble, close }) => {
   if (!CancelModalVisble) return null;
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
-
+  const { navigate } = useNavigation();
   const onSubmit = async () => {
     setLoading(true);
     cancelRequest(feedback).then(
@@ -22,9 +23,9 @@ const CancelModal = ({ CancelModalVisble, close }) => {
         close();
       }
     )
+    navigate('Main');
+
   }
-
-
 
 
   return (
