@@ -90,6 +90,8 @@ const styles = StyleSheet.create({
             width: 4,
             height: 2,
         },
+        elevation: 10,
+       
     },
 
     img: {

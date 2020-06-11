@@ -25,8 +25,8 @@ const HelperModal = ({ modalVisible, helprInformation, close, header, navigation
 
   useEffect(() => {
     setHelperInfo({
-      image: profilepicture,
-      name: name,
+      image: "https://emergencyhelper.s3.eu-west-3.amazonaws.com/profilePictureTemplate.png",
+      name: "Alaa Sadek",
       number: "01116489276",
       price: "50~100 EGP",
       category: "Medical",
