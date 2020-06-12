@@ -152,7 +152,7 @@ const AccountInfoScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>
-      <MainHeader headerText={'Account Info'}></MainHeader>
+        <MainHeader headerText={'Account Info'}></MainHeader>
         <LoadingModal modalVisible={loading} />
         <SettingsModal
           modalVisible={modalVisible}
@@ -213,10 +213,10 @@ const AccountInfoScreen = ({ navigation }) => {
                 placeholder={
                   gender
                     ? {
-                        label: gender,
-                        value: gender,
-                        color: "red",
-                      }
+                      label: gender,
+                      value: gender,
+                      color: "red",
+                    }
                     : { label: "Gender", value: "Gender", color: "red" }
                 }
                 value={gender}
@@ -257,15 +257,15 @@ const AccountInfoScreen = ({ navigation }) => {
 
 AccountInfoScreen.navigationOptions = (props) => {
   return {
-      title: '',
-      headerTransparent: true,
-      headerLeft: () => {
-          return (
-            <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-                      <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
-                    </HeaderButtons>
-          )
-      },
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+        </HeaderButtons>
+      )
+    },
 
   }
 }
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     top: normalize(90),
     alignSelf: "center",
   },
-  
+
   photoPicker: {
     alignSelf: "center",
   },
@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 200 / 2,
     marginTop: "5%",
-    borderColor:'#132641',
+    borderColor: '#132641',
     borderWidth: 0.2,
   },
   datePicker: {

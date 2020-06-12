@@ -48,23 +48,23 @@ const SettingsScreen = ({ navigation }) => {
           <Text style={styles.settingsTXT}>Change Password</Text>
           <Icon name="ios-arrow-forward" size={25} style={styles.icon} />
         </TouchableOpacity>
-          
-     
+
+
       </KeyboardAwareScrollView>
     </View >
   );
 };
 SettingsScreen.navigationOptions = (props) => {
   return {
-      title: '',
-      headerTransparent: true,
-      headerLeft: () => {
-          return (
-              <HeaderButtons HeaderButtonComponent={HeaderButton}   >
-                  <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
-              </HeaderButtons>
-          )
-      },
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}   >
+          <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
+        </HeaderButtons>
+      )
+    },
 
   }
 }

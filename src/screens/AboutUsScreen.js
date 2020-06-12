@@ -20,19 +20,19 @@ const AboutUsScreen = (props) => {
         <View>
             <MainHeader headerText={'About Us'} name={'info-circle'}></MainHeader>
             <SubHeaderText SubHeaderText={'About Us'}></SubHeaderText>
-                <FlatList
-                    showsVerticalScrollIndicator={false}
-                    data={dataset}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => (
-                        <AboutUsCard
-                            title={item.title}
-                            description={item.description}
-                        >
-                        </AboutUsCard>
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                data={dataset}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => (
+                    <AboutUsCard
+                        title={item.title}
+                        description={item.description}
+                    >
+                    </AboutUsCard>
 
-                    )}
-                />
+                )}
+            />
 
             <TouchableOpacity>
                 <Text style={styles.termsConditions} >Terms and Conditions</Text>
@@ -53,9 +53,9 @@ AboutUsScreen.navigationOptions = (props) => {
                 </HeaderButtons>
             )
         },
-  
+
     }
-  }
+}
 const styles = StyleSheet.create({
 
     termsConditions: {

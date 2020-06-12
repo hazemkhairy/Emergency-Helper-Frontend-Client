@@ -83,15 +83,15 @@ const SavedAddresses = ({ navigation }) => {
 };
 SavedAddresses.navigationOptions = (props) => {
   return {
-      title: '',
-      headerTransparent: true,
-      headerLeft: () => {
-          return (
-            <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
-                      <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
-                    </HeaderButtons>
-          )
-      },
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+        </HeaderButtons>
+      )
+    },
 
   }
 }

@@ -14,13 +14,13 @@ const TicketScreen = ({ navigation }) => {
 
   const category = navigation.state.params.props.category
   const ticketID = navigation.state.params.props.id
- 
-  
+
+
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [reloading, setReloading] = useState(false);
   const [active, setActive] = useState(false);
-  
+
   const newMessage = async () => {
     if (active == true) {
       addMessage(ticketID, message).then((result) => {
@@ -34,9 +34,9 @@ const TicketScreen = ({ navigation }) => {
   const getMessages = async () => {
     setReloading(true);
     setMessages([]);
-   
+
     await getTicketsMessages(ticketID).then((result) => {
-     
+
       setMessages(result);
       setReloading(false);
     });
@@ -46,11 +46,11 @@ const TicketScreen = ({ navigation }) => {
     getMessages();
 
   }, []);
- 
+
 
   return (
     <View style={styles.container}>
-      <View style={{ height: Dimensions.get('window').height<600?Dimensions.get("window").height * 0.75:Dimensions.get("window").height * 0.90 }}>
+      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.90 }}>
         <MainHeader headerText={category} style={{ height: Dimensions.get('window').height * 0.22 }} />
         <View style={{ flex: 1 }}>
           <FlatList
@@ -81,7 +81,7 @@ const TicketScreen = ({ navigation }) => {
       </View>
       <KeyboardAvoidingView
         behavior={'position'}
-        keyboardVerticalOffset={Platform.OS == "ios" ?60:80}
+        keyboardVerticalOffset={Platform.OS == "ios" ? 60 : 80}
       >
         <View style={styles.footer}>
           <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()} accessible={false}>
@@ -119,15 +119,15 @@ const TicketScreen = ({ navigation }) => {
 }
 TicketScreen.navigationOptions = (props) => {
   return {
-      title: '',
-      headerTransparent: true,
-      headerLeft: () => {
-          return (
-              <HeaderButtons HeaderButtonComponent={HeaderButton}   >
-                  <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
-              </HeaderButtons>
-          )
-      },
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton} styles={{}}>
+          <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+        </HeaderButtons>
+      )
+    },
 
   }
 }
@@ -138,16 +138,16 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
     flex: 1,
   },
-  
+
   footer: {
     borderWidth: 1,
-    borderTopColor:'#E9EEF1',
+    borderTopColor: '#E9EEF1',
     borderColor: '#FFFFFF',
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 10,
     alignItems: 'center',
-    height:60,
+    height: 60,
     bottom: 0,
   },
   inputContainer: {

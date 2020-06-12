@@ -33,12 +33,12 @@ const AvailableHelpersScreen = () => {
         loadHelpers();
     }, []);
 
-   
-   
+
+
 
     return (
         <View style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-            
+
             <MainHeader headerText={'Available Helpers'} ></MainHeader>
             <SubHeaderText SubHeaderText={'Helpers'}></SubHeaderText>
             <FlatList
@@ -61,14 +61,14 @@ AvailableHelpersScreen.navigationOptions = (props) => {
         headerTransparent: true,
         headerLeft: () => {
             return (
-              <HeaderButtons HeaderButtonComponent={HeaderButton} >
-                        <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack()}} />
-                      </HeaderButtons>
+                <HeaderButtons HeaderButtonComponent={HeaderButton} >
+                    <Item title="back" iconName='arrow-back' onPress={() => { props.navigation.goBack() }} />
+                </HeaderButtons>
             )
         },
-  
+
     }
-  }
+}
 
 
 

@@ -64,7 +64,7 @@ const ChangePasswordScreen = ({ navigation }) => {
     }
     return error;
   };
-  
+
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView KeyboardAwareScrollView bounces={false}>

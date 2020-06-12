@@ -14,23 +14,23 @@ const SupportTicket = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
- 
+
   const getTickets = async () => {
     setIsFetching(true);
     setTickets([]);
-  
+
     await getAllTickets().then((result) => {
       setTickets(result);
       setIsFetching(false);
     });
   };
- 
+
 
   const addNewTicket = () => {
     setModalVisible(!modalVisible)
 
   };
-  
+
   useEffect(() => {
     getTickets();
   }, []);
@@ -78,15 +78,15 @@ const SupportTicket = () => {
 }
 SupportTicket.navigationOptions = (props) => {
   return {
-      title: '',
-      headerTransparent: true,
-      headerLeft: () => {
-          return (
-              <HeaderButtons HeaderButtonComponent={HeaderButton}   >
-                  <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
-              </HeaderButtons>
-          )
-      },
+    title: '',
+    headerTransparent: true,
+    headerLeft: () => {
+      return (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}   >
+          <Item title="menu" iconName='menu' onPress={() => { props.navigation.toggleDrawer() }} />
+        </HeaderButtons>
+      )
+    },
 
   }
 }

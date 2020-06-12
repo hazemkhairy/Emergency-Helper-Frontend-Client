@@ -68,11 +68,11 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         borderColor: 'white',
         borderWidth: 2,
-        marginTop: normalize(75)
+        marginTop: normalize(65)
     },
     TextContainer: {
         marginLeft: 10,
-        marginTop: normalize(77)
+        marginTop: '28%'
     },
     nameText: {
         color: '#FFFFFF',
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         opacity: 0.8,
         marginLeft: 60,
-        marginTop: 15,
+        marginTop: Dimensions.get('window').height>600?7:5,
         width: '100%'
     },
 
