@@ -7,11 +7,11 @@ const cardItem = ({ item }) => {
    
     const [active,setActive]=useState(false)
   
-    var day = new Date().getDate(); 
-    var month = new Date().getMonth() + 1; 
-    var year = new Date().getFullYear(); 
-    var hours = new Date().getHours(); 
-    var min = new Date().getMinutes(); 
+    var day = new Date(item.date).getDate(); 
+    var month = new Date(item.date).getMonth() + 1; 
+    var year = new Date(item.date).getFullYear(); 
+    var hours = new Date(item.date).getHours(); 
+    var min = new Date(item.date).getMinutes(); 
     let a='PM'
     if(hours<11)
     {
@@ -26,6 +26,13 @@ const cardItem = ({ item }) => {
         hours = 12;
     } 
     let date= day+  '/' + month + '/' + year + ' ' + hours + ':' + min +' '+  a
+    let totalprice=item.finishedState.totalPrice
+    let canceled=false
+    if(item.canceledState.isCanceled){
+          totalprice='0.0'
+          canceled=true
+        }
+    console.log(item.canceledState)
     return (
         <View  style={styles.container}>
             <View style={styles.buttonContainer}>
@@ -40,7 +47,8 @@ const cardItem = ({ item }) => {
             </View>
                 {active==true?<Text style={styles.details}>{item.description}</Text>:null
                 }
-                <Text  style={styles.price}>{item.price}</Text>
+                <Text  style={styles.price}>{totalprice} EGP</Text>
+               {canceled ?<Text  style={styles.canceledText}>Canceled</Text>:null} 
         </View>
     )
     
@@ -72,18 +80,17 @@ const styles = StyleSheet.create({
     helperName:
     {
         fontSize: 12,
+        fontFamily: 'Montserrat',
         color: '#132641',
         opacity:0.5,
-        fontFamily: 'Montserrat',
-        marginTop:'2%',
+      
     },
     categoryName:
     {
         fontSize: 13,
-        color: '#B1B7C0',
         fontFamily: 'Montserrat',
-        marginTop:'2%',
-        marginBottom:'10%'
+        color: '#B1B7C0',
+        marginBottom:'6%'
     },
     buttonContainer:{
         flexDirection: 'row',
@@ -92,24 +99,33 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop:'5%',
     },
+    details:{
+        fontSize: 13,
+        fontFamily: 'Montserrat',
+        color: '#B1B7C0',
+        marginLeft:'7.5%',
+        marginBottom:'4%'
+    },
     price:{
+        fontSize: 12,
+        fontFamily: 'Montserrat',
+        color: '#132641',
+        opacity:0.6,
+        right:'8%',
+        bottom: '12%', 
+        alignSelf: "flex-end",
+    },
+    canceledText:{
         fontSize: 12,
         color: '#132641',
         opacity:0.5,
         fontFamily: 'Montserrat',
-        marginRight:'10%',
+        right:'11%',
         position: "absolute", 
-        bottom: '10%', 
+        bottom: '7%', 
         alignSelf: "flex-end",
     },
-    details:{
-        fontSize: 13,
-        color: '#B1B7C0',
-        fontFamily: 'Montserrat',
-        marginTop:'2%',
-        marginLeft:'7%',
-        marginBottom:'7%'
-    }
+   
 })
 
 export default cardItem

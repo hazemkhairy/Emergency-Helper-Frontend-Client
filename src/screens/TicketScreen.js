@@ -3,7 +3,7 @@ import { View,Text, StyleSheet, FlatList, Dimensions, TextInput, TouchableOpacit
 import normalize from "react-native-normalize";
 import ChatCard from '../components/cardComponents/chatCard'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import MainHeader from '../components/global/MainHeader'
+
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/global/HeaderButton'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
@@ -15,7 +15,6 @@ const TicketScreen = ({ navigation }) => {
 
   const category = navigation.state.params.props.category
   const ticketID = navigation.state.params.props.id
-
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
