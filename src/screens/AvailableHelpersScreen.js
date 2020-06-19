@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList, Text } from 'react-native';
+import { View, StyleSheet, FlatList, Text ,Dimensions} from 'react-native';
 import MainHeader from '../components/global/MainHeader'
 import SubHeaderText from '../components/global/SubHeaderText'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -51,6 +51,11 @@ const AvailableHelpersScreen = () => {
                     <HelperCard item={item}> </HelperCard>
 
                 )}
+                ListEmptyComponent={
+                    () => {
+                        return <Text style={styles.NoItems}>No nearby helpers at this moment</Text>
+                    }
+                }
             />
         </View>
     );
@@ -70,6 +75,16 @@ AvailableHelpersScreen.navigationOptions = (props) => {
     }
 }
 
-
+const styles = StyleSheet.create({
+  
+    NoItems: {
+      fontSize: 17,
+      fontFamily: "Montserrat_SemiBold",
+      color: "#132641",
+      alignSelf: 'center',
+      marginTop: "5%",
+    }
+  })
+  
 
 export default AvailableHelpersScreen;

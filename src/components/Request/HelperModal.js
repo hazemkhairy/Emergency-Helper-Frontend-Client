@@ -15,7 +15,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
 
-const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom, HelperPriceto, HelperSkills, HelperCategory, HelperOffer, close, header, navigation }) => {
+const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom, HelperPriceto, HelperSkills, HelperCategory, HelperOffer, HelperNumber, close, header, navigation }) => {
   if (!modalVisible) return null;
 
   const [helperInfo, setHelperInfo] = useState([]);
@@ -23,13 +23,6 @@ const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom,
   const [cancelModal, setCancelModal] = useState(false);
 
 
-  useEffect(() => {
-    setHelperInfo({
-
-      number: "01116489276",
-
-    });
-  }, []);
 
   const onChat = () => {
     close();
@@ -68,7 +61,7 @@ const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom,
             />
             <View style={styles.nameNumContainer}>
               <Text style={styles.name}>{HelperName}</Text>
-              <Text style={styles.number}>{helperInfo.number}</Text>
+              <Text style={styles.number}>{HelperNumber}</Text>
             </View>
             <TouchableOpacity>
               <Icon
@@ -184,6 +177,7 @@ const styles = StyleSheet.create({
       ),
     color: "#7B8594",
     fontFamily: "Montserrat",
+    width: normalize(100)
   },
   nameNumContainer: {
     flexDirection: "column",
@@ -192,7 +186,7 @@ const styles = StyleSheet.create({
   callIcon: {
     color: "#132641",
     top: normalize(14),
-    right: normalize(-3),
+    // right: normalize(5),
   },
   chatBTNContainer: {
     left: normalize(170),
@@ -200,8 +194,8 @@ const styles = StyleSheet.create({
   },
   chatBTN: {
     paddingHorizontal: normalize(10),
-    paddingVertical: "5.5%",
-    width: "65%",
+    paddingVertical: "5%",
+    width: "55%",
   },
   chatBTNtxt: {
     color: "white",
@@ -213,14 +207,13 @@ const styles = StyleSheet.create({
     fontSize: normalize(15),
     fontFamily: "Montserrat_Medium",
     marginTop: "2%",
-    width:normalize(300)
+    width: normalize(300)
   },
   info: {
     color: "#B1B7C0",
     fontSize: normalize(15),
     fontFamily: "Montserrat",
     marginLeft: "30%",
-    
   },
   infoContainer: {
     marginRight: normalize(-5),

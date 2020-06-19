@@ -32,6 +32,7 @@ const HelperCard = ({ item }) => {
                 HelperSkills={item.helperInfo.skills}
                 HelperCategory={item.helperInfo.category}
                 HelperOffer={item.offer.description}
+                HelperNumber={item.helperInfo.mobile}
             />
             <View style={styles.expandButton}>
 
