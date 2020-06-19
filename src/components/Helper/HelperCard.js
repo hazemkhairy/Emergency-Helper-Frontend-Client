@@ -25,6 +25,13 @@ const HelperCard = ({ item }) => {
             <HelperModal
                 modalVisible={HelperModall}
                 close={() => closeHelperModal()}
+                HelperPicture={item.helperInfo.profilePicture}
+                HelperName={item.helperInfo.name}
+                HelperPriceFrom={item.offer.price.from}
+                HelperPriceto={item.offer.price.to}
+                HelperSkills={item.helperInfo.skills}
+                HelperCategory={item.helperInfo.category}
+                HelperOffer={item.offer.description}
             />
             <View style={styles.expandButton}>
 

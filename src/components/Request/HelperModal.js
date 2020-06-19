@@ -15,7 +15,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
 
-const HelperModal = ({ modalVisible, helprInformation, close, header, navigation }) => {
+const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom, HelperPriceto, HelperSkills, HelperCategory, HelperOffer, close, header, navigation }) => {
   if (!modalVisible) return null;
 
   const [helperInfo, setHelperInfo] = useState([]);
@@ -25,14 +25,9 @@ const HelperModal = ({ modalVisible, helprInformation, close, header, navigation
 
   useEffect(() => {
     setHelperInfo({
-      image: "https://emergencyhelper.s3.eu-west-3.amazonaws.com/profilePictureTemplate.png",
-      name: "Alaa Sadek",
+
       number: "01116489276",
-      price: "50~100 EGP",
-      category: "Medical",
-      skills: " Skill 1, skill 2, skill 3, skill 4",
-      offer:
-        "I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem. I will try helping you in the current problemI will try helping you in the current problemI will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem. I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem. I will try helping you in the current problemI will try helping you in the current problemI will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.I will try helping you in the current problem.",
+
     });
   }, []);
 
@@ -68,11 +63,11 @@ const HelperModal = ({ modalVisible, helprInformation, close, header, navigation
             <Image
               style={styles.image}
               source={{
-                uri: helperInfo.image,
+                uri: HelperPicture,
               }}
             />
             <View style={styles.nameNumContainer}>
-              <Text style={styles.name}>{helperInfo.name}</Text>
+              <Text style={styles.name}>{HelperName}</Text>
               <Text style={styles.number}>{helperInfo.number}</Text>
             </View>
             <TouchableOpacity>
@@ -90,29 +85,29 @@ const HelperModal = ({ modalVisible, helprInformation, close, header, navigation
           </View>
         </View>
         <View style={styles.infoContainer}>
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Price Visit:
-                <Text style={styles.info}>{helperInfo.price}</Text>
+            <Text style={styles.info}> {HelperPriceFrom} ~ {HelperPriceto}</Text>
               </Text>
             </View>
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Category:
-                <Text style={styles.info}> {helperInfo.category}</Text>
+                <Text style={styles.info}> {HelperCategory}</Text>
               </Text>
             </View>
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Skills:
-                <Text style={styles.info}>{helperInfo.skills}</Text>
+                <Text style={styles.info}> {HelperSkills}</Text>
               </Text>
             </View>
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Offer:
-                <Text style={styles.info}> {helperInfo.offer}</Text>
+                <Text style={styles.info}> {HelperOffer}</Text>
               </Text>
             </View>
           </ScrollView>
@@ -197,7 +192,7 @@ const styles = StyleSheet.create({
   callIcon: {
     color: "#132641",
     top: normalize(14),
-    right: normalize(2),
+    right: normalize(-3),
   },
   chatBTNContainer: {
     left: normalize(170),
@@ -218,22 +213,25 @@ const styles = StyleSheet.create({
     fontSize: normalize(15),
     fontFamily: "Montserrat_Medium",
     marginTop: "2%",
+    width:normalize(300)
   },
   info: {
     color: "#B1B7C0",
     fontSize: normalize(15),
     fontFamily: "Montserrat",
     marginLeft: "30%",
+    
   },
   infoContainer: {
-    right: normalize(25),
-    bottom: normalize(85),
-    maxHeight: normalize(126),
+    marginRight: normalize(-5),
+    bottom: normalize(80),
+    height: normalize(126),
+    width: normalize(500)
   },
   view: {
     flexDirection: "row",
     alignItems: "center",
-    marginLeft: "14.4%",
+    marginLeft: "20%",
   },
   CancelBTN: {
     bottom: normalize(72),
