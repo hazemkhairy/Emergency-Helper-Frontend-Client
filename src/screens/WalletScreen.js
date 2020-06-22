@@ -16,7 +16,7 @@ const WalletScreen = ({ navigation }) => {
     }, []);
 
     return (
-        <View>
+        <View style={styles.container}>
             <MainHeader headerText={'Wallet'} name={'money'}></MainHeader>
             <SubHeaderText SubHeaderText={'Your available balance'}></SubHeaderText>
             <Text style={styles.Balance} >  {userData.balance} EGP</Text>
@@ -40,6 +40,11 @@ WalletScreen.navigationOptions = (props) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: "#FFFFFF",
+        display: "flex",
+        flex: 1
+    },
     Balance: {
         fontFamily: 'Montserrat',
         fontSize: 24,

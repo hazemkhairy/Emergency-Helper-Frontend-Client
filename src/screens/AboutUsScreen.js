@@ -17,7 +17,7 @@ const AboutUsScreen = (props) => {
     }, []);
 
     return (
-        <View>
+        <View style={styles.container}>
             <MainHeader headerText={'About Us'} name={'info-circle'}></MainHeader>
             <SubHeaderText SubHeaderText={'About Us'}></SubHeaderText>
             <FlatList
@@ -57,13 +57,17 @@ AboutUsScreen.navigationOptions = (props) => {
     }
 }
 const styles = StyleSheet.create({
-
+    container: {
+        backgroundColor: "#FFFFFF",
+        display: "flex",
+        flex: 1
+    },
     termsConditions: {
-        marginTop: '3%',
+        marginBottom: '20%',
         textAlign: 'center',
         textDecorationLine: 'underline',
         color: '#132641',
-        fontSize: 13,
+        fontSize: 14,
         fontFamily: "Montserrat_SemiBold",
     },
 });
