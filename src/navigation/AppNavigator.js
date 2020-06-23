@@ -9,12 +9,13 @@ import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import HistoryScreen from '../screens/HistoryScreen';
 import WalletScreen from '../screens/WalletScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
-import AboutUsScreen from '../screens/AboutUsScreen';
+import AboutUsScreen from '../screens/AboutUs/AboutUsScreen';
 import AvailableHelpersScreen from '../screens/AvailableHelpersScreen'
 import SupportTicketScreen from '../screens/SupportTicketScreen'
 import SavedAddressesScreen from '../screens/Settings/SavedAddressesScreen'
 import AccountInfoScreen from '../screens/Settings/AccountInfoScreen'
 import ChangePasswordScreen from '../screens/Settings/ChangePasswordScreen'
+import TermsAndConditionsScreen from '../screens/AboutUs/TermsAndConditionsScreen'
 import TicketScreen from '../screens/TicketScreen'
 import Main from '../screens/Main';
 import { Dimensions } from 'react-native';
@@ -43,7 +44,8 @@ const ApplicationNav = createStackNavigator(
         SavedAddressesScreen,
         AccountInfoScreen,
         ChangePasswordScreen,
-        TicketScreen
+        TicketScreen,
+        TermsAndConditionsScreen
 
 
     },

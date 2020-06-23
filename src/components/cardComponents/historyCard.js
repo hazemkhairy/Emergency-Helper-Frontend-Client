@@ -32,7 +32,6 @@ const cardItem = ({ item }) => {
           totalprice='0.0'
           canceled=true
         }
-    console.log(item.canceledState)
     return (
         <View  style={styles.container}>
             <View style={styles.buttonContainer}>

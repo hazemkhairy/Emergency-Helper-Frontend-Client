@@ -15,8 +15,8 @@ const SideDrawer = (props) => {
         });
     }, []);
 
-    const fullname=userData.firstName+' '+ userData.lastName
-    const name=fullname.split(' ').slice(0,2).join(' ')
+    const fullname = userData.firstName + ' ' + userData.lastName
+    const name = fullname.split(' ').slice(0, 2).join(' ')
 
     return (
         <View>
@@ -24,15 +24,11 @@ const SideDrawer = (props) => {
                 <View style={{ width: '80%', marginLeft: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <Image source={{ uri: userData.profilePicture }} style={styles.img}></Image>
-                       
-                           
-                         <View style={styles.TextContainer}>
+                        <View style={styles.TextContainer}>
                             <Text style={styles.nameText}>{name}</Text>
                         </View>
-                        
                     </View>
                     <Text style={styles.emailText}>{userData.email}</Text>
-
                 </View>
             </View>
             <View style={styles.itemsContainer} >
@@ -94,7 +90,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         opacity: 0.8,
         marginLeft: 60,
-        marginTop: Dimensions.get('window').height>600?7:5,
+        marginTop: Dimensions.get('window').height > 600 ? 7 : 5,
         width: '100%'
     },
 
@@ -112,7 +108,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         opacity: 0.8
     },
-   
+
 });
 
 export default SideDrawer;

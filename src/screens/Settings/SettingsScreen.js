@@ -69,31 +69,7 @@ SettingsScreen.navigationOptions = (props) => {
   }
 }
 const styles = StyleSheet.create({
-  blueBackground: {
-    backgroundColor: "#7598BA",
-    height: normalize(200),
-    borderBottomLeftRadius: 70,
-  },
-  hText: {
-    fontSize:
-      normalize(40) *
-      Math.min(
-        Dimensions.get("window").height / 800.0,
-        Dimensions.get("window").width / 380.0
-      ), color: "white",
-    fontFamily: "Montserrat_bold",
-    top: normalize(90),
-    alignSelf: "center",
-  },
-  subHeader: {
-    fontSize: normalize(24),
-    color: "#132641",
-    bottom: normalize(5),
-    fontFamily: "Montserrat_SemiBold",
-    marginLeft: "12%",
-    marginTop: "10%",
-  },
-
+  
   container: {
     display: "flex",
     flex: 1,

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, FlatList, Button } from 'react-native';
-import MainHeader from '../components/global/MainHeader';
-import SubHeaderText from '../components/global/SubHeaderText';
+import MainHeader from '../../components/global/MainHeader';
+import SubHeaderText from '../../components/global/SubHeaderText';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import HeaderButton from '../components/global/HeaderButton'
-import AboutUsCard from '../components/global/AboutUsCard';
-import { getAboutUs } from '../Utils/AboutUsData';
+import HeaderButton from '../../components/global/HeaderButton'
+import AboutUsCard from '../../components/global/AboutUsCard';
+import { getAboutUs } from '../../Utils/AboutUsData';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 const AboutUsScreen = (props) => {
 
@@ -22,6 +22,7 @@ const AboutUsScreen = (props) => {
             <SubHeaderText SubHeaderText={'About Us'}></SubHeaderText>
             <FlatList
                 showsVerticalScrollIndicator={false}
+                bounces={false}
                 data={dataset}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
@@ -34,7 +35,7 @@ const AboutUsScreen = (props) => {
                 )}
             />
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => { props.navigation.navigate('TermsAndConditionsScreen') }}>
                 <Text style={styles.termsConditions} >Terms and Conditions</Text>
             </TouchableOpacity>
 

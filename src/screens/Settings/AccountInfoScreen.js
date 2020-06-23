@@ -19,7 +19,6 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import normalize from 'react-native-normalize';
 import MainHeader from '../../components/global/MainHeader';
-import SubHeaderText from '../../components/global/SubHeaderText';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/global/HeaderButton'
 
@@ -270,24 +269,7 @@ AccountInfoScreen.navigationOptions = (props) => {
   }
 }
 const styles = StyleSheet.create({
-  blueBackground: {
-    backgroundColor: "#7598BA",
-    height: normalize(200),
-    borderBottomLeftRadius: 70,
-  },
-  hText: {
-    fontSize:
-      normalize(40) *
-      Math.min(
-        Dimensions.get("window").height / 820.0,
-        Dimensions.get("window").width / 380.0
-      ),
-    color: "white",
-    fontFamily: "Montserrat_bold",
-    top: normalize(90),
-    alignSelf: "center",
-  },
-
+  
   photoPicker: {
     alignSelf: "center",
   },

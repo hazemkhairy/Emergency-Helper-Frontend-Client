@@ -96,23 +96,7 @@ SavedAddresses.navigationOptions = (props) => {
   }
 }
 const styles = StyleSheet.create({
-  blueBackground: {
-    backgroundColor: "#7598BA",
-    height: normalize(200),
-    borderBottomLeftRadius: 70,
-  },
-  hText: {
-    fontSize:
-      normalize(40) *
-      Math.min(
-        Dimensions.get("window").height / 820.0,
-        Dimensions.get("window").width / 380.0
-      ),
-    color: "white",
-    fontFamily: "Montserrat_bold",
-    top: normalize(90),
-    alignSelf: "center",
-  },
+ 
 
   subHeader: {
     fontSize: normalize(24),
