@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Text,
   View,
@@ -7,6 +7,8 @@ import {
   Dimensions,
   TouchableOpacity,
   ScrollView,
+  Platform,
+  Linking,
 } from "react-native";
 import Modal from "react-native-modal";
 import MainButton from "../global/MainButton";
@@ -15,15 +17,23 @@ import Icon from "react-native-vector-icons/Ionicons";
 import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
 
-const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom, HelperPriceto, HelperSkills, HelperCategory, HelperOffer, HelperNumber, close, header, navigation }) => {
+const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom, HelperPriceto, HelperSkills, HelperCategory, HelperOffer, HelperNumber, close, header }) => {
   if (!modalVisible) return null;
 
-  const [helperInfo, setHelperInfo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [cancelModal, setCancelModal] = useState(false);
 
 
+  const makeCall = () => {
+    let mobile = { HelperNumber }
 
+    if (Platform.OS === 'android') {
+      mobile = `tel:${HelperNumber}`;
+    } else {
+      mobile = `telprompt:${HelperNumber}`;
+    }
+    Linking.openURL(mobile);
+  }
   const onChat = () => {
     close();
   };
@@ -63,7 +73,7 @@ const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom,
               <Text style={styles.name}>{HelperName}</Text>
               <Text style={styles.number}>{HelperNumber}</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => { makeCall() }}>
               <Icon
                 name="ios-call"
                 style={styles.callIcon}
@@ -194,8 +204,8 @@ const styles = StyleSheet.create({
   },
   chatBTN: {
     paddingHorizontal: normalize(10),
-    paddingVertical: "5%",
-    width: "55%",
+    paddingVertical: "5.5%",
+    width: "65%",
   },
   chatBTNtxt: {
     color: "white",

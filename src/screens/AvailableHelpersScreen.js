@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native';
 import MainHeader from '../components/global/MainHeader'
-import SubHeaderText from '../components/global/SubHeaderText'
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/global/HeaderButton'
 import HelperCard from '../components/Helper/HelperCard';
 import normalize from "react-native-normalize";
 import { getOffers } from '../Utils/HelpersOffers';
 import { FontAwesome } from '@expo/vector-icons';
-
+import LoadingModal from '../components/global/LoadingModal'
 const AvailableHelpersScreen = () => {
 
     const [helpersData, setHelpersData] = useState([]);
@@ -36,7 +35,7 @@ const AvailableHelpersScreen = () => {
 
     return (
         <View style={styles.container}>
-
+            <LoadingModal modalVisible={loading} />
             <MainHeader headerText={'Available Helpers'} ></MainHeader>
             <View style={styles.btnContainer}>
                 <Text style={styles.subHeader}>Helpers</Text>

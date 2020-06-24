@@ -2,7 +2,6 @@ import React from 'react'
 
 import { View, StyleSheet, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Octicons'
-import { TextInput } from 'react-native-gesture-handler'
 
 const ChatCard = ({ item }) => {
     let containerStyle = styles.container
