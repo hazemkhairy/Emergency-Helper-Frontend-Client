@@ -46,6 +46,7 @@ const SavedAddresses = ({ navigation }) => {
   useEffect(() => {
     loadSavedAddresses();
   }, []);
+
   return (
     <View style={styles.container}>
 
@@ -72,7 +73,7 @@ const SavedAddresses = ({ navigation }) => {
           refreshing={isFetching}
           onRefresh={() => loadSavedAddresses()}
           renderItem={({ item }) => (
-            <NewAddresses address={item}></NewAddresses>
+            <NewAddresses address={item} reload={() => reload()}></NewAddresses>
           )}
         />
       ) : (
@@ -96,7 +97,7 @@ SavedAddresses.navigationOptions = (props) => {
   }
 }
 const styles = StyleSheet.create({
- 
+
 
   subHeader: {
     fontSize: normalize(24),

@@ -36,3 +36,15 @@ export const getSavedAddresses = async () => {
     });
   return res;
 }
+
+export const deleteAddress = async (id) => {
+  let res = await backendAxios
+    .delete(`api/Client/Address/${id}`)
+    .then((res) => {
+      return res.data.message;
+    })
+    .catch((error) => {
+      return error;
+    });
+  return res;
+}

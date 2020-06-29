@@ -21,6 +21,8 @@ const AddAddressModal = ({ modalVisible, close, reload }) => {
   const [nextModal, setNextModal] = useState(false);
   const [pickedLocation, setPickedLocation] = useState("");
   const [name, setName] = useState("");
+  const [pickedLocationError, setPickedLocationError] = useState(false);
+  const [nameError, setNameError] = useState(false);
   const onSubmit = async () => {
     setLoading(true);
     await AddAddress(name, pickedLocation.name, pickedLocation.location.longitude, pickedLocation.location.latitude).then((result) => {
@@ -30,6 +32,22 @@ const AddAddressModal = ({ modalVisible, close, reload }) => {
     });
 
   };
+
+  const validateAddress = () => {
+    let valid = true;
+    if (!name.length) {
+      setNameError(true)
+      valid = false;
+    } else setNameError(false)
+    if (!Object.keys(pickedLocation).length) {
+      setPickedLocationError(true)
+      valid = false;
+    } else setPickedLocationError(false)
+    console.log(pickedLocation)
+    return valid;
+  }
+  const nameInputStyle = nameError ? { ...styles.textInput, ...styles.textError } : { ...styles.textInput }
+  const addressInputStyle = pickedLocationError ? { ...styles.textInput, ...styles.textError } : { ...styles.textInput }
 
   return (
     <Modal isVisible={modalVisible}>
@@ -56,12 +74,12 @@ const AddAddressModal = ({ modalVisible, close, reload }) => {
               }}
               placeholder="Name"
               placeholderTextColor="#78849E"
-              style={styles.textInput}
+              style={nameInputStyle}
             />
           </View>
           <View style={styles.textInputContainer}>
             <TouchableOpacity onPress={() => { setNextModal(true) }}>
-            <Text style={styles.textInput}>{pickedLocation.name?pickedLocation.name:'Pick your location'}</Text>
+              <Text style={addressInputStyle}>{pickedLocation.name ? pickedLocation.name : 'Pick your location'}</Text>
 
               <Icon
                 name="right"
@@ -75,7 +93,7 @@ const AddAddressModal = ({ modalVisible, close, reload }) => {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity onPress={() => onSubmit()} style={styles.addBTN}>
+          <TouchableOpacity onPress={() => { if (validateAddress()) onSubmit() }} style={styles.addBTN}>
             <Text style={styles.buttonText}>Add</Text>
           </TouchableOpacity>
         </View>
@@ -150,7 +168,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
-
+  textError: {
+    borderColor: "#b30000",
+  },
   addBTN: {
     marginTop: "3%",
     height: "15%",
