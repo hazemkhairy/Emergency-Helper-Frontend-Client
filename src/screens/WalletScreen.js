@@ -5,18 +5,28 @@ import SubHeaderText from '../components/global/SubHeaderText';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/global/HeaderButton'
 import { getProfileData } from '../Utils/ProfileData';
+import LoadingModal from '../components/global/LoadingModal';
 
 
 const WalletScreen = ({ navigation }) => {
+
+    const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState([]);
-    useEffect(() => {
+
+    const loadProfileData = () => {
+        setLoading(true);
         getProfileData().then((result) => {
             setUserData(result);
+            setLoading(false);
         });
+    };
+    useEffect(() => {
+        loadProfileData();
     }, []);
-
     return (
+        
         <View style={styles.container}>
+            <LoadingModal modalVisible={loading} />
             <MainHeader headerText={'Wallet'} name={'money'}></MainHeader>
             <SubHeaderText SubHeaderText={'Your available balance'}></SubHeaderText>
             <Text style={styles.Balance} >  {userData.balance} EGP</Text>

@@ -41,7 +41,7 @@ const MapDisplay = () => {
                 <Marker coordinate={userLocation}
 
                     title="Your Location"
-                    icon={require('../../../assets/Images/Maps/mark2.png')}
+                    icon={require('../../../assets/images/Maps/mark2.png')}
                 />
             </MapView>
         </View>
