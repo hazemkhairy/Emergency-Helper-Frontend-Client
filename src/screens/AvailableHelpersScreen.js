@@ -13,6 +13,7 @@ const AvailableHelpersScreen = () => {
     const [helpersData, setHelpersData] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [radius, setRadius] = useState('')
 
 
     const loadHelpers = async () => {
@@ -20,9 +21,11 @@ const AvailableHelpersScreen = () => {
         setHelpersData([]);
         setLoading(true);
         await getOffers().then((result) => {
-            setHelpersData(result);
+            setHelpersData(result.offers);
+            setRadius(result.radius);
             setLoading(false);
             setIsFetching(false);
+
         });
     };
     const reload = () => {
@@ -31,8 +34,6 @@ const AvailableHelpersScreen = () => {
     useEffect(() => {
         loadHelpers();
     }, []);
-
-
     return (
         <View style={styles.container}>
             <LoadingModal modalVisible={loading} />
@@ -48,15 +49,18 @@ const AvailableHelpersScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
+            {helpersData.length ? <Text style={styles.radiusTXT}>Radius: {radius} KM</Text> : null}
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={helpersData}
-                bounces={false}
                 keyExtractor={(item, index) => index.toString()}
                 refreshing={isFetching}
                 onRefresh={() => loadHelpers()}
                 renderItem={({ item }) => (
-                    <HelperCard item={item}> </HelperCard>
+                    <View>
+
+                        <HelperCard item={item}> </HelperCard>
+                    </View>
 
                 )}
                 ListEmptyComponent={
@@ -121,6 +125,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignSelf: "center",
     },
+    radiusTXT: {
+        fontFamily: "Montserrat_SemiBold",
+        color: "#132641",
+        fontSize: normalize(14),
+        marginLeft: '15%'
+    }
 
 })
 

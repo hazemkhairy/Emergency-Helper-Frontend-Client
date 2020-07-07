@@ -107,7 +107,7 @@ const MainNav = createDrawerNavigator(
     },
 
     {
-        contentComponent: props => <SideDrawer   {...props} onItemPress={({ route, focused }) => { props.navigation.navigate(route) }} />
+        contentComponent: props => { return (props.navigation.state.isDrawerOpen )? <SideDrawer   {...props} onItemPress={({ route, focused }) => { props.navigation.navigate(route),console.log(route.routeName) }} /> :null}
         , contentOptions: {
             activeTintColor: '',
             activeBackgroundColor: 'Transparent',

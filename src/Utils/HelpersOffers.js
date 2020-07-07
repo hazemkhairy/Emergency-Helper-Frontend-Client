@@ -4,7 +4,7 @@ export const getOffers = async () => {
     let res = await backendAxios
         .get("api/Request/ViewOffers")
         .then((res) => {
-            return (res.data.payload.offers)
+            return (res.data.payload)
         })
         .catch((error) => {
             return error;
