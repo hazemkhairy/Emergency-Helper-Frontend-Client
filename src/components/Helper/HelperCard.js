@@ -71,6 +71,12 @@ const HelperCard = ({ item }) => {
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginTop: '3%' }}>
+                        <Text style={styles.Distance}>Distance: </Text>
+                        <View>
+                            <Text style={styles.DistanceItem}>{item.distanceBetween}</Text>
+                        </View>
+                    </View>
+                    <View style={{ flexDirection: 'row', marginTop: '3%' }}>
                         <Text style={styles.Offer}>Offer: </Text>
                         <View>
                             <Text style={styles.offerItem}>{item.offer.description}</Text>
@@ -99,7 +105,6 @@ const styles = StyleSheet.create({
             height: 2,
         },
         elevation: 10,
-       
     },
 
     img: {
@@ -107,7 +112,6 @@ const styles = StyleSheet.create({
         width: normalize(65),
         borderRadius: normalize(45),
         marginLeft: normalize(-15),
-
     },
     name: {
         fontSize: 16,
@@ -130,7 +134,6 @@ const styles = StyleSheet.create({
         opacity: 0.7
     },
     categoryItem: {
-
         fontSize: normalize(12),
         fontFamily: 'Montserrat',
         color: '#132641',
@@ -140,30 +143,34 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat_Medium',
         fontSize: 12,
         opacity: 0.7
-
     },
     SkillsItem: {
-
         fontSize: 12,
         fontFamily: 'Montserrat',
         color: '#132641',
         opacity: 0.5
-
-
     },
     Offer: {
         fontFamily: 'Montserrat_Medium',
         fontSize: 12,
         opacity: 0.7
-
     },
     offerItem: {
-
         fontSize: normalize(12),
         fontFamily: 'Montserrat',
         color: '#132641',
         opacity: 0.5
-
+    },
+    Distance:{
+        fontFamily: 'Montserrat_Medium',
+        fontSize: 12,
+        opacity: 0.7
+    },
+    DistanceItem:{
+        fontSize: normalize(12),
+        fontFamily: 'Montserrat',
+        color: '#132641',
+        opacity: 0.5
     },
     expandButton: {
         flexDirection: 'row',
