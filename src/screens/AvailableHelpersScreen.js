@@ -49,7 +49,7 @@ const AvailableHelpersScreen = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-            {helpersData.length ? <Text style={styles.radiusTXT}>Radius: {radius} KM</Text> : null}
+            {helpersData.length ? <Text style={styles.radiusTXT}>KM: {radius} </Text> : null}
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={helpersData}
