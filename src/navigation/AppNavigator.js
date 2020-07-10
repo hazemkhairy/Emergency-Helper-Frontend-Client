@@ -17,14 +17,18 @@ import AccountInfoScreen from '../screens/Settings/AccountInfoScreen'
 import ChangePasswordScreen from '../screens/Settings/ChangePasswordScreen'
 import TermsAndConditionsScreen from '../screens/AboutUs/TermsAndConditionsScreen'
 import TicketScreen from '../screens/TicketScreen'
+import RequestChat from '../screens/RequestChat'
 import Main from '../screens/Main';
 import { Dimensions } from 'react-native';
 
 const ApplicationNav = createStackNavigator(
     {
-        Main: {
-            screen: Main
+        Main:{
+            screen:MainScreen
         },
+        // Main: {
+        //     screen: Main
+        // },
         HistoryScreen: {
             screen: HistoryScreen
         },
@@ -45,8 +49,8 @@ const ApplicationNav = createStackNavigator(
         AccountInfoScreen,
         ChangePasswordScreen,
         TicketScreen,
-        TermsAndConditionsScreen
-
+        TermsAndConditionsScreen,
+        RequestChat
 
     },
 
