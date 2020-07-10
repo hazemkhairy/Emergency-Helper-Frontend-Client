@@ -6,6 +6,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const cardItem = ({ item }) => {
    
     const [active,setActive]=useState(false)
+   
+   
+    const fullname = item.acceptedState.helperName;
+     helperName = fullname.split(' ').slice(0, 2).join(' ')
+    
   
     var day = new Date(item.date).getDate(); 
     var month = new Date(item.date).getMonth() + 1; 
@@ -37,7 +42,7 @@ const cardItem = ({ item }) => {
             <View style={styles.buttonContainer}>
                 <View>
                 <Text style={styles.date}>{date}</Text>
-                <Text style={styles.helperName}>{item.name}</Text>
+                <Text style={styles.helperName}>{helperName}</Text>
                 <Text style={styles.categoryName}>{item.category}</Text>
                 </View>
                 <TouchableOpacity onPress={()=>setActive(!active)}>

@@ -16,6 +16,7 @@ import normalize from "react-native-normalize";
 import Icon from "react-native-vector-icons/Ionicons";
 import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
+import { useNavigation } from 'react-navigation-hooks'
 
 const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom, HelperPriceto, HelperSkills, HelperCategory, HelperOffer, HelperNumber, close, header }) => {
   if (!modalVisible) return null;
@@ -34,8 +35,10 @@ const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom,
     }
     Linking.openURL(mobile);
   }
+  const { navigate } = useNavigation();
   const onChat = () => {
     close();
+    navigate('RequestChat',{props:{HelperPicture:HelperPicture,name:HelperName,pricefrom:HelperPriceFrom,priceto:HelperPriceto,skills:HelperSkills,offer:HelperOffer,number:HelperNumber,category:HelperCategory}})
   };
   const onCancel = () => {
     setCancelModal(true);

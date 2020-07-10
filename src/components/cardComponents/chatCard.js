@@ -2,12 +2,14 @@ import React from 'react'
 
 import { View, StyleSheet, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Octicons'
+import { TextInput } from 'react-native-gesture-handler'
 
-const ChatCard = ({ item }) => {
+const ChatCard = ({ item,chat }) => {
     let containerStyle = styles.container
     let itemStyle = item.senderRole=='Client' ? styles.itemOut : styles.itemIn;
     let rowStyle =item.senderRole=='Client' ? styles.rowRight:styles.rowLeft
-   
+  
+    
     var day = new Date(item.date).getDate();
     var monthNames = [ 'January', 'February', 'March', 'April', 'May','June',
     'July', 'August', 'September', 'October', 'November', 'December'];
@@ -15,6 +17,7 @@ const ChatCard = ({ item }) => {
     var hours = new Date(item.date).getHours(); 
     var min = new Date(item.date).getMinutes(); 
     var date= day +' '+ month + ' '+ hours + ':'+ min
+
       if(item.senderRole=='Client'){
        return(
            <View>
@@ -32,7 +35,7 @@ const ChatCard = ({ item }) => {
        }
     return(
         <View> 
-             <Text style={styles.nameStyle}> {item.senderName} ({item.senderRole})</Text>
+          {!chat? <Text style={styles.nameStyle}> {item.senderName} ({item.senderRole})</Text>:  null} 
      <View style={rowStyle}> 
       <Icon name={'triangle-left'} style={styles.leftIcon} /> 
      <View style={[containerStyle, itemStyle]}>
