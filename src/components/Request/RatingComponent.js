@@ -1,29 +1,33 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import ColoredStar from '../../../assets/images/svg/colored';
-import EmptyStar from '../../../assets/images/svg/empty';
-const RatingComponent = ({ maxRating, value, setValue }) => {
-
+import ColoredStar from '../../../assets/Images/svg/colored';
+import EmptyStar from '../../../assets/Images/svg/empty';
+const RatingComponent = ({ maxRating, value, setValue,svgStyle,starsStyle,rated }) => {
+   
     const getRating = () => {
+        
+        let svgStylee=svgStyle?svgStyle:styles.svg
         let ret = [];
         for (let i = 0; i < value; i++) {
             ret.push(
+                rated? <ColoredStar height={svgStylee.height} width={svgStylee.width} />:
                 <TouchableOpacity  key={i.toString()} onPress={() => setValue(i)}>
-                    <ColoredStar height={styles.svg.height} width={styles.svg.width} />
+                    <ColoredStar height={svgStylee.height} width={svgStylee.width} />
                 </TouchableOpacity>
             )
         }
         for (let i = value; i < maxRating; i++) {
             ret.push(
+                rated?  <EmptyStar height={svgStylee.height} width={svgStylee.width} />:
                 <TouchableOpacity key={i.toString()} onPress={() => setValue(i + 1)}>
-                    <EmptyStar height={styles.svg.height} width={styles.svg.width} />
+                    <EmptyStar height={svgStylee.height} width={svgStylee.width} />
                 </TouchableOpacity>
             )
         }
         return ret;
     }
     return (
-        <View style={styles.container}>
+        <View style={starsStyle?starsStyle:styles.container}>
             {
                 getRating()
             }

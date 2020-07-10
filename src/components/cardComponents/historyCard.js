@@ -2,14 +2,17 @@ import React,{useState} from 'react'
 
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import RatingComponent from '../Request/RatingComponent'
+import RatingModal from '../Request/RatingModal'
 
 const cardItem = ({ item }) => {
    
     const [active,setActive]=useState(false)
-   
-   
+    const [rateModal, setRateModal] = useState(false);
+    const [rate,setRate]=useState('')
+
     const fullname = item.acceptedState.helperName;
-     helperName = fullname.split(' ').slice(0, 2).join(' ')
+    const helperName = fullname.split(' ').slice(0, 2).join(' ')
     
   
     var day = new Date(item.date).getDate(); 
@@ -37,8 +40,18 @@ const cardItem = ({ item }) => {
           totalprice='0.0'
           canceled=true
         }
+        if(item.finishedState.isFinished)
+        {
+            if(helperRate!='0')
+            {
+                setRate(helperRate)
+            }
+            else reateButton=true
+        }
     return (
+        
         <View  style={styles.container}>
+              <RatingModal modalVisible={rateModal} requestID={item._id} close={()=>setRateModal(false)}/>
             <View style={styles.buttonContainer}>
                 <View>
                 <Text style={styles.date}>{date}</Text>
@@ -52,7 +65,17 @@ const cardItem = ({ item }) => {
                 {active==true?<Text style={styles.details}>{item.description}</Text>:null
                 }
                 <Text  style={styles.price}>{totalprice} EGP</Text>
-               {canceled ?<Text  style={styles.canceledText}>Canceled</Text>:null} 
+                {canceled ?<Text  style={styles.canceledText}>Canceled</Text>:
+               reateButton? <TouchableOpacity onPress={()=>setRateModal(!rateModal)}>
+               <Text style={styles.rateStyle}>Rate</Text>
+               </TouchableOpacity>: 
+               <RatingComponent  maxRating={5}
+                   setValue={setRate}
+                   value={rate}
+                   svgStyle={styles.svgStyle} 
+                   starsStyle={styles.containerStyle}
+                   />
+               } 
         </View>
     )
     
@@ -129,6 +152,28 @@ const styles = StyleSheet.create({
         bottom: '7%', 
         alignSelf: "flex-end",
     },
+    svgStyle:{
+        height:15,
+        width:15
+    },
+    containerStyle:{
+        display: 'flex',
+        flexDirection: 'row',
+        right:'11%',
+        position: "absolute", 
+        bottom: '7%', 
+        alignSelf: "flex-end",
+    },
+    rateStyle:
+    {
+        fontSize: 12,
+        color: '#132641',
+        fontFamily: 'Montserrat',
+        right:'11%',
+        position: "absolute", 
+        bottom: '7%', 
+        alignSelf: "flex-end",
+    }
    
 })
 
