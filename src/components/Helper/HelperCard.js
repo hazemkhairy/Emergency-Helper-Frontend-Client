@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import normalize from 'react-native-normalize';
 import HelperModal from '../Request/HelperModal';
+import {acceptOffer} from '../../Utils/HelpersOffers';
 const HelperCard = ({ item }) => {
 
 
@@ -10,15 +11,18 @@ const HelperCard = ({ item }) => {
     const [active, setActive] = useState(false)
     const [HelperModall, setHelperModall] = useState(false);
 
-    const helper = () => {
-        setHelperModall(true);
-        
-
-    };
     const closeHelperModal = () => {
         setHelperModall(false);
     };
-
+    const onSelect = async () => {
+       setHelperModall(true)
+        acceptOffer(item.offer._id).then(
+          () => {
+           
+          }
+        )
+      }
+     
     return (
         <View style={containerStyle}>
 
@@ -43,7 +47,7 @@ const HelperCard = ({ item }) => {
                             <Text style={styles.name}>{item.helperInfo.name}</Text>
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.price}>Price visit: {item.offer.price.from}~{item.offer.price.to}</Text>
-                                <TouchableOpacity style={styles.buttonStyle} onPress={() => { helper() }}>
+                                <TouchableOpacity style={styles.buttonStyle} onPress={() => { onSelect() }}>
                                     <Text style={styles.buttonText}>Select</Text>
                                 </TouchableOpacity>
                             </View>
