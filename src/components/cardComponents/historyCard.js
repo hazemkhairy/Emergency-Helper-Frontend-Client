@@ -9,12 +9,11 @@ const cardItem = ({ item }) => {
    
     const [active,setActive]=useState(false)
     const [rateModal, setRateModal] = useState(false);
-    const [rate,setRate]=useState('')
+    const [rate,setRate]=useState(0)
 
     const fullname = item.acceptedState.helperName;
     const helperName = fullname.split(' ').slice(0, 2).join(' ')
     
-  
     var day = new Date(item.date).getDate(); 
     var month = new Date(item.date).getMonth() + 1; 
     var year = new Date(item.date).getFullYear(); 
@@ -36,18 +35,23 @@ const cardItem = ({ item }) => {
     let date= day+  '/' + month + '/' + year + ' ' + hours + ':' + min +' '+  a
     let totalprice=item.finishedState.totalPrice
     let canceled=false
+    let reateButton=false
     if(item.canceledState.isCanceled){
           totalprice='0.0'
           canceled=true
         }
-        if(item.finishedState.isFinished)
-        {
-            if(helperRate!='0')
+       
+            if(item.finishedState.isFinished){
+            if(item.finishedState.clientRate.rate!=0)
             {
-                setRate(helperRate)
+                let ratee=item.finishedState.clientRate.rate
+                console.log(item.finishedState.clientRate.rate)
+                setRate(ratee)
             }
             else reateButton=true
-        }
+            }
+      
+    
     return (
         
         <View  style={styles.container}>
@@ -65,6 +69,7 @@ const cardItem = ({ item }) => {
                 {active==true?<Text style={styles.details}>{item.description}</Text>:null
                 }
                 <Text  style={styles.price}>{totalprice} EGP</Text>
+              
                 {canceled ?<Text  style={styles.canceledText}>Canceled</Text>:
                reateButton? <TouchableOpacity onPress={()=>setRateModal(!rateModal)}>
                <Text style={styles.rateStyle}>Rate</Text>
@@ -139,7 +144,7 @@ const styles = StyleSheet.create({
         color: '#132641',
         opacity:0.6,
         right:'8%',
-        bottom: '12%', 
+        bottom: '20%', 
         alignSelf: "flex-end",
     },
     canceledText:{
@@ -161,7 +166,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         right:'11%',
         position: "absolute", 
-        bottom: '7%', 
+        bottom: '9%', 
         alignSelf: "flex-end",
     },
     rateStyle:

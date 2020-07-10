@@ -5,12 +5,12 @@ import EmptyStar from '../../../assets/Images/svg/empty';
 const RatingComponent = ({ maxRating, value, setValue,svgStyle,starsStyle,rated }) => {
    
     const getRating = () => {
-        
+        console.log(value,setValue)
         let svgStylee=svgStyle?svgStyle:styles.svg
         let ret = [];
         for (let i = 0; i < value; i++) {
             ret.push(
-                rated? <ColoredStar height={svgStylee.height} width={svgStylee.width} />:
+                
                 <TouchableOpacity  key={i.toString()} onPress={() => setValue(i)}>
                     <ColoredStar height={svgStylee.height} width={svgStylee.width} />
                 </TouchableOpacity>
@@ -18,7 +18,7 @@ const RatingComponent = ({ maxRating, value, setValue,svgStyle,starsStyle,rated 
         }
         for (let i = value; i < maxRating; i++) {
             ret.push(
-                rated?  <EmptyStar height={svgStylee.height} width={svgStylee.width} />:
+              
                 <TouchableOpacity key={i.toString()} onPress={() => setValue(i + 1)}>
                     <EmptyStar height={svgStylee.height} width={svgStylee.width} />
                 </TouchableOpacity>
