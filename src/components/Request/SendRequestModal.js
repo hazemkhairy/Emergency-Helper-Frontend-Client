@@ -62,8 +62,6 @@ const SendRequestModal = ({ close, mV }) => {
 
             createRequest(descripition, location.location, category).then(
                 (res) => {
-                    console.log('done');
-                    console.log(res)
                     setLoadingModal(false);
                     setSuccessModal(true);
                    
@@ -73,7 +71,7 @@ const SendRequestModal = ({ close, mV }) => {
             ).catch(
                 (err) => {
                     if (err.response.data && err.response.data.message) {
-                        console.log(err.response.data);
+
                         setErrorModalMessage(err.response.data.message);
                     }
                     setLoadingModal(false);

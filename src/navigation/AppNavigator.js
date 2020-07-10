@@ -1,6 +1,5 @@
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from "react-navigation";
-import Home from '../screens/Home'
 import MainScreen from '../screens/MainScreen';
 import SideDrawer from '../components/global/SideDrawer';
 import { createDrawerNavigator } from 'react-navigation-drawer';
@@ -18,7 +17,6 @@ import ChangePasswordScreen from '../screens/Settings/ChangePasswordScreen'
 import TermsAndConditionsScreen from '../screens/AboutUs/TermsAndConditionsScreen'
 import TicketScreen from '../screens/TicketScreen'
 import RequestChat from '../screens/RequestChat'
-import Main from '../screens/Main';
 import { Dimensions } from 'react-native';
 
 const ApplicationNav = createStackNavigator(
@@ -26,9 +24,6 @@ const ApplicationNav = createStackNavigator(
         Main:{
             screen:MainScreen
         },
-        // Main: {
-        //     screen: Main
-        // },
         HistoryScreen: {
             screen: HistoryScreen
         },
@@ -111,7 +106,7 @@ const MainNav = createDrawerNavigator(
     },
 
     {
-        contentComponent: props => { return (props.navigation.state.isDrawerOpen )? <SideDrawer   {...props} onItemPress={({ route, focused }) => { props.navigation.navigate(route),console.log(route.routeName) }} /> :null}
+        contentComponent: props => { return (props.navigation.state.isDrawerOpen )? <SideDrawer   {...props} onItemPress={({ route, focused }) => { props.navigation.navigate(route) }} /> :null}
         , contentOptions: {
             activeTintColor: '',
             activeBackgroundColor: 'Transparent',
