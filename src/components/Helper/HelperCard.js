@@ -2,42 +2,20 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import normalize from 'react-native-normalize';
-import HelperModal from '../Request/HelperModal';
-import {acceptOffer} from '../../Utils/HelpersOffers';
+import { acceptOffer } from '../../Utils/HelpersOffers';
 const HelperCard = ({ item }) => {
-
-
     let containerStyle = styles.container
     const [active, setActive] = useState(false)
-    const [HelperModall, setHelperModall] = useState(false);
-
-    const closeHelperModal = () => {
-        setHelperModall(false);
-    };
     const onSelect = async () => {
-       setHelperModall(true)
         acceptOffer(item.offer._id).then(
-          () => {
-           
-          }
+            () => {
+                console.log('done')
+            }
         )
-      }
-     
+    }
+
     return (
         <View style={containerStyle}>
-
-            <HelperModal
-                modalVisible={HelperModall}
-                close={() => closeHelperModal()}
-                HelperPicture={item.helperInfo.profilePicture}
-                HelperName={item.helperInfo.name}
-                HelperPriceFrom={item.offer.price.from}
-                HelperPriceto={item.offer.price.to}
-                HelperSkills={item.helperInfo.skills}
-                HelperCategory={item.helperInfo.category}
-                HelperOffer={item.offer.description}
-                HelperNumber={item.helperInfo.mobile}
-            />
             <View style={styles.expandButton}>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -165,12 +143,12 @@ const styles = StyleSheet.create({
         color: '#132641',
         opacity: 0.5
     },
-    Distance:{
+    Distance: {
         fontFamily: 'Montserrat_Medium',
         fontSize: 12,
         opacity: 0.7
     },
-    DistanceItem:{
+    DistanceItem: {
         fontSize: normalize(12),
         fontFamily: 'Montserrat',
         color: '#132641',

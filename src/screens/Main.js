@@ -4,12 +4,13 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import MenuHeaderButton from '../components/global/MenuHeaderButton';
 import MapDisplay from '../components/global/MapDisplay'
 import SendRequest from '../components/Request/SendRequest';
+import LockdownManager from '../components/Lockdown/LockdownManager';
 
 const Main = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-
+            <LockdownManager />
             <MapDisplay />
             <SendRequest />
         </View>

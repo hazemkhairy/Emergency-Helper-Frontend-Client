@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -17,41 +17,50 @@ import Icon from "react-native-vector-icons/Ionicons";
 import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
 import { useNavigation } from 'react-navigation-hooks'
+import { getAcceptedOffer } from '../../Utils/HelpersOffers'
+const HelperModal = ({ header }) => {
 
-const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom, HelperPriceto, HelperSkills, HelperCategory, HelperOffer, HelperNumber, close, header }) => {
-  if (!modalVisible) return null;
-
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [cancelModal, setCancelModal] = useState(false);
-
-
+  const [offer, setOffer] = useState({});
+  useEffect(
+    () => {
+      getAcceptedOffer().then(
+        res => {
+          setOffer(res);
+          setLoading(false);
+        }
+      )
+    }, []
+  )
   const makeCall = () => {
-    let mobile = { HelperNumber }
+    let mobile = { ...offer.helperNumber }
 
     if (Platform.OS === 'android') {
-      mobile = `tel:${HelperNumber}`;
+      mobile = `tel:${offer.helperNumber}`;
     } else {
-      mobile = `telprompt:${HelperNumber}`;
+      mobile = `telprompt:${offer.helperNumber}`;
     }
     Linking.openURL(mobile);
   }
   const { navigate } = useNavigation();
   const onChat = () => {
-    close();
-    navigate('RequestChat',{props:{HelperPicture:HelperPicture,name:HelperName,pricefrom:HelperPriceFrom,priceto:HelperPriceto,skills:HelperSkills,offer:HelperOffer,number:HelperNumber,category:HelperCategory}})
+    //close();
+    //navigate('RequestChat', { props: { HelperPicture: offer.helperPicture, name: offer.helperName, pricefrom: offer.helperPriceFrom, priceto: offer.helperPriceto, skills: offer.helperSkills, offer: offer.helperOffer, number: offer.helperNumber, category: offer.helperCategory } })
   };
   const onCancel = () => {
     setCancelModal(true);
   };
 
-  header = "";
+  if (loading)
+    return <LoadingModal modalVisible={loading} />
+  if (cancelModal)
+    return <CancelModal
+      CancelModalVisble={cancelModal}
+      close={() => setCancelModal(false)}
+    />
   return (
-    <Modal isVisible={modalVisible}>
-      <LoadingModal modalVisible={loading} />
-      <CancelModal
-        CancelModalVisble={cancelModal}
-        close={() => setCancelModal(false)}
-      />
+    <Modal isVisible={true}>
       <View style={styles.container}>
         {header != "" ? <Text style={styles.header}>{header}</Text> : null}
         <View style={styles.centerContainer}>
@@ -69,12 +78,12 @@ const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom,
             <Image
               style={styles.image}
               source={{
-                uri: HelperPicture,
+                uri: 'offer.helperImage',
               }}
             />
             <View style={styles.nameNumContainer}>
-              <Text style={styles.name}>{HelperName}</Text>
-              <Text style={styles.number}>{HelperNumber}</Text>
+              <Text style={styles.name}>{offer.helperName.firstName} {offer.helperName.lastName}</Text>
+              <Text style={styles.number}>{offer.helperNumber}</Text>
             </View>
             <TouchableOpacity onPress={() => { makeCall() }}>
               <Icon
@@ -95,25 +104,25 @@ const HelperModal = ({ modalVisible, HelperPicture, HelperName, HelperPriceFrom,
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Price Visit:
-            <Text style={styles.info}> {HelperPriceFrom} ~ {HelperPriceto}</Text>
+            <Text style={styles.info}> {offer.priceRange.from} ~ {offer.priceRange.to}</Text>
               </Text>
             </View>
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Category:
-                <Text style={styles.info}> {HelperCategory}</Text>
+                <Text style={styles.info}> {offer.category}</Text>
               </Text>
             </View>
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Skills:
-                <Text style={styles.info}> {HelperSkills}</Text>
+                <Text style={styles.info}> {offer.skills}</Text>
               </Text>
             </View>
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Offer:
-                <Text style={styles.info}> {HelperOffer}</Text>
+                <Text style={styles.info}> {offer.offerDescription}</Text>
               </Text>
             </View>
           </ScrollView>

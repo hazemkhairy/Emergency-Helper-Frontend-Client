@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
@@ -6,16 +6,13 @@ import CategorySelect from './CategorySelect'
 import SelectLocationInput from './SelectLocationInput';
 import { createRequest } from '../../Utils/RequestUtils'
 import LoadingModal from '../global/LoadingModal';
-import SuccessModal from '../global/SuccessModal';
 import ErrorModal from '../global/ErrorModal';
-import { useNavigation } from 'react-navigation-hooks'
 import { ScrollView } from 'react-native-gesture-handler';
-
+//use ref & mount to perevent memory leak warning
 const SendRequestModal = ({ close, mV }) => {
+    let mount = useRef(true);
     const [innerVisibility, setInnerVisibility] = useState(true);
-
     const [loadingModal, setLoadingModal] = useState(false);
-    const [successModal, setSuccessModal] = useState(false);
     const [errorModal, setErrorModal] = useState(false);
     const [errorModalMessage, setErrorModalMessage] = useState('');
 
@@ -26,56 +23,73 @@ const SendRequestModal = ({ close, mV }) => {
     const [categoryError, setCategoryError] = useState('');
     const [locationError, setLocationError] = useState(null);
 
-
+    useEffect(
+        () => {
+            mount.current = true;
+            return () => { mount.current = false; }
+        }, []
+    )
 
     const validateInput = () => {
         let valid = true;
         if (descripition.trim().length == 0) {
-            setDescripitionError(true);
+            if (mount.current)
+                setDescripitionError(true);
             valid = false
         }
-        else
-            setDescripitionError(false);
+        else {
+            if (mount.current)
+                setDescripitionError(false);
+        }
         if (category == null || category.trim().length == 0) {
-            setCategoryError(true);
+            if (mount.current)
+                setCategoryError(true);
             valid = false
         }
-        else
-            setCategoryError(false);
+        else {
+            if (mount.current)
+                setCategoryError(false);
+        }
         if (location == null) {
-            setLocationError(true);
+            if (mount.current)
+                setLocationError(true);
             valid = false
         }
-        else
-            setLocationError(false);
+        else {
+            if (mount.current)
+                setLocationError(false);
+        }
         return valid
     }
 
-    const { navigate } = useNavigation();
-    const nav = () => {
-        navigate('AvailableHelpersScreen');
-    }
+    // const { navigate } = useNavigation();
+    // const nav = () => {
+    //     navigate('AvailableHelpersScreen');
+    // }
     const sendRequest = () => {
 
         if (validateInput()) {
-            setLoadingModal(true);
+            if (mount.current)
+                setLoadingModal(true);
 
             createRequest(descripition, location.location, category).then(
                 (res) => {
-                    setLoadingModal(false);
-                    setSuccessModal(true);
-                   
-                   
+                    close();
+                    if (mount.current) {
+                        setLoadingModal(false);
+                    }
 
                 }
             ).catch(
                 (err) => {
                     if (err.response.data && err.response.data.message) {
-
-                        setErrorModalMessage(err.response.data.message);
+                        if (mount.current)
+                            setErrorModalMessage(err.response.data.message);
                     }
-                    setLoadingModal(false);
-                    setErrorModal(true);
+                    if (mount.current) {
+                        setLoadingModal(false);
+                        setErrorModal(true);
+                    }
                 }
             )
         }
@@ -83,7 +97,8 @@ const SendRequestModal = ({ close, mV }) => {
 
     const animationTiming = 1000;
     const closeHandler = () => {
-        setInnerVisibility(false);
+        if (mount.current)
+            setInnerVisibility(false);
         setTimeout(() => {
             close();
         }, animationTiming + 100);
@@ -94,22 +109,27 @@ const SendRequestModal = ({ close, mV }) => {
     }
     if (!mV)
         return null;
+    if (loadingModal)
+        return <LoadingModal modalVisible={loadingModal} />
+    if (errorModal)
+        return <ErrorModal
+            modalVisible={errorModal}
+            message={errorModalMessage}
+            closeModal={() => {
+                if (mount.current)
+                    setErrorModal(false)
+            }} />
+
     return (
         <Modal isVisible={innerVisibility} style={styles.modal} animationInTiming={animationTiming} animationOutTiming={animationTiming}>
-            {loadingModal ? <LoadingModal modalVisible={loadingModal} /> : null}
-            {errorModal ? <ErrorModal modalVisible={errorModal} message={errorModalMessage} closeModal={() => { setErrorModal(false) }} /> : null}
-            {successModal ? <SuccessModal modalVisible={successModal} message={'Request created'} closeModal={() => { setSuccessModal(false),closeHandler(),nav() }} /> : null}
             <View style={styles.container}>
                 <TouchableOpacity onPress={closeHandler} style={styles.innerContainer}>
                     <AntDesign name="down" size={24} color="black" />
                     <Text style={styles.headerText}>Enter Your Problem</Text>
                 </TouchableOpacity>
-
                 <ScrollView
                     style={styles.inputsContainer}
                 >
-
-
                     <TextInput
                         value={descripition}
                         onChangeText={(t) => setDescripition(t)}
@@ -120,7 +140,7 @@ const SendRequestModal = ({ close, mV }) => {
                     <View style={styles.inputContainer}>
                         <CategorySelect
                             value={category}
-                            setValue={setCategory}
+                            setValue={(val) => { if(mount.current)setCategory(val) }}
                             style={categoryError ? styles.error : null}
 
                         />
