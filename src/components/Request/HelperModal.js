@@ -18,10 +18,12 @@ import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
 import { useNavigation } from 'react-navigation-hooks'
 import { getAcceptedOffer } from '../../Utils/HelpersOffers'
+import ChatModal from '../../screens/ClientChat'
 const HelperModal = ({ header }) => {
-
+  const [modalVisible,setModalVisble]=useState(true)
   const [loading, setLoading] = useState(true);
   const [cancelModal, setCancelModal] = useState(false);
+  const [chatModal,setChatModal]=useState(false)
   const [offer, setOffer] = useState({});
   useEffect(
     () => {
@@ -45,13 +47,12 @@ const HelperModal = ({ header }) => {
   }
   const { navigate } = useNavigation();
   const onChat = () => {
-    //close();
-    //navigate('RequestChat', { props: { HelperPicture: offer.helperPicture, name: offer.helperName, pricefrom: offer.helperPriceFrom, priceto: offer.helperPriceto, skills: offer.helperSkills, offer: offer.helperOffer, number: offer.helperNumber, category: offer.helperCategory } })
+    setChatModal(true)
   };
   const onCancel = () => {
     setCancelModal(true);
   };
-
+  
   if (loading)
     return <LoadingModal modalVisible={loading} />
   if (cancelModal)
@@ -59,8 +60,12 @@ const HelperModal = ({ header }) => {
       CancelModalVisble={cancelModal}
       close={() => setCancelModal(false)}
     />
+  if(chatModal)
+  return <ChatModal modalVisible={chatModal}
+  close={()=>setChatModal(false)}
+  />
   return (
-    <Modal isVisible={true}>
+    <Modal isVisible={modalVisible}>
       <View style={styles.container}>
         {header != "" ? <Text style={styles.header}>{header}</Text> : null}
         <View style={styles.centerContainer}>

@@ -3,87 +3,61 @@ import { View, Text, Image, StyleSheet, FlatList, Dimensions, TextInput, Touchab
 import normalize from "react-native-normalize";
 import ChatCard from '../components/cardComponents/chatCard'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import HeaderButton from '../components/global/HeaderButton'
 import KeyboardSpacer from 'react-native-keyboard-spacer'
+import Modal from "react-native-modal";
 import { allMessages, sendMessage } from '../Utils/CleintChat'
-import HelperModal from '../components/Request/HelperModal';
+import { getAcceptedOffer } from '../Utils/HelpersOffers'
 import { MaterialIcons } from '@expo/vector-icons';
-
-//import { Header } from 'react-native/Libraries/NewAppScreen';
-
-
-const ClientChat = ({ navigation }) => {
-
-  const profilePicture = navigation.state.params.props.HelperPicture
-  const name = navigation.state.params.props.name
-  const number = navigation.state.params.props.number
-  const pricefrom = navigation.state.params.props.pricefrom
-  const Priceto = navigation.state.params.props.Priceto
-  const category = navigation.state.params.props.category
-  const skills = navigation.state.params.props.skills
-  const offer = navigation.state.params.props.offer
+import LoadingModal from '../components/global/LoadingModal'
+const ClientChat = ({ close }) => {
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
-  const [reloading, setReloading] = useState(false);
   const [active, setActive] = useState(false);
-  const [Helper, setHelper] = useState(false);
-
-  const openHelperModal = () => {
-    setHelper(true);
-
-  };
-  const closeHelperModal = () => {
-    setHelper(false);
-  };
+  
+  const [helperData, setHelperData] = useState([]);
+  const [loading,setloading]=useState(true)
 
   const newMessage = async () => {
     if (active == true) {
-     
       sendMessage(message).then((result) => {
       setMessage('')
       setActive(false)
       getMessages()
-       console.log(message)
       });
-     // setInterval(getMessages, 5000);
+   
     }
   }
-
+ 
   const getMessages = async () => {
-    //setReloading(true);
-    
+ 
     await allMessages().then((result) => {
       setMessages(result);
-     // setReloading(false);
-      setInterval(getMessages, 5000);
+    
     });
   };
 
   useEffect(() => {
     getMessages();
-
+    setInterval(getMessages, 5000);
   }, []);
+  useEffect( () => {
+      getAcceptedOffer().then( (result) => {
+          setHelperData(result);
+          setloading(false)
+        })
+    }, []
+  )
+  if(loading)
+  return <LoadingModal modalVisible={loading}  />
 
   return (
+    <Modal isVisible={true} style={{margin: 0}}>
     <View style={styles.container}>
-      <HelperModal
-        modalVisible={Helper}
-        close={() => closeHelperModal()}
-        HelperPicture={profilePicture}
-        HelperName={name}
-        HelperPriceFrom={pricefrom}
-        HelperPriceto={Priceto}
-        HelperSkills={skills}
-        HelperOffer={offer}
-        HelperNumber={number}
-        HelperCategory={category}
-      />
       <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.90 }}>
         <View style={styles.headerContainer}>
           <View style={styles.BackButton}>
-            <TouchableOpacity onPress={() => { navigation.navigate('AvailableHelpersScreen', openHelperModal()) }}>
+            <TouchableOpacity onPress={() => { close() }}>
               <MaterialIcons name="arrow-back" size={25} color="white" />
             </TouchableOpacity>
           </View>
@@ -91,10 +65,10 @@ const ClientChat = ({ navigation }) => {
             <Image
               style={styles.image}
               source={{
-                uri: profilePicture,
+                uri: helperData.helperImage,
               }}
             />
-            <Text style={styles.nameText}>{name}</Text>
+          <Text style={styles.nameText}> {helperData.helperName.firstName} </Text>
           </View>
         </View>
         <View style={{ flex: 1 }}>
@@ -102,8 +76,6 @@ const ClientChat = ({ navigation }) => {
             inverted
             keyboardShouldPersistTaps="handled"
             style={{ flex: 1 }}
-            refreshing={reloading}
-            onRefresh={() => getMessages()}
             data={messages}
             getItemLayout={(data, index) => ({
               length: 170,
@@ -160,20 +132,14 @@ const ClientChat = ({ navigation }) => {
         </View>
       </KeyboardAvoidingView>
     </View>
-
+    </Modal>
   );
-
-
-}
-ClientChat.navigationOptions = (props) => {
-  return {
-    title: '',
-    headerTransparent: true,
-    headerShown: false
-
-  }
 }
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#FFFFFF',
+    flex: 1,
+  },
   headerContainer: {
     width: '100%',
     backgroundColor: '#7598BA',
@@ -213,12 +179,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Montserrat_bold'
   },
 
-  container: {
-    backgroundColor: '#FFFFFF',
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width,
-    flex: 1,
-  },
+  
   footer: {
     borderWidth: 1,
     borderTopColor: '#E9EEF1',

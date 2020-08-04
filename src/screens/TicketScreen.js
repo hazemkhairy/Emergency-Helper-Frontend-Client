@@ -47,7 +47,7 @@ const TicketScreen = ({ navigation }) => {
 
   }, []);
 
-
+ 
   return (
     <View style={styles.container}>
       <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.90 }}>
