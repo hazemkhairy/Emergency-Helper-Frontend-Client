@@ -10,7 +10,7 @@ const RatingComponent = ({ maxRating, value, setValue,svgStyle,starsStyle,rated 
         let ret = [];
         for (let i = 0; i < value; i++) {
             {rated? 
-                ret.push(<ColoredStar height={svgStylee.height} width={svgStylee.width} />):
+                ret.push(<ColoredStar key={i.toString()} height={svgStylee.height} width={svgStylee.width} />):
             ret.push(
                
                 <TouchableOpacity  key={i.toString()} onPress={() => setValue(i)}>
@@ -22,7 +22,7 @@ const RatingComponent = ({ maxRating, value, setValue,svgStyle,starsStyle,rated 
         for (let i = value; i < maxRating; i++) {
             {rated? 
             ret.push(
-                <EmptyStar height={svgStylee.height} width={svgStylee.width} />):
+                <EmptyStar key={i.toString()} height={svgStylee.height} width={svgStylee.width} />):
 
                ret.push(
                 <TouchableOpacity key={i.toString()} onPress={() => setValue(i + 1)}>

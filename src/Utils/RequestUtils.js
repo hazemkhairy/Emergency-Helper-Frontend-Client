@@ -16,9 +16,9 @@ export const rateRequest = async (rate,feedback,requestId) => {
         return true;
     })
     .catch(err => { 
-    
+      
       return false })
-    
+    console.log(res)
   return res;
   }
   

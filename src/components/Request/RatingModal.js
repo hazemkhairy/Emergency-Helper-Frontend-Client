@@ -20,12 +20,10 @@ const RateHelperModal = ({ modalVisible, requestID, close}) => {
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState('1');
   const [feedbackMessage, setFeedbackMessage] = useState("");
-  //console.log(requestID)
   const onSubmit = () => {
     setLoading(true);
     
     rateRequest (rating,feedbackMessage,requestID).then(() => {
-      console.log('rate', requestID,rating)
       setLoading(false);
       close();
     });
