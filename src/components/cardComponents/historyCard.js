@@ -9,10 +9,12 @@ const cardItem = ({ item }) => {
    
     const [active,setActive]=useState(false)
     const [rateModal, setRateModal] = useState(false);
-    const [rate,setRate]=useState(0)
-
-    const fullname = item.acceptedState.helperName;
-    const helperName = fullname.split(' ').slice(0, 2).join(' ')
+    let name = '';
+    if(item.acceptedState)
+    {
+        const fullname=item.acceptedState.helperName
+        name = fullname.split(' ').slice(0, 2).join(' ')
+    }
     
     var day = new Date(item.date).getDate(); 
     var month = new Date(item.date).getMonth() + 1; 
@@ -35,23 +37,18 @@ const cardItem = ({ item }) => {
     let date= day+  '/' + month + '/' + year + ' ' + hours + ':' + min +' '+  a
     let totalprice=item.finishedState.totalPrice
     let canceled=false
-    let reateButton=false
+    let rateButton=false
+    let rate=0
     if(item.canceledState.isCanceled){
           totalprice='0.0'
           canceled=true
         }
        
-            if(item.finishedState.isFinished){
-            if(item.finishedState.clientRate.rate!=0)
+           else if(item.finishedState.clientRate)
             {
-                let ratee=item.finishedState.clientRate.rate
-                console.log(item.finishedState.clientRate.rate)
-                setRate(ratee)
+               rate=item.finishedState.clientRate.rate
             }
-            else reateButton=true
-            }
-      
-    
+            else rateButton=true
     return (
         
         <View  style={styles.container}>
@@ -59,7 +56,7 @@ const cardItem = ({ item }) => {
             <View style={styles.buttonContainer}>
                 <View>
                 <Text style={styles.date}>{date}</Text>
-                <Text style={styles.helperName}>{helperName}</Text>
+                <Text style={styles.helperName}> {name} </Text>
                 <Text style={styles.categoryName}>{item.category}</Text>
                 </View>
                 <TouchableOpacity onPress={()=>setActive(!active)}>
@@ -71,14 +68,15 @@ const cardItem = ({ item }) => {
                 <Text  style={styles.price}>{totalprice} EGP</Text>
               
                 {canceled ?<Text  style={styles.canceledText}>Canceled</Text>:
-               reateButton? <TouchableOpacity onPress={()=>setRateModal(!rateModal)}>
+               rateButton? <TouchableOpacity onPress={console.log(item._id),()=>setRateModal(!rateModal)}>
                <Text style={styles.rateStyle}>Rate</Text>
                </TouchableOpacity>: 
                <RatingComponent  maxRating={5}
-                   setValue={setRate}
+                   setValue={rate}
                    value={rate}
                    svgStyle={styles.svgStyle} 
                    starsStyle={styles.containerStyle}
+                   rated={true}
                    />
                } 
         </View>

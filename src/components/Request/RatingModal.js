@@ -18,13 +18,14 @@ import {rateRequest} from '../../Utils/RequestUtils'
 const RateHelperModal = ({ modalVisible, requestID, close}) => {
     if(!modalVisible) return null;
   const [loading, setLoading] = useState(false);
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState('1');
   const [feedbackMessage, setFeedbackMessage] = useState("");
-
+  //console.log(requestID)
   const onSubmit = () => {
     setLoading(true);
     
     rateRequest (rating,feedbackMessage,requestID).then(() => {
+      console.log('rate', requestID,rating)
       setLoading(false);
       close();
     });

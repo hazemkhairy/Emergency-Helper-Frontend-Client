@@ -5,7 +5,7 @@ export const createRequest = async (description, location, category) => {
     return res;
 }
 export const rateRequest = async (rate,feedback,requestId) => {
-    let res = await backendAxios.post('api/Request/RateRequest',
+    const res = await backendAxios.post('api/Request/RateRequest',
     {
       rate,
       feedback,
@@ -16,7 +16,9 @@ export const rateRequest = async (rate,feedback,requestId) => {
         return true;
     })
     .catch(err => { 
+    
       return false })
+    
   return res;
   }
   

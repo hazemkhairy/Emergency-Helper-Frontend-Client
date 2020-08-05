@@ -6,7 +6,7 @@ import Icondown from "react-native-vector-icons/Ionicons";
 import RNPickerSelect from "react-native-picker-select";
 import ReusableButton from '../global/reusableButton'
 import {getAllSubjects,NewSupportSupportTicket} from '../../Utils/SupportTickets'
-const AddTicketModal = ({ modalVisible,newItem }) => {
+const AddTicketModal = ({ modalVisible,newItem,close }) => {
    
   if (!modalVisible) return null;
   const [visible, setVisible] = useState(modalVisible);
@@ -53,17 +53,20 @@ const AddTicketModal = ({ modalVisible,newItem }) => {
      {
      NewSupportSupportTicket(description,subjects).then((result) => {
       newItem()
-      setVisible(!modalVisible);
+      close()
     });
     }
   }
-   
+  const closeModal=  ()=>{
+    close()
+    setVisible(false)
+   }
     return (
         <Modal style={{ margin: 5 }} isVisible={visible} animationIn="fadeIn" animationInTiming={1000}>
             <KeyboardAvoidingView behavior={'position'}>
             <View style={styles.container}>
                 <View style={styles.closeContainer}>
-                    <TouchableOpacity onPress={() => setVisible(!modalVisible)}>
+                    <TouchableOpacity onPress={() => closeModal()}>
                        <Icon name={'close'} size={25} color={'#454F63'}/>
                     </TouchableOpacity>
                 </View>

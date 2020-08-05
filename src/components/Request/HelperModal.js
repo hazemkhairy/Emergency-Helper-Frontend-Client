@@ -45,7 +45,7 @@ const HelperModal = ({ header }) => {
     }
     Linking.openURL(mobile);
   }
-  const { navigate } = useNavigation();
+  
   const onChat = () => {
     setChatModal(true)
   };
@@ -61,9 +61,8 @@ const HelperModal = ({ header }) => {
       close={() => setCancelModal(false)}
     />
   if(chatModal)
-  return <ChatModal modalVisible={chatModal}
-  close={()=>setChatModal(false)}
-  />
+  return <ChatModal close={()=>setChatModal(false)} />
+  
   return (
     <Modal isVisible={modalVisible}>
       <View style={styles.container}>
