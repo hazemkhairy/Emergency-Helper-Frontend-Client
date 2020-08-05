@@ -43,6 +43,12 @@ const ChangePasswordScreen = ({ navigation }) => {
     }
     else setOldPassword_error("");
 
+    if (oldPassword == newPassword) {
+      setOldPassword_error("This is your old password, please change it");
+      error = false;
+    }
+    else setOldPassword_error("");
+
     if (newPassword == "") {
       setNewPassword_error("Please enter a password");
       error = false;
