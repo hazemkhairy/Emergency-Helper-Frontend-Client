@@ -40,13 +40,14 @@ const styles = StyleSheet.create({
                 Dimensions.get("window").width / 500.0
             ),
         marginLeft: '5%',
+        marginTop:'1.2%',
         fontFamily: 'Montserrat_bold'
 
     },
 
     Icon: {
         color: '#FFFFFF',
-        marginTop: '3%'
+        marginTop: '2.5%'
     }
 });
 
