@@ -10,10 +10,10 @@ const MainHeader = (props) => {
     return (
         <View style={containerStyle}>
             <View style={styles.Header} >
+            <FontAwesome style={styles.Icon} name={Name} size={30}></FontAwesome>
                 <Text style={styles.text}>
                     {HeaderText}
                 </Text>
-                <FontAwesome style={styles.Icon} name={Name} size={30}></FontAwesome>
             </View>
         </View>
     );
@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 70
     },
     Header: {
-        flexDirection: 'row-reverse',
+        flexDirection: 'row',
         justifyContent: 'center',
         alignSelf: 'center',
-        marginTop: '25%',
+        
 
     },
     text: {
@@ -40,14 +40,14 @@ const styles = StyleSheet.create({
                 Dimensions.get("window").width / 500.0
             ),
         marginLeft: '5%',
-        marginTop:'1.2%',
-        fontFamily: 'Montserrat_bold'
+        fontFamily: 'Montserrat_bold',
+        marginTop: normalize(100),
 
     },
 
     Icon: {
         color: '#FFFFFF',
-        marginTop: '2.5%'
+        marginTop:Dimensions.get("window").height>820? '31%':Dimensions.get("window").height>720?'29%':'28%',
     }
 });
 
