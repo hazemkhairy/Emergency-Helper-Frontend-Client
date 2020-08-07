@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '85%',
     alignSelf: 'center',
+    marginBottom:'3%'
   },
   iconStyle: {
     fontSize: 20,

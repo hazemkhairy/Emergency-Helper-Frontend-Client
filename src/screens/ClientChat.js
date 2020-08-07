@@ -38,8 +38,9 @@ const ClientChat = ({ close }) => {
   };
 
   useEffect(() => {
-    getMessages();
-    setInterval(getMessages, 5000);
+    getMessages()
+    const time=setInterval(getMessages, 5000);
+    return () => clearInterval(time);
   }, []);
   useEffect( () => {
       getAcceptedOffer().then( (result) => {

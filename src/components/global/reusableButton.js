@@ -14,9 +14,10 @@ const styles = StyleSheet.create({
   buttonStyle: {
     borderRadius: 30,
     width: "40%",
-    backgroundColor:'#132641',
-    alignItems:'center', 
-    paddingVertical:10,
+    backgroundColor: '#132641',
+    alignItems: 'center',
+    justifyContent:'center',
+    height:40
   }
 });
 

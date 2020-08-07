@@ -56,7 +56,7 @@ const cardItem = ({ item }) => {
             <View style={styles.buttonContainer}>
                 <View>
                 <Text style={styles.date}>{date}</Text>
-                <Text style={styles.helperName}> {name} </Text>
+                <Text style={styles.helperName}>{name}</Text>
                 <Text style={styles.categoryName}>{item.category}</Text>
                 </View>
                 <TouchableOpacity onPress={()=>setActive(!active)}>
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     },
     helperName:
     {
-        fontSize: 12,
+        fontSize: 13,
         fontFamily: 'Montserrat',
         color: '#132641',
         opacity:0.5,
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     },
     categoryName:
     {
-        fontSize: 13,
+        fontSize: 12,
         fontFamily: 'Montserrat',
         color: '#B1B7C0',
         marginBottom:'6%'
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         color: '#B1B7C0',
         marginLeft:'7.5%',
-        marginBottom:'4%'
+        marginBottom:'5%'
     },
     price:{
         fontSize: 12,
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         color: '#132641',
         opacity:0.6,
         right:'8%',
-        bottom: '20%', 
+        bottom: '17%', 
         alignSelf: "flex-end",
     },
     canceledText:{
