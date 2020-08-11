@@ -5,7 +5,6 @@ import EmptyStar from '../../../assets/Images/svg/empty';
 const RatingComponent = ({ maxRating, value, setValue,svgStyle,starsStyle,rated }) => {
    
     const getRating = () => {
-        console.log(value,setValue)
         let svgStylee=svgStyle?svgStyle:styles.svg
         let ret = [];
         for (let i = 0; i < value; i++) {

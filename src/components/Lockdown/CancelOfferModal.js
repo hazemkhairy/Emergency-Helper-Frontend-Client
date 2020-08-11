@@ -34,8 +34,6 @@ const CancelOfferModal = ({ mv, close }) => {
             setLoading(true)
             cancelOffer(reason).then(
                 () => {
-
-                    console.log('success');
                 }
             )
                 .catch(

@@ -9,7 +9,6 @@ const HelperCard = ({ item }) => {
     const onSelect = async () => {
         acceptOffer(item.offer._id).then(
             () => {
-                console.log('done')
             }
         )
     }

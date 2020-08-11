@@ -14,35 +14,40 @@ import LoadingModal from "../global/LoadingModal";
 import RatingComponent from "../Request/RatingComponent";
 import Icon from "react-native-vector-icons/Ionicons";
 import normalize from "react-native-normalize";
-import {rateRequest} from '../../Utils/RequestUtils'
-const RateHelperModal = ({ modalVisible, requestID, close}) => {
-    if(!modalVisible) return null;
+import { rateRequest } from '../../Utils/RequestUtils'
+const RateHelperModal = ({ modalVisible, close }) => {
+  if (!modalVisible)
+    return null;
   const [loading, setLoading] = useState(false);
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(3);
   const [feedbackMessage, setFeedbackMessage] = useState("");
 
   const onSubmit = () => {
     setLoading(true);
-    
-    rateRequest (rating,feedbackMessage,requestID).then(() => {
+
+    rateRequest(rating, feedbackMessage).then(() => {
       setLoading(false);
       close();
     });
   };
+  if (loading)
+    return <LoadingModal modalVisible={loading} />
+
   return (
     <Modal
       isVisible={modalVisible}
     >
-      <KeyboardAvoidingView behavior="position" enabled>
-        <LoadingModal modalVisible={loading} />
+      <KeyboardAvoidingView 
+      behavior={Platform.OS == "android" ? "postion" : "padding"}
+        enabled>
         <View style={styles.container}>
           <TouchableOpacity
             onPressOut={() => {
-                close();
+              close();
             }}
             style={styles.closeIcon}
           >
-            <Icon name="ios-close" size={35}  />
+            <Icon name="ios-close" size={35} />
           </TouchableOpacity>
 
           <View style={styles.textContainer}>

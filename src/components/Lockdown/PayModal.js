@@ -1,12 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
-import LoadingModal from '../global/LoadingModal'
-import { getReceiptInfo, payReceipt } from '../../Utils/LockdownUtils'
+import LoadingModal from '../global/LoadingModal';
+import { getReceiptInfo, payReceipt } from '../../Utils/LockdownUtils';
+import RateModal from '../Request/RatingModal'
 const PayModal = () => {
     let mount = useRef(true);
     const [loading, setLoading] = useState(true);
     const [cost, setCost] = useState(0);
+    const [rateModal, setRateModal] = useState(false);
     const getCost = () => {
         setLoading(true);
         getReceiptInfo().then(
@@ -31,10 +33,13 @@ const PayModal = () => {
             }
         }, []
     )
-    const handlePay = async () => {
+    const finishRequest = async () => {
+        setLoading(true);
+        setRateModal(false);
         payReceipt().then(
             (res) => {
-                console.log('done')
+                if (mount.current)
+                    setLoading(false);
             }
         )
             .catch(
@@ -43,6 +48,8 @@ const PayModal = () => {
     }
     if (loading)
         return <LoadingModal modalVisible={loading} />
+    if (rateModal)
+        return <RateModal modalVisible={rateModal} close={finishRequest} />
     return <Modal isVisible={mount.current} >
         <View style={styles.outerContainer}>
             <View style={styles.innerContainer}>
@@ -52,7 +59,12 @@ const PayModal = () => {
                     </Text>
                 </View>
                 <View style={styles.buttonsRow}>
-                    <TouchableOpacity style={styles.buttonContainer} onPress={handlePay}>
+                    <TouchableOpacity style={styles.buttonContainer} onPress={() => {
+                        if (mount.current)
+                            setRateModal(true)
+                    }
+                    }
+                    >
                         <Text style={styles.buttonText}>
                             Ok
                         </Text>
@@ -60,7 +72,7 @@ const PayModal = () => {
                 </View>
             </View>
         </View>
-    </Modal>
+    </Modal >
 }
 
 const styles = StyleSheet.create({
