@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import ColoredStar from '../../../assets/images/svg/colored';
-import EmptyStar from '../../../assets/images/svg/empty';
+import ColoredStar from '../../../assets/Images/svg/colored';
+import EmptyStar from '../../../assets/Images/svg/empty';
 const RatingComponent = ({ maxRating, value, setValue,svgStyle,starsStyle,rated }) => {
    
     const getRating = () => {
