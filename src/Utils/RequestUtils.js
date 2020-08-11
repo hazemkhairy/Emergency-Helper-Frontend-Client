@@ -17,5 +17,8 @@ export const rateRequest = async (rate, feedback) => {
     .catch(err => {
       return false
     })
+    .catch(err => { 
+      
+      return false })
   return res;
 }

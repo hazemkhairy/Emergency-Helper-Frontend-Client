@@ -56,8 +56,7 @@ const styles = StyleSheet.create({
         width:'auto',
     },
     itemIn: {
-        borderWidth:1,
-        borderColor:'#E2E8ED',
+        backgroundColor:'#E2E8ED'
       },
       itemOut: {
         backgroundColor:'#132641',

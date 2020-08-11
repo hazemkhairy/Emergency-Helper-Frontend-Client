@@ -20,8 +20,8 @@ const RateHelperModal = ({ modalVisible, close }) => {
     return null;
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(3);
-  const [feedbackMessage, setFeedbackMessage] = useState("");
 
+  const [feedbackMessage, setFeedbackMessage] = useState("");
   const onSubmit = () => {
     setLoading(true);
 

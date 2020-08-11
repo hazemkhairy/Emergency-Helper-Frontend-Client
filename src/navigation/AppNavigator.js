@@ -6,7 +6,6 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import React from 'react';
 import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import HistoryScreen from '../screens/HistoryScreen';
-import WalletScreen from '../screens/WalletScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
 import AboutUsScreen from '../screens/AboutUs/AboutUsScreen';
 import AvailableHelpersScreen from '../screens/AvailableHelpersScreen'
@@ -16,7 +15,7 @@ import AccountInfoScreen from '../screens/Settings/AccountInfoScreen'
 import ChangePasswordScreen from '../screens/Settings/ChangePasswordScreen'
 import TermsAndConditionsScreen from '../screens/AboutUs/TermsAndConditionsScreen'
 import TicketScreen from '../screens/TicketScreen'
-import RequestChat from '../screens/RequestChat'
+import ClientChat from '../screens/ClientChat'
 import { Dimensions } from 'react-native';
 import Main from '../screens/Main';
 
@@ -31,9 +30,6 @@ const ApplicationNav = createStackNavigator(
         SupportTicketScreen: {
             screen: SupportTicketScreen
         },
-        WalletScreen: {
-            screen: WalletScreen
-        },
         SettingsScreen: {
             screen: SettingsScreen
         },
@@ -46,7 +42,7 @@ const ApplicationNav = createStackNavigator(
         ChangePasswordScreen,
         TicketScreen,
         TermsAndConditionsScreen,
-        RequestChat
+        ClientChat
 
     },
 
@@ -80,13 +76,6 @@ const MainNav = createDrawerNavigator(
                 drawerIcon: <MaterialIcons name="people" size={20} style={{ color: '#132641', opacity: 0.8 }}></MaterialIcons>
             }
 
-        },
-        WalletScreen: {
-            screen: ApplicationNav,
-            navigationOptions: {
-                drawerLabel: 'Wallet',
-                drawerIcon: <FontAwesome name="money" size={20} style={{ color: '#132641', opacity: 0.8 }}></FontAwesome>
-            }
         },
         SettingsScreen: {
             screen: ApplicationNav,
