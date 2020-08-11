@@ -23,7 +23,7 @@ export const signInAction = (user = new SignInUser()) => {
                 dispatch({ type: Success_Sign_In})
             })
             .catch(err => { 
-                console.log(err) 
+                console.log(err.response.data) 
                 dispatch({ type: Error_Sign_In,  payload: err.response.data.message })
                  
             }),200

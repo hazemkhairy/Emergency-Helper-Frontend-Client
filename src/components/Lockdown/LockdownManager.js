@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import LoadingModal from '../global/LoadingModal'
 import { getLockdownStatus } from '../../Utils/LockdownUtils';
 import AvailableHelpersModal from './AvailableHelpersModal';
 import HelperModal from '../Request/HelperModal';
@@ -61,32 +60,26 @@ const LockdownManager = () => {
     }
     switch (lockdown.type) {
         case WAITING_FOR_OFFERS: {
-            console.log('first modal');
             return <AvailableHelpersModal />
         }
         case WAITING_FOR_HELPER_START: {
-            console.log('second modal');
             return <HelperModal header="" />
         }
         case WAITING_FOR_CLIENT_APPROVAL: {
 
-            console.log('third modal');
             return <ApproveStartModal />
         }
         case WAITING_FOR_FINISH_REQUEST: {
-            console.log('fourth modal');
             return <HelperModal header="Request in progress" />
         }
         case WAITING_FOR_CLIENT_PAYMENT: {
 
-            console.log('fifth modal');
             return <PayModal />
         }
 
         default:
             {
 
-                console.log('finall modal', lockdown);
                 return <Text>Lockdown Error</Text>
             }
     }
