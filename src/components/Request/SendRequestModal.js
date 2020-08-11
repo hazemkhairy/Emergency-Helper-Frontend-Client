@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
         textAlignVertical: 'top',
     },
     inputContainer: {
-        marginTop: '5%',
+        marginTop: '5%'
     },
     descripitionInput: {
         height: Dimensions.get('window').height * 0.13,

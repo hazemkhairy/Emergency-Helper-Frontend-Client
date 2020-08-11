@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapDisplay from '../global/MapDisplay';
 import Modal from 'react-native-modal';
@@ -7,26 +7,38 @@ import { getAllSavedAddresses, getAddressesByName } from '../../Utils/AddressesU
 import SearchTextInput from './SearchTextInput';
 
 const SelectLocationModal = ({ mv, close, selectLocation }) => {
-
+    const mount = useRef(true);
     const [addresses, setAddresses] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const [emptyMessage, setEmptyMessage] = useState('');
     const selectLoc = async (item) => {
-        selectLocation(item);
+        if (mount.current)
+            selectLocation(item);
         close();
     }
     useEffect(
-        () => { getAddresses(); }, []
+        () => {
+            mount.current = true;
+            getAddresses();
+            return () => { mount.current = false; }
+        }, []
     )
     const getAddresses = async () => {
         if (searchValue) {
-            getAddressesByName(searchValue).then(res => setAddresses(res));
+            getAddressesByName(searchValue).then(res => {
+                if (mount.current)
+                    setAddresses(res)
+            });
             setEmptyMessage('Found No Search Result')
         }
         else {
 
             setEmptyMessage(`You Don't have any saved places`)
-            getAllSavedAddresses().then(res => setAddresses(res))
+            getAllSavedAddresses().then(res => {
+                if (mount.current)
+                    setAddresses(res)
+            }
+            )
         }
     }
     return (
