@@ -82,7 +82,7 @@ const HelperModal = ({ header }) => {
             <Image
               style={styles.image}
               source={{
-                uri: 'offer.helperImage',
+                uri: offer.helperImage,
               }}
             />
             <View style={styles.nameNumContainer}>

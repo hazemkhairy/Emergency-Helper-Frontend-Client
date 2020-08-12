@@ -9,6 +9,8 @@ import { allMessages, sendMessage } from '../Utils/CleintChat'
 import { getAcceptedOffer } from '../Utils/HelpersOffers'
 import { MaterialIcons } from '@expo/vector-icons';
 import LoadingModal from '../components/global/LoadingModal'
+
+
 const ClientChat = ({ close }) => {
 
   const [messages, setMessages] = useState([]);
@@ -55,7 +57,7 @@ const ClientChat = ({ close }) => {
   return (
     <Modal isVisible={true} style={{margin: 0}}>
     <View style={styles.container}>
-      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.90 }}>
+      <View style={{ height: Dimensions.get('window').height < 600 ? Dimensions.get("window").height * 0.75 : Dimensions.get("window").height * 0.91 }}>
         <View style={styles.headerContainer}>
           <View style={styles.BackButton}>
             <TouchableOpacity onPress={() => { close() }}>
@@ -72,19 +74,19 @@ const ClientChat = ({ close }) => {
           <Text style={styles.nameText}> {helperData.helperName.firstName} </Text>
           </View>
         </View>
-        <View style={{ flex: 1 }}>
-          <FlatList
-            inverted
-            keyboardShouldPersistTaps="handled"
+        <View style={{ flex: 1,marginTop:'2%' }}>
+          <FlatList 
+            //keyboardShouldPersistTaps="handled"
             style={{ flex: 1 }}
             data={messages}
-            getItemLayout={(data, index) => ({
-              length: 170,
-              offset: 170 * index,
-              index,
-            })}
+            // getItemLayout={(data, index) => ({
+            //   length: 170,
+            //   offset: 170 * index,
+            //   index,
+            // })}
+            
             keyExtractor={(item, index) => "key" + index}
-            showsVerticalScrollIndicator={true}
+            //showsVerticalScrollIndicator={true}
             renderItem={({ item, index }) => {
               return (
                 <View>

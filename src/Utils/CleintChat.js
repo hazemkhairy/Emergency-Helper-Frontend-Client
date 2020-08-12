@@ -3,12 +3,8 @@ import backendAxios from '../services/backendAxios'
 export const allMessages = async () => {
     let response = await backendAxios.get('api/Chat/GetMsgs')
       .then((response) => {
-        var data=response.data.payload.messages
-        var arr = [];
-        for(var item in data){
-           arr.push(data[item]);
-         }
-        return arr.reverse();
+       
+        return response.data.payload.messages
       
       })
       .catch((error) => {

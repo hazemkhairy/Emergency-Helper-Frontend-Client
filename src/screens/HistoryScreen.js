@@ -17,7 +17,7 @@ const History = () => {
     setHistory([]);
     await viewHistory().then((result) => {
       setHistory(result);
-      setReloading(false);
+     setReloading(false);
     });
   };
 
@@ -41,7 +41,7 @@ const History = () => {
           renderItem={({ item, index }) => {
             return (
               <View >
-                <CardItem item={item} />
+                <CardItem item={item} refresh={()=>getHistory()}/>
               </View>
             )
           }}

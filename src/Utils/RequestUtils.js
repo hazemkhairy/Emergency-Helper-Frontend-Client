@@ -4,11 +4,12 @@ export const createRequest = async (description, location, category) => {
   const res = await backendAxios.post('api/request', { description, location, category })
   return res;
 }
-export const rateRequest = async (rate, feedback) => {
+export const rateRequest = async (rate, feedback,requestID) => {
   let res = await backendAxios.post('api/Request/RateRequest',
     {
       rate: Number(rate),
-      feedback
+      feedback,
+      requestID
     }
   )
     .then(res => {

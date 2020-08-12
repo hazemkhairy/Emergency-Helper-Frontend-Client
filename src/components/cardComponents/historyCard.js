@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import RatingComponent from '../Request/RatingComponent'
 import RatingModal from '../Request/RatingModal'
 
-const cardItem = ({ item }) => {
+const cardItem = ({ item,refresh }) => {
    
     const [active,setActive]=useState(false)
     const [rateModal, setRateModal] = useState(false);
@@ -15,7 +15,10 @@ const cardItem = ({ item }) => {
         const fullname=item.acceptedState.helperName
         name = fullname.split(' ').slice(0, 2).join(' ')
     }
-    
+    const closeModal=()=>{
+        refresh()
+        setRateModal(false)
+    }
     var day = new Date(item.date).getDate(); 
     var month = new Date(item.date).getMonth() + 1; 
     var year = new Date(item.date).getFullYear(); 
@@ -52,7 +55,7 @@ const cardItem = ({ item }) => {
     return (
         
         <View  style={styles.container}>
-              <RatingModal modalVisible={rateModal} requestID={item._id} close={()=>setRateModal(false)}/>
+              <RatingModal modalVisible={rateModal} requestID={item._id} close={()=>closeModal()}/>
             <View style={styles.buttonContainer}>
                 <View>
                 <Text style={styles.date}>{date}</Text>
@@ -77,6 +80,7 @@ const cardItem = ({ item }) => {
                    svgStyle={styles.svgStyle} 
                    starsStyle={styles.containerStyle}
                    rated={true}
+                   
                    />
                } 
         </View>
@@ -171,7 +175,7 @@ const styles = StyleSheet.create({
     {
         fontSize: 12,
         color: '#132641',
-        fontFamily: 'Montserrat',
+        fontFamily: 'Montserrat_bold',
         right:'11%',
         position: "absolute", 
         bottom: '7%', 

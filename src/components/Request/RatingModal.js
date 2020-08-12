@@ -15,7 +15,7 @@ import RatingComponent from "../Request/RatingComponent";
 import Icon from "react-native-vector-icons/Ionicons";
 import normalize from "react-native-normalize";
 import { rateRequest } from '../../Utils/RequestUtils'
-const RateHelperModal = ({ modalVisible, close }) => {
+const RateHelperModal = ({ modalVisible, close,requestID }) => {
   if (!modalVisible)
     return null;
   const [loading, setLoading] = useState(false);
@@ -25,7 +25,7 @@ const RateHelperModal = ({ modalVisible, close }) => {
   const onSubmit = () => {
     setLoading(true);
 
-    rateRequest(rating, feedbackMessage).then(() => {
+    rateRequest(rating, feedbackMessage,requestID).then(() => {
       setLoading(false);
       close();
     });
