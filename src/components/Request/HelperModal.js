@@ -14,88 +14,88 @@ import Modal from "react-native-modal";
 import MainButton from "../global/MainButton";
 import normalize from "react-native-normalize";
 import Icon from "react-native-vector-icons/Ionicons";
+import { Entypo } from "@expo/vector-icons";
 import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
-import { useNavigation } from 'react-navigation-hooks'
-import { getAcceptedOffer } from '../../Utils/HelpersOffers'
-import ChatModal from '../../screens/ClientChat'
+import { useNavigation } from "react-navigation-hooks";
+import { getAcceptedOffer } from "../../Utils/HelpersOffers";
+import ChatModal from "../../screens/ClientChat";
 const HelperModal = ({ header }) => {
-  const [modalVisible,setModalVisble]=useState(true)
+  const [modalVisible, setModalVisble] = useState(true);
   const [loading, setLoading] = useState(true);
   const [cancelModal, setCancelModal] = useState(false);
-  const [chatModal,setChatModal]=useState(false)
+  const [chatModal, setChatModal] = useState(false);
   const [offer, setOffer] = useState({});
-  useEffect(
-    () => {
-      getAcceptedOffer().then(
-        res => {
-          setOffer(res);
-          setLoading(false);
-        }
-      )
-    }, []
-  )
-  const makeCall = () => {
-    let mobile = { ...offer.helperNumber }
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  useEffect(() => {
+    getAcceptedOffer().then((res) => {
+      setOffer(res);
+      setfirstName(res.helperName.firstName);
+      setlastName(res.helperName.lastName);
+      setLoading(false);
+    });
+  }, []);
+  
 
-    if (Platform.OS === 'android') {
+const fullName= firstName+' '+ lastName;
+const name = fullName.split(' ').slice(0,2).join(' ');
+  const makeCall = () => {
+    let mobile = { ...offer.helperNumber };
+
+    if (Platform.OS === "android") {
       mobile = `tel:${offer.helperNumber}`;
     } else {
       mobile = `telprompt:${offer.helperNumber}`;
     }
     Linking.openURL(mobile);
-  }
-  
+  };
+
   const onChat = () => {
-    setChatModal(true)
+    setChatModal(true);
   };
   const onCancel = () => {
     setCancelModal(true);
   };
-  
-  if (loading)
-    return <LoadingModal modalVisible={loading} />
+
+  if (loading) return <LoadingModal modalVisible={loading} />;
   if (cancelModal)
-    return <CancelModal
-      CancelModalVisble={cancelModal}
-      close={() => setCancelModal(false)}
-    />
-  if(chatModal)
-  return <ChatModal close={()=>setChatModal(false)} />
-  
+    return (
+      <CancelModal
+        CancelModalVisble={cancelModal}
+        close={() => setCancelModal(false)}
+      />
+    );
+  if (chatModal) return <ChatModal close={() => setChatModal(false)} />;
+
   return (
     <Modal isVisible={modalVisible}>
       <View style={styles.container}>
         {header != "" ? <Text style={styles.header}>{header}</Text> : null}
         <View style={styles.centerContainer}>
-          {header == "" ? (
-            <TouchableOpacity
-              onPress={() => {
-                close();
-              }}
-              style={styles.closeIcon}
-            >
-              <Icon name="ios-close" size={35} />
-            </TouchableOpacity>
-          ) : null}
-          <View style={styles.imageContainer}>
-            <Image
-              style={styles.image}
-              source={{
-                uri: offer.helperImage,
-              }}
-            />
-            <View style={styles.nameNumContainer}>
-              <Text style={styles.name}>{offer.helperName.firstName} {offer.helperName.lastName}</Text>
-              <Text style={styles.number}>{offer.helperNumber}</Text>
-            </View>
-            <TouchableOpacity onPress={() => { makeCall() }}>
-              <Icon
-                name="ios-call"
-                style={styles.callIcon}
-                size={normalize(25)}
+          
+          <View style={styles.helperDetailsContainer}>
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                source={{
+                  uri: offer.helperImage,
+                }}
               />
-            </TouchableOpacity>
+              <View style={styles.nameNumContainer}>
+                <Text style={styles.name}>{name}
+                </Text>
+              </View>
+              <TouchableOpacity
+                style={styles.call}
+                onPress={() => {
+                  makeCall();
+                }}
+              >
+                <Text style={styles.number}>{offer.helperNumber}</Text>
+                <Entypo name="phone" size={normalize(16)} />
+              </TouchableOpacity>
+            </View>
           </View>
           <View style={styles.chatBTNContainer}>
             <MainButton style={styles.chatBTN} onPress={() => onChat()}>
@@ -108,7 +108,10 @@ const HelperModal = ({ header }) => {
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Price Visit:
-            <Text style={styles.info}> {offer.priceRange.from} ~ {offer.priceRange.to}</Text>
+                <Text style={styles.info}>
+                  {" "}
+                  {offer.priceRange.from} ~ {offer.priceRange.to}
+                </Text>
               </Text>
             </View>
             <View style={styles.view}>
@@ -150,8 +153,11 @@ const styles = StyleSheet.create({
   },
 
   centerContainer: {
-    top: normalize(8),
-    right: normalize(68),
+    top: normalize(40),
+    right: normalize(30),
+  },
+  helperDetailsContainer: {
+    flex: 1,
   },
   header: {
     fontSize:
@@ -165,19 +171,17 @@ const styles = StyleSheet.create({
     top: normalize(15),
     marginBottom: "10%",
   },
-  closeIcon: {
-    color: "#454F63",
-    bottom: normalize(5),
-    left: normalize(280),
-  },
+
   image: {
+    position: "absolute",
+    justifyContent: "flex-end",
     width: normalize(60),
     height: normalize(60),
     borderRadius: normalize(400 / 2),
     borderColor: "#132641",
     borderWidth: 0.5,
-    right: normalize(10),
-    bottom: normalize(20),
+    left: normalize(-70),
+    top: normalize(-20),
     resizeMode: "cover",
   },
   imageContainer: {
@@ -193,6 +197,8 @@ const styles = StyleSheet.create({
     color: "#132641",
     fontFamily: "Montserrat_SemiBold",
     bottom: normalize(5),
+    position: "absolute",
+    justifyContent: "flex-end",
   },
   number: {
     fontSize:
@@ -203,25 +209,28 @@ const styles = StyleSheet.create({
       ),
     color: "#7B8594",
     fontFamily: "Montserrat",
-    width: normalize(100)
+    width: normalize(90),
   },
   nameNumContainer: {
     flexDirection: "column",
-    bottom: normalize(5),
+    bottom: normalize(6),
   },
-  callIcon: {
-    color: "#132641",
-    top: normalize(14),
-    // right: normalize(5),
+  call: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    bottom: normalize(-11),
   },
+
   chatBTNContainer: {
-    left: normalize(170),
-    bottom: normalize(66.5),
+    left: normalize(162),
+    bottom: normalize(218),
   },
   chatBTN: {
     paddingHorizontal: normalize(10),
-    paddingVertical: "5.5%",
-    width: "65%",
+    paddingVertical: "3%",
+    width: "57%",
+    right: normalize(5),
   },
   chatBTNtxt: {
     color: "white",
@@ -233,7 +242,7 @@ const styles = StyleSheet.create({
     fontSize: normalize(15),
     fontFamily: "Montserrat_Medium",
     marginTop: "2%",
-    width: normalize(300)
+    width: normalize(300),
   },
   info: {
     color: "#B1B7C0",
@@ -243,9 +252,9 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     marginRight: normalize(-5),
-    bottom: normalize(80),
+    bottom: normalize(190),
     height: normalize(126),
-    width: normalize(500)
+    width: normalize(500),
   },
   view: {
     flexDirection: "row",

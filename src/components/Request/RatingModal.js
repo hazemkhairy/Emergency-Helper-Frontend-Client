@@ -14,10 +14,9 @@ import LoadingModal from "../global/LoadingModal";
 import RatingComponent from "../Request/RatingComponent";
 import Icon from "react-native-vector-icons/Ionicons";
 import normalize from "react-native-normalize";
-import { rateRequest } from '../../Utils/RequestUtils'
-const RateHelperModal = ({ modalVisible, close,requestID }) => {
-  if (!modalVisible)
-    return null;
+import { rateRequest } from "../../Utils/RequestUtils";
+const RateHelperModal = ({ modalVisible, close, requestID }) => {
+  if (!modalVisible) return null;
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState(3);
 
@@ -25,21 +24,19 @@ const RateHelperModal = ({ modalVisible, close,requestID }) => {
   const onSubmit = () => {
     setLoading(true);
 
-    rateRequest(rating, feedbackMessage,requestID).then(() => {
+    rateRequest(rating, feedbackMessage, requestID).then(() => {
       setLoading(false);
       close();
     });
   };
-  if (loading)
-    return <LoadingModal modalVisible={loading} />
+  if (loading) return <LoadingModal modalVisible={loading} />;
 
   return (
-    <Modal
-      isVisible={modalVisible}
-    >
-      <KeyboardAvoidingView 
-      behavior={Platform.OS == "android" ? "postion" : "padding"}
-        enabled>
+    <Modal isVisible={modalVisible}>
+       <KeyboardAvoidingView
+            behavior={Platform.OS == "android" ? "postion" : "padding"}
+            style={{ height: '100%', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+
         <View style={styles.container}>
           <TouchableOpacity
             onPressOut={() => {
@@ -134,7 +131,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: "center",
-    top: normalize(22),
+    top: normalize(10),
   },
   submitBtn: {
     paddingVertical: "8%",
