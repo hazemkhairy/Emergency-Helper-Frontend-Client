@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         flex: 1,
         borderRadius: 12,
         borderColor: '#707070',
-        borderWidth: 0.2,
+        borderWidth: 0.3,
         backgroundColor: 'white',
         color: '#132641',
         fontSize: 12,

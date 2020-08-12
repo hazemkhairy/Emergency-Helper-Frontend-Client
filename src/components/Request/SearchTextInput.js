@@ -12,6 +12,7 @@ const SearchTextInput = ({ value, setValue, search, close }) => {
             onChangeText={setValue}
             style={styles.textInput}
             placeholder="Location"
+            placeholderTextColor={"rgba(11,11,11,0.3)"}
         />
         <TouchableOpacity style={styles.rightIconContainer} onPress={() => { search() }}>
 
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
 
         fontFamily: 'Montserrat_SemiBold',
         fontSize: 16 * (812 / Dimensions.get('screen').height),
-
+        color:'rgba(11,11,11,0.3)',
         textAlignVertical: 'center',
         width: '80%',
         height: '100%'
