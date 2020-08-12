@@ -8,6 +8,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const TermsAndConditions = (props) => {
 
     return (
+        <View style={{backgroundColor:'#FFFFFF',flex:1}}>
         <KeyboardAwareScrollView bounces={false}>
             <MainHeader headerText={'Terms of Use'}></MainHeader>
             <View style={styles.container}>
@@ -17,6 +18,7 @@ const TermsAndConditions = (props) => {
                 <Text style={styles.description}>We only collect the information you choose to give us. We only require the minimum amount of personal infromation that is required to fulfill the purpose of interaction with us </Text>
             </View>
         </KeyboardAwareScrollView >
+        </View>
     )
 }
 

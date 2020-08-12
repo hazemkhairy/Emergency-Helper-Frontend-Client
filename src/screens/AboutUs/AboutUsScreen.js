@@ -60,7 +60,7 @@ AboutUsScreen.navigationOptions = (props) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#FFFFFF",
-        display: "flex",
+        //display: "flex",
         flex: 1
     },
     termsConditions: {

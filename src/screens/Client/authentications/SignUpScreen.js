@@ -121,7 +121,6 @@ const SignUp = ({ navigation }) => {
 
   const onSubmit = () => {
     if (validate()) {
-      console.log("Success");
       disptach(
         signUpAction(
           new SignUpUser(firstName, lastName, phonenumber, email, password)

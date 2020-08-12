@@ -40,17 +40,15 @@ const ClientChat = ({ close }) => {
   };
 
   useEffect(() => {
+    getAcceptedOffer().then( (result) => {
+      setHelperData(result);
+      setloading(false)
+    })
     getMessages()
     const time=setInterval(getMessages, 5000);
     return () => clearInterval(time);
   }, []);
-  useEffect( () => {
-      getAcceptedOffer().then( (result) => {
-          setHelperData(result);
-          setloading(false)
-        })
-    }, []
-  )
+  
   if(loading)
   return <LoadingModal modalVisible={loading}  />
 
@@ -76,17 +74,12 @@ const ClientChat = ({ close }) => {
         </View>
         <View style={{ flex: 1,marginTop:'2%' }}>
           <FlatList 
+          inverted
             //keyboardShouldPersistTaps="handled"
             style={{ flex: 1 }}
             data={messages}
-            // getItemLayout={(data, index) => ({
-            //   length: 170,
-            //   offset: 170 * index,
-            //   index,
-            // })}
-            
             keyExtractor={(item, index) => "key" + index}
-            //showsVerticalScrollIndicator={true}
+            showsVerticalScrollIndicator={true}
             renderItem={({ item, index }) => {
               return (
                 <View>

@@ -4,7 +4,12 @@ export const allMessages = async () => {
     let response = await backendAxios.get('api/Chat/GetMsgs')
       .then((response) => {
        
-        return response.data.payload.messages
+        var data=response.data.payload.messages
+        var arr = [];
+        for(var item in data){
+           arr.push(data[item]);
+         }
+        return arr.reverse();
       
       })
       .catch((error) => {

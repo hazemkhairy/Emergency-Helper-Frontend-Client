@@ -15,7 +15,15 @@ const ChatCard = ({ item,chat }) => {
     'July', 'August', 'September', 'October', 'November', 'December'];
     var month =  monthNames[new Date(item.date).getMonth()];
     var hours = new Date(item.date).getHours(); 
+    if(hours<9)
+    {
+      hours='0'+hours
+    }
     var min = new Date(item.date).getMinutes(); 
+    if(min<9)
+    {
+      min='0'+min
+    }
     var date= day +' '+ month + ' '+ hours + ':'+ min
 
       if(item.senderRole=='Client'){
