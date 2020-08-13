@@ -7,7 +7,7 @@ import Modal from 'react-native-modal';
 import MainHeader from '../global/MainHeader';
 
 import HelperCard from '../Helper/HelperCard';
-
+import CancelModal from '../Request/CancelModal';
 import { getOffers } from '../../Utils/HelpersOffers';
 
 const AvailableHelpersModal = () => {
@@ -15,6 +15,7 @@ const AvailableHelpersModal = () => {
     const [helpersData, setHelpersData] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
     const [radius, setRadius] = useState('')
+    const [cancelModal, setCancelModal] = useState(false);
 
 
     const loadHelpers = async () => {
@@ -40,25 +41,40 @@ const AvailableHelpersModal = () => {
     const reload = () => {
         loadHelpers();
     };
+    const onCancel = () => {
+        setCancelModal(true);
+    };
     useEffect(() => {
         mount.current = true;
         reload();
-        return () => { mount.current = false; }
+         return () => { mount.current = false; }
     }, []);
+
     return (
         <Modal isVisible={true} style={styles.modal}>
-
+            <CancelModal CancelModalVisble={cancelModal} close={() => setCancelModal(false)} />
             <View style={styles.container}>
                 <MainHeader headerText={'Available Helpers'} ></MainHeader>
                 <View style={styles.btnContainer}>
                     <Text style={styles.subHeader}>Helpers</Text>
-                    <View style={styles.btnCon}>
-                        <TouchableOpacity
-                            style={styles.refreshButton}
-                            onPress={() => reload()}
-                        >
-                            <FontAwesome name='refresh' size={27} color='#132641' />
-                        </TouchableOpacity>
+                    <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-around' }} >
+                        <View style={styles.btnCon}>
+                            <TouchableOpacity
+                                style={styles.cancelBTN}
+                                onPress={() => {onCancel()}}
+                            >
+                                <Text style={styles.cancelBTNtxt}> Cancel</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                        <View style={styles.refreshbtnCon}>
+                            <TouchableOpacity
+                                style={styles.refreshButton}
+                                onPress={() => reload()}
+                            >
+                                <FontAwesome name='refresh' size={25} color='#132641' />
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </View>
                 {
@@ -114,14 +130,16 @@ const styles = StyleSheet.create({
         fontFamily: "Montserrat_SemiBold",
         marginTop: "10%",
     },
-    refreshButton: {
-        marginTop: "10%",
-        flexDirection: "row",
-        marginLeft: "13%",
+    refreshbtnCon: {
+        justifyContent: "center",
         alignSelf: "center",
-        paddingHorizontal: "38%",
-        paddingBottom: "3.5%",
-        paddingTop: "1%",
+        marginRight: '1%',
+        marginLeft: '35%'
+    },
+    refreshButton: {
+        marginTop: "70%",
+        marginLeft: "3%",
+        alignSelf: "center",
     },
 
     btnContainer: {
@@ -137,7 +155,24 @@ const styles = StyleSheet.create({
         color: "#132641",
         fontSize: normalize(14),
         marginLeft: '15%'
-    }
+    },
+    cancelBTN: {
+        backgroundColor: "#132641",
+        borderRadius: 35,
+        alignSelf: "center",
+        paddingHorizontal: "7%",
+        paddingBottom: "2%",
+        paddingTop: "2%",
+        marginTop: "7%",
+        marginLeft: "15%",
+        marginRight: '40%'
+    },
+    cancelBTNtxt: {
+        color: "#fff",
+        fontSize: normalize(14),
+        fontFamily: "Montserrat",
+        justifyContent: "center",
+    },
 
 })
 
