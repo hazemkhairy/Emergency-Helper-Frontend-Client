@@ -78,7 +78,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
         <LoadingModal modalVisible={loading} />
         <View style={styles.blueBackground}>
         <TouchableOpacity
-            onPress={() => { navigation.navigate('SignInScreen') }}
+            onPress={() => { navigation.navigate('SignIn') }}
             style={styles.backButton} >
             <Text>
               <Icon name="arrowleft" style={styles.backIcon} />
