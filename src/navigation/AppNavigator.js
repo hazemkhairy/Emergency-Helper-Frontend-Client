@@ -1,14 +1,12 @@
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from "react-navigation";
-import MainScreen from '../screens/MainScreen';
 import SideDrawer from '../components/global/SideDrawer';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import React from 'react';
-import { Feather, MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import { Feather, MaterialIcons} from "@expo/vector-icons";
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
 import AboutUsScreen from '../screens/AboutUs/AboutUsScreen';
-import AvailableHelpersScreen from '../screens/AvailableHelpersScreen'
 import SupportTicketScreen from '../screens/SupportTicketScreen'
 import SavedAddressesScreen from '../screens/Settings/SavedAddressesScreen'
 import AccountInfoScreen from '../screens/Settings/AccountInfoScreen'
@@ -36,7 +34,6 @@ const ApplicationNav = createStackNavigator(
         AboutUsScreen: {
             screen: AboutUsScreen
         },
-        AvailableHelpersScreen,
         SavedAddressesScreen,
         AccountInfoScreen,
         ChangePasswordScreen,
