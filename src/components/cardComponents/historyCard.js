@@ -66,12 +66,13 @@ const cardItem = ({ item,refresh }) => {
                     <Icon name={'angle-down'} color={'#78849E'} size={20}/>
                 </TouchableOpacity>
             </View>
+           
                 {active==true?<Text style={styles.details}>{item.description}</Text>:null
                 }
+                 <View style={styles.columContainer}>
                 <Text  style={styles.price}>{totalprice} EGP</Text>
-              
                 {canceled ?<Text  style={styles.canceledText}>Canceled</Text>:
-               rateButton? <TouchableOpacity onPress={console.log(item._id),()=>setRateModal(!rateModal)}>
+               rateButton? <TouchableOpacity style={styles.ratebuttonStyle} onPress={console.log(item._id),()=>setRateModal(!rateModal)}>
                <Text style={styles.rateStyle}>Rate</Text>
                </TouchableOpacity>: 
                <RatingComponent  maxRating={5}
@@ -83,6 +84,7 @@ const cardItem = ({ item,refresh }) => {
                    
                    />
                } 
+               </View>
         </View>
     )
     
@@ -109,7 +111,8 @@ const styles = StyleSheet.create({
     date: {
         fontSize: 13,
         fontFamily: 'Montserrat_bold', 
-        color:'#132641'
+        color:'#132641',
+        marginBottom:'2%'
     },
     helperName:
     {
@@ -117,14 +120,14 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         color: '#132641',
         opacity:0.5,
-      
+        marginBottom:'2%'
     },
     categoryName:
     {
         fontSize: 12,
         fontFamily: 'Montserrat',
         color: '#B1B7C0',
-        marginBottom:'6%'
+        marginBottom:'2%'
     },
     buttonContainer:{
         flexDirection: 'row',
@@ -145,8 +148,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat',
         color: '#132641',
         opacity:0.6,
-        right:'8%',
-        bottom: '17%', 
         alignSelf: "flex-end",
     },
     canceledText:{
@@ -154,9 +155,7 @@ const styles = StyleSheet.create({
         color: '#132641',
         opacity:0.5,
         fontFamily: 'Montserrat',
-        right:'11%',
-        position: "absolute", 
-        bottom: '7%', 
+       
         alignSelf: "flex-end",
     },
     svgStyle:{
@@ -166,20 +165,28 @@ const styles = StyleSheet.create({
     containerStyle:{
         display: 'flex',
         flexDirection: 'row',
-        right:'11%',
-        position: "absolute", 
-        bottom: '9%', 
+        right:'15%',
         alignSelf: "flex-end",
     },
     rateStyle:
     {
         fontSize: 12,
-        color: '#132641',
+        color: '#FFFFFF',
         fontFamily: 'Montserrat_bold',
-        right:'11%',
-        position: "absolute", 
-        bottom: '7%', 
+    },
+    ratebuttonStyle:{
+        backgroundColor:'#132641',
+        borderRadius: 30,
+        height:25,
+        width: "17%",
+        alignItems: 'center',
+        justifyContent:'center',
         alignSelf: "flex-end",
+    },
+    columContainer:{
+        flexDirection:'column',
+        bottom:'7%',
+        right:'8%',
     }
    
 })

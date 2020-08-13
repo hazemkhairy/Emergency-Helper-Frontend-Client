@@ -10,14 +10,14 @@ import HeaderButton from '../components/global/HeaderButton'
 const History = () => {
 
   const [history, setHistory] = useState([]);
-  const [reloading, setReloading] = useState(false);
+  //const [reloading, setReloading] = useState(false);
 
   const getHistory = async () => {
-    setReloading(true);
-    setHistory([]);
+    //setReloading(true);
+    //setHistory([]);
     await viewHistory().then((result) => {
       setHistory(result);
-     setReloading(false);
+    // setReloading(false);
     });
   };
 
@@ -36,8 +36,8 @@ const History = () => {
           data={history}
           keyExtractor={(item, index) => 'key' + index}
           showsVerticalScrollIndicator={false}
-          refreshing={reloading}
-          onRefresh={() => getHistory()}
+          //refreshing={reloading}
+          //onRefresh={() => getHistory()}
           renderItem={({ item, index }) => {
             return (
               <View >

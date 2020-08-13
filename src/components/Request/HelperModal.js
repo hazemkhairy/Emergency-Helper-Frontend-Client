@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     color: "#132641",
     fontFamily: "Montserrat_bold",
     top: normalize(15),
-    marginBottom: "10%",
+    marginBottom: "2%",
   },
 
   image: {
