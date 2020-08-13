@@ -13,6 +13,9 @@ import LoadingModal from "../../../components/global/LoadingModal";
 import SuccessModal from "../../../components/global/SuccessModal";
 import normalize from "react-native-normalize";
 import MainButton from "../../../components/global/MainButton";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Icon from 'react-native-vector-icons/AntDesign';
+
 
 const ForgetPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -73,7 +76,15 @@ const ForgetPasswordScreen = ({ navigation }) => {
           message={modalMessage}
         />
         <LoadingModal modalVisible={loading} />
-        <View style={styles.blueBackground}></View>
+        <View style={styles.blueBackground}>
+        <TouchableOpacity
+            onPress={() => { navigation.navigate('SignInScreen') }}
+            style={styles.backButton} >
+            <Text>
+              <Icon name="arrowleft" style={styles.backIcon} />
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View style={styles.container}>
         <Text style={styles.header}>Forget Password</Text>
@@ -103,10 +114,13 @@ const ForgetPasswordScreen = ({ navigation }) => {
         >
           Reset Password{" "}
         </MainButton>
+       
       </View>
+
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   form: {
     borderColor: "#d6d7da",
@@ -148,8 +162,8 @@ const styles = StyleSheet.create({
       Dimensions.get("window").height > 850
         ? "15%"
         : Dimensions.get("window").height < 600
-        ? "18%"
-        : "14%",
+          ? "18%"
+          : "14%",
     height: Dimensions.get("window").height > 800 ? 30 : 30,
   },
   resetButton: {
@@ -166,6 +180,17 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 14,
     fontFamily: "Montserrat_SemiBold",
+  },
+  backButton: {
+    marginLeft: '7%',
+    width: 25,
+    marginTop: '12%',
+    overflow: 'hidden'
+
+  },
+  backIcon: {
+    color: '#fff',
+    fontSize: 20,
   },
 });
 
