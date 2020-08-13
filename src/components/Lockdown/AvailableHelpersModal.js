@@ -13,17 +13,15 @@ const AvailableHelpersModal = () => {
     const [helpersData, setHelpersData] = useState([]);
     const [isFetching, setIsFetching] = useState(false);
     const [radius, setRadius] = useState('')
+
     const [cancelModal, setCancelModal] = useState(false);
-
-
+    
     const loadHelpers = async () => {
         setIsFetching(true);
-        setHelpersData([]);
         await getOffers().then((result) => {
             if (mount.current) {
-
-                setHelpersData(result.offers);
-                setRadius(result.radius);
+                    setHelpersData(result.offers);
+                    setRadius(result.radius);
                 setIsFetching(false);
             }
 
@@ -45,9 +43,11 @@ const AvailableHelpersModal = () => {
     useEffect(() => {
         mount.current = true;
         reload();
-        const time=setTimeout(getOffers, 60000);
-        return () => { clearTimeout(time);
-            mount.current = false; }
+        const time = setInterval(loadHelpers, 5000);
+        return () => {
+            clearInterval(time);
+            mount.current = false;
+        }
     }, []);
 
     return (

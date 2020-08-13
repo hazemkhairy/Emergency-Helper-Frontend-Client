@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Text, View, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import Modal from "react-native-modal";
 import normalize from 'react-native-normalize';
@@ -6,27 +6,33 @@ import MainButton from '../global/MainButton';
 import LoadingModal from '../global/LoadingModal';
 import Icon from '@expo/vector-icons/Ionicons';
 import { cancelRequest } from '../../Utils/CancelRequest';
-import { useNavigation } from 'react-navigation-hooks'
 
 const CancelModal = ({ CancelModalVisble, close }) => {
 
-
+  
   if (!CancelModalVisble) return null;
+  const mount = useRef(true)
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState('');
-  const { navigate } = useNavigation();
   const onSubmit = async () => {
     setLoading(true);
     cancelRequest(feedback).then(
       () => {
-        setLoading(false);
+        if (mount.current) {
+          setLoading(false);
+        }
         close();
       }
     )
-    navigate('Main');
 
   }
+  useEffect(
+    () => {
+      mount.current = true;
 
+      return () => { mount.current = false }
+    }, []
+  )
 
   return (
     <Modal isVisible={CancelModalVisble}>
@@ -44,7 +50,10 @@ const CancelModal = ({ CancelModalVisble, close }) => {
             placeholderTextColor='#78849E'
             scrollEnabled={true}
             value={feedback}
-            onChangeText={(text) => { setFeedback(text) }}
+            onChangeText={(text) => {
+              if (mount.current)
+                setFeedback(text)
+            }}
           >
           </TextInput>
           <Text style={styles.Note}>You might be charged the visit payment if you exceeded the minimum time for cancelling. </Text>
