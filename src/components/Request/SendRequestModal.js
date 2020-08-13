@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Dimensions, Keyboard } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import CategorySelect from './CategorySelect'
@@ -121,7 +121,13 @@ const SendRequestModal = ({ close, mV }) => {
             }} />
 
     return (
-        <Modal isVisible={innerVisibility} style={styles.modal} animationInTiming={animationTiming} animationOutTiming={animationTiming}>
+        <Modal
+            isVisible={innerVisibility}
+            style={styles.modal}
+            animationInTiming={animationTiming}
+            animationOutTiming={animationTiming}
+            onBackdropPress={() => { Keyboard.dismiss() }}
+        >
             <View style={styles.container}>
                 <TouchableOpacity onPress={closeHandler} style={styles.innerContainer}>
                     <AntDesign name="down" size={24} color="black" />
@@ -140,7 +146,7 @@ const SendRequestModal = ({ close, mV }) => {
                     <View style={styles.inputContainer}>
                         <CategorySelect
                             value={category}
-                            setValue={(val) => { if(mount.current)setCategory(val) }}
+                            setValue={(val) => { if (mount.current) setCategory(val) }}
                             style={categoryError ? styles.error : null}
 
                         />

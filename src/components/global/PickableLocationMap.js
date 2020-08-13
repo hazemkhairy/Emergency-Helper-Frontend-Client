@@ -24,7 +24,7 @@ const MapDisplay = ({ submitLocation }) => {
     }
     const [pickedLocation, setPickedLocation] = useState(null);
     const [region, setRegion] = useState(null);
-    const [buttonV, setButtonV] = useState(null)
+    const [buttonV, setButtonV] = useState(true)
     useEffect(
         () => {
             getUserLocation();
@@ -47,7 +47,7 @@ const MapDisplay = ({ submitLocation }) => {
             latitudeDelta: 0.0422,
             longitudeDelta: 0.0221,
         })
-        setButtonV(false)
+        setButtonV(true)
     }
     return (
         <View style={styles.container}>
