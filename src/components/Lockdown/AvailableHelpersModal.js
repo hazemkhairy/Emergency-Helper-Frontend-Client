@@ -43,7 +43,7 @@ const AvailableHelpersModal = () => {
     useEffect(() => {
         mount.current = true;
         reload();
-        const time = setInterval(loadHelpers, 5000);
+        const time = setInterval(loadHelpers, 60000);
         return () => {
             clearInterval(time);
             mount.current = false;
