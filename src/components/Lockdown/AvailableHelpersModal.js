@@ -3,9 +3,7 @@ import { View, StyleSheet, FlatList, Text, TouchableOpacity } from 'react-native
 import normalize from "react-native-normalize";
 import { FontAwesome } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-
 import MainHeader from '../global/MainHeader';
-
 import HelperCard from '../Helper/HelperCard';
 import CancelModal from '../Request/CancelModal';
 import { getOffers } from '../../Utils/HelpersOffers';
@@ -47,7 +45,9 @@ const AvailableHelpersModal = () => {
     useEffect(() => {
         mount.current = true;
         reload();
-         return () => { mount.current = false; }
+        const time=setTimeout(getOffers, 60000);
+        return () => { clearTimeout(time);
+            mount.current = false; }
     }, []);
 
     return (
@@ -61,7 +61,7 @@ const AvailableHelpersModal = () => {
                         <View style={styles.btnCon}>
                             <TouchableOpacity
                                 style={styles.cancelBTN}
-                                onPress={() => {onCancel()}}
+                                onPress={() => { onCancel() }}
                             >
                                 <Text style={styles.cancelBTNtxt}> Cancel</Text>
                             </TouchableOpacity>
@@ -72,7 +72,7 @@ const AvailableHelpersModal = () => {
                                 style={styles.refreshButton}
                                 onPress={() => reload()}
                             >
-                                <FontAwesome name='refresh' size={25} color='#132641' />
+                                <FontAwesome name='refresh' size={23} color='#132641' />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -134,10 +134,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignSelf: "center",
         marginRight: '1%',
-        marginLeft: '35%'
+        marginLeft: '45%'
     },
     refreshButton: {
-        marginTop: "70%",
+        marginTop: "77%",
         marginLeft: "3%",
         alignSelf: "center",
     },
@@ -157,20 +157,21 @@ const styles = StyleSheet.create({
         marginLeft: '15%'
     },
     cancelBTN: {
-        backgroundColor: "#132641",
+        backgroundColor: "#B22222",
         borderRadius: 35,
+        borderColor: '#132641',
         alignSelf: "center",
-        paddingHorizontal: "7%",
+        paddingHorizontal: "5%",
         paddingBottom: "2%",
         paddingTop: "2%",
-        marginTop: "7%",
+        marginTop: "8%",
         marginLeft: "15%",
         marginRight: '40%'
     },
     cancelBTNtxt: {
-        color: "#fff",
-        fontSize: normalize(14),
-        fontFamily: "Montserrat",
+        color: "white",
+        fontSize: normalize(10),
+        fontFamily: "Montserrat_bold",
         justifyContent: "center",
     },
 
