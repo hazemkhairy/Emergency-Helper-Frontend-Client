@@ -4,6 +4,7 @@ import {
   View,
   Dimensions,
   StyleSheet,
+  TouchableOpacity
 } from "react-native";
 import Input from "../../../components/global/Input";
 import signInStyle from "../../../styles/signInStyle";
@@ -13,7 +14,6 @@ import LoadingModal from "../../../components/global/LoadingModal";
 import SuccessModal from "../../../components/global/SuccessModal";
 import normalize from "react-native-normalize";
 import MainButton from "../../../components/global/MainButton";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/AntDesign';
 
 
