@@ -1,15 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import Modal from 'react-native-modal';
 
 const ErrorModal = ({ modalVisible }) => {
-   
 
-    if(!modalVisible)
-    return null;
+
+
+
+    if (!modalVisible)
+        return null;
+
+    const mount = useRef(true);
+    useEffect(
+        () => {
+            mount.current = true;
+            return () => { mount.current = false }
+        }, []
+    )
     return (
-        
-        <Modal isVisible={modalVisible} >
+
+        <Modal isVisible={mount.current && modalVisible} >
             <>
                 <View style={styles.modalBody}>
                     <ActivityIndicator

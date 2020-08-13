@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     },
     searchInputContainer: {
         height: '10%',
-        justifyContent: 'center',
+        justifyContent:'flex-end',
         paddingHorizontal: '4%'
     },
     addressesListContainer: {

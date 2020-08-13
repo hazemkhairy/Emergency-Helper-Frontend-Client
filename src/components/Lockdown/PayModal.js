@@ -38,8 +38,6 @@ const PayModal = () => {
         setRateModal(false);
         payReceipt().then(
             (res) => {
-                if (mount.current)
-                    setLoading(false);
             }
         )
             .catch(
