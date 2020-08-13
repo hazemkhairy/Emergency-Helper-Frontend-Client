@@ -57,36 +57,38 @@ const ForgetPasswordScreen = ({ navigation }) => {
     }
     return error;
   };
-
+  if (errorModal)
+    return <ErrorModal
+      modalVisible={errorModal}
+      closeModal={() => {
+        seterrorModal(false);
+      }}
+      message={modalMessage}
+    />
+  if (successModal)
+    return <SuccessModal
+      modalVisible={successModal}
+      closeModal={() => {
+        setsuccessModal(false);
+        message = { modalMessage }
+      }} />
+  if (loading)
+    return <LoadingModal modalVisible={loading} />
   return (
     <View>
       <View style={styles.whiteBackground}>
-        <ErrorModal
-          modalVisible={errorModal}
-          closeModal={() => {
-            seterrorModal(false);
-          }}
-          message={modalMessage}
-        />
-        <SuccessModal
-          modalVisible={successModal}
-          closeModal={() => {
-            setsuccessModal(false);
-          }}
-          message={modalMessage}
-        />
-        <LoadingModal modalVisible={loading} />
         <View style={styles.blueBackground}>
-        <TouchableOpacity
-            onPress={() => { navigation.navigate('SignIn') }}
-            style={styles.backButton} >
-            <Text>
-              <Icon name="arrowleft" style={styles.backIcon} />
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => { navigation.navigate('SignIn') }}
+          style={styles.backButton} >
+          <Text>
+            <Icon name="arrowleft" style={styles.backIcon} />
+          </Text>
+        </TouchableOpacity>
+
         <Text style={styles.header}>Forget Password</Text>
         <View style={styles.form}>
           <Input
@@ -114,7 +116,7 @@ const ForgetPasswordScreen = ({ navigation }) => {
         >
           Reset Password{" "}
         </MainButton>
-       
+
       </View>
 
     </View>
@@ -182,9 +184,9 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat_SemiBold",
   },
   backButton: {
-    marginLeft: '7%',
+    marginLeft: '10%',
     width: 25,
-    marginTop: '12%',
+    marginTop: '2%',
     overflow: 'hidden'
 
   },
