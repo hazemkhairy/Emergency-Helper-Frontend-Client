@@ -42,8 +42,7 @@ const ApplicationNav = createStackNavigator(
         ChangePasswordScreen,
         TicketScreen,
         TermsAndConditionsScreen,
-        ClientChat
-
+        ClientChat,
     },
 
 
