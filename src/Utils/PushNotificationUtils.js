@@ -2,33 +2,29 @@ import { Notifications } from 'expo';
 import { AsyncStorage, Vibration } from 'react-native';
 import * as Permissions from 'expo-permissions'
 import backendAxios from '../services/backendAxios'
-
 export const registerPushNotification = async () => {
     let token = await AsyncStorage.getItem('pushtoken');
     if (token) {
         return;
     }
-    const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS)
-    let finalSatus = status
-    if (status != 'granted') {
-        const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
-        finalSatus = status
-    }
-    if (finalSatus != 'granted') {
-        return
-    }
-    token = await Notifications.getExpoPushTokenAsync();
+    else {
 
-    await backendAxios.post('api/Account/PushToken', { token: token }).then(
+        let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+        if (status !== 'granted') {
+            return;
+        }
+        token = await Notifications.getExpoPushTokenAsync();
+        //console.log('new', token)
+    }
+    await backendAxios.post('Account/PushToken', { token: token }).then(
         async () => {
-            await AsyncStorage.setItem('', token);
+            await AsyncStorage.setItem('pushtoken', token);
         }
     )
         .catch(
             (err) => {
             }
         )
-
 }
 
 
@@ -36,5 +32,6 @@ export const listenForNotifications = async (navigation) => {
 
     Notifications.addListener((notification) => {
         Vibration.vibrate();
+        console.log(notification)
     })
 }
