@@ -37,10 +37,10 @@ const HelperModal = ({ header }) => {
       setLoading(false);
     });
   }, []);
-  
 
-const fullName= firstName+' '+ lastName;
-const name = fullName.split(' ').slice(0,2).join(' ');
+
+  const fullName = firstName + ' ' + lastName;
+  const name = fullName.split(' ').slice(0, 2).join(' ');
   const makeCall = () => {
     let mobile = { ...offer.helperNumber };
 
@@ -51,6 +51,8 @@ const name = fullName.split(' ').slice(0,2).join(' ');
     }
     Linking.openURL(mobile);
   };
+  const rate = offer.helperRate
+  const rated = (Math.round(rate * 100) / 100).toFixed(2);
 
   const onChat = () => {
     setChatModal(true);
@@ -74,7 +76,7 @@ const name = fullName.split(' ').slice(0,2).join(' ');
       <View style={styles.container}>
         {header != "" ? <Text style={styles.header}>{header}</Text> : null}
         <View style={styles.centerContainer}>
-          
+
           <View style={styles.helperDetailsContainer}>
             <View style={styles.imageContainer}>
               <Image
@@ -98,9 +100,9 @@ const name = fullName.split(' ').slice(0,2).join(' ');
               </TouchableOpacity>
             </View>
             <View style={styles.rateContainer}>
-                                   <Text style={styles.ratenumberStyle}>4.75</Text>
-                                   <Star name="star" style={styles.starStyle} />
-                                </View>
+              <Text style={styles.ratenumberStyle}>{rated}</Text>
+              <Star name="star" style={styles.starStyle} />
+            </View>
           </View>
           <View style={styles.chatBTNContainer}>
             <MainButton style={styles.chatBTN} onPress={() => onChat()}>
@@ -109,28 +111,32 @@ const name = fullName.split(' ').slice(0,2).join(' ');
           </View>
         </View>
         <View style={styles.infoContainer}>
-          <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
-            <View style={styles.view}>
-              <Text style={styles.infoLabels}>
-                Price Visit:
+          <View style={styles.view}>
+            <Text style={styles.infoLabels}>
+              Price Visit:
                 <Text style={styles.info}>
-                  {" "}
-                  {offer.priceRange.from} ~ {offer.priceRange.to}
-                </Text>
+                {" "}
+                {offer.priceRange.from} ~ {offer.priceRange.to}
               </Text>
-            </View>
-            <View style={styles.view}>
-              <Text style={styles.infoLabels}>
-                Category:
+            </Text>
+          </View>
+          <View style={styles.view}>
+            <Text style={styles.infoLabels}>
+              Category:
                 <Text style={styles.info}> {offer.category}</Text>
-              </Text>
-            </View>
+            </Text>
+          </View>
+          <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+
             <View style={styles.view}>
+
               <Text style={styles.infoLabels}>
                 Skills:
                 <Text style={styles.info}> {offer.skills}</Text>
               </Text>
             </View>
+          </ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
             <View style={styles.view}>
               <Text style={styles.infoLabels}>
                 Offer:
@@ -206,7 +212,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   number: {
-    fontSize: Dimensions.get("window").height>850? normalize(14):normalize(14),
+    fontSize: Dimensions.get("window").height > 850 ? normalize(14) : normalize(14),
     color: "#7B8594",
     fontFamily: "Montserrat",
     width: normalize(90),
@@ -214,7 +220,7 @@ const styles = StyleSheet.create({
   nameNumContainer: {
     flexDirection: "column",
     bottom: normalize(6),
-    position:'absolute'
+    position: 'absolute'
   },
   call: {
     flexDirection: "row",
@@ -271,23 +277,23 @@ const styles = StyleSheet.create({
     fontSize: normalize(15),
     fontFamily: "Montserrat_SemiBold",
   },
-  rateContainer:{
-    flexDirection:'row',
-    left:normalize(188),
-    position:'absolute',
+  rateContainer: {
+    flexDirection: 'row',
+    left: normalize(188),
+    position: 'absolute',
     top: normalize(-15),
-   
-},
-starStyle:{
-    color:'#132641',
-    fontSize:17,
-    marginLeft:5,
-    top:-1
-},
-ratenumberStyle:{
+
+  },
+  starStyle: {
+    color: '#132641',
+    fontSize: 17,
+    marginLeft: 5,
+    top: -1
+  },
+  ratenumberStyle: {
     fontFamily: "Montserrat_Medium",
-    color:'#132641',
-    fontSize:13
-}
+    color: '#132641',
+    fontSize: 13
+  }
 });
 export default HelperModal;

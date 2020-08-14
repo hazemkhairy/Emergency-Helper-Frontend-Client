@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
 import { getProfileData } from '../../Utils/ProfileData';
 import normalize from "react-native-normalize";
-import LoadingModal from '../global/LoadingModal';
+import Star from 'react-native-vector-icons/Foundation';
+import { color } from "react-native-reanimated";
 
 const SideDrawerProfile = (props) => {
 
@@ -11,7 +12,9 @@ const SideDrawerProfile = (props) => {
     const [lastName, setLastName] = useState("");
     const [emailAddress, setEmailAddress] = useState("");
     const [profilePic, setProfilePic] = useState();
+    const [rate, setRate] = useState("");
 
+   
     const loadProfileData = () => {
         setLoading(true);
         getProfileData().then((result) => {
@@ -19,6 +22,7 @@ const SideDrawerProfile = (props) => {
             setLastName(result.lastName);
             setEmailAddress(result.email)
             setProfilePic(result.profilePicture)
+            setRate((Math.round(result.rate * 100) / 100).toFixed(2));
             setLoading(false);
         });
     };
@@ -31,12 +35,15 @@ const SideDrawerProfile = (props) => {
 
     return (
         <View>
-            {/* <LoadingModal modalVisible={loading} /> */}
             <View style={styles.ProfileContainer}>
                 <View style={{ width: '80%', marginLeft: 10 }}>
                     <View style={{ flexDirection: 'row' }}>
                         <Image source={{ uri: profilePic }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
+                        <View style={styles.rateContainer}>
+                            <Text style={styles.ratenumberStyle}>{rate}</Text>
+                            <Star name="star" style={styles.starStyle} />
+                        </View>
                             <Text style={styles.nameText}>{name}</Text>
                         </View>
                     </View>
@@ -82,6 +89,24 @@ const styles = StyleSheet.create({
         marginTop: Dimensions.get('window').height > 600 ? 7 : 5,
         width: '100%'
     },
+    rateContainer: {
+        flexDirection: 'row',
+        left: normalize(2),
+        position: 'absolute',
+        top: normalize(30),
+    
+      },
+      starStyle: {
+        fontSize: 17,
+        marginLeft: 5,
+        top: -1,
+        color:'white',
+      },
+      ratenumberStyle: {
+        fontFamily: "Montserrat_Medium",
+        color: 'white',
+        fontSize: 13
+      }
 });
 
 export default SideDrawerProfile;

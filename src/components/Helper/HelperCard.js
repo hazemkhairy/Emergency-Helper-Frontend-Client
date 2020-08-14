@@ -13,11 +13,11 @@ const HelperCard = ({ item }) => {
             }
         )
     }
-
+    const rate=item.helperInfo.rate
+    const rated=(Math.round(rate * 100) / 100).toFixed(2);
     return (
         <View style={containerStyle}>
             <View style={styles.expandButton}>
-
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                     <Image source={{ uri: item.helperInfo.profilePicture }} style={styles.img}></Image>
                     <View style={{ marginTop: '4%' }}>
@@ -25,7 +25,7 @@ const HelperCard = ({ item }) => {
                             <View style={{flexDirection:'row' }}>
                                 <Text style={styles.name}>{item.helperInfo.name}</Text>
                                 <View style={styles.rateContainer}>
-                                   <Text style={styles.ratenumberStyle}>4.75</Text>
+                                   <Text style={styles.ratenumberStyle}> {rated} </Text>
                                    <Star name="star" style={styles.starStyle} />
                                 </View>
                             </View>
@@ -174,7 +174,10 @@ const styles = StyleSheet.create({
         borderRadius: 35,
         marginLeft: 20,
         width: normalize(60),
-        padding: '1%'
+        padding: '1%',
+        top:normalize(-5),
+        left:normalize(122),
+        position:'absolute'
     },
     buttonText: {
         color: '#FFFFFF',
