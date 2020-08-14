@@ -14,6 +14,7 @@ import Modal from "react-native-modal";
 import MainButton from "../global/MainButton";
 import normalize from "react-native-normalize";
 import Icon from "react-native-vector-icons/Ionicons";
+import Star from 'react-native-vector-icons/Foundation';
 import { Entypo } from "@expo/vector-icons";
 import LoadingModal from "../global/LoadingModal";
 import CancelModal from "../Request/CancelModal";
@@ -96,6 +97,10 @@ const name = fullName.split(' ').slice(0,2).join(' ');
                 <Entypo name="phone" size={normalize(16)} />
               </TouchableOpacity>
             </View>
+            <View style={styles.rateContainer}>
+                                   <Text style={styles.ratenumberStyle}>4.75</Text>
+                                   <Star name="star" style={styles.starStyle} />
+                                </View>
           </View>
           <View style={styles.chatBTNContainer}>
             <MainButton style={styles.chatBTN} onPress={() => onChat()}>
@@ -201,12 +206,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-end",
   },
   number: {
-    fontSize:
-      normalize(16) *
-      Math.min(
-        Dimensions.get("window").height / 820.0,
-        Dimensions.get("window").width / 380.0
-      ),
+    fontSize: Dimensions.get("window").height>850? normalize(14):normalize(14),
     color: "#7B8594",
     fontFamily: "Montserrat",
     width: normalize(90),
@@ -214,6 +214,7 @@ const styles = StyleSheet.create({
   nameNumContainer: {
     flexDirection: "column",
     bottom: normalize(6),
+    position:'absolute'
   },
   call: {
     flexDirection: "row",
@@ -270,5 +271,23 @@ const styles = StyleSheet.create({
     fontSize: normalize(15),
     fontFamily: "Montserrat_SemiBold",
   },
+  rateContainer:{
+    flexDirection:'row',
+    left:normalize(188),
+    position:'absolute',
+    top: normalize(-15),
+   
+},
+starStyle:{
+    color:'#132641',
+    fontSize:17,
+    marginLeft:5,
+    top:-1
+},
+ratenumberStyle:{
+    fontFamily: "Montserrat_Medium",
+    color:'#132641',
+    fontSize:13
+}
 });
 export default HelperModal;

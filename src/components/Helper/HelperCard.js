@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import normalize from 'react-native-normalize';
 import { acceptOffer } from '../../Utils/HelpersOffers';
+import Star from 'react-native-vector-icons/Foundation';
 const HelperCard = ({ item }) => {
     let containerStyle = styles.container
     const [active, setActive] = useState(false)
@@ -21,7 +22,14 @@ const HelperCard = ({ item }) => {
                     <Image source={{ uri: item.helperInfo.profilePicture }} style={styles.img}></Image>
                     <View style={{ marginTop: '4%' }}>
                         <View style={{ marginLeft: normalize(10) }}>
-                            <Text style={styles.name}>{item.helperInfo.name}</Text>
+                            <View style={{flexDirection:'row' }}>
+                                <Text style={styles.name}>{item.helperInfo.name}</Text>
+                                <View style={styles.rateContainer}>
+                                   <Text style={styles.ratenumberStyle}>4.75</Text>
+                                   <Star name="star" style={styles.starStyle} />
+                                </View>
+                            </View>
+                   
                             <View style={{ flexDirection: 'row' }}>
                                 <Text style={styles.price}>Price visit: {item.offer.price.from}~{item.offer.price.to}</Text>
                                 <TouchableOpacity style={styles.buttonStyle} onPress={() => { onSelect() }}>
@@ -66,6 +74,7 @@ const HelperCard = ({ item }) => {
                 </View>
             </View> : null
             }
+            
         </View>
     )
 }
@@ -170,10 +179,25 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#FFFFFF',
         fontSize: normalize(14),
-        fontFamily: "Montserrat_SemiBold",
+        
         alignSelf: "center"
+    },
+    rateContainer:{
+        flexDirection:'row',
+        left:normalize(143),
+        position:'absolute'
+    },
+    starStyle:{
+        color:'#132641',
+        fontSize:17,
+        marginLeft:5,
+        top:-1
+    },
+    ratenumberStyle:{
+        fontFamily: "Montserrat_Medium",
+        color:'#132641',
+        fontSize:13
     }
-
 
 })
 
