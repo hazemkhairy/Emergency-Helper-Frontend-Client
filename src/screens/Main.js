@@ -5,9 +5,13 @@ import MenuHeaderButton from '../components/global/MenuHeaderButton';
 import MapDisplay from '../components/global/MapDisplay'
 import SendRequest from '../components/Request/SendRequest';
 import LockdownManager from '../components/Lockdown/LockdownManager';
-
+import { listenForNotifications, registerPushNotification } from '../Utils/PushNotificationUtils'
 const Main = ({ navigation }) => {
-
+    const handleNotification = () => {
+        registerPushNotification();
+        listenForNotifications(navigation);
+    }
+    handleNotification();
     return (
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
             <LockdownManager />
