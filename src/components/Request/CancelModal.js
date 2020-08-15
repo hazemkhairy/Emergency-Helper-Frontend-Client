@@ -56,7 +56,6 @@ const CancelModal = ({ CancelModalVisble, close }) => {
             }}
           >
           </TextInput>
-          <Text style={styles.Note}>You might be charged the visit payment if you exceeded the minimum time for cancelling. </Text>
           <MainButton style={styles.confirmButton} onPress={() => onSubmit()}>
             <Text style={styles.confirmText}>Confirm</Text>
           </MainButton>

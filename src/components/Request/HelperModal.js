@@ -99,6 +99,9 @@ const HelperModal = ({ header }) => {
                 <Entypo name="phone" size={normalize(16)} />
               </TouchableOpacity>
             </View>
+            <TouchableOpacity onPress={() => onCancel()} style={styles.CancelBTN}>
+          <Text style={styles.cancelText}>Cancel Request </Text>
+        </TouchableOpacity>
             <View style={styles.rateContainer}>
               <Text style={styles.ratenumberStyle}>{rated}</Text>
               <Star name="star" style={styles.starStyle} />
@@ -145,9 +148,7 @@ const HelperModal = ({ header }) => {
             </View>
           </ScrollView>
         </View>
-        <TouchableOpacity onPress={() => onCancel()} style={styles.CancelBTN}>
-          <Text style={styles.cancelText}>Cancel Request </Text>
-        </TouchableOpacity>
+       
       </View>
     </Modal>
   );
@@ -270,7 +271,8 @@ const styles = StyleSheet.create({
   },
   CancelBTN: {
     bottom: normalize(72),
-    left: normalize(90),
+    left: normalize(120),
+    top:180
   },
   cancelText: {
     color: "#B72020",
@@ -279,7 +281,7 @@ const styles = StyleSheet.create({
   },
   rateContainer: {
     flexDirection: 'row',
-    left: normalize(188),
+    left: normalize(200),
     position: 'absolute',
     top: normalize(-15),
 
