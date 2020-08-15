@@ -41,7 +41,7 @@ const SideDrawerProfile = (props) => {
                         <Image source={{ uri: profilePic }} style={styles.img}></Image>
                         <View style={styles.TextContainer}>
                         <View style={styles.rateContainer}>
-                            <Text style={styles.ratenumberStyle}>{rate}</Text>
+                            <Text style={styles.ratenumberStyle}>4.5</Text>
                             <Star name="star" style={styles.starStyle} />
                         </View>
                             <Text style={styles.nameText}>{name}</Text>

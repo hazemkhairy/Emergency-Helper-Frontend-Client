@@ -56,6 +56,7 @@ const TicketScreen = ({ navigation }) => {
        </View>
         <View style={{ flex: 1,marginTop:'2%'  }}>
           <FlatList
+            inverted
             keyboardShouldPersistTaps="handled"
             refreshing={reloading}
             onRefresh={() => getMessages()}

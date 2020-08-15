@@ -99,9 +99,9 @@ const HelperModal = ({ header }) => {
                 <Entypo name="phone" size={normalize(16)} />
               </TouchableOpacity>
             </View>
-            <TouchableOpacity onPress={() => onCancel()} style={styles.CancelBTN}>
+            {/* <TouchableOpacity onPress={() => onCancel()} style={styles.CancelBTN}>
           <Text style={styles.cancelText}>Cancel Request </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
             <View style={styles.rateContainer}>
               <Text style={styles.ratenumberStyle}>{rated}</Text>
               <Star name="star" style={styles.starStyle} />
@@ -272,7 +272,7 @@ const styles = StyleSheet.create({
   CancelBTN: {
     bottom: normalize(72),
     left: normalize(120),
-    top:180
+    top:160
   },
   cancelText: {
     color: "#B72020",
