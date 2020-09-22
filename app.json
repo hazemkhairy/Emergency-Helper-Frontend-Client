@@ -1,9 +1,8 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "Emergency Helper-Client",
     "slug": "Emergency-Helper-FrontEnd",
     "privacy": "public",
-    "sdkVersion": "37.0.0",
     "platforms": [
       "ios",
       "android",
@@ -25,6 +24,16 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "js",
+        "jsx",
+        "svg",
+        "ts",
+        "tsx"
+      ]
     }
   }
 }

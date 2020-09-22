@@ -9,10 +9,10 @@ const First = ({ navigation }) => {
 
             <View style={homePageStyle.main}>
                 <Text style={homePageStyle.welcome}>
-                    Welcome
+                    Welcome to
                 </Text>
                 <Text style={homePageStyle.toliftup}>
-                    to Lift Up
+                     Emergency Helper
                 </Text>
                 <Text style={homePageStyle.text}>
                     The best way to find quick help.

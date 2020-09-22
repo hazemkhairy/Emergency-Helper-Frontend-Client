@@ -10,7 +10,6 @@ import ErrorModal from '../../../components/global/ErrorModal';
 import LoadingModal from '../../../components/global/LoadingModal';
 import SuccessModal from '../../../components/global/SuccessModal';
 
-
 const SignIn = ({ navigation }) => {
   const disptach = useDispatch();
   const [email, setEmail] = useState('');
@@ -112,7 +111,10 @@ const SignIn = ({ navigation }) => {
         </AuthHeader>
       </View>
 
-      <TouchableOpacity style={signInStyle.ForgetPasswordButton}>
+      <TouchableOpacity style={signInStyle.ForgetPasswordButton}
+      onPress={() => { 
+        navigation.navigate("ForgetPasswordScreen");
+      }}>
         <Text style={signInStyle.ForgetPasswordText}>FORGOT PASSWORD</Text>
       </TouchableOpacity>
     </View >
