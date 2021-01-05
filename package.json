@@ -11,7 +11,7 @@
     "@expo/vector-icons": "^10.2.0",
     "@react-native-community/datetimepicker": "2.4.0",
     "@react-native-community/masked-view": "0.1.10",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "email-validator": "^2.0.4",
     "expo": "^38.0.0",
     "expo-image-picker": "~8.3.0",
